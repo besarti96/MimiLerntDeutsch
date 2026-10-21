@@ -1,0 +1,927 @@
+'use strict';
+/* ================= Basics ================= */
+const $ = s => document.querySelector(s);
+const app = $('#app'), sheet = $('#sheet'), toastEl = $('#toast');
+const KEY = 'mimi-deutsch-v2', OLD_KEY = 'mimi-deutsch-v1';
+const ROUND = 10, FINAL_ROUND = 15, PASS = 70, XP_LVL = 100, GOAL = 50;
+const LEVELS = [
+  ['Fillestare','Anfängerin'], ['Eksploruese','Entdeckerin'], ['Gjuetare fjalësh','Wortjägerin'],
+  ['Ndërtuese fjalish','Satzbauerin'], ['Heroinë e gramatikës','Grammatik-Heldin'], ['Mbretëresha e gjermanishtes','Deutsch-Königin']
+];
+const PRAISE = [
+  ['Saktë!','Richtig!'], ['Bravo, Mimoza!','Super gemacht!'], ['Shumë mirë!','Sehr gut!'],
+  ['E shkëlqyer!','Toll!'], ['Je yll!','Du bist ein Star!'], ['Perfekt!','Perfekt!'], ['Wow!','Klasse!']
+];
+const LOVE = ['Ich liebe dich Mimi - besarti', 'Te dua shume shume', 'Zemra jem'];
+const LOVE_RARE = ['bmj - pyetem n chat', 'Love uu'];
+const OFF = [0, -62, -92, -62, 0, 62, 92, 62];
+
+const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const strip = s => String(s ?? '').replace(/<[^>]+>/g, '');
+const shuffle = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const rnd = a => a[Math.random() * a.length | 0];
+const HW = typeof HOMEWORK !== 'undefined' ? HOMEWORK : [];
+HW.forEach(h => h.parts.forEach(p => p.hw = h.id));
+const HWP = HW.flatMap(h => h.parts);
+const chIdx = id => CHAPTERS.findIndex(c => c.id === id);
+const chById = id => CHAPTERS.find(c => c.id === id) || HWP.find(c => c.id === id);
+const hwById = id => HW.find(h => h.id === id);
+const fmtDate = d => d.split('-').reverse().slice(0, 2).join('.') + '.';
+
+/* ================= Saved progress ================= */
+const fresh = () => ({ xp:0, streak:0, lastDay:null, day:null, dayXp:0, rounds:0, perfect:0, bestCombo:0,
+  ch:{}, hw:{}, mistakes:{}, badges:[], sound:true, cleared:false });
+let S = fresh();
+try {
+  const d = JSON.parse(localStorage.getItem(KEY));
+  if (d) S = Object.assign(fresh(), d);
+  else {
+    const o = JSON.parse(localStorage.getItem(OLD_KEY));
+    if (o) ['xp','streak','lastDay','day','dayXp','rounds','perfect','bestCombo','sound'].forEach(k => { if (o[k] != null) S[k] = o[k]; });
+  }
+} catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
+const today = () => new Date().toLocaleDateString('sv');
+const dayDiff = (a, b) => Math.round((new Date(b) - new Date(a)) / 864e5);
+function rollDay(){ if (S.day !== today()) { S.day = today(); S.dayXp = 0; } }
+function streakNow(){ return S.lastDay && dayDiff(S.lastDay, today()) <= 1 ? S.streak : 0; }
+function bumpStreak(){
+  const t = today(); if (S.lastDay === t) return false;
+  S.streak = S.lastDay && dayDiff(S.lastDay, t) === 1 ? S.streak + 1 : 1; S.lastDay = t; return true;
+}
+const level = (xp = S.xp) => Math.floor(xp / XP_LVL) + 1;
+const lvlName = l => LEVELS[Math.min(l - 1, LEVELS.length - 1)];
+
+/* journey state */
+const best = i => S.ch[CHAPTERS[i].id]?.best || 0;
+const isDone = i => best(i) >= PASS;
+const unlocked = i => i === 0 || isDone(i - 1);
+const seen = i => unlocked(i) || !!S.ch[CHAPTERS[i].id]?.lesson;
+const curIdx = () => { const i = CHAPTERS.findIndex((c, k) => !isDone(k)); return i < 0 ? CHAPTERS.length : i; };
+const doneCount = () => CHAPTERS.filter((c, i) => isDone(i)).length;
+const starsOf = b => b >= 90 ? 3 : b >= 80 ? 2 : b >= PASS ? 1 : 0;
+/* progress record of a journey chapter or a homework part */
+const rec = (c, make) => { const box = c.hw ? S.hw : S.ch; return box[c.id] || (make ? (box[c.id] = {}) : {}); };
+const hwDone = p => (S.hw[p.id]?.best || 0) >= PASS;
+const hwCount = h => h.parts.filter(hwDone).length;
+
+const BADGES = [
+  {id:'first',  e:'🎉', sq:'Raundi i parë',    de:'Erste Runde',        ok:() => S.rounds >= 1},
+  {id:'chap1',  e:'🚀', sq:'Kapitulli i parë', de:'Erstes Kapitel',     ok:() => doneCount() >= 1},
+  {id:'perfect',e:'💯', sq:'Pa asnjë gabim',    de:'Perfekte Runde',     ok:() => S.perfect >= 1},
+  {id:'combo5', e:'🔥', sq:'5 me radhë',        de:'5 in Folge',         ok:() => S.bestCombo >= 5},
+  {id:'combo10',e:'☄️', sq:'10 me radhë',       de:'10 in Folge',        ok:() => S.bestCombo >= 10},
+  {id:'streak3',e:'📅', sq:'3 ditë rresht',     de:'3 Tage am Stück',    ok:() => S.streak >= 3},
+  {id:'streak7',e:'🗓️', sq:'7 ditë rresht',     de:'7 Tage am Stück',    ok:() => S.streak >= 7},
+  {id:'clock',  e:'⏰', sq:'Mjeshtre e orës',   de:'Uhrzeit-Profi',      ok:() => (S.ch.uhrzeit?.best || 0) >= 90},
+  {id:'half',   e:'🧭', sq:'Gjysma e rrugës',   de:'Halbzeit',           ok:() => doneCount() >= Math.ceil(CHAPTERS.length / 2)},
+  {id:'xp500',  e:'⭐', sq:'500 XP',            de:'500 XP',             ok:() => S.xp >= 500},
+  {id:'xp1000', e:'🌟', sq:'1000 XP',           de:'1000 XP',            ok:() => S.xp >= 1000},
+  {id:'clean',  e:'🧹', sq:'Gabimet zero',      de:'Fehler aufgeräumt',  ok:() => S.cleared},
+  {id:'stars',  e:'✨', sq:'3 yje kudo',        de:'Überall 3 Sterne',   ok:() => CHAPTERS.every((c, i) => best(i) >= 90)},
+  {id:'journey',e:'🏆', sq:'Udhëtimi i plotë',  de:'Reise geschafft',    ok:() => doneCount() === CHAPTERS.length},
+  {id:'hw',     e:'📝', sq:'Detyrat gati',      de:'Hausaufgaben erledigt', ok:() => HW.some(h => hwCount(h) === h.parts.length)},
+  {id:'love',   e:'💌', sq:'Sekreti',           de:'Das Geheimnis',      ok:() => S.egg}
+];
+function checkBadges(){
+  const got = [];
+  BADGES.forEach(b => { if (!S.badges.includes(b.id) && b.ok()) { S.badges.push(b.id); got.push(b); } });
+  return got;
+}
+
+/* ================= Sound, vibration, speech ================= */
+let ac;
+function tone(seq){
+  if (!S.sound) return;
+  try {
+    ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+    if (ac.state === 'suspended') ac.resume();
+    const t0 = ac.currentTime;
+    seq.forEach(([f, st, du, type = 'sine', vol = .16]) => {
+      const o = ac.createOscillator(), g = ac.createGain();
+      o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(0, t0 + st);
+      g.gain.linearRampToValueAtTime(vol, t0 + st + .015);
+      g.gain.exponentialRampToValueAtTime(.001, t0 + st + du);
+      o.connect(g).connect(ac.destination); o.start(t0 + st); o.stop(t0 + st + du + .05);
+    });
+  } catch (e) {}
+}
+const SND = {
+  ok:   () => tone([[660,0,.12],[990,.09,.25]]),
+  try:  () => tone([[330,0,.18,'triangle',.14]]),
+  bad:  () => tone([[220,0,.18,'triangle',.18],[165,.14,.3,'triangle',.18]]),
+  tap:  () => tone([[600,0,.05,'sine',.06]]),
+  page: () => tone([[520,0,.06,'sine',.07],[700,.05,.08,'sine',.07]]),
+  combo:() => tone([[784,0,.1],[988,.08,.1],[1319,.16,.3]]),
+  win:  () => tone([[523,0,.15],[659,.12,.15],[784,.24,.15],[1047,.36,.45]]),
+  love: () => tone([[659,0,.18],[784,.15,.18],[988,.3,.18],[1319,.45,.5,'triangle',.14]]),
+  level:() => tone([[392,0,.12],[523,.1,.12],[659,.2,.12],[784,.3,.12],[1047,.42,.6,'triangle',.18]])
+};
+const buzz = p => { try { navigator.vibrate && navigator.vibrate(p); } catch (e) {} };
+
+const canSpeak = 'speechSynthesis' in window;
+let deVoice = null;
+function pickVoice(){
+  try { const v = speechSynthesis.getVoices(); deVoice = v.find(x => /^de[-_]DE/i.test(x.lang)) || v.find(x => /^de/i.test(x.lang)) || null; } catch (e) {}
+}
+if (canSpeak) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function say(t, slow){
+  if (!canSpeak || !t) return;
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(strip(t).replace(/…/g, '').replace(/\(.*?\)/g, '').replace(/___/g, ''));
+    u.lang = 'de-DE'; if (deVoice) u.voice = deVoice; u.rate = slow ? .55 : .9;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+
+/* ================= Toast, XP pop, confetti, hearts ================= */
+let toastT;
+function toast(msg, ms = 2600){
+  toastEl.innerHTML = msg; toastEl.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('show'), ms);
+}
+function xpPop(n){
+  const el = document.createElement('div'); el.className = 'xpop'; el.textContent = '+' + n + ' XP';
+  document.body.appendChild(el); setTimeout(() => el.remove(), 1100);
+}
+const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+function confetti(){
+  if (reduced()) return;
+  const c = $('#confetti'), x = c.getContext('2d'), d = devicePixelRatio || 1;
+  const W = c.width = innerWidth * d, H = c.height = innerHeight * d;
+  const cols = ['#5B3DF5','#FFC53D','#F2545B','#0E9F8E','#EE7A0C','#7650F0','#16A34A','#D6409F'];
+  const P = Array.from({length:150}, () => ({
+    x: W / 2 + (Math.random() - .5) * W * .4, y: H * .38,
+    vx: (Math.random() - .5) * W * .028, vy: -Math.random() * H * .028 - H * .01,
+    s: (7 + Math.random() * 8) * d, r: Math.random() * 6, vr: (Math.random() - .5) * .35, c: rnd(cols)
+  }));
+  let f = 0;
+  (function loop(){
+    x.clearRect(0, 0, W, H);
+    P.forEach(p => { p.vy += H * .0009; p.x += p.vx; p.y += p.vy; p.vx *= .985; p.r += p.vr;
+      x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.fillStyle = p.c; x.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); x.restore(); });
+    if (++f < 200) requestAnimationFrame(loop); else x.clearRect(0, 0, W, H);
+  })();
+}
+/* love notes: max one per day (except the A1 egg and the finale), rare ones even rarer */
+const loveMsg = () => Math.random() < .15 ? rnd(LOVE_RARE) : rnd(LOVE);
+const loveOk = () => S.loveDay !== today();
+function loveUsed(){ S.loveDay = today(); save(); }
+function loveNote(msg){
+  const el = document.createElement('div'); el.className = 'lovenote'; el.textContent = '💗 ' + msg;
+  document.body.appendChild(el); setTimeout(() => el.remove(), 3600);
+  hearts(4); SND.love();
+}
+function hearts(n = 18){
+  if (reduced()) return;
+  for (let i = 0; i < n; i++) {
+    const h = document.createElement('span');
+    h.className = 'heart'; h.textContent = rnd(['❤️','💕','💖','💗','🥰']);
+    h.style.left = (5 + Math.random() * 90) + 'vw';
+    h.style.fontSize = (20 + Math.random() * 26) + 'px';
+    h.style.animationDuration = (2.2 + Math.random() * 1.8) + 's';
+    h.style.animationDelay = (Math.random() * .9) + 's';
+    document.body.appendChild(h); setTimeout(() => h.remove(), 5000);
+  }
+}
+
+/* ================= Clocks ================= */
+const NUM = ['','eins','zwei','drei','vier','fünf','sechs','sieben','acht','neun','zehn','elf','zwölf'];
+const SQN = ['','një','dy','tre','katër','pesë','gjashtë','shtatë','tetë','nëntë','dhjetë','njëmbëdhjetë','dymbëdhjetë'];
+const nx = h => h % 12 + 1, pv = h => h === 1 ? 12 : h - 1;
+function timeDe(h, m){
+  if (m === 0) return (h === 1 ? 'ein' : NUM[h]) + ' Uhr';
+  if (m === 15) return 'Viertel nach ' + NUM[h];
+  if (m === 30) return 'halb ' + NUM[nx(h)];
+  return 'Viertel vor ' + NUM[nx(h)];
+}
+function timeSq(h, m){
+  if (m === 0) return 'ora ' + SQN[h];
+  if (m === 15) return SQN[h] + ' e një çerek';
+  if (m === 30) return SQN[h] + ' e gjysmë';
+  return SQN[nx(h)] + ' pa një çerek';
+}
+const digital = (h, m) => `${h}:${String(m).padStart(2, '0')}`;
+function clockSVG(h, m, size = 150){
+  const ha = ((h % 12) + m / 60) * 30, ma = m * 6;
+  let ticks = '';
+  for (let i = 0; i < 12; i++) ticks += `<line x1="50" y1="${i % 3 ? 9 : 8}" x2="50" y2="${i % 3 ? 13 : 16}" stroke="${i % 3 ? '#C9C2EA' : '#1E1B3A'}" stroke-width="${i % 3 ? 2 : 3.2}" stroke-linecap="round" transform="rotate(${i * 30} 50 50)"/>`;
+  const num = (n, x, y) => `<text x="${x}" y="${y}" font-size="10" font-weight="800" text-anchor="middle" dominant-baseline="central" fill="#1E1B3A" font-family="system-ui,sans-serif">${n}</text>`;
+  return `<svg viewBox="0 0 100 100" width="${size}" height="${size}" role="img" aria-label="${digital(h, m)}">
+    <circle cx="50" cy="50" r="46" fill="#fff" stroke="var(--tc)" stroke-width="5"/>${ticks}
+    ${num(12,50,24)}${num(3,77,50)}${num(6,50,77)}${num(9,23,50)}
+    <line x1="50" y1="50" x2="50" y2="29" stroke="#1E1B3A" stroke-width="5.5" stroke-linecap="round" transform="rotate(${ha} 50 50)"/>
+    <line x1="50" y1="50" x2="50" y2="15" stroke="var(--tc)" stroke-width="3.5" stroke-linecap="round" transform="rotate(${ma} 50 50)"/>
+    <circle cx="50" cy="50" r="4.5" fill="#1E1B3A"/></svg>`;
+}
+function genClocks(n){
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    const h = 1 + (Math.random() * 12 | 0), m = rnd([0, 15, 30, 30, 45]);
+    const k = c => timeDe(c[0], c[1]), seen = new Set([k([h, m])]), alt = [];
+    if (m === 30) { alt.push([pv(h), 30]); seen.add(k([pv(h), 30])); }
+    shuffle([[h,0],[h,15],[h,30],[h,45],[pv(h),30],[nx(h),0],[pv(h),45]]).forEach(c => { if (!seen.has(k(c))) { seen.add(k(c)); alt.push(c); } });
+    const opts = [[h, m], ...alt.slice(0, 3)], txt = 'Es ist ' + k([h, m]) + '.';
+    const e = `${digital(h, m)} = ${k([h, m])} (${timeSq(h, m)}).${m === 30 ? ' Kujto: halb + ora tjetër!' : ''}`;
+    if (i % 2 === 0) out.push({type:'clock', psq:'Sa është ora?', pde:'Wie spät ist es?', hm:[h, m], o:opts.map(c => 'Es ist ' + k(c) + '.'), a:txt, say:txt, e});
+    else out.push({type:'clockpick', psq:'Gjej orën e saktë', pde:'Finde die richtige Uhr', q:txt, speakQ:true, o:opts.map(c => c.join(':')), a:h + ':' + m, say:txt, e});
+  }
+  return out;
+}
+
+/* ================= Question generation ================= */
+function vocabPool(c){ return c.nouns.map(n => ({de: n[0] + ' ' + n[1], sq: n[2]})).concat(c.words.map(w => ({de: w[0], sq: w[1]}))); }
+const distract = (pool, item, f) => shuffle(pool.filter(p => p[f] !== item[f])).slice(0, 3).map(p => p[f]);
+function genVocab(c){
+  if (c.noGen) return [];
+  const pool = vocabPool(c), out = [];
+  c.nouns.forEach(n => {
+    out.push({type:'mc', row:true, psq:'der, die apo das?', pde:'Welcher Artikel passt?', q:'___ ' + n[1], h:n[2],
+      o:['der','die','das'], a:n[0], say:n[0] + ' ' + n[1], e:`${n[0]} ${n[1]} = ${n[2]}`});
+    out.push({type:'write', psq:'Shkruaje gjermanisht', pde:'Schreib das Wort auf Deutsch', q:n[2], art:n[0], a:n[1],
+      say:n[0] + ' ' + n[1], e:`${n[2]} = ${n[0]} ${n[1]}`});
+  });
+  if (pool.length >= 4) pool.forEach(w => {
+    out.push({type:'mc', psq:'Çfarë do të thotë?', pde:'Was bedeutet das?', q:w.de, speakQ:true,
+      o:[w.sq, ...distract(pool, w, 'sq')], a:w.sq, say:w.de, e:`${w.de} = ${w.sq}`});
+    out.push({type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das auf Deutsch?', q:w.sq,
+      o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e:`${w.sq} = ${w.de}`});
+    if (canSpeak) out.push({type:'listen', psq:'Dëgjo dhe zgjidh', pde:'Hör zu und wähle',
+      o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e:`${w.de} = ${w.sq}`});
+  });
+  return out;
+}
+function pickVaried(list, n){
+  const out = [], perType = {}, used = new Set();
+  for (const strict of [true, false]) for (const q of list) {
+    if (out.length >= n) return out;
+    if (out.includes(q) || used.has(q.say)) continue;
+    const k = q.type + q.psq;
+    if (strict && (perType[k] || 0) >= 1) continue;
+    perType[k] = (perType[k] || 0) + 1; used.add(q.say); out.push(q);
+  }
+  return out;
+}
+const tagged = (c, list) => list.map(q => ({...q, tid: c.id}));
+function poolOf(c){ return { gen: tagged(c, genVocab(c)), its: tagged(c, [...c.items, ...(c.clocks ? genClocks(6) : [])]) }; }
+function compose(gen, its, n){
+  gen = shuffle(gen);
+  const match = rnd(its.filter(q => q.type === 'match'));
+  const orders = shuffle(its.filter(q => q.type === 'order'));
+  const rest = shuffle(its.filter(q => q.type !== 'match' && q.type !== 'order'));
+  const need = n - (match ? 1 : 0);
+  let qs = [...pickVaried(gen, Math.min(3, gen.length)), ...orders.slice(0, 2)];
+  qs.push(...rest.slice(0, Math.max(0, need - qs.length)));
+  if (qs.length < need) qs.push(...pickVaried(gen.filter(q => !qs.includes(q)), need - qs.length));
+  if (qs.length < need) qs.push(...orders.slice(2, 2 + need - qs.length));
+  qs = shuffle(qs);
+  if (match) qs.splice(1 + (Math.random() * Math.max(1, qs.length - 1) | 0), 0, match);
+  return qs;
+}
+const keyOf = q => [q.type, q.tid, q.s || q.q || q.de || (q.hm && q.hm.join(':')) || (q.pairs && q.pairs[0][0]) || '', q.a || ''].join('|');
+
+function buildRound(mode, id){
+  let qs = [];
+  if (mode === 'mistakes') qs = shuffle(Object.values(S.mistakes)).slice(0, ROUND).map(q => ({...q}));
+  else if (mode === 'chapter' && chById(id).final) {
+    CHAPTERS.forEach(c => {
+      if (c.final) return;
+      const p = poolOf(c), cand = p.its.filter(q => q.type !== 'match');
+      if (cand.length) qs.push(rnd(cand));
+    });
+    const gen = shuffle(CHAPTERS.flatMap(c => tagged(c, genVocab(c))));
+    qs = shuffle([...qs, ...pickVaried(gen, FINAL_ROUND - qs.length)]).slice(0, FINAL_ROUND);
+  } else {
+    const list = mode === 'chapter' ? [chById(id)] : CHAPTERS.filter((c, i) => !c.final && seen(i));
+    const pools = list.map(poolOf);
+    qs = compose(pools.flatMap(p => p.gen), pools.flatMap(p => p.its), ROUND).slice(0, ROUND);
+  }
+  return qs.map(q => {
+    q.key = q.key || keyOf(q);
+    if (q.o && !q.row && q.type !== 'listen') q.o = shuffle(q.o);
+    if (q.type === 'listen') q.o = shuffle(q.o);
+    ['_pool','_picked','_done','_mist','_L','_R'].forEach(k => delete q[k]);
+    return q;
+  });
+}
+
+/* ================= Home ================= */
+let G = null, L = null, eggTaps = 0, eggT;
+function home(){
+  G = null; L = null; closeSheet(); rollDay();
+  const lv = level(), into = S.xp % XP_LVL, st = streakNow(), mc = Object.keys(S.mistakes).length;
+  const [lsq, lde] = lvlName(lv), goal = Math.min(S.dayXp / GOAL, 1), C = 2 * Math.PI * 27;
+  const cur = curIdx(), done = doneCount(), total = CHAPTERS.length, jp = Math.round(done / total * 100);
+  const next = CHAPTERS[cur];
+  app.style.setProperty('--tc', 'var(--brand)');
+  app.innerHTML = `
+  <header class="hb">
+    <button class="lvchip" data-act="profile" aria-label="Profili im"><span class="lvnum">${lv}</span>Profili</button>
+    <div class="hb-r">
+      <span class="pill ${st ? 'fire' : ''}" title="Ditë rresht">🔥 ${st}</span>
+      <button class="pill" data-act="sound" aria-label="Zëri">${S.sound ? '🔊' : '🔇'}</button>
+    </div>
+  </header>
+  <section class="hero">
+    <button class="sticker" data-act="egg" aria-label="A1">A1</button>
+    <h1>Hallo,<br>Mimoza!</h1>
+    <p>Mirë se erdhe! Sot mësojmë bashkë.</p>
+    <p class="de">Willkommen! Heute lernen wir zusammen.</p>
+    <div class="journey">
+      <div class="j-top"><b>Udhëtimi yt</b><span>${done} / ${total}</span></div>
+      <div class="jbar"><i style="width:${jp}%"></i></div>
+      <small>Deine Reise: ${jp}% geschafft</small>
+    </div>
+    ${next ? `<button class="go" data-act="go" data-id="${next.id}">
+        <span class="go-e">${next.emoji}</span>
+        <span><small>${done ? 'Vazhdo / Weiter' : 'Fillo udhëtimin / Los geht’s'}</small><b>${cur + 1}. ${esc(next.sq)}</b></span><span class="go-arr">▶</span>
+      </button>`
+      : `<div class="go done-all">🏆 <span><b>Udhëtimi u krye!</b><small>Reise geschafft! Je e mrekullueshme.</small></span></div>`}
+  </section>
+  <section class="status">
+    <div class="ring">
+      <svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="#E2DCFA" stroke-width="7"/>
+      <circle cx="32" cy="32" r="27" fill="none" stroke="${goal >= 1 ? '#16A34A' : '#FFC53D'}" stroke-width="7" stroke-linecap="round"
+        stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - goal)}"/></svg>
+      <b>${goal >= 1 ? '✓' : Math.min(S.dayXp, GOAL) + '<br>/' + GOAL}</b>
+    </div>
+    <div class="st-main">
+      <div class="st-title">Niveli ${lv}: ${lsq}<small>${lde}</small></div>
+      <div class="xpbar"><i style="width:${into}%"></i></div>
+      <div class="st-xp">${goal >= 1 ? 'Qëllimi i sotëm u arrit! 🎉' : `Qëllimi sot: ${GOAL} XP / Tagesziel`}</div>
+    </div>
+  </section>
+  <h2 class="sec">Harta e udhëtimit<span>Die Reisekarte</span></h2>
+  <div class="map">${CHAPTERS.map(nodeHTML).join('')}</div>
+  <h2 class="sec">Ushtrim i lirë<span>Freies Üben</span></h2>
+  <div class="free">
+    <button class="fbtn" data-act="chapters"><span class="em">📋</span><span><b>Zgjidh kapitullin</b><small>Kapitel selbst wählen</small></span></button>
+    <button class="fbtn" data-act="mix"><span class="em">⚡</span><span><b>Përzierje</b><small>Mix aus allen offenen Kapiteln</small></span></button>
+    ${mc ? `<button class="fbtn mist" data-act="mistakes"><span class="em">🔁</span><span><b>Gabimet e mia (${mc})</b><small>Meine Fehler üben</small></span></button>` : ''}
+    <button class="fbtn" data-act="dict"><span class="em">📚</span><span><b>Fjalori im</b><small>Mein Wörterbuch</small></span></button>
+  </div>
+  <p class="foot">Gemacht mit ❤️ für Mimoza</p>`;
+  window.scrollTo(0, 0);
+}
+function nodeHTML(c, i){
+  const d = isDone(i), u = unlocked(i), cur = i === curIdx(), s = starsOf(best(i));
+  return `${c.unit ? `<div class="unit"><b>${esc(c.unit[0])}</b><span>${esc(c.unit[1])}</span></div>` : ''}
+  <div class="nrow" style="--off:${OFF[i % OFF.length]}px"><div class="nwrap">
+    ${cur ? '<span class="bubble">Fillo! Start!</span>' : ''}
+    <button class="node ${d ? 'done' : u ? 'open' : 'lock'} ${cur ? 'cur' : ''} ${c.final ? 'final' : ''}" style="--tc:${c.color}" data-act="chap" data-id="${c.id}" aria-label="${esc(c.sq)}">
+      <span>${c.emoji}</span></button>
+    <div class="nlbl"><b>${i + 1}. ${esc(c.sq)}</b><small>${esc(c.de)}</small>
+      ${d ? `<span class="nst">${[1,2,3].map(k => `<i class="${k <= s ? 'on' : ''}">★</i>`).join('')}</span>` : ''}</div>
+  </div></div>`;
+}
+
+/* ================= Homework ================= */
+function hwCard(){
+  const h = HW[HW.length - 1]; if (!h) return '';
+  const n = h.parts.length, d = hwCount(h);
+  return `<button class="hwcard" data-act="hw" aria-label="Detyrat e shtëpisë">
+    <span class="hw-tape" aria-hidden="true"></span>
+    <span class="hw-top"><span class="hw-tag">${h.date === today() ? 'SOT · HEUTE' : '📅 ' + fmtDate(h.date)}</span>
+      ${d === n ? '<span class="hw-ok">✓ Gati</span>' : '<span class="hw-new">E RE · NEU</span>'}</span>
+    <b>📝 Detyrat e shtëpisë</b><small>Hausaufgaben · ${esc(h.de)}</small>
+    <span class="hw-prog"><i style="width:${d / n * 100}%"></i></span>
+    <small>${d}/${n} ushtrime gati · Übungen erledigt</small>
+  </button>`;
+}
+function hwList(){
+  closeSheet(); G = null; L = null;
+  app.style.setProperty('--tc', 'var(--brand)');
+  app.innerHTML = `<div class="game">
+    <div class="gbar"><button class="x" data-act="chapters" aria-label="Kthehu">✕</button><h2 class="dict-h">📝 Detyrat e shtëpisë<span>Hausaufgaben</span></h2></div>
+    <p class="de" style="margin:0 0 6px">Këto janë ushtrimet nga libri yt. Bëji me radhë! 💪<br>Das sind die Übungen aus deinem Buch.</p>
+    ${[...HW].reverse().map(h => `<section class="hwset">
+      <div class="hw-head"><b>${esc(h.sq)}</b><small>${h.date === today() ? 'Sot / Heute' : fmtDate(h.date)} · ${esc(h.de)}</small></div>
+      <div class="topics">${h.parts.map((p, k) => { const b = S.hw[p.id]?.best, d = hwDone(p);
+        return `<button class="topic hwrow ${d ? 'done' : ''}" style="--tc:${p.color}" data-act="chap" data-id="${p.id}">
+          <span class="hw-chk">${d ? '✓' : k + 1}</span>
+          <span class="t-txt"><b>${p.emoji} ${esc(p.sq)}</b><span class="de">${esc(p.de)}</span><small class="hw-book">📖 ${esc(p.book[0])}</small></span>
+          <span class="t-stars">${[1,2,3].map(s => `<span class="${s <= starsOf(b || 0) ? 'on' : ''}">★</span>`).join('')}
+            <small>${b == null ? 'E re / Neu' : b + '%'}</small></span>
+        </button>`; }).join('')}</div>
+    </section>`).join('')}
+  </div>`;
+  window.scrollTo(0, 0);
+}
+
+/* ================= Chapter sheet ================= */
+function chapSheet(id){
+  const i = chIdx(id), c = chById(id);
+  SND.tap();
+  const st = rec(c), b = st.best;
+  let btns;
+  if (c.final) btns = `<button class="cta" data-act="play" data-id="${c.id}">🏆 Fillo testin / Prüfung starten</button>`;
+  else if (!st.lesson) btns = `<button class="cta" data-act="lesson" data-id="${c.id}">📖 Fillo me mësimin / Zur Lektion</button>`;
+  else btns = `<button class="cta" data-act="play" data-id="${c.id}">🎯 Ushtro / Üben</button>
+    <button class="cta light" data-act="lesson" data-id="${c.id}">📖 Përsërit mësimin / Lektion</button>`;
+  sheet.className = 'sheet plain';
+  sheet.style.setProperty('--tc', c.color);
+  sheet.innerHTML = `<div class="sh-in">
+    <div class="prof-h"><span class="cs-ico">${c.emoji}</span><button class="x" data-act="closesheet" aria-label="Mbyll">✕</button></div>
+    <p class="cs-num">${c.hw ? `📝 Detyrë shtëpie · ${esc(c.book[0])}<br><span style="font-weight:400">Hausaufgabe · ${esc(c.book[1])}</span>` : `Kapitulli ${i + 1} / Kapitel ${i + 1}`}</p>
+    <h2 class="cs-t">${esc(c.sq)}</h2><p class="de" style="margin:0">${esc(c.de)}</p>
+    <p class="cs-d">${esc(c.desc)}</p>
+    ${!c.hw && !unlocked(i) && b == null ? `<p class="cs-best">🧭 Në udhëtim vjen më vonë, por mund ta provosh!<br><small>Kommt später auf der Reise – du darfst es trotzdem schon üben.</small></p>` : ''}
+    ${b != null ? `<p class="cs-best">Rezultati më i mirë: <b>${b}%</b> ${'★'.repeat(starsOf(b))}${b < PASS ? `<br><small>Të duhen ${PASS}% për ta kaluar. Du brauchst ${PASS}%.</small>` : ''}</p>` : ''}
+    ${btns}
+  </div>`;
+  openSheetEl();
+}
+function chapters(){
+  closeSheet(); G = null; L = null;
+  app.style.setProperty('--tc', 'var(--brand)');
+  app.innerHTML = `<div class="game">
+    <div class="gbar"><button class="x" data-act="home" aria-label="Kthehu">✕</button><h2 class="dict-h">📋 Kapitujt<span>Alle Kapitel</span></h2></div>
+    <p class="de" style="margin:0 0 14px">Zgjidh çfarë do të mësosh sot. Wähle, was du heute lernen willst.</p>
+    ${hwCard()}
+    <div class="topics" style="margin-top:14px">${CHAPTERS.map((c, i) => { const b = S.ch[c.id]?.best, s = starsOf(b || 0);
+      return `<button class="topic" style="--tc:${c.color}" data-act="chap" data-id="${c.id}">
+        <span class="t-ico">${c.emoji}</span>
+        <span class="t-txt"><b>${i + 1}. ${esc(c.sq)}</b><span class="de">${esc(c.de)}</span></span>
+        <span class="t-stars">${[1,2,3].map(k => `<span class="${k <= s ? 'on' : ''}">★</span>`).join('')}
+          <small>${b == null ? 'E re / Neu' : b + '%'}</small></span>
+      </button>`; }).join('')}</div>
+  </div>`;
+  window.scrollTo(0, 0);
+}
+function go(id){
+  const c = chById(id);
+  if (c.final) return start('chapter', id);
+  if (!rec(c).lesson) return lesson(id);
+  start('chapter', id);
+}
+
+/* ================= Lesson ================= */
+function lesson(id){
+  closeSheet(); const c = chById(id);
+  L = {id, i:0}; G = null;
+  app.style.setProperty('--tc', c.color);
+  renderLesson();
+}
+function renderLesson(){
+  const c = chById(L.id), s = c.lesson[L.i], n = c.lesson.length, last = L.i === n - 1;
+  app.innerHTML = `<div class="game">
+    <div class="gbar"><button class="x" data-act="${c.hw ? 'hw' : 'home'}" aria-label="Kthehu">✕</button>
+      <div class="dots">${c.lesson.map((x, k) => `<i class="${k <= L.i ? 'on' : ''}"></i>`).join('')}</div>
+      <span class="lnum">${L.i + 1}/${n}</span></div>
+    <p class="l-kicker">${c.emoji} ${c.hw ? `Detyrë · ${esc(c.book[0])}` : 'Mësimi / Lektion'}</p>
+    ${slideHTML(s)}
+    <div class="actions lnav">
+      ${L.i > 0 ? '<button class="cta light" data-act="lprev">‹ Prapa</button>' : ''}
+      <button class="cta" data-act="${last ? 'lstart' : 'lnext'}">${last ? '🎯 Fillo ushtrimin! Los geht’s!' : 'Më tej / Weiter ›'}</button>
+    </div></div>`;
+  window.scrollTo(0, 0);
+}
+function slideHTML(s){
+  let h = `<div class="slide"><h2>${s.t}</h2>${s.d ? `<p class="de sd">${s.d}</p>` : ''}`;
+  if (s.p) h += `<p class="sp">${s.p}</p>`;
+  if (s.clocks) h += `<div class="sclocks">${s.clocks.map(([hh, mm, t]) =>
+    `<button class="sclock" data-act="say" data-t="Es ist ${esc(t)}.">${clockSVG(hh, mm, 112)}<b>${esc(t)}</b><small>${digital(hh, mm)}</small></button>`).join('')}</div>`;
+  if (s.table) {
+    const col = s.say ?? 0;
+    const sayRow = r => col === -1 ? '' : col === 'join' ? r.map(strip).join(' ') : strip(r[col]);
+    h += `<div class="tw"><table class="lt">${s.th ? `<thead><tr>${s.th.map(x => `<th>${x}</th>`).join('')}</tr></thead>` : ''}<tbody>
+      ${s.table.map(r => { const t = sayRow(r); return `<tr ${t ? `data-act="say" data-t="${esc(t)}" class="sayable"` : ''}>${r.map(x => `<td>${x}</td>`).join('')}</tr>`; }).join('')}
+      </tbody></table></div>`;
+  }
+  if (s.ex) h += `<div class="exs">${s.ex.map(([de, sq]) =>
+    `<button class="ex" data-act="say" data-t="${esc(de)}"><span class="ex-s">🔊</span><span><b>${esc(de)}</b><small>${esc(sq)}</small></span></button>`).join('')}</div>`;
+  if (s.fix) h += `<div class="fixes">${s.fix.map(([w, r, n]) =>
+    `<button class="fix" data-act="say" data-t="${esc(r)}"><span class="fx-w">✗ ${esc(w)}</span><span class="fx-r">✓ ${esc(r)}</span>${n ? `<small>${esc(n)}</small>` : ''}</button>`).join('')}</div>`;
+  if (s.tip) h += `<div class="tipbox">💡 ${s.tip}</div>`;
+  return h + '</div>';
+}
+
+/* ================= Game ================= */
+function start(mode, id){
+  closeSheet();
+  if (mode === 'chapter') { rec(chById(id), true).lesson = true; save(); }
+  const qs = buildRound(mode, id);
+  if (!qs.length) return home();
+  G = {mode, id, qs, i:0, ok:0, first:0, xp:0, combo:0, maxCombo:0, tries:0, locked:false, hint:false, love:false, lvBefore:level()};
+  SND.page(); renderQ();
+}
+const cur = () => G.qs[G.i];
+function topbar(){
+  const p = G.i / G.qs.length * 100;
+  return `<div class="gbar">
+    <button class="x" data-act="home" aria-label="Kthehu">✕</button>
+    <div class="prog"><i style="width:${p}%"></i></div>
+    <div class="combo ${G.combo >= 2 ? 'on' : ''}">🔥${G.combo}</div>
+  </div>`;
+}
+function head(sq, de){
+  return `<div class="qhead"><div><p class="sq">${esc(sq)}</p><p class="de">${esc(de)}</p></div>
+    <button class="hintbtn" data-act="hint" aria-label="Ndihmë">💡</button></div>`;
+}
+const blank = s => esc(s).replace('___', '<span class="blank" id="blank">&nbsp;</span>');
+const spk = t => canSpeak ? `<button class="say" data-act="say" data-t="${esc(t)}" aria-label="Dëgjo">🔊</button>` : '';
+
+function renderQ(){
+  const q = cur(); G.tries = 0; G.locked = false; G.hint = false;
+  const c = chById(q.tid);
+  app.style.setProperty('--tc', c ? c.color : 'var(--brand)');
+  const R = {gap:rChoice, mc:rChoice, listen:rListen, write:rWrite, order:rOrder, match:rMatch, clock:rClock, clockpick:rClockPick};
+  app.innerHTML = `<div class="game">${topbar()}${c && c.hw ? `<p class="hwtag">📝 Detyrë · ${esc(c.book[0])}</p>` : ''}${(R[q.type] || rChoice)(q)}</div>`;
+  if (q.type === 'listen') setTimeout(() => say(q.say), 350);
+  window.scrollTo(0, 0);
+}
+function hint(){
+  const q = cur(); if (!q) return;
+  const c = chById(q.tid);
+  G.hint = true; SND.tap();
+  toast(`💡 ${q.t || (c && c.tip) || 'Lexo me kujdes!'}`, 6500);
+}
+
+/* --- choice types --- */
+function rChoice(q){
+  return `${head(q.psq || (q.type === 'gap' ? 'Plotëso zbrazëtirën' : 'Zgjidh përgjigjen'), q.pde || (q.type === 'gap' ? 'Ergänze die Lücke' : 'Wähle die richtige Antwort'))}
+  <div class="qcard ${q.speakQ ? 'has-say' : ''}">
+    <div class="qtext">${blank(q.s || q.q)}</div>
+    ${q.h ? `<div class="qhint">💭 ${esc(q.h)}</div>` : ''}
+    ${q.speakQ ? spk(q.q) : ''}
+  </div>${opts(q)}`;
+}
+function rListen(q){
+  return `${head(q.psq, q.pde)}
+  <div class="listen">
+    <button class="bigplay" data-act="say" data-t="${esc(q.say)}" aria-label="Dëgjo">🔊</button>
+    <button class="slow" data-act="slow" data-t="${esc(q.say)}">🐢 Ngadalë / Langsam</button>
+  </div>${opts(q)}`;
+}
+function rClock(q){
+  return `${head(q.psq, q.pde)}<div class="qcard clockcard">${clockSVG(q.hm[0], q.hm[1], 176)}</div>${opts(q)}`;
+}
+function rClockPick(q){
+  return `${head(q.psq, q.pde)}
+  <div class="qcard has-say"><div class="qtext">${esc(q.q)}</div>${spk(q.q)}</div>
+  <div class="opts clocks">${q.o.map((o, k) => { const [h, m] = o.split(':').map(Number);
+    return `<button class="opt" data-act="pick" data-k="${k}" aria-label="${digital(h, m)}">${clockSVG(h, m, 120)}</button>`; }).join('')}</div>`;
+}
+const opts = q => `<div class="opts ${q.row ? 'row' : ''}">${q.o.map((o, k) =>
+  `<button class="opt" data-act="pick" data-k="${k}">${esc(o)}</button>`).join('')}</div>`;
+
+function pick(k){
+  const q = cur(); if (G.locked) return;
+  const btns = app.querySelectorAll('.opt');
+  if (q.o[k] === q.a) {
+    G.locked = true;
+    btns.forEach(b => b.disabled = true); btns[k].classList.add('ok');
+    const bl = $('#blank'); if (bl) { bl.textContent = q.a === 'pa nyjë' ? '∅' : q.a; bl.classList.add('filled'); }
+    correct();
+  } else {
+    btns[k].classList.add('bad'); btns[k].disabled = true; G.tries++;
+    if (G.tries < 2 && q.o.length - G.tries > 1) tryAgain(q.t || hintFor(q));
+    else {
+      G.locked = true;
+      btns.forEach((b, j) => { b.disabled = true; if (q.o[j] === q.a) b.classList.add('ok'); });
+      wrong();
+    }
+  }
+}
+function hintFor(q){
+  if (q.h && q.type !== 'listen') return 'Shiko edhe një herë ndihmën: ' + q.h;
+  if (q.type === 'clock' || q.type === 'clockpick') return 'Shiko akrepin e shkurtër (ora) dhe të gjatin (minutat).';
+  return 'Versuch es nochmal!';
+}
+
+/* --- write --- */
+function rWrite(q){
+  return `${head(q.psq, q.pde)}
+  <div class="qcard"><div class="qtext">${esc(q.q)}</div></div>
+  <div class="wrow" id="wrow"><span class="art">${esc(q.art)}</span>
+    <input id="w" type="text" autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="false" enterkeyhint="done" placeholder="…" aria-label="Fjala gjermanisht"></div>
+  <div class="uml">${['ä','ö','ü','ß','Ä','Ö','Ü'].map(c => `<button data-act="uml" data-c="${c}">${c}</button>`).join('')}</div>
+  <div class="actions"><button class="cta" data-act="wcheck">Kontrollo / Prüfen</button></div>`;
+}
+function wcheck(){
+  const q = cur(); if (G.locked) return;
+  const inp = $('#w'), row = $('#wrow'), raw = inp.value.trim();
+  if (!raw) { inp.focus(); return; }
+  const norm = s => s.toLowerCase().replace(/^(der|die|das)\s+/, '').trim();
+  const flat = s => s.replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u');
+  const v = norm(raw), target = q.a.toLowerCase();
+  row.classList.remove('bad'); void row.offsetWidth;
+  if (v === target) {
+    G.locked = true; inp.disabled = true; row.classList.add('ok'); inp.blur();
+    const typed = raw.replace(/^(der|die|das)\s+/i, '');
+    correct(typed[0] !== q.a[0] ? 'Kujdes: emrat në gjermanisht shkruhen gjithmonë me shkronjë të madhe! Nomen schreibt man groß.' : '');
+  } else {
+    G.tries++; row.classList.add('bad');
+    if (G.tries < 2) tryAgain(flat(v) === flat(target) ? 'Pothuajse! Kujdes me ä, ö, ü 😉' : `Fillon me „${q.a[0]}“ dhe ka ${q.a.length} shkronja.`);
+    else { G.locked = true; inp.disabled = true; wrong(); }
+  }
+}
+
+/* --- sentence order --- */
+function rOrder(q){
+  if (!q._pool) {
+    const toks = q.de.split(' ').map((w, id) => ({w, id}));
+    let s = shuffle(toks), n = 0;
+    while (s.map(t => t.w).join(' ') === q.de && n++ < 10) s = shuffle(toks);
+    q._pool = s; q._picked = [];
+  }
+  return `${head('Rendit fjalinë', 'Bilde den Satz')}
+  <div class="qcard"><div class="qhint" style="margin:0 0 8px">🇦🇱 Shqip</div><div class="qtext" style="font-size:22px">${esc(q.sq)}</div></div>
+  <div id="orderArea">${orderInner(q)}</div>
+  <div class="actions"><button class="cta" data-act="ocheck" id="ocheck" ${q._picked.length < q._pool.length ? 'disabled' : ''}>Kontrollo / Prüfen</button></div>`;
+}
+function orderInner(q){
+  const picked = new Set(q._picked.map(t => t.id));
+  return `<div class="slot" id="slot">${q._picked.map(t => `<button class="tok ${t.wrong ? 'wrong' : ''}" data-act="un" data-id="${t.id}">${esc(t.w)}</button>`).join('')}</div>
+  <div class="pool">${q._pool.map(t => `<button class="tok ${picked.has(t.id) ? 'ghost' : ''}" data-act="tp" data-id="${t.id}" ${picked.has(t.id) ? 'tabindex="-1"' : ''}>${esc(t.w)}</button>`).join('')}</div>`;
+}
+function otap(act, id){
+  const q = cur(); if (G.locked) return; id = +id; SND.tap();
+  if (act === 'tp') { const t = q._pool.find(x => x.id === id); if (!q._picked.includes(t)) q._picked.push(t); }
+  else q._picked = q._picked.filter(t => t.id !== id);
+  q._pool.forEach(t => delete t.wrong);
+  $('#orderArea').innerHTML = orderInner(q);
+  $('#ocheck').disabled = q._picked.length < q._pool.length;
+}
+function ocheck(){
+  const q = cur(); if (G.locked) return;
+  const target = q.de.split(' ');
+  if (q._picked.map(t => t.w).join(' ') === q.de) {
+    G.locked = true; $('#orderArea').innerHTML = orderInner(q); $('#slot').classList.add('ok');
+    correct('Folja është në vendin e duhur. Perfekt!');
+  } else {
+    G.tries++;
+    if (G.tries < 2) {
+      q._picked.forEach((t, i) => { t.wrong = t.w !== target[i]; });
+      $('#orderArea').innerHTML = orderInner(q);
+      tryAgain('Fjalët e kuqe nuk janë në vend. Kujto: folja në vendin e dytë!');
+    } else { G.locked = true; q._picked.forEach(t => delete t.wrong); wrong('Kujto: folja qëndron në vendin e dytë.'); }
+  }
+}
+
+/* --- match pairs --- */
+function rMatch(q){
+  if (!q._done) { q._L = shuffle(q.pairs.map(p => p[0])); q._R = shuffle(q.pairs.map(p => p[1])); q._done = []; q._mist = 0; G.sl = G.sr = null; G.wrongPair = null; }
+  return `${head('Gjej çiftet', 'Finde die Paare')}<div id="mArea">${matchInner(q)}</div>`;
+}
+function matchInner(q){
+  const doneR = q._done.map(l => q.pairs.find(p => p[0] === l)[1]);
+  const cls = (side, v) => {
+    if (side === 'l' ? q._done.includes(v) : doneR.includes(v)) return 'done';
+    if (G.wrongPair && G.wrongPair[side] === v) return 'wrong';
+    if ((side === 'l' && G.sl === v) || (side === 'r' && G.sr === v)) return 'sel';
+    return '';
+  };
+  const col = (side, arr) => `<div class="mcol">${arr.map(v => { const c = cls(side, v);
+    return `<button class="m ${c}" data-act="m${side}" data-v="${esc(v)}" ${c === 'done' ? 'disabled' : ''}>${esc(v)}</button>`; }).join('')}</div>`;
+  return `<div class="mgrid">${col('l', q._L)}${col('r', q._R)}</div>`;
+}
+function mtap(side, v){
+  const q = cur(); if (G.locked || G.wrongPair) return;
+  if (side === 'l') { G.sl = v; say(v); } else G.sr = v;
+  SND.tap();
+  if (G.sl && G.sr) {
+    const p = q.pairs.find(x => x[0] === G.sl);
+    if (p[1] === G.sr) { q._done.push(G.sl); buzz(20); tone([[700 + q._done.length * 80, 0, .12]]); }
+    else {
+      q._mist++; G.wrongPair = {l: G.sl, r: G.sr}; SND.try(); buzz([40, 30, 40]);
+      G.sl = G.sr = null; $('#mArea').innerHTML = matchInner(q);
+      return setTimeout(() => { G && (G.wrongPair = null); if (G && cur() === q) $('#mArea').innerHTML = matchInner(q); }, 700);
+    }
+    G.sl = G.sr = null;
+  }
+  $('#mArea').innerHTML = matchInner(q);
+  if (q._done.length === q.pairs.length) {
+    G.locked = true; G.tries = q._mist ? 1 : 0;
+    setTimeout(() => correct(q._mist ? `${q._mist} gabim${q._mist > 1 ? 'e' : ''} gjatë rrugës. Herën tjetër pa asnjë! 💪` : 'Pa asnjë gabim! Ohne Fehler!',
+      'Të gjitha çiftet! Alle Paare!'), 350);
+  }
+}
+
+/* ================= Feedback ================= */
+function tryAgain(msg){
+  SND.try(); buzz([50, 40, 50]);
+  toast(`💪 Provo edhe një herë!<br><span style="font-weight:400">${esc(msg || 'Versuch es nochmal!')}</span>`, 3200);
+}
+function correct(note, title){
+  const q = cur(), first = G.tries === 0;
+  G.ok++;
+  if (first) { G.first++; G.combo++; G.maxCombo = Math.max(G.maxCombo, G.combo); } else G.combo = 0;
+  const gain = !first ? 5 : G.hint ? 6 : 10 + Math.min(G.combo - 1, 5) * 2;
+  G.xp += gain; S.xp += gain; rollDay(); S.dayXp += gain;
+  S.bestCombo = Math.max(S.bestCombo, G.combo);
+  if (S.mistakes[q.key] && first) delete S.mistakes[q.key];
+  save(); xpPop(gain);
+  const milestone = first && [3, 5, 7, 10, 15].includes(G.combo);
+  let love = null, note2 = null;
+  if (!G.love && first && loveOk()) {
+    if (milestone && G.combo >= 7 && Math.random() < .5) love = loveMsg();   // big streak -> in the sheet
+    else if (Math.random() < .01) note2 = loveMsg();                      // random -> small note
+    if (love || note2) { G.love = true; loveUsed(); }
+  }
+  if (love) { SND.love(); hearts(10); buzz([30, 40, 30, 40, 80]); }
+  else if (note2) { loveNote(note2); buzz(25); }
+  else if (milestone) { SND.combo(); buzz([30, 30, 60]); }
+  else { SND.ok(); buzz(25); }
+  const p = rnd(PRAISE);
+  const t = love || title || (milestone ? `${G.combo} me radhë! 🔥 ${G.combo} in Folge!` : first ? `${p[0]} ${p[1]}` : 'Saktë në provën e dytë! Richtig!');
+  const body = note || (first ? '' : esc(q.e));
+  const sayT = q.type === 'order' ? q.de : q.type === 'match' ? '' : q.full || (q.s ? q.s.replace('___', q.a) : q.say);
+  openSheet(true, t, body, sayT, !!love);
+}
+function wrong(note){
+  const q = cur();
+  G.combo = 0;
+  const store = {...q}; ['_pool','_picked','_done','_mist','_L','_R'].forEach(k => delete store[k]);
+  S.mistakes[q.key] = store; save();
+  SND.bad(); buzz([80, 50, 80]);
+  let ans = q.type === 'order' ? q.de : q.type === 'write' ? `${q.art} ${q.a}` : q.full || (q.s ? q.s.replace('___', q.a) : q.a);
+  if (q.type === 'clockpick') ans = q.say;
+  const body = `${note ? esc(note) + '<br>' : ''}${esc(q.e || '')}<br><b>E saktë / Richtig:</b> ${esc(ans)}`;
+  openSheet(false, 'Jo krejt. Nicht ganz.', body, q.say || (q.type === 'order' ? q.de : ''));
+}
+function openSheet(ok, title, body, sayT, love){
+  const last = G.i >= G.qs.length - 1;
+  sheet.className = 'sheet ' + (ok ? 'ok' : 'bad') + (love ? ' love' : '');
+  sheet.style.removeProperty('--tc');
+  sheet.innerHTML = `<div class="sh-in">
+    <div class="sh-title">${love ? '💖' : ok ? '✅' : '💡'} ${esc(title)}</div>
+    ${body ? `<p class="sh-body">${body}</p>` : ''}
+    ${sayT && canSpeak ? `<button class="sh-say" data-act="say" data-t="${esc(sayT)}"><span>🔊</span><span>${esc(sayT)}</span></button>` : ''}
+    <button class="cta ${ok ? 'ok' : 'bad'}" data-act="next">${last ? 'Shiko rezultatin / Ergebnis' : 'Vazhdo / Weiter'}</button>
+  </div>`;
+  openSheetEl();
+  if (sayT) setTimeout(() => say(sayT), 300);
+  setTimeout(() => sheet.querySelector('[data-act="next"]')?.focus({preventScroll: true}), 320);
+}
+function openSheetEl(){ document.body.classList.add('sheet-open'); requestAnimationFrame(() => sheet.classList.add('open')); }
+function closeSheet(){ sheet.classList.remove('open'); document.body.classList.remove('sheet-open'); }
+function next(){
+  closeSheet(); G.i++;
+  if (G.i >= G.qs.length) return setTimeout(finish, 120);
+  setTimeout(renderQ, 120);
+}
+
+/* ================= Result ================= */
+function finish(){
+  const total = G.qs.length, pct = Math.round(G.ok / total * 100);
+  S.rounds++; if (G.first === total) S.perfect++;
+  const streakUp = bumpStreak();
+  let c = null, newlyDone = false, nextC = null;
+  if (G.mode === 'chapter') {
+    c = chById(G.id);
+    const st = rec(c, true);
+    const was = (st.best || 0) >= PASS;
+    st.best = Math.max(st.best || 0, pct); st.plays = (st.plays || 0) + 1; st.lesson = true;
+    newlyDone = !was && pct >= PASS;
+    if (c.hw) { const ps = hwById(c.hw).parts; nextC = ps[ps.indexOf(c) + 1]; }
+    else nextC = CHAPTERS[chIdx(c.id) + 1];
+  }
+  const hwSet = c && c.hw ? hwById(c.hw) : null;
+  if (G.mode === 'mistakes' && !Object.keys(S.mistakes).length) S.cleared = true;
+  const newB = checkBadges(); save();
+  const lvNow = level(), up = lvNow > G.lvBefore, passed = !c || pct >= PASS;
+  const finale = c && c.final && pct >= PASS;
+
+  let love = null;
+  if (finale) love = LOVE[0];
+  else if (!G.love && loveOk() && streakUp && S.streak >= 3 && Math.random() < .4) love = loveMsg();
+  else if (!G.love && loveOk() && (newlyDone || up) && Math.random() < .2) love = loveMsg();
+  if (love && !finale) loveUsed();
+
+  const [e, msq, mde] = !passed ? ['💪', `Pothuajse! Të duhen ${PASS}% për ta kaluar.`, 'Fast! Versuch es nochmal, du schaffst das!']
+    : finale ? ['👑', 'Mbretëresha e gjermanishtes!', 'Du hast die ganze Reise geschafft!']
+    : G.first === total ? ['🏆', 'Perfekt! Asnjë gabim!', 'Keine Fehler! Wahnsinn!']
+    : pct >= 80 ? ['🌟', 'Fantastike, Mimoza!', 'Du bist super!']
+    : ['🎉', 'Shumë mirë! Edhe pak ushtrim.', 'Sehr gut, weiter so!'];
+  const done = doneCount(), jp = Math.round(done / CHAPTERS.length * 100);
+  app.style.setProperty('--tc', c ? c.color : 'var(--brand)');
+  app.innerHTML = `<section class="res">
+    <div class="big-e">${e}</div>
+    <h1>${G.ok}/${total}</h1>
+    <p class="msg">${msq}</p><p class="de">${mde}</p>
+    <div class="tiles">
+      <div class="tile xp"><b id="xpc">+0</b><small>XP</small></div>
+      <div class="tile"><b>${G.first}</b><small>Herën e parë<br>Beim 1. Mal</small></div>
+      <div class="tile fire"><b>🔥${G.maxCombo}</b><small>Me radhë<br>In Folge</small></div>
+    </div>
+    ${love ? `<div class="lovecard">💌 ${esc(love)}</div>` : ''}
+    ${hwSet && newlyDone ? `<div class="unlock">📝 Detyra u krye! ${nextC ? `Tjetra: <b>${esc(nextC.sq)}</b>` : 'Të gjitha detyrat janë gati! 🎉'}<small>Hausaufgabe erledigt!</small></div>` : ''}
+    ${!hwSet && newlyDone && nextC ? `<div class="unlock">🔓 U hap kapitulli ${chIdx(nextC.id) + 1}: <b>${esc(nextC.sq)}</b><small>Nächstes Kapitel freigeschaltet!</small></div>` : ''}
+    ${streakUp && S.streak >= 2 ? `<div class="streakcard">🔥 ${S.streak} ditë rresht! <small>${S.streak} Tage am Stück!</small></div>` : ''}
+    ${up ? `<div class="lvup">🎊 Niveli ${lvNow}: ${lvlName(lvNow)[0]}!<small>Level ${lvNow}: ${lvlName(lvNow)[1]}</small></div>` : ''}
+    ${newB.length ? `<div class="newb">${newB.map(b => `<span>${b.e} ${esc(b.sq)}</span>`).join('')}</div>` : ''}
+    ${hwSet ? `<div class="res-j"><div class="j-top"><b>📝 Detyrat / Hausaufgaben</b><span>${hwCount(hwSet)}/${hwSet.parts.length}</span></div><div class="jbar"><i style="width:${hwCount(hwSet) / hwSet.parts.length * 100}%"></i></div></div>`
+      : c ? `<div class="res-j"><div class="j-top"><b>Udhëtimi / Reise</b><span>${done}/${CHAPTERS.length}</span></div><div class="jbar"><i style="width:${jp}%"></i></div></div>` : ''}
+    <div class="actions">
+      ${newlyDone && nextC ? `<button class="cta" data-act="go" data-id="${nextC.id}">${hwSet ? 'Detyra tjetër' : 'Kapitulli tjetër'} ▶ / Weiter</button>`
+        : `<button class="cta" data-act="again">${passed ? 'Luaj përsëri / Nochmal' : '💪 Provo përsëri / Nochmal'}</button>`}
+      ${!passed && c && !c.final ? `<button class="cta light" data-act="lesson" data-id="${c.id}">📖 Përsërit mësimin / Lektion</button>` : ''}
+      ${hwSet ? '<button class="cta light" data-act="hw">📝 Detyrat / Hausaufgaben</button>' : ''}
+      <button class="cta light" data-act="home">Harta / Zur Karte</button>
+    </div>
+  </section>`;
+  window.scrollTo(0, 0);
+  let n = 0; const step = Math.max(1, Math.ceil(G.xp / 30));
+  const tick = setInterval(() => { n = Math.min(G.xp, n + step); const el = $('#xpc'); if (el) el.textContent = '+' + n; if (n >= G.xp) clearInterval(tick); }, 30);
+  if (love) { SND.love(); hearts(finale ? 40 : 12); }
+  if (finale || up) { SND.level(); confetti(); buzz([60, 40, 60, 40, 120]); }
+  else if (passed && pct >= 70) { if (!love) SND.win(); confetti(); }
+  else SND.try();
+}
+
+/* ================= Dictionary ================= */
+function dict(){
+  closeSheet(); G = null; L = null;
+  app.style.setProperty('--tc', 'var(--brand)');
+  const list = CHAPTERS.filter((c, i) => !c.final && seen(i) && (c.nouns.length || c.words.length));
+  app.innerHTML = `<div class="game">
+    <div class="gbar"><button class="x" data-act="home" aria-label="Kthehu">✕</button><h2 class="dict-h">📚 Fjalori im<span>Mein Wörterbuch</span></h2></div>
+    <p class="de" style="margin:0 0 6px">Prek një fjalë për ta dëgjuar. Tippe ein Wort an, um es zu hören.</p>
+    ${list.map(c => `<section class="dsec" style="--tc:${c.color}"><h3>${c.emoji} ${esc(c.sq)}</h3>
+      ${vocabPool(c).map(w => `<button class="drow" data-act="say" data-t="${esc(w.de)}"><b>${esc(w.de)}</b><span>${esc(w.sq)}</span></button>`).join('')}</section>`).join('')}
+    <p class="foot">Fjalë të reja hapen me çdo kapitull! ✨</p></div>`;
+  window.scrollTo(0, 0);
+}
+
+/* ================= Profile ================= */
+function profile(){
+  const lv = level(), [lsq, lde] = lvlName(lv);
+  sheet.className = 'sheet plain'; sheet.style.removeProperty('--tc');
+  sheet.innerHTML = `<div class="sh-in">
+    <div class="prof-h"><h2>Mimoza ✨</h2><button class="x" data-act="closesheet" aria-label="Mbyll">✕</button></div>
+    <p class="de" style="margin:2px 0 0">Niveli ${lv}: ${lsq} / ${lde}</p>
+    <div class="stats">
+      <div class="stat"><b>${S.xp}</b><small>XP gjithsej<br>XP gesamt</small></div>
+      <div class="stat"><b>${doneCount()}/${CHAPTERS.length}</b><small>Kapituj<br>Kapitel</small></div>
+      <div class="stat"><b>🔥${S.bestCombo}</b><small>Rekordi<br>Rekord</small></div>
+    </div>
+    <h2 class="sec" style="margin-top:6px">Medaljet<span>Abzeichen</span></h2>
+    <div class="badges">${BADGES.map(b => { const on = S.badges.includes(b.id), secret = b.id === 'love' && !on;
+      return `<div class="badge ${on ? '' : 'off'}"><span class="e">${secret ? '❓' : b.e}</span><b>${secret ? '???' : esc(b.sq)}</b><i>${secret ? 'Geheim' : esc(b.de)}</i></div>`; }).join('')}</div>
+    <div class="prof-row">
+      <button class="cta light" data-act="sound">${S.sound ? '🔊 Zëri: po' : '🔇 Zëri: jo'}</button>
+      <button class="cta light" data-act="reset">🗑️ Fillo nga e para</button>
+    </div>
+  </div>`;
+  openSheetEl();
+}
+
+/* ================= Easter egg ================= */
+function egg(){
+  SND.tap(); eggTaps++;
+  clearTimeout(eggT); eggT = setTimeout(() => eggTaps = 0, 2500);
+  if (eggTaps >= 5) {
+    eggTaps = 0; hearts(40); SND.love(); buzz([40, 40, 40, 40, 120]);
+    toast('💖 ' + esc(loveMsg()), 4500);
+    if (!S.egg) { S.egg = true; checkBadges(); save(); }
+  }
+}
+
+/* ================= Events ================= */
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const a = b.dataset.act, id = b.dataset.id;
+  switch (a) {
+    case 'chap': return chapSheet(id);
+    case 'go': return go(id);
+    case 'play': return start('chapter', id);
+    case 'lesson': return lesson(id);
+    case 'lnext': L.i++; SND.page(); return renderLesson();
+    case 'lprev': L.i--; SND.page(); return renderLesson();
+    case 'lstart': return start('chapter', L.id);
+    case 'mix': return start('mix');
+    case 'mistakes': return start('mistakes');
+    case 'again': return start(G.mode, G.id);
+    case 'dict': return dict();
+    case 'chapters': return chapters();
+    case 'hw': return hwList();
+    case 'home': return home();
+    case 'hint': return hint();
+    case 'pick': return pick(+b.dataset.k);
+    case 'say': return say(b.dataset.t);
+    case 'slow': return say(b.dataset.t, true);
+    case 'wcheck': return wcheck();
+    case 'uml': { const i = $('#w'); if (i && !i.disabled) { const s = i.selectionStart ?? i.value.length; i.value = i.value.slice(0, s) + b.dataset.c + i.value.slice(i.selectionEnd ?? s); i.focus(); i.setSelectionRange(s + 1, s + 1); } return; }
+    case 'tp': case 'un': return otap(a, id);
+    case 'ocheck': return ocheck();
+    case 'ml': return mtap('l', b.dataset.v);
+    case 'mr': return mtap('r', b.dataset.v);
+    case 'next': return next();
+    case 'profile': return profile();
+    case 'closesheet': return closeSheet();
+    case 'egg': return egg();
+    case 'sound':
+      S.sound = !S.sound; save(); if (S.sound) SND.ok();
+      if (sheet.classList.contains('plain') && sheet.classList.contains('open')) { home(); profile(); } else home();
+      return;
+    case 'reset':
+      if (confirm('Të fshihen të gjitha pikët dhe medaljet? Alles löschen?')) { S = fresh(); save(); home(); }
+      return;
+  }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'w') { e.preventDefault(); wcheck(); } });
+
+home();
