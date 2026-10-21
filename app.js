@@ -135,6 +135,8 @@ function say(t, slow){
     speechSynthesis.speak(u);
   } catch (e) {}
 }
+/* automatic speech respects the sound switch; tapping a 🔊 button always speaks */
+const autoSay = t => { if (S.sound) say(t); };
 
 /* ================= Toast, XP pop, confetti, hearts ================= */
 let toastT;
@@ -248,7 +250,7 @@ function genVocab(c){
       o:[w.sq, ...distract(pool, w, 'sq')], a:w.sq, say:w.de, e:`${w.de} = ${w.sq}`});
     out.push({type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das auf Deutsch?', q:w.sq,
       o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e:`${w.sq} = ${w.de}`});
-    if (canSpeak) out.push({type:'listen', psq:'Dëgjo dhe zgjidh', pde:'Hör zu und wähle',
+    if (canSpeak && S.sound) out.push({type:'listen', psq:'Dëgjo dhe zgjidh', pde:'Hör zu und wähle',
       o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e:`${w.de} = ${w.sq}`});
   });
   return out;
@@ -284,7 +286,7 @@ const keyOf = q => [q.type, q.tid, q.s || q.q || q.de || (q.hm && q.hm.join(':')
 
 function buildRound(mode, id){
   let qs = [];
-  if (mode === 'mistakes') qs = shuffle(Object.values(S.mistakes)).slice(0, ROUND).map(q => ({...q}));
+  if (mode === 'mistakes') qs = shuffle(Object.values(S.mistakes).filter(q => S.sound || q.type !== 'listen')).slice(0, ROUND).map(q => ({...q}));
   else if (mode === 'chapter' && chById(id).final) {
     CHAPTERS.forEach(c => {
       if (c.final) return;
@@ -529,7 +531,7 @@ function renderQ(){
   app.style.setProperty('--tc', c ? c.color : 'var(--brand)');
   const R = {gap:rChoice, mc:rChoice, listen:rListen, write:rWrite, order:rOrder, match:rMatch, clock:rClock, clockpick:rClockPick};
   app.innerHTML = `<div class="game">${topbar()}${c && c.hw ? `<p class="hwtag">📝 Detyrë · ${esc(c.book[0])}</p>` : ''}${(R[q.type] || rChoice)(q)}</div>`;
-  if (q.type === 'listen') setTimeout(() => say(q.say), 350);
+  if (q.type === 'listen') setTimeout(() => autoSay(q.say), 350);
   window.scrollTo(0, 0);
 }
 function hint(){
@@ -680,7 +682,7 @@ function matchInner(q){
 }
 function mtap(side, v){
   const q = cur(); if (G.locked || G.wrongPair) return;
-  if (side === 'l') { G.sl = v; say(v); } else G.sr = v;
+  if (side === 'l') { G.sl = v; autoSay(v); } else G.sr = v;
   SND.tap();
   if (G.sl && G.sr) {
     const p = q.pairs.find(x => x[0] === G.sl);
@@ -753,7 +755,7 @@ function openSheet(ok, title, body, sayT, love){
     <button class="cta ${ok ? 'ok' : 'bad'}" data-act="next">${last ? 'Shiko rezultatin / Ergebnis' : 'Vazhdo / Weiter'}</button>
   </div>`;
   openSheetEl();
-  if (sayT) setTimeout(() => say(sayT), 300);
+  if (sayT) setTimeout(() => autoSay(sayT), 300);
   setTimeout(() => sheet.querySelector('[data-act="next"]')?.focus({preventScroll: true}), 320);
 }
 function openSheetEl(){ document.body.classList.add('sheet-open'); requestAnimationFrame(() => sheet.classList.add('open')); }
@@ -914,7 +916,7 @@ document.addEventListener('click', e => {
     case 'closesheet': return closeSheet();
     case 'egg': return egg();
     case 'sound':
-      S.sound = !S.sound; save(); if (S.sound) SND.ok();
+      S.sound = !S.sound; save(); if (S.sound) SND.ok(); else if (canSpeak) speechSynthesis.cancel();
       if (sheet.classList.contains('plain') && sheet.classList.contains('open')) { home(); profile(); } else home();
       return;
     case 'reset':
