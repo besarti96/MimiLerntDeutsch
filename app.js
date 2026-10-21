@@ -1,7 +1,7 @@
 'use strict';
 /* ================= Basics ================= */
 const $ = s => document.querySelector(s);
-const app = $('#app'), sheet = $('#sheet'), toastEl = $('#toast');
+const app = $('#app'), sheet = $('#sheet'), toastEl = $('#toast'), scrim = $('#scrim');
 const KEY = 'mimi-deutsch-v2', OLD_KEY = 'mimi-deutsch-v1';
 const ROUND = 10, FINAL_ROUND = 15, PASS = 70, XP_LVL = 100, GOAL = 50;
 const LEVELS = [
@@ -48,6 +48,13 @@ function streakNow(){ return S.lastDay && dayDiff(S.lastDay, today()) <= 1 ? S.s
 function bumpStreak(){
   const t = today(); if (S.lastDay === t) return false;
   S.streak = S.lastDay && dayDiff(S.lastDay, t) === 1 ? S.streak + 1 : 1; S.lastDay = t; return true;
+}
+/* dark mode: follows the phone until she picks one in the settings */
+const isDark = () => S.dark ?? matchMedia('(prefers-color-scheme: dark)').matches;
+const themeLabel = () => isDark() ? '☀️ E çelët / Hell' : '🌙 E errët / Dunkel';
+function applyTheme(){
+  document.documentElement.dataset.theme = isDark() ? 'dark' : 'light';
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark() ? '#15131F' : '#F3F0FF');
 }
 const level = (xp = S.xp) => Math.floor(xp / XP_LVL) + 1;
 const lvlName = l => LEVELS[Math.min(l - 1, LEVELS.length - 1)];
@@ -141,9 +148,40 @@ const autoSay = t => { if (S.sound) say(t); };
 /* ================= Toast, XP pop, confetti, hearts ================= */
 let toastT;
 function toast(msg, ms = 2600){
+  toastEl.style.transform = toastEl.style.opacity = '';
   toastEl.innerHTML = msg; toastEl.classList.add('show');
   clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('show'), ms);
 }
+/* toasts can be tapped, swiped up or swiped sideways away */
+function hideToast(dx = 0){
+  clearTimeout(toastT);
+  if (!dx) { toastEl.style.transform = ''; toastEl.classList.remove('show'); return; }
+  toastEl.style.transition = 'transform .25s, opacity .25s';
+  toastEl.style.transform = `translate(calc(-50% + ${dx > 0 ? 100 : -100}vw), 0)`; toastEl.style.opacity = '0';
+  setTimeout(() => {
+    toastEl.style.transition = 'none'; toastEl.classList.remove('show'); toastEl.style.transform = toastEl.style.opacity = '';
+    void toastEl.offsetWidth; toastEl.style.transition = '';
+  }, 250);
+}
+let tdrag = null;
+toastEl.addEventListener('pointerdown', e => {
+  tdrag = {x: e.clientX, y: e.clientY, dx: 0, dy: 0}; toastEl.style.transition = 'none';
+  try { toastEl.setPointerCapture(e.pointerId); } catch (err) {}
+});
+toastEl.addEventListener('pointermove', e => {
+  if (!tdrag) return;
+  tdrag.dx = e.clientX - tdrag.x; tdrag.dy = Math.min(0, e.clientY - tdrag.y);
+  toastEl.style.transform = `translate(calc(-50% + ${tdrag.dx}px), ${tdrag.dy}px)`;
+});
+function toastUp(){
+  if (!tdrag) return;
+  const {dx, dy} = tdrag; tdrag = null; toastEl.style.transition = '';
+  if (Math.abs(dx) > 60) hideToast(dx);
+  else if (dy < -20 || (Math.abs(dx) < 8 && dy > -8)) hideToast();
+  else toastEl.style.transform = '';
+}
+toastEl.addEventListener('pointerup', toastUp);
+toastEl.addEventListener('pointercancel', toastUp);
 function xpPop(n){
   const el = document.createElement('div'); el.className = 'xpop'; el.textContent = '+' + n + ' XP';
   document.body.appendChild(el); setTimeout(() => el.remove(), 1100);
@@ -344,7 +382,7 @@ function home(){
   </section>
   <section class="status">
     <div class="ring">
-      <svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="#E2DCFA" stroke-width="7"/>
+      <svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" style="stroke:var(--line)" stroke-width="7"/>
       <circle cx="32" cy="32" r="27" fill="none" stroke="${goal >= 1 ? '#16A34A' : '#FFC53D'}" stroke-width="7" stroke-linecap="round"
         stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - goal)}"/></svg>
       <b>${goal >= 1 ? '✓' : Math.min(S.dayXp, GOAL) + '<br>/' + GOAL}</b>
@@ -425,7 +463,7 @@ function chapSheet(id){
   sheet.className = 'sheet plain';
   sheet.style.setProperty('--tc', c.color);
   sheet.innerHTML = `<div class="sh-in">
-    <div class="prof-h"><span class="cs-ico">${c.emoji}</span><button class="x" data-act="closesheet" aria-label="Mbyll">✕</button></div>
+    <div class="sh-top"><div class="grab"></div><div class="prof-h"><span class="cs-ico">${c.emoji}</span><button class="x" data-act="closesheet" aria-label="Mbyll">✕</button></div></div>
     <p class="cs-num">${c.hw ? `📝 Detyrë shtëpie · ${esc(c.book[0])}<br><span style="font-weight:400">Hausaufgabe · ${esc(c.book[1])}</span>` : `Kapitulli ${i + 1} / Kapitel ${i + 1}`}</p>
     <h2 class="cs-t">${esc(c.sq)}</h2><p class="de" style="margin:0">${esc(c.de)}</p>
     <p class="cs-d">${esc(c.desc)}</p>
@@ -758,8 +796,30 @@ function openSheet(ok, title, body, sayT, love){
   if (sayT) setTimeout(() => autoSay(sayT), 300);
   setTimeout(() => sheet.querySelector('[data-act="next"]')?.focus({preventScroll: true}), 320);
 }
-function openSheetEl(){ document.body.classList.add('sheet-open'); requestAnimationFrame(() => sheet.classList.add('open')); }
-function closeSheet(){ sheet.classList.remove('open'); document.body.classList.remove('sheet-open'); }
+function openSheetEl(){
+  sheet.style.transform = ''; sheet.scrollTop = 0;
+  scrim.classList.toggle('on', sheet.classList.contains('plain'));
+  document.body.classList.add('sheet-open'); requestAnimationFrame(() => sheet.classList.add('open'));
+}
+function closeSheet(){ sheet.style.transform = ''; sheet.classList.remove('open'); scrim.classList.remove('on'); document.body.classList.remove('sheet-open'); }
+/* settings/chapter sheets: drag down to close (from the top bar always, elsewhere when scrolled to the top) */
+let sdrag = null;
+sheet.addEventListener('touchstart', e => {
+  if (!sheet.classList.contains('plain')) return;
+  sdrag = {y: e.touches[0].clientY, dy: 0, bar: !!e.target.closest('.sh-top')};
+}, {passive: true});
+sheet.addEventListener('touchmove', e => {
+  if (!sdrag || (!sdrag.bar && sheet.scrollTop > 0)) return;
+  sdrag.dy = e.touches[0].clientY - sdrag.y;
+  if (sdrag.dy <= 0) { sheet.style.transform = ''; return; }
+  e.preventDefault();
+  sheet.style.transition = 'none'; sheet.style.transform = `translateY(${sdrag.dy}px)`;
+}, {passive: false});
+sheet.addEventListener('touchend', () => {
+  if (!sdrag) return;
+  const dy = sdrag.dy; sdrag = null; sheet.style.transition = '';
+  if (dy > 90) closeSheet(); else sheet.style.transform = '';
+});
 function next(){
   closeSheet(); G.i++;
   if (G.i >= G.qs.length) return setTimeout(finish, 120);
@@ -853,7 +913,7 @@ function profile(){
   const lv = level(), [lsq, lde] = lvlName(lv);
   sheet.className = 'sheet plain'; sheet.style.removeProperty('--tc');
   sheet.innerHTML = `<div class="sh-in">
-    <div class="prof-h"><h2>Mimoza ✨</h2><button class="x" data-act="closesheet" aria-label="Mbyll">✕</button></div>
+    <div class="sh-top"><div class="grab"></div><div class="prof-h"><h2>Mimoza ✨</h2><button class="x" data-act="closesheet" aria-label="Mbyll">✕</button></div></div>
     <p class="de" style="margin:2px 0 0">Niveli ${lv}: ${lsq} / ${lde}</p>
     <div class="stats">
       <div class="stat"><b>${S.xp}</b><small>XP gjithsej<br>XP gesamt</small></div>
@@ -863,9 +923,13 @@ function profile(){
     <h2 class="sec" style="margin-top:6px">Medaljet<span>Abzeichen</span></h2>
     <div class="badges">${BADGES.map(b => { const on = S.badges.includes(b.id), secret = b.id === 'love' && !on;
       return `<div class="badge ${on ? '' : 'off'}"><span class="e">${secret ? '❓' : b.e}</span><b>${secret ? '???' : esc(b.sq)}</b><i>${secret ? 'Geheim' : esc(b.de)}</i></div>`; }).join('')}</div>
-    <div class="prof-row">
+    <h2 class="sec" style="margin-top:22px">Cilësimet<span>Einstellungen</span></h2>
+    <div class="prof-row" style="margin-top:0">
       <button class="cta light" data-act="sound">${S.sound ? '🔊 Zëri: po' : '🔇 Zëri: jo'}</button>
-      <button class="cta light" data-act="reset">🗑️ Fillo nga e para</button>
+      <button class="cta light" data-act="theme">${themeLabel()}</button>
+    </div>
+    <div class="prof-row">
+      <button class="cta light" data-act="reset">🗑️ Fillo nga e para / Alles löschen</button>
     </div>
   </div>`;
   openSheetEl();
@@ -919,6 +983,9 @@ document.addEventListener('click', e => {
       S.sound = !S.sound; save(); if (S.sound) SND.ok(); else if (canSpeak) speechSynthesis.cancel();
       if (sheet.classList.contains('plain') && sheet.classList.contains('open')) { home(); profile(); } else home();
       return;
+    case 'theme':
+      S.dark = !isDark(); save(); applyTheme(); SND.tap(); b.textContent = themeLabel();
+      return;
     case 'reset':
       if (confirm('Të fshihen të gjitha pikët dhe medaljet? Alles löschen?')) { S = fresh(); save(); home(); }
       return;
@@ -926,4 +993,5 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'w') { e.preventDefault(); wcheck(); } });
 
+applyTheme();
 home();
