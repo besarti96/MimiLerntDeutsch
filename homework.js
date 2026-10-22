@@ -22,7 +22,7 @@ const HOMEWORK = [
 
 /* ---------- Üb. 1 + 2: Gespräche mit können ---------- */
 {
-  id:'hw7-koennen', emoji:'🤹', color:'#7650F0', book:['faqe 75 · ushtrimi 1 + 2','S. 75 · Üb. 1 + 2'],
+  id:'hw7-koennen', lek:7, pg:75, emoji:'🤹', color:'#7650F0', book:['faqe 75 · ushtrimi 1 + 2','S. 75 · Üb. 1 + 2'],
   sq:'Biseda me können', de:'Gespräche mit können',
   desc:'Rendit fjalitë te bisedat (a–e) dhe mëso foljen können.',
   tip:'können në vendin 2, folja tjetër në fund. Pyetje: Kannst du …? Könnt ihr …? Können Sie …?',
@@ -80,7 +80,7 @@ const HOMEWORK = [
 
 /* ---------- Üb. 5–7: Freizeit, wer kann was? ---------- */
 {
-  id:'hw7-hobbys', emoji:'🎨', color:'#0E9F8E', book:['faqe 76 · ushtrimi 5–7','S. 76 · Üb. 5–7'],
+  id:'hw7-hobbys', lek:7, pg:76, emoji:'🎨', color:'#0E9F8E', book:['faqe 76 · ushtrimi 5–8','S. 76 · Üb. 5–8'],
   sq:'Kush di çfarë?', de:'Freizeit: Wer kann was?',
   desc:'reiten, singen, malen, surfen – dhe sa mirë i di njerëzit.',
   tip:'Foljet shkruhen me shkronjë të vogël. können në vendin 2: Muriel kann sehr gut reiten.',
@@ -106,7 +106,9 @@ const HOMEWORK = [
       ['Reiten','reiten','Foljet me shkronjë të vogël, emrat me të madhe.'],
       ['Karie und Jeany nicet singer','Karie und Jeany können … singen.','nicht (jo nicet) dhe mos harro können në vendin 2!'],
       ['7b: Kannst du kochen? – … aber ich kann sehr gut kochen.','7b: Ich kann leider gar nicht gut kochen. – Aber Sie können sehr gut Kuchen backen.',
-       'Lexo fjalët te 7b: „ich – kochen – leider gar nicht gut“ dhe „Sie – Kuchen backen – sehr gut“.']]}
+       'Lexo fjalët te 7b: „ich – kochen – leider gar nicht gut“ dhe „Sie – Kuchen backen – sehr gut“.']]},
+    {t:'Bravo! 🌟', d:'Selbst korrigiert', p:'Në libër e ke korrigjuar vetë: <b>malt</b> ✓ (jo Mural). Super!',
+     fix:[['Kannst du kochen? – … aber ich kann sehr gut kochen.','Ich kann leider gar nicht gut kochen. – Aber Sie können sehr gut Kuchen backen.','Te 7b ndiqi fjalët: „ich – kochen – leider gar nicht gut“.']]}
   ],
   nouns:[['die','Gitarre','kitara'],['das','Klavier','pianoja'],['der','Kuchen','ëmbëlsira']],
   words:[['reiten','kalëroj'],['singen','këndoj'],['malen','pikturoj'],['surfen','bëj surf'],['Ski fahren','bëj ski'],['kochen','gatuaj'],
@@ -135,16 +137,25 @@ const HOMEWORK = [
     {type:'mc', psq:'Bëj fjalinë (7b)', pde:'Bilde den Satz', q:'sehr gut – aber Sie – Kuchen backen',
      o:['Aber Sie können sehr gut Kuchen backen.','Aber Sie kann sehr gut Kuchen backen.','Aber Sie können Kuchen backen sehr gut.','Ich kann sehr gut kochen.'],
      a:'Aber Sie können sehr gut Kuchen backen.', say:'Aber Sie können sehr gut Kuchen backen.', e:'Sie können … backen.'},
-    {type:'order', de:'Muriel kann sehr gut reiten.', sq:'Muriel kalëron shumë mirë.'},
-    {type:'order', de:'Ludmilla kann nicht so gut reiten.', sq:'Ludmilla nuk kalëron aq mirë.'},
-    {type:'order', de:'Kannst du auch Gitarre spielen?', sq:'A di edhe ti të luash kitarë?'},
-    {type:'order', de:'Ich kann leider gar nicht gut kochen.', sq:'Fatkeqësisht nuk di aspak të gatuaj.'}
+    {type:'cloze', topic:'verben', psq:'5a Çfarë bëjnë?', pde:'5a Was machen die Personen?', h:'reiten · singen · malen · surfen',
+     text:'1  Muriel [[reitet]].\n2  Karie und Jeany [[singen]].\n3  Alba [[malt]].\n4  Jason [[surft]].', e:'sie reitet, sie singen, sie malt, er surft.'},
+    {type:'order', topic:'satz', psq:'5b Sa mirë?', pde:'5b Wie gut können sie das?', cue:'😊😊 Muriel – reiten', parts:['Muriel','kann','sehr gut','reiten.'], de:'Muriel kann sehr gut reiten.', sq:'Muriel kalëron shumë mirë.'},
+    {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'sehr gut – Ricardo und Lea – Tango tanzen', parts:['Ricardo und Lea','können','sehr gut','Tango tanzen.'], de:'Ricardo und Lea können sehr gut Tango tanzen.', sq:'Ricardo dhe Lea kërcejnë tango shumë mirë.'},
+    {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'Ludmilla – reiten – nicht so gut', parts:['Ludmilla','kann','nicht so gut','reiten.'], de:'Ludmilla kann nicht so gut reiten.', sq:'Ludmilla nuk kalëron aq mirë.'},
+    {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'Ski fahren – Ivan – nicht gut', parts:['Ivan','kann','nicht gut','Ski fahren.'], de:'Ivan kann nicht gut Ski fahren.', sq:'Ivani nuk bën mirë ski.'},
+    {type:'order', topic:'satz', psq:'7a Bisedë', pde:'7a Gespräch', cue:'du – Gitarre spielen – auch – ?', parts:['Kannst','du','auch','Gitarre spielen?'], de:'Kannst du auch Gitarre spielen?', sq:'A di edhe ti të luash kitarë?'},
+    {type:'order', topic:'satz', psq:'7a Bisedë', pde:'7a Gespräch', cue:'aber ich – nein, – Klavier spielen – gut', parts:['Nein,','aber ich','kann','gut','Klavier spielen.'], de:'Nein, aber ich kann gut Klavier spielen.', sq:'Jo, por di të luaj mirë piano.'},
+    {type:'order', topic:'satz', psq:'7b Bisedë', pde:'7b Gespräch', cue:'leider gar nicht gut – ich – kochen', parts:['Ich','kann','leider gar nicht gut','kochen.'], de:'Ich kann leider gar nicht gut kochen.', sq:'Fatkeqësisht nuk di aspak të gatuaj.'},
+    {type:'order', topic:'satz', psq:'7b Bisedë', pde:'7b Gespräch', cue:'sehr gut – aber Sie – Kuchen backen', parts:['Aber Sie','können','sehr gut','Kuchen backen.'], de:'Aber Sie können sehr gut Kuchen backen.', sq:'Por ju dini të piqni shumë mirë ëmbëlsira.'},
+    {type:'cloze', psq:'8c sch apo s?', pde:'8c sch oder s?', h:'sp dhe st në fillim lexohen „shp“, „sht“, por shkruhen me s.',
+     text:'1  Gehen wir [[s]]pazieren?\n2  Wie [[s]]pät ist es?\n3  Buch[[s]]tabieren Sie, bitte.\n4  Das [[sch]]meckt gut.\n5  Er ist Fußball[[s]]pieler.\n6  [[S]]prichst du [[S]]panisch?',
+     e:'spazieren, spät, buchstabieren, Spieler, sprichst, Spanisch me s. Vetëm schmeckt me sch.'}
   ]
 },
 
 /* ---------- Üb. 9–11: wollen ---------- */
 {
-  id:'hw7-wollen', emoji:'🌴', color:'#EE7A0C', book:['faqe 77 · ushtrimi 9–11','S. 77 · Üb. 9–11'],
+  id:'hw7-wollen', lek:7, pg:77, emoji:'🌴', color:'#EE7A0C', book:['faqe 77 · ushtrimi 9–11','S. 77 · Üb. 9–11'],
   sq:'wollen: dua të …', de:'Das Verb wollen',
   desc:'Çfarë duan të bëjnë Jakobi dhe Alina në pushime?',
   tip:'ich will, du willst, er will, wir wollen, ihr wollt, sie wollen. Folja tjetër në fund!',
@@ -174,7 +185,10 @@ const HOMEWORK = [
      fix:[
       ['beinen Stress','keinen Stress','kein → keinen (der Stress). Me k!'],
       ['Alina will zeichnen und fotografieren in der Natur.','Alina will in der Natur zeichnen und fotografieren.','Foljet (zeichnen, fotografieren) shkojnë gjithmonë në fund.'],
-      ['ein bischen','ein bisschen','bisschen shkruhet me ss.']]}
+      ['ein bischen','ein bisschen','bisschen shkruhet me ss.']]},
+    {t:'Tabela e wollen 👀', d:'Übung 9 + 11', p:'Te tabela e ushtrimit 9 dy gjëra të vogla:',
+     fix:[['ich wil','ich will','will me dy l.'],['du wellst','du willst','willst me i.']],
+     tip:'Ushtrimin 11 e ke bërë mirë: Wollen Sie, Was wollt ihr, Wir wollen ✓'}
   ],
   nouns:[['die','Ferien','pushimet'],['der','Urlaub','pushimet (nga puna)'],['der','Stress','stresi'],['die','Natur','natyra'],['der','Sprachkurs','kursi i gjuhës']],
   words:[['wollen','dua (të bëj)'],['zeichnen','vizatoj'],['fotografieren','fotografoj'],['ein bisschen','pak'],['jeden Tag','çdo ditë'],['vielleicht','ndoshta'],['noch nicht','ende jo']],
@@ -194,17 +208,25 @@ const HOMEWORK = [
     {type:'mc', psq:'Cila fjali është e saktë?', pde:'Welcher Satz ist richtig?', q:'Jakobi do të luajë futboll çdo ditë.',
      o:['Jakob will jeden Tag Fußball spielen.','Jakob will Fußball spielen jeden Tag.','Jakob wollen jeden Tag Fußball spielen.','Jakob will jeden Tag Fußball spielt.'],
      a:'Jakob will jeden Tag Fußball spielen.', say:'Jakob will jeden Tag Fußball spielen.', e:'will në vendin 2, spielen në fund.'},
-    {type:'order', de:'In den Ferien will Jakob keinen Kurs machen.', sq:'Në pushime Jakobi nuk do të bëjë asnjë kurs.'},
-    {type:'order', de:'Sie wollen ein bisschen Englisch lernen.', sq:'Ju doni të mësoni pak anglisht.'},
-    {type:'order', de:'Jakob und Alina wollen im Urlaub viel Freizeit haben.', sq:'Jakobi dhe Alina duan shumë kohë të lirë në pushime.'},
     {type:'order', de:'Wir wollen im August nach Marokko fahren.', sq:'Në gusht duam të shkojmë në Marok.'},
-    {type:'order', de:'Ich will aber noch nicht ins Bett.', sq:'Por unë nuk dua të fle ende.'}
+    {type:'order', de:'Ich will aber noch nicht ins Bett.', sq:'Por unë nuk dua të fle ende.'},
+    {type:'table', topic:'modal', psq:'9 Tabela: wollen', pde:'9 Ergänzen Sie: wollen', th:['','wollen'],
+     rows:[['ich','will'],['du','willst'],['er / sie','will'],['wir','wollen'],['ihr','wollt',1],['sie / Sie','wollen',1]], e:'ich will, er will: pa mbaresë.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'In den Ferien – keinen Kurs – machen – Jakob', parts:['In den Ferien','will','Jakob','keinen Kurs','machen.'], de:'In den Ferien will Jakob keinen Kurs machen.', sq:'Në pushime Jakobi nuk do të bëjë asnjë kurs.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'keinen Stress – haben – in den Semesterferien – Jakob und Alina', parts:['In den Semesterferien','wollen','Jakob und Alina','keinen Stress','haben.'], de:'In den Semesterferien wollen Jakob und Alina keinen Stress haben.', sq:'Në pushimet e semestrit Jakobi dhe Alina nuk duan stres.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'zeichnen und fotografieren – Alina – in der Natur', parts:['Alina','will','in der Natur','zeichnen und fotografieren.'], de:'Alina will in der Natur zeichnen und fotografieren.', sq:'Alina do të vizatojë dhe fotografojë në natyrë.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'jeden Tag – Fußball spielen – Jakob', parts:['Jakob','will','jeden Tag','Fußball spielen.'], de:'Jakob will jeden Tag Fußball spielen.', sq:'Jakobi do të luajë futboll çdo ditë.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'Englisch – ein bisschen – Sie – lernen', parts:['Sie','wollen','ein bisschen','Englisch','lernen.'], de:'Sie wollen ein bisschen Englisch lernen.', sq:'Ju doni të mësoni pak anglisht.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'im Urlaub – viel Freizeit – Jakob und Alina – haben', parts:['Jakob und Alina','wollen','im Urlaub','viel Freizeit','haben.'], de:'Jakob und Alina wollen im Urlaub viel Freizeit haben.', sq:'Jakobi dhe Alina duan shumë kohë të lirë në pushime.'},
+    {type:'cloze', topic:'modal', psq:'11 Plotëso wollen', pde:'11 Ergänzen Sie wollen',
+     text:'A  Die Pizza schmeckt super. [[Willst]] du noch etwas?\nB  Bringst du bitte Struppi in den Flur? – Er [[will]] aber nicht.\nC  [[Wollen]] Sie schon gehen? – Ja, wir stehen morgen früh auf. – Ich [[will]] aber noch nicht ins Bett.\nD  Und ihr? Was [[wollt]] ihr im Urlaub machen? – Wir [[wollen]] im August nach Marokko fahren.',
+     e:'du willst, er will, Sie wollen, ich will, ihr wollt, wir wollen.'}
   ]
 },
 
 /* ---------- Üb. 13: möchte oder will? ---------- */
 {
-  id:'hw7-moechte', emoji:'😤', color:'#D6409F', book:['faqe 78 · ushtrimi 13','S. 78 · Üb. 13'],
+  id:'hw7-moechte', lek:7, pg:78, emoji:'😤', color:'#D6409F', book:['faqe 78 · ushtrimi 13','S. 78 · Üb. 13'],
   sq:'möchte apo will?', de:'möchten oder wollen?',
   desc:'Vajza e vogël fillon e sjellshme … pastaj nervozohet! 😤',
   tip:'möchte = e butë, e sjellshme 🙂. will = e fortë 😤.',
@@ -257,7 +279,7 @@ const HOMEWORK = [
 
 /* ---------- Üb. 15 (+16): Perfekt mit haben ---------- */
 {
-  id:'hw7-perfekt', emoji:'🕰️', color:'#2E86DE', book:['faqe 79 · ushtrimi 15 + 16','S. 79 · Üb. 15 + 16'],
+  id:'hw7-perfekt', lek:7, pg:79, emoji:'🕰️', color:'#2E86DE', book:['faqe 79 · ushtrimi 15–17','S. 79 · Üb. 15–17'],
   sq:'E kaluara: hat … gemacht', de:'Perfekt mit haben',
   desc:'Gjë e re: si tregon çfarë ke bërë dje! Das hat Spaß gemacht. 🎉',
   tip:'haben në vendin 2, Partizip në fund: Ich habe Deutsch geübt. Shumica: ge…t. Rebelët: ge…en.',
@@ -290,7 +312,9 @@ const HOMEWORK = [
       ['geliebt → liben','geliebt → lieben','lieben shkruhet me ie.'],
       ['gefunden → funden','gefunden → finden','finden = gjej. Te Partizip zanorja ndryshon: i → u.'],
       ['Wir haben Opa sehr liebt.','Wir haben Opa sehr geliebt.','Mos harro ge- në fillim!'],
-      ['Hast du dein Buch gelesen?','Hast du dein Buch gefunden?','Çdo fjalë përdoret vetëm një herë. „gelesen“ shkon te teksti.']]}
+      ['Hast du dein Buch gelesen?','Hast du dein Buch gefunden?','Çdo fjalë përdoret vetëm një herë. „gelesen“ shkon te teksti.']]},
+    {t:'Bravo! 🌟', d:'Selbst korrigiert', p:'Në libër i ke korrigjuar vetë: <b>geliebt</b> ✓ dhe <b>gefunden</b> ✓. Shumë mirë!',
+     fix:[['gekauft → taufen','gekauft → kaufen','taufen = pagëzoj 😄'],['gefunden → funden','gefunden → finden','finden = gjej.']]}
   ],
   nouns:[['die','E-Mail','email-i'],['die','Blume','lulja'],['der','Text','teksti'],['das','Buch','libri']],
   words:[['gestern','dje'],['schon','tashmë'],['Das hat Spaß gemacht.','Ishte argëtuese.'],['geübt','ushtruar'],['gegessen','ngrënë'],['geschrieben','shkruar'],
@@ -317,7 +341,24 @@ const HOMEWORK = [
     {type:'order', de:'Er hat die E-Mail schon geschrieben.', sq:'Ai e ka shkruar tashmë email-in.'},
     {type:'order', de:'Habt ihr den Text schon gelesen?', sq:'A e keni lexuar tashmë tekstin?'},
     {type:'order', de:'Elena hat Blumen für Oma gekauft.', sq:'Elena ka blerë lule për gjyshen.'},
-    {type:'order', de:'Das hat richtig Spaß gemacht.', sq:'Kjo ishte vërtet argëtuese.'}
+    {type:'order', de:'Das hat richtig Spaß gemacht.', sq:'Kjo ishte vërtet argëtuese.'},
+    {type:'table', topic:'perfekt', psq:'15 Partizip → folja', pde:'15 Wie heißt das Verb?', th:['Partizip','Folja'],
+     rows:[['geübt','üben',1],['gegessen','essen'],['geschrieben','schreiben'],['gemacht','machen'],['gesprochen','sprechen'],['gekauft','kaufen'],['geliebt','lieben'],['gefunden','finden'],['gelesen','lesen']],
+     e:'gekauft → kaufen, geliebt → lieben (me ie), gefunden → finden.'},
+    {type:'cloze', topic:'perfekt', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['geübt','gegessen','geschrieben','gemacht','gesprochen','gekauft','geliebt','gefunden','gelesen'],
+     text:'Ich [[habe]] gestern viel Deutsch [[geübt]].\nDie Kinder [[haben]] schon [[gegessen]].\nEr [[hat]] die E-Mail schon [[geschrieben]].',
+     e:'ich habe, sie haben, er hat.'},
+    {type:'cloze', topic:'perfekt', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['geübt','gegessen','geschrieben','gemacht','gesprochen','gekauft','geliebt','gefunden','gelesen'],
+     text:'[[Habt]] ihr auch in Italien Urlaub [[gemacht]]?\n[[Haben]] Sie mit Frau Kindl [[gesprochen]]?\nElena [[hat]] Blumen für Oma [[gekauft]].',
+     e:'ihr habt, Sie haben, sie hat.'},
+    {type:'cloze', topic:'perfekt', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['geübt','gegessen','geschrieben','gemacht','gesprochen','gekauft','geliebt','gefunden','gelesen'],
+     text:'Wir [[haben]] Opa sehr [[geliebt]].\n[[Hast]] du dein Buch [[gefunden]]?\n[[Habt]] ihr den Text schon [[gelesen]]?',
+     e:'wir haben, du hast, ihr habt.'},
+    {type:'sort', topic:'perfekt', psq:'17 Dy tabela', pde:'17 Machen Sie zwei Tabellen', cats:['ge … (e)t','ge … en'],
+     items:[['gefrühstückt','ge … (e)t'],['gesagt','ge … (e)t'],['gekocht','ge … (e)t'],['geübt','ge … (e)t'],['gelebt','ge … (e)t'],['gekauft','ge … (e)t'],
+       ['gekostet','ge … (e)t'],['gegrillt','ge … (e)t'],['gesucht','ge … (e)t'],['gewohnt','ge … (e)t'],
+       ['getrunken','ge … en'],['gesehen','ge … en'],['getroffen','ge … en'],['gesprochen','ge … en']],
+     e:'Normale → ge…t. Rebele → ge…en: getrunken, gesehen, getroffen, gesprochen.'}
   ]
 }
   ]
@@ -507,7 +548,8 @@ const HOMEWORK = [
 },
 
 /* =====================================================================
-   📖 Si në libër: Buchseiten als Übungen in der Reihenfolge des Buchs.
+   📖 Arbeitsbuch: Buchseiten als Übungen in der Reihenfolge des Buchs.
+   lek/pg = Lektion und Seite: so erscheinen sie unter „Kapitujt“ bei ihrer Lektion.
    shelf:true = nicht die aktuelle Hausaufgabe, eigener Block unter Kapitujt.
    seq:true   = Fragen in Buch-Reihenfolge, nicht gemischt.
    Aufgabenarten wie im Buch:
@@ -519,13 +561,13 @@ const HOMEWORK = [
    ===================================================================== */
 {
   id:'book', shelf:true, icon:'📖', date:'2026-10-22', added:'2026-10-22T19:10',
-  sq:'Përsëritje: mësimet 1–7', de:'Wiederholung Lektion 1–7 · Arbeitsbuch Test L1, S. 21–79',
+  sq:'Fletorja e ushtrimeve', de:'Arbeitsbuch · Test L1, S. 21–65',
   parts:[
 
 /* ---------- Test Lektion 1 ---------- */
 {
-  id:'bk-test1', emoji:'🙋‍♀️', color:'#F2545B', seq:true, book:['Testi i mësimit 1','Test Lektion 1'],
-  sq:'Testi: Mësimi 1', de:'Test Lektion 1',
+  id:'bk-test1', lek:1, pg:13, emoji:'🙋‍♀️', color:'#F2545B', seq:true, book:['Testi i mësimit 1','Test Lektion 1'],
+  sq:'Testi i mësimit 1', de:'Test Lektion 1',
   desc:'të dhënat e Alinës, fjalët pyetëse dhe bisedat me heißen, kommen, sprechen.',
   tip:'Wer = kush (njeri), Was = çfarë, Wie = si, Woher = nga. du sprichst, er spricht.',
   lesson:[
@@ -550,8 +592,8 @@ const HOMEWORK = [
 
 /* ---------- AB Lektion 2, S. 21 ---------- */
 {
-  id:'bk-s21', emoji:'👨‍👩‍👧', color:'#D6409F', seq:true, book:['faqe 21 · ushtrimi 10–14','S. 21 · Üb. 10–14'],
-  sq:'Faqe 21: mein, dein, Ihr', de:'Seite 21: Familie',
+  id:'bk-s21', lek:2, pg:21, emoji:'👨‍👩‍👧', color:'#D6409F', seq:true, book:['faqe 21 · ushtrimi 10–14','S. 21 · Üb. 10–14'],
+  sq:'mein, dein, Ihr', de:'Seite 21: Familie',
   desc:'kryqëzo, plotëso dhe shkruaj pyetje me mein, dein, Ihr dhe bin, ist, sind.',
   tip:'der/das → mein, dein, Ihr. die/shumës → meine, deine, Ihre. Një → ist, shumë → sind.',
   lesson:[
@@ -593,8 +635,8 @@ const HOMEWORK = [
 
 /* ---------- AB Lektion 2, S. 23 ---------- */
 {
-  id:'bk-s23', emoji:'🔁', color:'#7650F0', seq:true, book:['faqe 23 · ushtrimi 18','S. 23 · Üb. 18'],
-  sq:'Faqe 23: tabela e foljeve', de:'Seite 23: kommen, leben, heißen, sprechen, sein',
+  id:'bk-s23', lek:2, pg:23, emoji:'🔁', color:'#7650F0', seq:true, book:['faqe 23 · ushtrimi 18','S. 23 · Üb. 18'],
+  sq:'Tabela e foljeve', de:'Seite 23: kommen, leben, heißen, sprechen, sein',
   desc:'plotëso tabelën për çdo folje, pastaj bisedat e vizatimeve.',
   tip:'ich -e, du -st, er -t, wir -en, ihr -t, sie -en. sprechen: du sprichst, er spricht. sein: bin, bist, ist, sind, seid, sind.',
   lesson:[
@@ -624,8 +666,8 @@ const HOMEWORK = [
 
 /* ---------- AB Lektion 6, S. 63 (1–2) ---------- */
 {
-  id:'bk-s63a', emoji:'🌦️', color:'#2E86DE', seq:true, book:['faqe 63 · ushtrimi 1–2','S. 63 · Üb. 1–2'],
-  sq:'Faqe 63: moti (1–2)', de:'Seite 63: Wie ist das Wetter?',
+  id:'bk-s63a', lek:6, pg:63, emoji:'🌦️', color:'#2E86DE', seq:true, book:['faqe 63 · ushtrimi 1–2','S. 63 · Üb. 1–2'],
+  sq:'Moti në Gjermani', de:'Seite 63: Wie ist das Wetter?',
   desc:'lexo hartën dhe rendit shkronjat e fjalëve të motit.',
   tip:'Es regnet, es schneit, die Sonne scheint, es ist bewölkt. Es sind … Grad.',
   lesson:[
@@ -655,8 +697,8 @@ const HOMEWORK = [
 
 /* ---------- AB Lektion 6, S. 63 (3–5) ---------- */
 {
-  id:'bk-s63b', emoji:'🧭', color:'#0E9F8E', seq:true, book:['faqe 63 · ushtrimi 3–5','S. 63 · Üb. 3–5'],
-  sq:'Faqe 63: Austria, harta, im/am/um/in', de:'Seite 63: Österreich, Karte, im/am/um/in',
+  id:'bk-s63b', lek:6, pg:63.5, emoji:'🧭', color:'#0E9F8E', seq:true, book:['faqe 63 · ushtrimi 3–5','S. 63 · Üb. 3–5'],
+  sq:'Austria, harta, im/am/um/in', de:'Seite 63: Österreich, Karte, im/am/um/in',
   desc:'moti në Austri, ku ndodhen qytetet dhe rendit im, am, um, in.',
   tip:'In Wien scheint die Sonne (folja e dyta!). im + drejtim, am + ditë, um + orë, in + vend.',
   lesson:[
@@ -685,8 +727,8 @@ const HOMEWORK = [
 
 /* ---------- AB S. 65 ---------- */
 {
-  id:'bk-s65', emoji:'🛒', color:'#EE7A0C', seq:true, book:['faqe 65 · ushtrimi 10–12','S. 65 · Üb. 10–12'],
-  sq:'Faqe 65: në supermarket', de:'Seite 65: Einkaufen',
+  id:'bk-s65', lek:6, pg:65, emoji:'🛒', color:'#EE7A0C', seq:true, book:['faqe 65 · ushtrimi 10–12','S. 65 · Üb. 10–12'],
+  sq:'Në supermarket: der, den, ein', de:'Seite 65: Einkaufen',
   desc:'„Hast du das Brot?“, Wer/Was apo Wen/Was dhe lista e blerjeve.',
   tip:'Kryefjala → der (Wer? Was?). Objekti → den, einen, keinen (Wen? Was?). die/das nuk ndryshojnë.',
   lesson:[
@@ -717,94 +759,8 @@ const HOMEWORK = [
   ]
 },
 
-/* ---------- AB Lektion 7, S. 76 ---------- */
-{
-  id:'bk-s76', emoji:'🎨', color:'#0E9F8E', seq:true, book:['faqe 76 · ushtrimi 5–8','S. 76 · Üb. 5–8'],
-  sq:'Faqe 76: können', de:'Seite 76: Freizeit, können, sch/s',
-  desc:'çfarë bëjnë, fjali me können, biseda dhe sch apo s.',
-  tip:'können në vendin 2, folja tjetër në fund. sp/st në fillim lexohen „shp/sht“, por shkruhen me s!',
-  lesson:[
-    {t:'Faqe 76 📖', d:'Seite 76', p:'<b>5</b> Çfarë bëjnë? <b>6–7</b> Fjali dhe biseda me können. <b>8</b> sch apo s?'},
-    {t:'Bravo! 🌟', d:'Selbst korrigiert', p:'Në libër e ke korrigjuar vetë: <b>malt</b> ✓ (jo Mural). Super!',
-     fix:[['Kannst du kochen? – … aber ich kann sehr gut kochen.','Ich kann leider gar nicht gut kochen. – Aber Sie können sehr gut Kuchen backen.','Te 7b ndiqi fjalët: „ich – kochen – leider gar nicht gut“.']]}
-  ],
-  nouns:[], words:[],
-  items:[
-    {type:'cloze', topic:'verben', psq:'5a Çfarë bëjnë?', pde:'5a Was machen die Personen?', h:'reiten · singen · malen · surfen',
-     text:'1  Muriel [[reitet]].\n2  Karie und Jeany [[singen]].\n3  Alba [[malt]].\n4  Jason [[surft]].', e:'sie reitet, sie singen, sie malt, er surft.'},
-    {type:'order', topic:'satz', psq:'5b Sa mirë?', pde:'5b Wie gut können sie das?', cue:'😊😊 Muriel – reiten', parts:['Muriel','kann','sehr gut','reiten.'], de:'Muriel kann sehr gut reiten.', sq:'Muriel kalëron shumë mirë.'},
-    {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'sehr gut – Ricardo und Lea – Tango tanzen', parts:['Ricardo und Lea','können','sehr gut','Tango tanzen.'], de:'Ricardo und Lea können sehr gut Tango tanzen.', sq:'Ricardo dhe Lea kërcejnë tango shumë mirë.'},
-    {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'Ludmilla – reiten – nicht so gut', parts:['Ludmilla','kann','nicht so gut','reiten.'], de:'Ludmilla kann nicht so gut reiten.', sq:'Ludmilla nuk kalëron aq mirë.'},
-    {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'Ski fahren – Ivan – nicht gut', parts:['Ivan','kann','nicht gut','Ski fahren.'], de:'Ivan kann nicht gut Ski fahren.', sq:'Ivani nuk bën mirë ski.'},
-    {type:'order', topic:'satz', psq:'7a Bisedë', pde:'7a Gespräch', cue:'du – Gitarre spielen – auch – ?', parts:['Kannst','du','auch','Gitarre spielen?'], de:'Kannst du auch Gitarre spielen?', sq:'A di edhe ti të luash kitarë?'},
-    {type:'order', topic:'satz', psq:'7a Bisedë', pde:'7a Gespräch', cue:'aber ich – nein, – Klavier spielen – gut', parts:['Nein,','aber ich','kann','gut','Klavier spielen.'], de:'Nein, aber ich kann gut Klavier spielen.', sq:'Jo, por di të luaj mirë piano.'},
-    {type:'order', topic:'satz', psq:'7b Bisedë', pde:'7b Gespräch', cue:'leider gar nicht gut – ich – kochen', parts:['Ich','kann','leider gar nicht gut','kochen.'], de:'Ich kann leider gar nicht gut kochen.', sq:'Fatkeqësisht nuk di aspak të gatuaj.'},
-    {type:'order', topic:'satz', psq:'7b Bisedë', pde:'7b Gespräch', cue:'sehr gut – aber Sie – Kuchen backen', parts:['Aber Sie','können','sehr gut','Kuchen backen.'], de:'Aber Sie können sehr gut Kuchen backen.', sq:'Por ju dini të piqni shumë mirë ëmbëlsira.'},
-    {type:'cloze', psq:'8c sch apo s?', pde:'8c sch oder s?', h:'sp dhe st në fillim lexohen „shp“, „sht“, por shkruhen me s.',
-     text:'1  Gehen wir [[s]]pazieren?\n2  Wie [[s]]pät ist es?\n3  Buch[[s]]tabieren Sie, bitte.\n4  Das [[sch]]meckt gut.\n5  Er ist Fußball[[s]]pieler.\n6  [[S]]prichst du [[S]]panisch?',
-     e:'spazieren, spät, buchstabieren, Spieler, sprichst, Spanisch me s. Vetëm schmeckt me sch.'}
-  ]
-},
 
-/* ---------- AB Lektion 7, S. 77 ---------- */
-{
-  id:'bk-s77', emoji:'🌴', color:'#EE7A0C', seq:true, book:['faqe 77 · ushtrimi 9–11','S. 77 · Üb. 9–11'],
-  sq:'Faqe 77: wollen', de:'Seite 77: wollen',
-  desc:'tabela e wollen, fjali nga pjesët dhe flluskat e vizatimeve.',
-  tip:'ich will, du willst, er will, wir wollen, ihr wollt, sie wollen. Folja tjetër në fund.',
-  lesson:[
-    {t:'Faqe 77 📖', d:'Seite 77', p:'<b>9</b> Tabela. <b>10</b> Bëj fjali nga pjesët. <b>11</b> Plotëso flluskat.',
-     fix:[['ich wil','ich will','will me dy l.'],['du wellst','du willst','willst me i.']],
-     tip:'Ushtrimin 11 e ke bërë mirë: Wollen Sie, Was wollt ihr, Wir wollen ✓'}
-  ],
-  nouns:[], words:[],
-  items:[
-    {type:'table', topic:'modal', psq:'9 Tabela: wollen', pde:'9 Ergänzen Sie: wollen', th:['','wollen'],
-     rows:[['ich','will'],['du','willst'],['er / sie','will'],['wir','wollen'],['ihr','wollt',1],['sie / Sie','wollen',1]], e:'ich will, er will: pa mbaresë.'},
-    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'In den Ferien – keinen Kurs – machen – Jakob', parts:['In den Ferien','will','Jakob','keinen Kurs','machen.'], de:'In den Ferien will Jakob keinen Kurs machen.', sq:'Në pushime Jakobi nuk do të bëjë asnjë kurs.'},
-    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'keinen Stress – haben – in den Semesterferien – Jakob und Alina', parts:['In den Semesterferien','wollen','Jakob und Alina','keinen Stress','haben.'], de:'In den Semesterferien wollen Jakob und Alina keinen Stress haben.', sq:'Në pushimet e semestrit Jakobi dhe Alina nuk duan stres.'},
-    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'zeichnen und fotografieren – Alina – in der Natur', parts:['Alina','will','in der Natur','zeichnen und fotografieren.'], de:'Alina will in der Natur zeichnen und fotografieren.', sq:'Alina do të vizatojë dhe fotografojë në natyrë.'},
-    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'jeden Tag – Fußball spielen – Jakob', parts:['Jakob','will','jeden Tag','Fußball spielen.'], de:'Jakob will jeden Tag Fußball spielen.', sq:'Jakobi do të luajë futboll çdo ditë.'},
-    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'Englisch – ein bisschen – Sie – lernen', parts:['Sie','wollen','ein bisschen','Englisch','lernen.'], de:'Sie wollen ein bisschen Englisch lernen.', sq:'Ju doni të mësoni pak anglisht.'},
-    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'im Urlaub – viel Freizeit – Jakob und Alina – haben', parts:['Jakob und Alina','wollen','im Urlaub','viel Freizeit','haben.'], de:'Jakob und Alina wollen im Urlaub viel Freizeit haben.', sq:'Jakobi dhe Alina duan shumë kohë të lirë në pushime.'},
-    {type:'cloze', topic:'modal', psq:'11 Plotëso wollen', pde:'11 Ergänzen Sie wollen',
-     text:'A  Die Pizza schmeckt super. [[Willst]] du noch etwas?\nB  Bringst du bitte Struppi in den Flur? – Er [[will]] aber nicht.\nC  [[Wollen]] Sie schon gehen? – Ja, wir stehen morgen früh auf. – Ich [[will]] aber noch nicht ins Bett.\nD  Und ihr? Was [[wollt]] ihr im Urlaub machen? – Wir [[wollen]] im August nach Marokko fahren.',
-     e:'du willst, er will, Sie wollen, ich will, ihr wollt, wir wollen.'}
-  ]
-},
 
-/* ---------- AB Lektion 7, S. 79 ---------- */
-{
-  id:'bk-s79', emoji:'🕰️', color:'#2E86DE', seq:true, book:['faqe 79 · ushtrimi 15–17','S. 79 · Üb. 15–17'],
-  sq:'Faqe 79: hat … gemacht', de:'Seite 79: Perfekt',
-  desc:'tabela Partizip → folja, fjalitë me haben dhe dy tabelat ge…t / ge…en.',
-  tip:'haben në vendin 2, Partizip në fund. Normale: ge…t (gemacht). Rebele: ge…en (gegessen).',
-  lesson:[
-    {t:'Faqe 79 📖', d:'Seite 79', p:'<b>15</b> Shkruaj foljen dhe plotëso fjalitë. <b>16–17</b> Rendit në dy tabela: ge…t dhe ge…en.'},
-    {t:'Bravo! 🌟', d:'Selbst korrigiert', p:'Në libër i ke korrigjuar vetë: <b>geliebt</b> ✓ dhe <b>gefunden</b> ✓. Shumë mirë!',
-     fix:[['gekauft → taufen','gekauft → kaufen','taufen = pagëzoj 😄'],['gefunden → funden','gefunden → finden','finden = gjej.']]}
-  ],
-  nouns:[], words:[],
-  items:[
-    {type:'table', topic:'perfekt', psq:'15 Partizip → folja', pde:'15 Wie heißt das Verb?', th:['Partizip','Folja'],
-     rows:[['geübt','üben',1],['gegessen','essen'],['geschrieben','schreiben'],['gemacht','machen'],['gesprochen','sprechen'],['gekauft','kaufen'],['geliebt','lieben'],['gefunden','finden'],['gelesen','lesen']],
-     e:'gekauft → kaufen, geliebt → lieben (me ie), gefunden → finden.'},
-    {type:'cloze', topic:'perfekt', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['geübt','gegessen','geschrieben','gemacht','gesprochen','gekauft','geliebt','gefunden','gelesen'],
-     text:'Ich [[habe]] gestern viel Deutsch [[geübt]].\nDie Kinder [[haben]] schon [[gegessen]].\nEr [[hat]] die E-Mail schon [[geschrieben]].',
-     e:'ich habe, sie haben, er hat.'},
-    {type:'cloze', topic:'perfekt', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['geübt','gegessen','geschrieben','gemacht','gesprochen','gekauft','geliebt','gefunden','gelesen'],
-     text:'[[Habt]] ihr auch in Italien Urlaub [[gemacht]]?\n[[Haben]] Sie mit Frau Kindl [[gesprochen]]?\nElena [[hat]] Blumen für Oma [[gekauft]].',
-     e:'ihr habt, Sie haben, sie hat.'},
-    {type:'cloze', topic:'perfekt', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['geübt','gegessen','geschrieben','gemacht','gesprochen','gekauft','geliebt','gefunden','gelesen'],
-     text:'Wir [[haben]] Opa sehr [[geliebt]].\n[[Hast]] du dein Buch [[gefunden]]?\n[[Habt]] ihr den Text schon [[gelesen]]?',
-     e:'wir haben, du hast, ihr habt.'},
-    {type:'sort', topic:'perfekt', psq:'17 Dy tabela', pde:'17 Machen Sie zwei Tabellen', cats:['ge … (e)t','ge … en'],
-     items:[['gefrühstückt','ge … (e)t'],['gesagt','ge … (e)t'],['gekocht','ge … (e)t'],['geübt','ge … (e)t'],['gelebt','ge … (e)t'],['gekauft','ge … (e)t'],
-       ['gekostet','ge … (e)t'],['gegrillt','ge … (e)t'],['gesucht','ge … (e)t'],['gewohnt','ge … (e)t'],
-       ['getrunken','ge … en'],['gesehen','ge … en'],['getroffen','ge … en'],['gesprochen','ge … en']],
-     e:'Normale → ge…t. Rebele → ge…en: getrunken, gesehen, getroffen, gesprochen.'}
-  ]
-}
   ]
 }
 

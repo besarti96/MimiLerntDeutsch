@@ -478,3 +478,9 @@ input.cz::placeholder{color:var(--muted);font-weight:400}
 .sbin-in .tok{font-size:15px;padding:6px 10px;min-height:0}
 .tok.sel{border-color:var(--tc);background:#E8E3FF;box-shadow:0 3px 0 var(--tc)}
 [data-theme="dark"] input.cz:focus,[data-theme="dark"] .tok.sel{background:#2E2752}
+
+/* ---------- Chapter list by lesson ---------- */
+.pagehead{margin:6px 0 -4px;font-size:14px;font-weight:800;color:var(--muted);letter-spacing:.02em}
+.pagerow{box-shadow:0 3px 0 var(--tc);padding:10px 14px}
+.pagerow .t-ico{width:44px;height:44px;border-radius:14px;font-size:22px}
+.pagerow.done .t-txt b::after{content:' ✓';color:var(--ok)}

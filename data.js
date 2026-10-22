@@ -2,6 +2,8 @@
    Mimis Deutsch-Reise: alle Inhalte.
    Ein Kapitel = Lektion (Folien) + Übungen. Neues Kapitel? Einfach in
    CHAPTERS an der richtigen Stelle einfügen.
+   Reihenfolge wie im Buch (Schritte plus Neu A1): lek = Lektion,
+   unit = Abschnitts-Titel beim ersten Kapitel jeder Lektion.
 
    lesson-Folie:  { t, d, p, table, th, ex:[[de, sq]], clocks:[[h,m,text]], tip }
    items-Typen:   gap   { s:'… ___ …', h, o:[], a, e, full?, row?, t? }
@@ -14,9 +16,9 @@
 
 const CHAPTERS = [
 
-/* ======================= TEIL 1: DIE BASIS ======================= */
+/* ======================= LEKTION 1: GUTEN TAG. MEIN NAME IST … ======================= */
 {
-  id:'vorstellen', unit:['Pjesa 1: Bazat','Teil 1: Die Basis'], emoji:'🙋‍♀️', color:'#F2545B', added:'2026-10-22T18:58',
+  id:'vorstellen', lek:1, unit:['Mësimi 1: Mirëdita!','Lektion 1: Guten Tag. Mein Name ist …'], emoji:'🙋‍♀️', color:'#F2545B', added:'2026-10-22T18:58',
   sq:'Hallo! Si quhesh?', de:'Sich vorstellen',
   desc:'Përshëndetjet, si quhesh, nga vjen, çfarë gjuhësh flet dhe formulari me të dhënat e tua.',
   tip:'heißen: ich heiße, du heißt, er heißt. sprechen: du sprichst, er spricht. Për njerëz pyet me Wer, për gjuhë me Was.',
@@ -81,7 +83,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'pronomen', emoji:'👋', color:'#F2545B',
+  id:'pronomen', lek:1, emoji:'👋', color:'#F2545B',
   sq:'Unë, ti, ne', de:'ich, du, wir: Pronomen',
   desc:'Kush e bën veprimin? Përemrat, mbaresat e foljes, sein dhe haben.',
   tip:'ich -e, du -st, er/sie/es -t, wir -en, ihr -t, sie/Sie -en. sein: bin, bist, ist, sind, seid, sind.',
@@ -137,88 +139,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'artikel', emoji:'🎯', color:'#EE7A0C',
-  sq:'der, die, das', de:'Die drei Artikel',
-  desc:'Pse gjermanishtja ka tri nyja dhe si t’i mbash mend.',
-  tip:'der = mashkullore, die = femërore, das = asnjanëse. Shumësi = gjithmonë die. -ung/-e → die, -chen → das.',
-  lesson:[
-    {t:'Tri gjini', d:'Drei Artikel', p:'Shqipja ka mashkullore dhe femërore. Gjermanishtja ka <b>tri</b>: der, die dhe das.',
-     th:['Nyja','Gjinia','Shembull'], table:[['der','mashkullore','der Tisch'],['die','femërore','die Lampe'],['das','asnjanëse','das Sofa']]},
-    {t:'Mos e mëso fjalën vetëm!', d:'Immer mit Artikel lernen', p:'Gjinia shpesh nuk ka logjikë: vajza është <b>das</b> Mädchen! Prandaj mësoje çdo emër gjithmonë me nyjën.',
-     ex:[['der Tisch','tavolina'],['die Lampe','llamba'],['das Mädchen','vajza']], tip:'Thuaje me zë: „der Tisch, der Tisch“ derisa të tingëllojë natyrshëm.'},
-    {t:'Ndihmë: mbaresat', d:'Endungen helfen', p:'Disa mbaresa të tregojnë nyjën:',
-     say:2, th:['Mbaresa','Nyja','Shembull'], table:[['-ung','die','die Wohnung'],['-e (shpesh)','die','die Küche'],['-in (gratë)','die','die Lehrerin'],['-chen','das','das Brötchen'],['-er (shpesh)','der','der Fernseher']]},
-    {t:'Shumësi: gjithmonë die', d:'Plural = die', p:'Në shumës, çdo emër merr <b>die</b>, pa marrë parasysh gjininë.',
-     ex:[['der Stuhl, die Stühle','karrigia, karriget'],['das Bett, die Betten','shtrati, shtretërit'],['die Lampe, die Lampen','llamba, llambat']], tip:'Shumësi = die. Gjithmonë! 💯'}
-  ],
-  nouns:[['der','Mann','burri'],['die','Frau','gruaja'],['das','Kind','fëmija'],['der','Freund','shoku'],['die','Freundin','shoqja'],
-    ['das','Mädchen','vajza'],['das','Auto','makina'],['die','Stadt','qyteti'],['das','Haus','shtëpia'],['die','Zeitung','gazeta'],
-    ['der','Lehrer','mësuesi'],['die','Lehrerin','mësuesja'],['das','Buch','libri'],['die','Tasse','filxhani'],['der','Apfel','molla'],
-    ['das','Wasser','uji'],['die','Zeit','koha'],['der','Tag','dita']],
-  words:[],
-  items:[
-    {type:'match', pairs:[['der Mann','burri'],['die Frau','gruaja'],['das Kind','fëmija'],['das Mädchen','vajza'],['der Freund','shoku']]},
-    {type:'match', pairs:[['das Haus','shtëpia'],['die Stadt','qyteti'],['das Auto','makina'],['die Zeitung','gazeta'],['der Apfel','molla']]},
-    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Stühle', h:'shumës', o:['der','die','das'], a:'die', say:'die Stühle', e:'Shumësi = gjithmonë die.'},
-    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Betten', h:'shumës', o:['der','die','das'], a:'die', say:'die Betten', e:'Shumësi = gjithmonë die.'},
-    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Häuser', h:'shumës', o:['der','die','das'], a:'die', say:'die Häuser', e:'Shumësi = gjithmonë die.'},
-    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Brötchen', h:'mbaresa -chen', o:['der','die','das'], a:'das', say:'das Brötchen', e:'-chen → das.'},
-    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Wohnung', h:'mbaresa -ung', o:['der','die','das'], a:'die', say:'die Wohnung', e:'-ung → gjithmonë die.'},
-    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Lehrerin', h:'mbaresa -in', o:['der','die','das'], a:'die', say:'die Lehrerin', e:'-in (për gratë) → die.'},
-    {type:'mc', psq:'Cila është e saktë?', pde:'Was ist richtig?', q:'vajza', o:['das Mädchen','die Mädchen','der Mädchen'], a:'das Mädchen', say:'das Mädchen', e:'Edhe pse është vajzë: das Mädchen, për shkak të -chen.'},
-    {type:'mc', psq:'Rregulli', pde:'Die Regel', q:'Cila nyjë vjen në shumës?', o:['der','die','das','varet'], a:'die', e:'Shumësi merr gjithmonë die.'},
-    {type:'gap', s:'___ Frau liest die Zeitung.', h:'die Frau', o:['Der','Die','Das'], a:'Die', row:true, e:'die Frau.'},
-    {type:'gap', s:'___ Kind spielt im Park.', h:'das Kind', o:['Der','Die','Das'], a:'Das', row:true, e:'das Kind.'},
-    {type:'gap', s:'___ Lehrer ist nett.', h:'mësuesi', o:['Der','Die','Das'], a:'Der', row:true, e:'der Lehrer (-er → shpesh der).'},
-    {type:'order', de:'Die Wohnung ist schön.', sq:'Banesa është e bukur.'},
-    {type:'order', de:'Das Kind spielt im Park.', sq:'Fëmija luan në park.'},
-    {type:'order', de:'Der Lehrer ist nett.', sq:'Mësuesi është i sjellshëm.'},
-    {type:'order', de:'Die Frau liest die Zeitung.', sq:'Gruaja lexon gazetën.'}
-  ]
-},
-{
-  id:'ein', emoji:'☝️', color:'#E3A008',
-  sq:'ein, eine, kein', de:'ein, eine, kein',
-  desc:'„Një“ dhe „asnjë“: nyja e pashquar dhe mohimi.',
-  tip:'der/das → ein, die → eine, shumës → pa nyjë. kein = k + ein. nicht për folje dhe mbiemra.',
-  lesson:[
-    {t:'Një: ein / eine', d:'Der unbestimmte Artikel', p:'<b>ein/eine</b> = „një“, për diçka të panjohur. <b>der/die/das</b> = diçka e njohur.',
-     say:2, th:['Gjinia','e njohur','e panjohur'], table:[['der','der Tisch','<b>ein</b> Tisch'],['das','das Sofa','<b>ein</b> Sofa'],['die','die Lampe','<b>eine</b> Lampe'],['shumës','die Stühle','– Stühle']],
-     tip:'der dhe das → <b>ein</b>. die → <b>eine</b>. Shumësi → pa nyjë.'},
-    {t:'Nga e panjohura te e njohura', d:'Erst ein, dann der', p:'Herën e parë: ein/eine. Pastaj, kur e njohim: der/die/das.',
-     ex:[['Das ist ein Sofa.','Ky është një divan.'],['Das Sofa ist alt.','Divani është i vjetër.'],['Ich habe eine Wohnung. Die Wohnung ist klein.','Kam një banesë. Banesa është e vogël.']]},
-    {t:'Mohimi: kein / keine', d:'Die Verneinung', p:'<b>kein</b> = „asnjë, nuk ka“. Thjesht shto një <b>k</b> para ein!',
-     say:2, th:['','ein','kein'], table:[['der','ein Tisch','<b>k</b>ein Tisch'],['das','ein Sofa','<b>k</b>ein Sofa'],['die','eine Lampe','<b>k</b>eine Lampe'],['shumës','– Stühle','<b>keine</b> Stühle']]},
-    {t:'kein apo nicht?', d:'kein oder nicht?', p:'<b>kein</b> para një emri pa nyjë ose me ein. <b>nicht</b> për foljet dhe mbiemrat.',
-     ex:[['Das ist kein Stuhl.','Kjo nuk është karrige.'],['Ich habe keine Zeit.','Nuk kam kohë.'],['Ich tanze nicht.','Nuk kërcej.'],['Der Kaffee ist nicht kalt.','Kafeja nuk është e ftohtë.']],
-     tip:'kein + emër. nicht + folje / mbiemër.'}
-  ],
-  nouns:[],
-  words:[['ein','një (der/das)'],['eine','një (die)'],['kein','asnjë (der/das)'],['keine','asnjë (die, shumës)'],['nicht','nuk, jo']],
-  items:[
-    {type:'match', pairs:[['ein Tisch','një tavolinë'],['eine Lampe','një llambë'],['kein Bett','asnjë shtrat'],['keine Zeit','nuk ka kohë'],['nicht kalt','jo i ftohtë']]},
-    {type:'gap', s:'Das ist ___ Tisch.', h:'der Tisch', o:['ein','eine'], a:'ein', row:true, e:'der → ein.'},
-    {type:'gap', s:'Das ist ___ Lampe.', h:'die Lampe', o:['ein','eine'], a:'eine', row:true, e:'die → eine.'},
-    {type:'gap', s:'Das ist ___ Sofa.', h:'das Sofa', o:['ein','eine'], a:'ein', row:true, e:'das → ein.'},
-    {type:'gap', s:'Ich habe ___ Freundin. Sie heißt Sara.', h:'die Freundin', o:['ein','eine','einen'], a:'eine', row:true, e:'die → eine.'},
-    {type:'gap', s:'Das ist ___ Bett, das ist ein Sofa!', h:'das Bett, mohim', o:['kein','keine','nicht'], a:'kein', row:true, e:'das + mohim → kein.'},
-    {type:'gap', s:'Das ist ___ Lampe, das ist ein Fernseher.', h:'die Lampe, mohim', o:['kein','keine','nicht'], a:'keine', row:true, e:'die + mohim → keine.'},
-    {type:'gap', s:'Das sind ___ Stühle.', h:'shumës, të panjohura', o:['ein','eine','pa nyjë'], a:'pa nyjë', full:'Das sind Stühle.', row:true, e:'„ein“ nuk ka shumës.'},
-    {type:'gap', s:'Hier gibt es ___ Stühle.', h:'asnjë karrige (shumës)', o:['kein','keine','nicht'], a:'keine', row:true, e:'Shumës + mohim → keine.'},
-    {type:'gap', s:'Ich habe ___ Zeit.', h:'die Zeit, mohim', o:['kein','keine','nicht'], a:'keine', row:true, e:'die Zeit → keine Zeit.'},
-    {type:'gap', s:'Ich tanze ___.', h:'mohim i foljes', o:['kein','keine','nicht'], a:'nicht', row:true, e:'Folja mohohet me nicht.'},
-    {type:'gap', s:'Der Kaffee ist ___ kalt.', h:'mohim i mbiemrit', o:['kein','keine','nicht'], a:'nicht', row:true, e:'Mbiemri (kalt) mohohet me nicht.'},
-    {type:'gap', s:'Ich habe ein Buch. ___ Buch ist toll.', h:'tani e njohim librin', o:['Ein','Das','Der'], a:'Das', row:true, e:'Herën e dytë: libri i njohur → das Buch.'},
-    {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das?', q:'Kjo nuk është karrige.', o:['Das ist kein Stuhl.','Das ist nicht Stuhl.','Das ist keine Stuhl.','Das kein ist Stuhl.'], a:'Das ist kein Stuhl.', say:'Das ist kein Stuhl.', e:'der Stuhl + mohim → kein Stuhl.'},
-    {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das?', q:'Nuk kam kohë.', o:['Ich habe keine Zeit.','Ich habe nicht Zeit.','Ich habe kein Zeit.','Ich nicht habe Zeit.'], a:'Ich habe keine Zeit.', say:'Ich habe keine Zeit.', e:'die Zeit → keine Zeit.'},
-    {type:'order', de:'Das ist kein Stuhl.', sq:'Kjo nuk është karrige.'},
-    {type:'order', de:'Ich habe keine Zeit.', sq:'Nuk kam kohë.'},
-    {type:'order', de:'Das ist eine Lampe.', sq:'Kjo është një llambë.'},
-    {type:'order', de:'Der Kaffee ist nicht kalt.', sq:'Kafeja nuk është e ftohtë.'}
-  ]
-},
-{
-  id:'wfragen', emoji:'❓', color:'#0E9F8E',
+  id:'wfragen', lek:1, emoji:'❓', color:'#0E9F8E',
   sq:'Kush? Çfarë? Ku?', de:'W-Fragen: wer, was, wo',
   desc:'Wer, was, wo, wann, wie, woher: si të bësh pyetje.',
   tip:'Wer = kush, Was = çfarë, Wo = ku, Wann = kur, Wie = si, Woher = nga, Wie viel = sa. W-fjala e para, folja e dyta.',
@@ -262,9 +183,9 @@ const CHAPTERS = [
   ]
 },
 
-/* ======================= TEIL 2: WOHNEN & ESSEN ======================= */
+/* ======================= LEKTION 2: MEINE FAMILIE ======================= */
 {
-  id:'familie', emoji:'👨‍👩‍👧', color:'#D6409F', added:'2026-10-22T18:58',
+  id:'familie', lek:2, unit:['Mësimi 2: Familja ime','Lektion 2: Meine Familie'], emoji:'👨‍👩‍👧', color:'#D6409F', added:'2026-10-22T18:58',
   sq:'Familja ime', de:'Meine Familie: mein, dein, Ihr',
   desc:'Anëtarët e familjes dhe si thua „im“, „yt“ dhe „juaj“.',
   tip:'der/das → mein, dein, Ihr. die/shumës → meine, deine, Ihre. Një person → ist, shumë → sind.',
@@ -319,90 +240,51 @@ const CHAPTERS = [
     {type:'order', de:'Das ist meine Enkelin Sara.', sq:'Kjo është mbesa ime Sara.'}
   ]
 },
+
+/* ======================= LEKTION 3: ESSEN UND TRINKEN ======================= */
 {
-  id:'wohnung', unit:['Pjesa 2: Shtëpia & ushqimi','Teil 2: Wohnen & Essen'], emoji:'🛋️', color:'#2E86DE',
-  sq:'Banesa & mobiljet', de:'Wohnung & Möbel',
-  desc:'Dhomat, mobiljet dhe e-maili i Elenës për Sabrinën.',
-  tip:'Zimmer është gjithmonë das. Tisch, Stuhl, Schrank, Fernseher = der. Lampe, Küche = die. Sofa, Bett, Bad = das.',
+  id:'ein', lek:3, unit:['Mësimi 3: Ushqimi dhe pijet','Lektion 3: Essen und Trinken'], emoji:'☝️', color:'#E3A008',
+  sq:'ein, eine, kein', de:'ein, eine, kein',
+  desc:'„Një“ dhe „asnjë“: nyja e pashquar dhe mohimi.',
+  tip:'der/das → ein, die → eine, shumës → pa nyjë. kein = k + ein. nicht për folje dhe mbiemra.',
   lesson:[
-    {t:'Banesa ime', d:'Meine Wohnung', ex:[['das Wohnzimmer','dhoma e ndenjjes'],['das Schlafzimmer','dhoma e gjumit'],['die Küche','kuzhina'],['das Bad','banjoja']],
-     tip:'<b>Zimmer</b> = dhomë dhe është gjithmonë <b>das</b>: das Wohnzimmer, das Schlafzimmer.'},
-    {t:'Mobiljet', d:'Die Möbel', p:'Kushtoji vëmendje nyjës. Ajo është pjesë e fjalës!',
-     th:['Gjermanisht','Shqip'], table:[['der Tisch','tavolina'],['der Stuhl','karrigia'],['der Schrank','dollapi'],['der Fernseher','televizori'],['das Sofa','divani'],['das Bett','shtrati'],['die Lampe','llamba'],['die Waschmaschine','lavatriçja']]},
-    {t:'Përshkruaj banesën', d:'Die Wohnung beschreiben', ex:[['Die Wohnung ist klein.','Banesa është e vogël.'],['Das Sofa ist alt.','Divani është i vjetër.'],['Der Tisch ist neu.','Tavolina është e re.'],['Die Küche ist schön.','Kuzhina është e bukur.']],
-     tip:'Mbiemri pas <b>ist</b> nuk ndryshon kurrë: Das Sofa ist alt. Die Küche ist alt.'},
-    {t:'E-maili për Sabrinën', d:'Die E-Mail an Sabrina', p:'Te ushtrimi 14, Elena i shkruan Sabrinës për banesën e saj të re. Do ta plotësosh vetë!',
-     ex:[['Endlich habe ich eine Wohnung!','Më në fund kam një banesë!'],['Ich mache am Freitag eine Party.','Të premten bëj një festë.'],['Kommst du auch?','A vjen edhe ti?']]}
-  ],
-  nouns:[['die','Wohnung','banesa'],['das','Wohnzimmer','dhoma e ndenjjes'],['das','Schlafzimmer','dhoma e gjumit'],['die','Küche','kuzhina'],['das','Bad','banjoja'],
-    ['der','Tisch','tavolina'],['der','Stuhl','karrigia'],['das','Sofa','divani'],['das','Bett','shtrati'],['der','Schrank','dollapi'],['die','Lampe','llamba'],
-    ['der','Fernseher','televizori'],['die','Waschmaschine','lavatriçja'],['die','Party','festa']],
-  words:[['die Möbel','mobiljet'],['endlich','më në fund'],['klein','i vogël'],['alt','i vjetër'],['neu','i ri'],['schön','i bukur']],
-  items:[
-    {type:'match', pairs:[['der Tisch','tavolina'],['der Stuhl','karrigia'],['das Sofa','divani'],['das Bett','shtrati'],['der Schrank','dollapi']]},
-    {type:'match', pairs:[['die Küche','kuzhina'],['das Bad','banjoja'],['das Wohnzimmer','dhoma e ndenjjes'],['das Schlafzimmer','dhoma e gjumit'],['die Lampe','llamba']]},
-    {type:'match', pairs:[['klein','i vogël'],['alt','i vjetër'],['neu','i ri'],['schön','i bukur'],['endlich','më në fund']]},
-    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'Endlich habe ich ___ Wohnung!', h:'die Wohnung', o:['ein','eine','einen'], a:'eine', row:true, e:'Wohnung është die → eine.'},
-    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'Sie hat ___ Wohnzimmer.', h:'das Wohnzimmer', o:['ein','eine','einen'], a:'ein', row:true, e:'das → ein Wohnzimmer.'},
-    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'___ Küche ist sehr klein.', h:'Kuzhina është shumë e vogël.', o:['Der','Die','Das'], a:'Die', row:true, e:'die Küche, tashmë e njohur.'},
-    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'___ Sofa ist sehr alt, es ist von Oma.', h:'das Sofa', o:['Der','Die','Das'], a:'Das', row:true, e:'das Sofa, divani nga gjyshja.'},
-    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'Ich mache am Freitag ___ Party.', h:'die Party', o:['ein','eine','einen'], a:'eine', row:true, e:'die Party → eine Party.'},
-    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'Zuerst brauche ich aber noch vier ___.', h:'karrige (shumës)', o:['Stuhl','Stühle','Stuhls'], a:'Stühle', row:true, e:'der Stuhl → die Stühle.'},
-    {type:'gap', s:'Der Tisch ist ___.', h:'i ri', o:['neu','neue','neuer'], a:'neu', row:true, e:'Pas ist mbiemri nuk ndryshon.'},
-    {type:'gap', s:'Die Küche ist ___.', h:'e bukur', o:['schön','schöne','schöner'], a:'schön', row:true, e:'Pas ist mbiemri nuk ndryshon.'},
-    {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das?', q:'Më në fund kam një banesë!', o:['Endlich habe ich eine Wohnung!','Endlich ich habe eine Wohnung!','Endlich habe ich einen Wohnung!','Endlich hat ich eine Wohnung!'], a:'Endlich habe ich eine Wohnung!', say:'Endlich habe ich eine Wohnung!', e:'Folja (habe) qëndron në vendin e dytë.'},
-    {type:'mc', psq:'Ku flen?', pde:'Wo schläfst du?', q:'Ku është shtrati zakonisht?', o:['im Schlafzimmer','in der Küche','im Bad','im Wohnzimmer'], a:'im Schlafzimmer', say:'Das Bett ist im Schlafzimmer.', e:'Schlafzimmer = dhoma e gjumit.'},
-    {type:'order', de:'Die Küche ist sehr klein.', sq:'Kuzhina është shumë e vogël.'},
-    {type:'order', de:'Endlich habe ich eine Wohnung!', sq:'Më në fund kam një banesë!'},
-    {type:'order', de:'Das Sofa ist von Oma.', sq:'Divani është nga gjyshja.'},
-    {type:'order', de:'Ich brauche noch vier Stühle.', sq:'Më duhen edhe katër karrige.'},
-    {type:'order', de:'Ich mache am Freitag eine Party.', sq:'Të premten bëj një festë.'}
-  ]
-},
-{
-  id:'akkusativ', emoji:'🎁', color:'#7650F0',
-  sq:'einen, meinen, deinen', de:'Der Akkusativ',
-  desc:'Kur ndryshon nyja? Dy pyetjet magjike.',
-  tip:'Vetëm der ndryshon: der → den, ein → einen, kein → keinen, mein → meinen, dein → deinen. Das, die dhe shumësi mbeten njësoj.',
-  lesson:[
-    {t:'Çfarë është Akkusativ?', d:'Was ist der Akkusativ?', p:'Kur diçka është <b>objekt</b> i foljes (pyet: <b>Wen? Was?</b> = Kë? Çfarë?), nyja mund të ndryshojë.',
-     ex:[['Der Tisch ist neu.','Tavolina është e re. (subjekt)'],['Ich kaufe den Tisch.','E blej tavolinën. (objekt)']],
-     tip:'Folje me Akkusativ: haben, brauchen, nehmen, kaufen, möchten, verkaufen.'},
-    {t:'Vetëm DER ndryshon!', d:'Nur der ändert sich', say:2, th:['','Nominativ','Akkusativ'],
-     table:[['der','der / ein Tisch','<b>den / einen</b> Tisch'],['das','das / ein Sofa','das / ein Sofa'],['die','die / eine Lampe','die / eine Lampe'],['shumës','die Stühle','die Stühle']],
-     tip:'der → <b>den</b>, ein → <b>einen</b>, kein → <b>keinen</b>, mein → <b>meinen</b>, dein → <b>deinen</b>.'},
-    {t:'Dy pyetjet magjike', d:'Zwei Zauberfragen', say:-1, p:'Për çdo zbrazëtirë pyet veten:',
-     table:[['1. Kujt është?','i imi → <b>mein-</b><br>i yti → <b>dein-</b><br>çfarëdo → <b>ein-</b><br>asnjë → <b>kein-</b>'],['2. Cila gjini?','der → <b>-en</b><br>das → asgjë<br>die → <b>-e</b>']],
-     ex:[['Ich verkaufe meinen Tisch.','E shes tavolinën time.'],['Ich nehme dein Sofa.','E marr divanin tënd.'],['Ich brauche eine Lampe.','Më duhet një llambë.']]}
+    {t:'Një: ein / eine', d:'Der unbestimmte Artikel', p:'<b>ein/eine</b> = „një“, për diçka të panjohur. <b>der/die/das</b> = diçka e njohur.',
+     say:2, th:['Gjinia','e njohur','e panjohur'], table:[['der','der Tisch','<b>ein</b> Tisch'],['das','das Sofa','<b>ein</b> Sofa'],['die','die Lampe','<b>eine</b> Lampe'],['shumës','die Stühle','– Stühle']],
+     tip:'der dhe das → <b>ein</b>. die → <b>eine</b>. Shumësi → pa nyjë.'},
+    {t:'Nga e panjohura te e njohura', d:'Erst ein, dann der', p:'Herën e parë: ein/eine. Pastaj, kur e njohim: der/die/das.',
+     ex:[['Das ist ein Sofa.','Ky është një divan.'],['Das Sofa ist alt.','Divani është i vjetër.'],['Ich habe eine Wohnung. Die Wohnung ist klein.','Kam një banesë. Banesa është e vogël.']]},
+    {t:'Mohimi: kein / keine', d:'Die Verneinung', p:'<b>kein</b> = „asnjë, nuk ka“. Thjesht shto një <b>k</b> para ein!',
+     say:2, th:['','ein','kein'], table:[['der','ein Tisch','<b>k</b>ein Tisch'],['das','ein Sofa','<b>k</b>ein Sofa'],['die','eine Lampe','<b>k</b>eine Lampe'],['shumës','– Stühle','<b>keine</b> Stühle']]},
+    {t:'kein apo nicht?', d:'kein oder nicht?', p:'<b>kein</b> para një emri pa nyjë ose me ein. <b>nicht</b> për foljet dhe mbiemrat.',
+     ex:[['Das ist kein Stuhl.','Kjo nuk është karrige.'],['Ich habe keine Zeit.','Nuk kam kohë.'],['Ich tanze nicht.','Nuk kërcej.'],['Der Kaffee ist nicht kalt.','Kafeja nuk është e ftohtë.']],
+     tip:'kein + emër. nicht + folje / mbiemër.'}
   ],
   nouns:[],
-  words:[['brauchen','më duhet'],['kaufen','blej'],['verkaufen','shes'],['mein','i imi'],['dein','i yti']],
+  words:[['ein','një (der/das)'],['eine','një (die)'],['kein','asnjë (der/das)'],['keine','asnjë (die, shumës)'],['nicht','nuk, jo']],
   items:[
-    {type:'match', pairs:[['der Tisch','einen Tisch'],['das Sofa','ein Sofa'],['die Lampe','eine Lampe'],['der Schrank','meinen Schrank'],['der Fernseher','keinen Fernseher']]},
-    {type:'gap', s:'Ich verkaufe ___ Tisch.', h:'der Tisch, i imi', o:['mein','meinen','meine','deinen'], a:'meinen', e:'I imi → mein-. Tisch është der → +en.'},
-    {type:'gap', s:'Ich nehme ___ Sofa.', h:'das Sofa, i yti', o:['dein','deinen','deine','mein'], a:'dein', e:'I yti → dein-. Sofa është das → pa mbaresë.'},
-    {type:'gap', s:'Ich nehme ___ Schrank.', h:'der Schrank, i yti', o:['meinen','deinen','dein','deine'], a:'deinen', e:'I yti → dein-. Schrank është der → +en.'},
-    {type:'gap', s:'Ich brauche ___ Lampe.', h:'die Lampe, çfarëdo', o:['ein','eine','einen'], a:'eine', row:true, e:'die nuk ndryshon → eine.'},
-    {type:'gap', s:'Paula, ich brauche ___ Stuhl.', h:'der Stuhl, çfarëdo', o:['ein','eine','einen'], a:'einen', row:true, e:'der → einen.'},
-    {type:'gap', s:'Wir brauchen noch ___ Stühle.', h:'shumës, pa pronar', o:['ein','eine','einen','pa nyjë'], a:'pa nyjë', full:'Wir brauchen noch Stühle.', e:'„ein“ nuk ka shumës.'},
-    {type:'gap', s:'Ach nein, ___ Stühle reichen.', h:'karriget e mia', o:['mein','meine','meinen','deine'], a:'meine', e:'Shumës + i imi → meine.'},
-    {type:'gap', s:'Ich brauche ___ Waschmaschine nicht.', h:'die Waschmaschine, e jotja', o:['dein','deinen','deine','meine'], a:'deine', e:'die → deine.'},
-    {type:'gap', s:'Ich verkaufe ___ Bett.', h:'das Bett, i imi', o:['mein','meinen','meine','dein'], a:'mein', e:'das → mein, pa mbaresë.'},
-    {type:'gap', s:'Ich kaufe ___ Tisch.', h:'der Tisch, i njohur', o:['der','den','das'], a:'den', row:true, e:'der → den në Akkusativ.'},
-    {type:'gap', s:'Ich nehme ___ Lampe.', h:'die Lampe, e njohur', o:['der','die','den'], a:'die', row:true, e:'die nuk ndryshon.'},
-    {type:'gap', s:'Aber ich habe noch ___ Fernseher.', h:'der Fernseher, mohim', o:['kein','keine','keinen'], a:'keinen', row:true, e:'der + mohim → keinen.'},
-    {type:'gap', s:'Hast du ___ Stuhl für mich?', h:'der Stuhl, një', o:['ein','eine','einen'], a:'einen', row:true, e:'der → einen.'},
-    {type:'gap', s:'Ich möchte ___ Sofa.', h:'das Sofa, një', o:['ein','eine','einen'], a:'ein', row:true, e:'das → ein.'},
-    {type:'mc', psq:'Rregulli i artë', pde:'Die goldene Regel', q:'Cila gjini ndryshon në Akkusativ?', o:['der','das','die','shumësi'], a:'der', e:'Vetëm der: ein → einen, der → den.'},
-    {type:'mc', psq:'Cila fjali është e saktë?', pde:'Welcher Satz ist richtig?', q:'Kam një tavolinë.', o:['Ich habe einen Tisch.','Ich habe ein Tisch.','Ich habe eine Tisch.','Ich habe einer Tisch.'], a:'Ich habe einen Tisch.', say:'Ich habe einen Tisch.', e:'der Tisch + haben → einen Tisch.'},
-    {type:'order', de:'Ich verkaufe meinen Tisch.', sq:'E shes tavolinën time.'},
-    {type:'order', de:'Ich brauche einen Schrank.', sq:'Më duhet një dollap.'},
-    {type:'order', de:'Ich nehme dein Sofa.', sq:'E marr divanin tënd.'},
-    {type:'order', de:'Ich habe keinen Fernseher.', sq:'Nuk kam televizor.'}
+    {type:'match', pairs:[['ein Tisch','një tavolinë'],['eine Lampe','një llambë'],['kein Bett','asnjë shtrat'],['keine Zeit','nuk ka kohë'],['nicht kalt','jo i ftohtë']]},
+    {type:'gap', s:'Das ist ___ Tisch.', h:'der Tisch', o:['ein','eine'], a:'ein', row:true, e:'der → ein.'},
+    {type:'gap', s:'Das ist ___ Lampe.', h:'die Lampe', o:['ein','eine'], a:'eine', row:true, e:'die → eine.'},
+    {type:'gap', s:'Das ist ___ Sofa.', h:'das Sofa', o:['ein','eine'], a:'ein', row:true, e:'das → ein.'},
+    {type:'gap', s:'Ich habe ___ Freundin. Sie heißt Sara.', h:'die Freundin', o:['ein','eine','einen'], a:'eine', row:true, e:'die → eine.'},
+    {type:'gap', s:'Das ist ___ Bett, das ist ein Sofa!', h:'das Bett, mohim', o:['kein','keine','nicht'], a:'kein', row:true, e:'das + mohim → kein.'},
+    {type:'gap', s:'Das ist ___ Lampe, das ist ein Fernseher.', h:'die Lampe, mohim', o:['kein','keine','nicht'], a:'keine', row:true, e:'die + mohim → keine.'},
+    {type:'gap', s:'Das sind ___ Stühle.', h:'shumës, të panjohura', o:['ein','eine','pa nyjë'], a:'pa nyjë', full:'Das sind Stühle.', row:true, e:'„ein“ nuk ka shumës.'},
+    {type:'gap', s:'Hier gibt es ___ Stühle.', h:'asnjë karrige (shumës)', o:['kein','keine','nicht'], a:'keine', row:true, e:'Shumës + mohim → keine.'},
+    {type:'gap', s:'Ich habe ___ Zeit.', h:'die Zeit, mohim', o:['kein','keine','nicht'], a:'keine', row:true, e:'die Zeit → keine Zeit.'},
+    {type:'gap', s:'Ich tanze ___.', h:'mohim i foljes', o:['kein','keine','nicht'], a:'nicht', row:true, e:'Folja mohohet me nicht.'},
+    {type:'gap', s:'Der Kaffee ist ___ kalt.', h:'mohim i mbiemrit', o:['kein','keine','nicht'], a:'nicht', row:true, e:'Mbiemri (kalt) mohohet me nicht.'},
+    {type:'gap', s:'Ich habe ein Buch. ___ Buch ist toll.', h:'tani e njohim librin', o:['Ein','Das','Der'], a:'Das', row:true, e:'Herën e dytë: libri i njohur → das Buch.'},
+    {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das?', q:'Kjo nuk është karrige.', o:['Das ist kein Stuhl.','Das ist nicht Stuhl.','Das ist keine Stuhl.','Das kein ist Stuhl.'], a:'Das ist kein Stuhl.', say:'Das ist kein Stuhl.', e:'der Stuhl + mohim → kein Stuhl.'},
+    {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das?', q:'Nuk kam kohë.', o:['Ich habe keine Zeit.','Ich habe nicht Zeit.','Ich habe kein Zeit.','Ich nicht habe Zeit.'], a:'Ich habe keine Zeit.', say:'Ich habe keine Zeit.', e:'die Zeit → keine Zeit.'},
+    {type:'order', de:'Das ist kein Stuhl.', sq:'Kjo nuk është karrige.'},
+    {type:'order', de:'Ich habe keine Zeit.', sq:'Nuk kam kohë.'},
+    {type:'order', de:'Das ist eine Lampe.', sq:'Kjo është një llambë.'},
+    {type:'order', de:'Der Kaffee ist nicht kalt.', sq:'Kafeja nuk është e ftohtë.'}
   ]
 },
 {
-  id:'essen', emoji:'🍽️', color:'#D6409F',
+  id:'essen', lek:3, emoji:'🍽️', color:'#D6409F',
   sq:'Ushqimi & porosia', de:'Essen & Bestellen',
   desc:'Mëngjesi, restoranti, nehmen dhe möchten.',
   tip:'Ich hätte gern … = do të doja. nehmen: ich nehme, du nimmst, er nimmt. möchten: ich möchte, du möchtest, er möchte.',
@@ -448,7 +330,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'einkaufen', emoji:'🛒', color:'#EE7A0C', added:'2026-10-22T18:58',
+  id:'einkaufen', lek:3, emoji:'🛒', color:'#EE7A0C', added:'2026-10-22T18:58',
   sq:'Në supermarket', de:'Einkaufen: eine Packung, ein Kilo',
   desc:'Paketë, shishe, kanoçe, kilogram, dhe den, einen, keinen kur blen.',
   tip:'die Packung, Dose, Flasche → eine. das Kilo → ein. Pas brauchen, kaufen, haben: der → den, einen, keinen.',
@@ -506,7 +388,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'doch', emoji:'🙋', color:'#0E9F8E',
+  id:'doch', lek:3, emoji:'🙋', color:'#0E9F8E',
   sq:'Ja, Nein, Doch', de:'Ja, Nein oder Doch?',
   desc:'„Po“ i veçantë pas pyetjeve me mohim.',
   tip:'Pyetje pa mohim: Ja / Nein. Pyetje me nicht ose kein: PO = Doch, JO = Nein.',
@@ -540,9 +422,91 @@ const CHAPTERS = [
   ]
 },
 
-/* ======================= TEIL 3: DIE ZEIT ======================= */
+/* ======================= LEKTION 4: MEINE WOHNUNG ======================= */
 {
-  id:'uhrzeit', unit:['Pjesa 3: Koha','Teil 3: Die Zeit'], emoji:'🕐', color:'#2E86DE', clocks:true,
+  id:'artikel', lek:4, unit:['Mësimi 4: Banesa ime','Lektion 4: Meine Wohnung'], emoji:'🎯', color:'#EE7A0C',
+  sq:'der, die, das', de:'Die drei Artikel',
+  desc:'Pse gjermanishtja ka tri nyja dhe si t’i mbash mend.',
+  tip:'der = mashkullore, die = femërore, das = asnjanëse. Shumësi = gjithmonë die. -ung/-e → die, -chen → das.',
+  lesson:[
+    {t:'Tri gjini', d:'Drei Artikel', p:'Shqipja ka mashkullore dhe femërore. Gjermanishtja ka <b>tri</b>: der, die dhe das.',
+     th:['Nyja','Gjinia','Shembull'], table:[['der','mashkullore','der Tisch'],['die','femërore','die Lampe'],['das','asnjanëse','das Sofa']]},
+    {t:'Mos e mëso fjalën vetëm!', d:'Immer mit Artikel lernen', p:'Gjinia shpesh nuk ka logjikë: vajza është <b>das</b> Mädchen! Prandaj mësoje çdo emër gjithmonë me nyjën.',
+     ex:[['der Tisch','tavolina'],['die Lampe','llamba'],['das Mädchen','vajza']], tip:'Thuaje me zë: „der Tisch, der Tisch“ derisa të tingëllojë natyrshëm.'},
+    {t:'Ndihmë: mbaresat', d:'Endungen helfen', p:'Disa mbaresa të tregojnë nyjën:',
+     say:2, th:['Mbaresa','Nyja','Shembull'], table:[['-ung','die','die Wohnung'],['-e (shpesh)','die','die Küche'],['-in (gratë)','die','die Lehrerin'],['-chen','das','das Brötchen'],['-er (shpesh)','der','der Fernseher']]},
+    {t:'Shumësi: gjithmonë die', d:'Plural = die', p:'Në shumës, çdo emër merr <b>die</b>, pa marrë parasysh gjininë.',
+     ex:[['der Stuhl, die Stühle','karrigia, karriget'],['das Bett, die Betten','shtrati, shtretërit'],['die Lampe, die Lampen','llamba, llambat']], tip:'Shumësi = die. Gjithmonë! 💯'}
+  ],
+  nouns:[['der','Mann','burri'],['die','Frau','gruaja'],['das','Kind','fëmija'],['der','Freund','shoku'],['die','Freundin','shoqja'],
+    ['das','Mädchen','vajza'],['das','Auto','makina'],['die','Stadt','qyteti'],['das','Haus','shtëpia'],['die','Zeitung','gazeta'],
+    ['der','Lehrer','mësuesi'],['die','Lehrerin','mësuesja'],['das','Buch','libri'],['die','Tasse','filxhani'],['der','Apfel','molla'],
+    ['das','Wasser','uji'],['die','Zeit','koha'],['der','Tag','dita']],
+  words:[],
+  items:[
+    {type:'match', pairs:[['der Mann','burri'],['die Frau','gruaja'],['das Kind','fëmija'],['das Mädchen','vajza'],['der Freund','shoku']]},
+    {type:'match', pairs:[['das Haus','shtëpia'],['die Stadt','qyteti'],['das Auto','makina'],['die Zeitung','gazeta'],['der Apfel','molla']]},
+    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Stühle', h:'shumës', o:['der','die','das'], a:'die', say:'die Stühle', e:'Shumësi = gjithmonë die.'},
+    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Betten', h:'shumës', o:['der','die','das'], a:'die', say:'die Betten', e:'Shumësi = gjithmonë die.'},
+    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Häuser', h:'shumës', o:['der','die','das'], a:'die', say:'die Häuser', e:'Shumësi = gjithmonë die.'},
+    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Brötchen', h:'mbaresa -chen', o:['der','die','das'], a:'das', say:'das Brötchen', e:'-chen → das.'},
+    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Wohnung', h:'mbaresa -ung', o:['der','die','das'], a:'die', say:'die Wohnung', e:'-ung → gjithmonë die.'},
+    {type:'mc', row:true, psq:'Cila nyjë?', pde:'Welcher Artikel?', q:'___ Lehrerin', h:'mbaresa -in', o:['der','die','das'], a:'die', say:'die Lehrerin', e:'-in (për gratë) → die.'},
+    {type:'mc', psq:'Cila është e saktë?', pde:'Was ist richtig?', q:'vajza', o:['das Mädchen','die Mädchen','der Mädchen'], a:'das Mädchen', say:'das Mädchen', e:'Edhe pse është vajzë: das Mädchen, për shkak të -chen.'},
+    {type:'mc', psq:'Rregulli', pde:'Die Regel', q:'Cila nyjë vjen në shumës?', o:['der','die','das','varet'], a:'die', e:'Shumësi merr gjithmonë die.'},
+    {type:'gap', s:'___ Frau liest die Zeitung.', h:'die Frau', o:['Der','Die','Das'], a:'Die', row:true, e:'die Frau.'},
+    {type:'gap', s:'___ Kind spielt im Park.', h:'das Kind', o:['Der','Die','Das'], a:'Das', row:true, e:'das Kind.'},
+    {type:'gap', s:'___ Lehrer ist nett.', h:'mësuesi', o:['Der','Die','Das'], a:'Der', row:true, e:'der Lehrer (-er → shpesh der).'},
+    {type:'order', de:'Die Wohnung ist schön.', sq:'Banesa është e bukur.'},
+    {type:'order', de:'Das Kind spielt im Park.', sq:'Fëmija luan në park.'},
+    {type:'order', de:'Der Lehrer ist nett.', sq:'Mësuesi është i sjellshëm.'},
+    {type:'order', de:'Die Frau liest die Zeitung.', sq:'Gruaja lexon gazetën.'}
+  ]
+},
+{
+  id:'wohnung', lek:4, emoji:'🛋️', color:'#2E86DE',
+  sq:'Banesa & mobiljet', de:'Wohnung & Möbel',
+  desc:'Dhomat, mobiljet dhe e-maili i Elenës për Sabrinën.',
+  tip:'Zimmer është gjithmonë das. Tisch, Stuhl, Schrank, Fernseher = der. Lampe, Küche = die. Sofa, Bett, Bad = das.',
+  lesson:[
+    {t:'Banesa ime', d:'Meine Wohnung', ex:[['das Wohnzimmer','dhoma e ndenjjes'],['das Schlafzimmer','dhoma e gjumit'],['die Küche','kuzhina'],['das Bad','banjoja']],
+     tip:'<b>Zimmer</b> = dhomë dhe është gjithmonë <b>das</b>: das Wohnzimmer, das Schlafzimmer.'},
+    {t:'Mobiljet', d:'Die Möbel', p:'Kushtoji vëmendje nyjës. Ajo është pjesë e fjalës!',
+     th:['Gjermanisht','Shqip'], table:[['der Tisch','tavolina'],['der Stuhl','karrigia'],['der Schrank','dollapi'],['der Fernseher','televizori'],['das Sofa','divani'],['das Bett','shtrati'],['die Lampe','llamba'],['die Waschmaschine','lavatriçja']]},
+    {t:'Përshkruaj banesën', d:'Die Wohnung beschreiben', ex:[['Die Wohnung ist klein.','Banesa është e vogël.'],['Das Sofa ist alt.','Divani është i vjetër.'],['Der Tisch ist neu.','Tavolina është e re.'],['Die Küche ist schön.','Kuzhina është e bukur.']],
+     tip:'Mbiemri pas <b>ist</b> nuk ndryshon kurrë: Das Sofa ist alt. Die Küche ist alt.'},
+    {t:'E-maili për Sabrinën', d:'Die E-Mail an Sabrina', p:'Te ushtrimi 14, Elena i shkruan Sabrinës për banesën e saj të re. Do ta plotësosh vetë!',
+     ex:[['Endlich habe ich eine Wohnung!','Më në fund kam një banesë!'],['Ich mache am Freitag eine Party.','Të premten bëj një festë.'],['Kommst du auch?','A vjen edhe ti?']]}
+  ],
+  nouns:[['die','Wohnung','banesa'],['das','Wohnzimmer','dhoma e ndenjjes'],['das','Schlafzimmer','dhoma e gjumit'],['die','Küche','kuzhina'],['das','Bad','banjoja'],
+    ['der','Tisch','tavolina'],['der','Stuhl','karrigia'],['das','Sofa','divani'],['das','Bett','shtrati'],['der','Schrank','dollapi'],['die','Lampe','llamba'],
+    ['der','Fernseher','televizori'],['die','Waschmaschine','lavatriçja'],['die','Party','festa']],
+  words:[['die Möbel','mobiljet'],['endlich','më në fund'],['klein','i vogël'],['alt','i vjetër'],['neu','i ri'],['schön','i bukur']],
+  items:[
+    {type:'match', pairs:[['der Tisch','tavolina'],['der Stuhl','karrigia'],['das Sofa','divani'],['das Bett','shtrati'],['der Schrank','dollapi']]},
+    {type:'match', pairs:[['die Küche','kuzhina'],['das Bad','banjoja'],['das Wohnzimmer','dhoma e ndenjjes'],['das Schlafzimmer','dhoma e gjumit'],['die Lampe','llamba']]},
+    {type:'match', pairs:[['klein','i vogël'],['alt','i vjetër'],['neu','i ri'],['schön','i bukur'],['endlich','më në fund']]},
+    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'Endlich habe ich ___ Wohnung!', h:'die Wohnung', o:['ein','eine','einen'], a:'eine', row:true, e:'Wohnung është die → eine.'},
+    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'Sie hat ___ Wohnzimmer.', h:'das Wohnzimmer', o:['ein','eine','einen'], a:'ein', row:true, e:'das → ein Wohnzimmer.'},
+    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'___ Küche ist sehr klein.', h:'Kuzhina është shumë e vogël.', o:['Der','Die','Das'], a:'Die', row:true, e:'die Küche, tashmë e njohur.'},
+    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'___ Sofa ist sehr alt, es ist von Oma.', h:'das Sofa', o:['Der','Die','Das'], a:'Das', row:true, e:'das Sofa, divani nga gjyshja.'},
+    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'Ich mache am Freitag ___ Party.', h:'die Party', o:['ein','eine','einen'], a:'eine', row:true, e:'die Party → eine Party.'},
+    {type:'gap', psq:'E-maili për Sabrinën', pde:'Die E-Mail an Sabrina', s:'Zuerst brauche ich aber noch vier ___.', h:'karrige (shumës)', o:['Stuhl','Stühle','Stuhls'], a:'Stühle', row:true, e:'der Stuhl → die Stühle.'},
+    {type:'gap', s:'Der Tisch ist ___.', h:'i ri', o:['neu','neue','neuer'], a:'neu', row:true, e:'Pas ist mbiemri nuk ndryshon.'},
+    {type:'gap', s:'Die Küche ist ___.', h:'e bukur', o:['schön','schöne','schöner'], a:'schön', row:true, e:'Pas ist mbiemri nuk ndryshon.'},
+    {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das?', q:'Më në fund kam një banesë!', o:['Endlich habe ich eine Wohnung!','Endlich ich habe eine Wohnung!','Endlich habe ich einen Wohnung!','Endlich hat ich eine Wohnung!'], a:'Endlich habe ich eine Wohnung!', say:'Endlich habe ich eine Wohnung!', e:'Folja (habe) qëndron në vendin e dytë.'},
+    {type:'mc', psq:'Ku flen?', pde:'Wo schläfst du?', q:'Ku është shtrati zakonisht?', o:['im Schlafzimmer','in der Küche','im Bad','im Wohnzimmer'], a:'im Schlafzimmer', say:'Das Bett ist im Schlafzimmer.', e:'Schlafzimmer = dhoma e gjumit.'},
+    {type:'order', de:'Die Küche ist sehr klein.', sq:'Kuzhina është shumë e vogël.'},
+    {type:'order', de:'Endlich habe ich eine Wohnung!', sq:'Më në fund kam një banesë!'},
+    {type:'order', de:'Das Sofa ist von Oma.', sq:'Divani është nga gjyshja.'},
+    {type:'order', de:'Ich brauche noch vier Stühle.', sq:'Më duhen edhe katër karrige.'},
+    {type:'order', de:'Ich mache am Freitag eine Party.', sq:'Të premten bëj një festë.'}
+  ]
+},
+
+/* ======================= LEKTION 5: MEIN TAG ======================= */
+{
+  id:'uhrzeit', lek:5, unit:['Mësimi 5: Dita ime','Lektion 5: Mein Tag'], emoji:'🕐', color:'#2E86DE', clocks:true,
   sq:'Sa është ora?', de:'Die Uhrzeit',
   desc:'Numrat, ora e plotë, Viertel, kurthi i „halb“ dhe um.',
   tip:'Viertel nach = e një çerek. Viertel vor = pa një çerek. halb + ora TJETËR: 8:30 = halb neun!',
@@ -585,7 +549,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'amum', emoji:'📅', color:'#E3A008',
+  id:'amum', lek:5, emoji:'📅', color:'#E3A008',
   sq:'Ditët: am apo um?', de:'Wochentage: am und um',
   desc:'Ditët e javës, pjesët e ditës dhe kur thuhet am ose um.',
   tip:'am + ditë / pjesë dite / fundjavë. um + orë. Kujto: Um = Uhr! Kur fillon me kohën, folja mbetet e dyta.',
@@ -629,9 +593,9 @@ const CHAPTERS = [
   ]
 },
 
-/* ======================= TEIL 4: FREIZEIT ======================= */
+/* ======================= LEKTION 6: FREIZEIT ======================= */
 {
-  id:'freizeit', unit:['Pjesa 4: Koha e lirë','Teil 4: Freizeit'], emoji:'🚶‍♀️', color:'#0E9F8E',
+  id:'freizeit', lek:6, unit:['Mësimi 6: Koha e lirë','Lektion 6: Freizeit'], emoji:'🚶‍♀️', color:'#0E9F8E',
   sq:'Hobi, gehen & fahren', de:'Freizeit & Hobbys',
   desc:'Hobi-t, gern, gehen apo fahren, dhe reagime të shkurtra.',
   tip:'gern pas foljes = me qejf. gehen = në këmbë, fahren = me mjet. gefällt (njëjës), gefallen (shumës).',
@@ -680,7 +644,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'wetter', emoji:'🌦️', color:'#2E86DE', added:'2026-10-22T18:58',
+  id:'wetter', lek:6, emoji:'🌦️', color:'#2E86DE', added:'2026-10-22T18:58',
   sq:'Si është moti?', de:'Das Wetter & die Himmelsrichtungen',
   desc:'Dielli, shiu, bora, gradët, veriu dhe jugu, dhe im, am, um, in.',
   tip:'Es regnet. Es schneit. Die Sonne scheint. Es sind zehn Grad. im Norden, im Süden, im Westen, im Osten.',
@@ -751,7 +715,49 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'verben', emoji:'🔁', color:'#F2545B',
+  id:'akkusativ', lek:6, emoji:'🎁', color:'#7650F0',
+  sq:'einen, meinen, deinen', de:'Der Akkusativ',
+  desc:'Kur ndryshon nyja? Dy pyetjet magjike.',
+  tip:'Vetëm der ndryshon: der → den, ein → einen, kein → keinen, mein → meinen, dein → deinen. Das, die dhe shumësi mbeten njësoj.',
+  lesson:[
+    {t:'Çfarë është Akkusativ?', d:'Was ist der Akkusativ?', p:'Kur diçka është <b>objekt</b> i foljes (pyet: <b>Wen? Was?</b> = Kë? Çfarë?), nyja mund të ndryshojë.',
+     ex:[['Der Tisch ist neu.','Tavolina është e re. (subjekt)'],['Ich kaufe den Tisch.','E blej tavolinën. (objekt)']],
+     tip:'Folje me Akkusativ: haben, brauchen, nehmen, kaufen, möchten, verkaufen.'},
+    {t:'Vetëm DER ndryshon!', d:'Nur der ändert sich', say:2, th:['','Nominativ','Akkusativ'],
+     table:[['der','der / ein Tisch','<b>den / einen</b> Tisch'],['das','das / ein Sofa','das / ein Sofa'],['die','die / eine Lampe','die / eine Lampe'],['shumës','die Stühle','die Stühle']],
+     tip:'der → <b>den</b>, ein → <b>einen</b>, kein → <b>keinen</b>, mein → <b>meinen</b>, dein → <b>deinen</b>.'},
+    {t:'Dy pyetjet magjike', d:'Zwei Zauberfragen', say:-1, p:'Për çdo zbrazëtirë pyet veten:',
+     table:[['1. Kujt është?','i imi → <b>mein-</b><br>i yti → <b>dein-</b><br>çfarëdo → <b>ein-</b><br>asnjë → <b>kein-</b>'],['2. Cila gjini?','der → <b>-en</b><br>das → asgjë<br>die → <b>-e</b>']],
+     ex:[['Ich verkaufe meinen Tisch.','E shes tavolinën time.'],['Ich nehme dein Sofa.','E marr divanin tënd.'],['Ich brauche eine Lampe.','Më duhet një llambë.']]}
+  ],
+  nouns:[],
+  words:[['brauchen','më duhet'],['kaufen','blej'],['verkaufen','shes'],['mein','i imi'],['dein','i yti']],
+  items:[
+    {type:'match', pairs:[['der Tisch','einen Tisch'],['das Sofa','ein Sofa'],['die Lampe','eine Lampe'],['der Schrank','meinen Schrank'],['der Fernseher','keinen Fernseher']]},
+    {type:'gap', s:'Ich verkaufe ___ Tisch.', h:'der Tisch, i imi', o:['mein','meinen','meine','deinen'], a:'meinen', e:'I imi → mein-. Tisch është der → +en.'},
+    {type:'gap', s:'Ich nehme ___ Sofa.', h:'das Sofa, i yti', o:['dein','deinen','deine','mein'], a:'dein', e:'I yti → dein-. Sofa është das → pa mbaresë.'},
+    {type:'gap', s:'Ich nehme ___ Schrank.', h:'der Schrank, i yti', o:['meinen','deinen','dein','deine'], a:'deinen', e:'I yti → dein-. Schrank është der → +en.'},
+    {type:'gap', s:'Ich brauche ___ Lampe.', h:'die Lampe, çfarëdo', o:['ein','eine','einen'], a:'eine', row:true, e:'die nuk ndryshon → eine.'},
+    {type:'gap', s:'Paula, ich brauche ___ Stuhl.', h:'der Stuhl, çfarëdo', o:['ein','eine','einen'], a:'einen', row:true, e:'der → einen.'},
+    {type:'gap', s:'Wir brauchen noch ___ Stühle.', h:'shumës, pa pronar', o:['ein','eine','einen','pa nyjë'], a:'pa nyjë', full:'Wir brauchen noch Stühle.', e:'„ein“ nuk ka shumës.'},
+    {type:'gap', s:'Ach nein, ___ Stühle reichen.', h:'karriget e mia', o:['mein','meine','meinen','deine'], a:'meine', e:'Shumës + i imi → meine.'},
+    {type:'gap', s:'Ich brauche ___ Waschmaschine nicht.', h:'die Waschmaschine, e jotja', o:['dein','deinen','deine','meine'], a:'deine', e:'die → deine.'},
+    {type:'gap', s:'Ich verkaufe ___ Bett.', h:'das Bett, i imi', o:['mein','meinen','meine','dein'], a:'mein', e:'das → mein, pa mbaresë.'},
+    {type:'gap', s:'Ich kaufe ___ Tisch.', h:'der Tisch, i njohur', o:['der','den','das'], a:'den', row:true, e:'der → den në Akkusativ.'},
+    {type:'gap', s:'Ich nehme ___ Lampe.', h:'die Lampe, e njohur', o:['der','die','den'], a:'die', row:true, e:'die nuk ndryshon.'},
+    {type:'gap', s:'Aber ich habe noch ___ Fernseher.', h:'der Fernseher, mohim', o:['kein','keine','keinen'], a:'keinen', row:true, e:'der + mohim → keinen.'},
+    {type:'gap', s:'Hast du ___ Stuhl für mich?', h:'der Stuhl, një', o:['ein','eine','einen'], a:'einen', row:true, e:'der → einen.'},
+    {type:'gap', s:'Ich möchte ___ Sofa.', h:'das Sofa, një', o:['ein','eine','einen'], a:'ein', row:true, e:'das → ein.'},
+    {type:'mc', psq:'Rregulli i artë', pde:'Die goldene Regel', q:'Cila gjini ndryshon në Akkusativ?', o:['der','das','die','shumësi'], a:'der', e:'Vetëm der: ein → einen, der → den.'},
+    {type:'mc', psq:'Cila fjali është e saktë?', pde:'Welcher Satz ist richtig?', q:'Kam një tavolinë.', o:['Ich habe einen Tisch.','Ich habe ein Tisch.','Ich habe eine Tisch.','Ich habe einer Tisch.'], a:'Ich habe einen Tisch.', say:'Ich habe einen Tisch.', e:'der Tisch + haben → einen Tisch.'},
+    {type:'order', de:'Ich verkaufe meinen Tisch.', sq:'E shes tavolinën time.'},
+    {type:'order', de:'Ich brauche einen Schrank.', sq:'Më duhet një dollap.'},
+    {type:'order', de:'Ich nehme dein Sofa.', sq:'E marr divanin tënd.'},
+    {type:'order', de:'Ich habe keinen Fernseher.', sq:'Nuk kam televizor.'}
+  ]
+},
+{
+  id:'verben', lek:6, emoji:'🔁', color:'#F2545B',
   sq:'Foljet „rebele“', de:'Verben mit Vokalwechsel',
   desc:'nehmen, lesen, fahren, treffen, schlafen, essen dhe emisioni në radio.',
   tip:'Ndryshojnë vetëm te du dhe er/sie/es: a → ä (fahren, schlafen), e → i (nehmen, treffen, essen), e → ie (lesen).',
@@ -789,8 +795,10 @@ const CHAPTERS = [
     {type:'order', de:'Mein Sohn nimmt den Hamburger.', sq:'Djali im merr hamburgerin.'}
   ]
 },
+
+/* ======================= LEKTION 7: LERNEN – EIN LEBEN LANG ======================= */
 {
-  id:'koennen', emoji:'🤹', color:'#7650F0',
+  id:'koennen', lek:7, unit:['Mësimi 7: Të mësosh gjithë jetën','Lektion 7: Lernen – ein Leben lang'], emoji:'🤹', color:'#7650F0',
   sq:'können: di, mund', de:'Hans übt Hula-Hoop',
   desc:'Folja können dhe kllapa e fjalisë.',
   tip:'ich kann, du kannst, er kann, wir können, ihr könnt, sie können. können në vendin 2, folja tjetër në fund.',

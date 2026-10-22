@@ -443,9 +443,9 @@ function home(){
   <div class="free">
     <button class="fbtn" data-act="chapters"><span class="em">📋</span><span><b>Zgjidh kapitullin</b><small>Kapitel selbst wählen</small></span></button>
     ${WD.length ? `<button class="fbtn" data-act="words"><span class="em">🔤</span><span><b>Fjalët</b><small>Wörter-Training: nur Wörter, nach Thema</small></span></button>` : ''}
-    <button class="fbtn" data-act="mix"><span class="em">⚡</span><span><b>Përzierje</b><small>Mix aus allen offenen Kapiteln</small></span></button>
     <button class="fbtn ${mc ? 'mist' : ''}" data-act="weak"><span class="em">💪</span><span><b>Pikat e dobëta${mc ? ` (${mc})` : ''}</b><small>Meine Schwächen: verstehen & üben</small></span></button>
-    <button class="fbtn" data-act="dict"><span class="em">📒</span><span><b>Fletë ndihme</b><small>Spickzettel: das Wichtigste & deine Fehler</small></span></button>
+    <button class="fbtn" data-act="mix"><span class="em">⚡</span><span><b>Përzierje</b><small>Mix aus allen offenen Kapiteln</small></span></button>
+    <button class="fbtn" data-act="dict"><span class="em">📒</span><span><b>Fletë ndihme</b><small>Spickzettel: das Wichtigste auf einen Blick</small></span></button>
   </div>
   <p class="foot">Gemacht mit ❤️ für Mimoza</p>`;
   window.scrollTo(0, 0);
@@ -533,20 +533,42 @@ function chapSheet(id){
   </div>`;
   openSheetEl();
 }
+/* chapter list in book order: per lesson its chapters, then its workbook pages by page number */
+const lekOf = p => p.lek || hwById(p.hw).lek;
+function chapRow(c, i){
+  const b = S.ch[c.id]?.best, s = starsOf(b || 0, passOf(c));
+  return `<button class="topic" style="--tc:${c.color}" data-act="chap" data-id="${c.id}">
+    <span class="t-ico">${c.emoji}</span>
+    <span class="t-txt"><b>${i + 1}. ${esc(c.sq)}${newTag(c)}</b><span class="de">${esc(c.de)}</span></span>
+    <span class="t-stars">${[1,2,3].map(k => `<span class="${k <= s ? 'on' : ''}">★</span>`).join('')}
+      <small>${b == null ? 'Ende jo / Offen' : b + '%'}</small></span>
+  </button>`;
+}
+function pageRow(p){
+  const b = S.hw[p.id]?.best, s = starsOf(b || 0, passOf(p));
+  return `<button class="topic pagerow ${hwDone(p) ? 'done' : ''}" style="--tc:${p.color}" data-act="chap" data-id="${p.id}">
+    <span class="t-ico">${p.emoji}</span>
+    <span class="t-txt"><b>${esc(p.sq)}${newTag(p.added ? p : hwById(p.hw))}</b><span class="de">📖 Arbeitsbuch ${esc(p.book[1])}</span></span>
+    <span class="t-stars">${[1,2,3].map(k => `<span class="${k <= s ? 'on' : ''}">★</span>`).join('')}
+      <small>${b == null ? 'Ende jo / Offen' : b + '%'}</small></span>
+  </button>`;
+}
 function chapters(){
   closeSheet(); G = null; L = null;
   app.style.setProperty('--tc', 'var(--brand)');
+  const pages = HWP.filter(p => !hwCur(hwById(p.hw)) && lekOf(p));
+  const groups = [];
+  CHAPTERS.forEach((c, i) => { if (c.unit || !groups.length) groups.push({unit:c.unit, lek:c.lek, rows:[]}); groups[groups.length - 1].rows.push(chapRow(c, i)); });
+  const rest = HW.filter(h => !hwCur(h) && h.parts.some(p => !lekOf(p)));
   app.innerHTML = `<div class="game">
     <div class="gbar"><button class="x" data-act="home" aria-label="Kthehu">✕</button><h2 class="dict-h">📋 Kapitujt<span>Alle Kapitel</span></h2></div>
-    <p class="de" style="margin:0 0 14px">Zgjidh çfarë do të mësosh sot. Wähle, was du heute lernen willst.</p>
+    <p class="de" style="margin:0 0 14px">Sipas mësimeve të librit: kapitujt dhe faqet e fletores. 📖<br>Nach Lektionen wie im Buch: Kapitel und Arbeitsbuch-Seiten.</p>
     ${hwCard()}
-    <div class="topics" style="margin-top:14px">${HW.filter(h => !hwCur(h)).reverse().map(hwBlock).join('')}${CHAPTERS.map((c, i) => { const b = S.ch[c.id]?.best, s = starsOf(b || 0, passOf(c));
-      return `<button class="topic" style="--tc:${c.color}" data-act="chap" data-id="${c.id}">
-        <span class="t-ico">${c.emoji}</span>
-        <span class="t-txt"><b>${i + 1}. ${esc(c.sq)}${newTag(c)}</b><span class="de">${esc(c.de)}</span></span>
-        <span class="t-stars">${[1,2,3].map(k => `<span class="${k <= s ? 'on' : ''}">★</span>`).join('')}
-          <small>${b == null ? 'Ende jo / Offen' : b + '%'}</small></span>
-      </button>`; }).join('')}</div>
+    ${groups.map(g => { const pg = g.lek ? pages.filter(p => lekOf(p) === g.lek).sort((a, b) => a.pg - b.pg) : [];
+      return `${g.unit ? `<div class="unit"><b>${esc(g.unit[0])}</b><span>${esc(g.unit[1])}</span></div>` : ''}
+      <div class="topics">${g.rows.join('')}
+        ${pg.length ? `<p class="pagehead">📖 Fletorja e ushtrimeve · Arbeitsbuch</p>${pg.map(pageRow).join('')}` : ''}</div>`; }).join('')}
+    ${rest.length ? `<div class="unit"><b>Të tjera</b><span>Weitere Übungen</span></div><div class="topics">${rest.map(hwBlock).join('')}</div>` : ''}
   </div>`;
   window.scrollTo(0, 0);
 }
@@ -599,7 +621,7 @@ function lesson(id){
 function renderLesson(){
   const c = chById(L.id), s = c.lesson[L.i], n = c.lesson.length, last = L.i === n - 1;
   app.innerHTML = `<div class="game">
-    <div class="gbar"><button class="x" data-act="${c.hw ? 'hw' : 'home'}" data-id="${c.hw || ''}" aria-label="Kthehu">✕</button>
+    <div class="gbar"><button class="x" data-act="${c.hw ? (hwCur(hwById(c.hw)) ? 'hw' : 'chapters') : 'home'}" data-id="${c.hw || ''}" aria-label="Kthehu">✕</button>
       <div class="dots">${c.lesson.map((x, k) => `<i class="${k <= L.i ? 'on' : ''}"></i>`).join('')}</div>
       <span class="lnum">${L.i + 1}/${n}</span></div>
     <p class="l-kicker">${c.emoji} ${c.hw ? `${hwTag(c)[0].slice(3)} · ${esc(c.book[0])}` : 'Mësimi / Lektion'}</p>
@@ -1092,7 +1114,7 @@ function finish(){
       ${newlyDone && nextC ? `<button class="cta" data-act="go" data-id="${nextC.id}">${hwSet ? (hwCur(hwSet) ? 'Detyra tjetër' : 'Ushtrimi tjetër') : 'Kapitulli tjetër'} ▶ / Weiter</button>`
         : `<button class="cta" data-act="again">${passed ? 'Luaj përsëri / Nochmal' : '💪 Provo përsëri / Nochmal'}</button>`}
       ${!passed && c && !c.final ? `<button class="cta light" data-act="lesson" data-id="${c.from || c.id}">📖 Përsërit mësimin / Lektion</button>` : ''}
-      ${hwSet ? `<button class="cta light" data-act="hw" data-id="${hwSet.id}">${hwCur(hwSet) ? '📝 Detyrat / Hausaufgaben' : `${hwTag(c)[0]} / ${hwTag(c)[1]}`}</button>` : ''}
+      ${hwSet ? (hwCur(hwSet) ? `<button class="cta light" data-act="hw" data-id="${hwSet.id}">📝 Detyrat / Hausaufgaben</button>` : '<button class="cta light" data-act="chapters">📋 Kapitujt / Kapitel</button>') : ''}
       ${G.mode === 'words' ? '<button class="cta light" data-act="words">🔤 Fjalët / Wörter</button>' : ''}
       ${G.mode === 'mistakes' ? '<button class="cta light" data-act="weak">💪 Pikat e dobëta / Schwächen</button>' : ''}
       <button class="cta light" data-act="home">Harta / Zur Karte</button>
@@ -1369,6 +1391,12 @@ document.addEventListener('keydown', e => {
 let lastInp = null;
 document.addEventListener('focusin', e => { if (e.target.tagName === 'INPUT') lastInp = e.target; });
 
+/* workbook pages 76, 77, 79 were merged into the lesson-7 homework: carry over best scores and mistakes */
+const MOVED = {'bk-s76':'hw7-hobbys', 'bk-s77':'hw7-wollen', 'bk-s79':'hw7-perfekt'};
+Object.entries(MOVED).forEach(([from, to]) => {
+  if (S.hw[from]) { const t = S.hw[to] || (S.hw[to] = {}); t.best = Math.max(t.best || 0, S.hw[from].best || 0); t.lesson = true; delete S.hw[from]; }
+  Object.values(S.mistakes).forEach(q => { if (q.tid === from) q.tid = to; });
+});
 /* older saves: build the weak-spot history once from the open mistakes */
 if (!Object.keys(S.hist).length && Object.keys(S.mistakes).length) { Object.values(S.mistakes).forEach(q => histAdd(q, S.miss[q.key] || 1)); save(); }
 applyTheme();
