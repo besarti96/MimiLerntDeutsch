@@ -29,6 +29,11 @@ const chIdx = id => CHAPTERS.findIndex(c => c.id === id);
 const chById = id => CHAPTERS.find(c => c.id === id) || HWP.find(c => c.id === id) || WD.find(c => c.id === id);
 const hwById = id => HW.find(h => h.id === id);
 const fmtDate = d => d.split('-').reverse().slice(0, 2).join('.') + '.';
+/* "E RE" badge: shown for 24 h after `added` (or a homework set's `date`), fading out over that time */
+const NEW_MS = 864e5;
+const ageOf = x => { const a = x && (x.added || x.date); return a ? Date.now() - Date.parse(a) : -1; };
+const isNew = x => { const t = ageOf(x); return t >= 0 && t < NEW_MS; };
+const newTag = x => isNew(x) ? `<span class="newtag" style="opacity:${(1 - .55 * ageOf(x) / NEW_MS).toFixed(2)}">E RE</span>` : '';
 
 /* ================= Saved progress ================= */
 const fresh = () => ({ xp:0, streak:0, lastDay:null, day:null, dayXp:0, rounds:0, perfect:0, bestCombo:0,
@@ -354,12 +359,16 @@ function compose(gen, its, n, {vocab = 3, write = 0, order = 2} = {}){
   if (match) qs.splice(1 + (Math.random() * Math.max(1, qs.length - 1) | 0), 0, match);
   return qs;
 }
-const keyOf = q => [q.type, q.tid, q.s || q.q || q.de || (q.hm && q.hm.join(':')) || (q.pairs && q.pairs[0][0]) || '', q.a || ''].join('|');
+const keyOf = q => [q.type, q.tid, q.s || q.q || q.de || q.text || (q.rows && (q.th || []).join(',') + ':' + q.rows.map(r => r[0]).join(',')) || (q.cats && q.items.map(i => i[0]).join(','))
+  || (q.hm && q.hm.join(':')) || (q.pairs && q.pairs[0].join('=')) || '', q.a || ''].join('|');
+/* per-question UI state lives in keys starting with _ and is never stored */
+const clean = q => { Object.keys(q).forEach(k => k[0] === '_' && delete q[k]); return q; };
 
 function buildRound(mode, id){
   let qs = [];
   if (mode === 'mistakes') qs = weakRound();
   else if (mode === 'words') qs = genWords(id);
+  else if (mode === 'chapter' && chById(id).seq) qs = tagged(chById(id), chById(id).items);
   else if (mode === 'chapter' && chById(id).final) {
     CHAPTERS.forEach(c => {
       if (c.final) return;
@@ -378,8 +387,7 @@ function buildRound(mode, id){
     q.key = q.key || keyOf(q);
     if (q.o && !q.row && q.type !== 'listen') q.o = shuffle(q.o);
     if (q.type === 'listen') q.o = shuffle(q.o);
-    ['_pool','_picked','_done','_mist','_L','_R'].forEach(k => delete q[k]);
-    return q;
+    return clean(q);
   });
 }
 
@@ -412,7 +420,7 @@ function home(){
     </div>
     ${next ? `<button class="go" data-act="go" data-id="${next.id}">
         <span class="go-e">${next.emoji}</span>
-        <span><small>${done ? 'Vazhdo / Weiter' : 'Fillo udhëtimin / Los geht’s'}</small><b>${cur + 1}. ${esc(next.sq)}</b></span><span class="go-arr">▶</span>
+        <span><small>${done ? 'Vazhdo / Weiter' : 'Fillo udhëtimin / Los geht’s'}</small><b>${cur + 1}. ${esc(next.sq)} ${newTag(next)}</b></span><span class="go-arr">▶</span>
       </button>`
       : `<div class="go done-all">🏆 <span><b>Udhëtimi u krye!</b><small>Reise geschafft! Je e mrekullueshme.</small></span></div>`}
   </section>
@@ -449,22 +457,23 @@ function nodeHTML(c, i){
     ${cur ? '<span class="bubble">Fillo! Start!</span>' : ''}
     <button class="node ${d ? 'done' : u ? 'open' : 'lock'} ${cur ? 'cur' : ''} ${c.final ? 'final' : ''}" style="--tc:${c.color}" data-act="chap" data-id="${c.id}" aria-label="${esc(c.sq)}">
       <span>${c.emoji}</span></button>
-    <div class="nlbl"><b>${i + 1}. ${esc(c.sq)}</b><small>${esc(c.de)}</small>
+    <div class="nlbl"><b>${i + 1}. ${esc(c.sq)}${newTag(c)}</b><small>${esc(c.de)}</small>
       ${d ? `<span class="nst">${[1,2,3].map(k => `<i class="${k <= s ? 'on' : ''}">★</i>`).join('')}</span>` : ''}</div>
   </div></div>`;
 }
 
 /* ================= Homework ================= */
 /* only the newest set is the current homework */
-const hwCur = h => h === HW[HW.length - 1];
-const hwTag = c => { const h = hwById(c.hw); return hwCur(h) ? ['📝 Detyrë', 'Hausaufgabe'] : ['📘 ' + h.sq.split(':')[0], h.de.split(' · ')[0]]; };
+const hwNow = () => HW.filter(h => !h.shelf).pop();
+const hwCur = h => h === hwNow();
+const hwTag = c => { const h = hwById(c.hw); return hwCur(h) ? ['📝 Detyrë', 'Hausaufgabe'] : [(h.icon || '📘') + ' ' + h.sq.split(':')[0], h.de.split(' · ')[0]]; };
 function hwCard(){
-  const h = HW[HW.length - 1]; if (!h) return '';
+  const h = hwNow(); if (!h) return '';
   const n = h.parts.length, d = hwCount(h);
   return `<button class="hwcard" data-act="hw" aria-label="Detyrat e shtëpisë">
     <span class="hw-tape" aria-hidden="true"></span>
     <span class="hw-top"><span class="hw-tag">${h.date === today() ? 'SOT · HEUTE' : '📅 ' + fmtDate(h.date)}</span>
-      ${d === n ? '<span class="hw-ok">✓ Gati</span>' : '<span class="hw-new">E RE · NEU</span>'}</span>
+      ${d === n ? '<span class="hw-ok">✓ Gati</span>' : isNew(h) ? '<span class="hw-new">E RE · NEU</span>' : ''}</span>
     <b>📝 Detyrat e shtëpisë${h.badge ? ` <span class="hw-test">${esc(h.badge[0])}</span>` : ''}</b><small>Hausaufgaben · ${esc(h.de)}</small>
     <span class="hw-prog"><i style="width:${d / n * 100}%"></i></span>
     <small>${d}/${n} ushtrime gati · Übungen erledigt</small>
@@ -474,26 +483,26 @@ function hwCard(){
 function hwBlock(h){
   const n = h.parts.length, d = hwCount(h);
   return `<button class="topic" style="--tc:${h.parts[0].color}" data-act="hw" data-id="${h.id}">
-    <span class="t-ico">📘</span>
-    <span class="t-txt"><b>${esc(h.sq)}</b><span class="de">${esc(h.de)}</span></span>
+    <span class="t-ico">${h.icon || '📘'}</span>
+    <span class="t-txt"><b>${esc(h.sq)}${newTag(h)}</b><span class="de">${esc(h.de)}</span></span>
     <span class="t-stars"><b>${d === n ? '✓' : `${d}/${n}`}</b><small>ushtrime</small></span>
   </button>`;
 }
 function hwList(id){
   closeSheet(); G = null; L = null;
-  const h = hwById(id) || HW[HW.length - 1], now = hwCur(h);
+  const h = hwById(id) || hwNow(), now = hwCur(h);
   app.style.setProperty('--tc', 'var(--brand)');
   app.innerHTML = `<div class="game">
-    <div class="gbar"><button class="x" data-act="chapters" aria-label="Kthehu">✕</button><h2 class="dict-h">${now ? '📝 Detyrat e shtëpisë<span>Hausaufgaben</span>' : `📘 ${esc(h.sq)}<span>${esc(h.de)}</span>`}</h2></div>
+    <div class="gbar"><button class="x" data-act="chapters" aria-label="Kthehu">✕</button><h2 class="dict-h">${now ? '📝 Detyrat e shtëpisë<span>Hausaufgaben</span>' : `${h.icon || '📘'} ${esc(h.sq)}<span>${esc(h.de)}</span>`}</h2></div>
     <p class="de" style="margin:0 0 6px">Këto janë ushtrimet nga libri yt. Bëji me radhë! 💪<br>Das sind die Übungen aus deinem Buch.</p>
     ${[h].map(h => `<section class="hwset">
       <div class="hw-head"><b>${esc(h.sq)}${h.badge ? ` <span class="hw-test">${esc(h.badge[0])}</span>` : ''}</b><small>${h.date === today() ? 'Sot / Heute' : fmtDate(h.date)} · ${esc(h.de)}</small></div>
       <div class="topics">${h.parts.map((p, k) => { const b = S.hw[p.id]?.best, d = hwDone(p);
         return `<button class="topic hwrow ${d ? 'done' : ''}" style="--tc:${p.color}" data-act="chap" data-id="${p.id}">
           <span class="hw-chk">${d ? '✓' : k + 1}</span>
-          <span class="t-txt"><b>${p.emoji} ${esc(p.sq)}</b><span class="de">${esc(p.de)}</span><small class="hw-book">📖 ${esc(p.book[0])}</small></span>
+          <span class="t-txt"><b>${p.emoji} ${esc(p.sq)}${newTag(p.added ? p : hwById(p.hw))}</b><span class="de">${esc(p.de)}</span><small class="hw-book">📖 ${esc(p.book[0])}</small></span>
           <span class="t-stars">${[1,2,3].map(s => `<span class="${s <= starsOf(b || 0, passOf(p)) ? 'on' : ''}">★</span>`).join('')}
-            <small>${b == null ? 'E re / Neu' : b + '%'}</small></span>
+            <small>${b == null ? 'Ende jo / Offen' : b + '%'}</small></span>
         </button>`; }).join('')}</div>
     </section>`).join('')}
   </div>`;
@@ -515,7 +524,7 @@ function chapSheet(id){
   sheet.style.setProperty('--tc', c.color);
   sheet.innerHTML = `<div class="sh-in">
     <div class="sh-top"><div class="grab"></div><div class="prof-h"><span class="cs-ico">${c.emoji}</span><button class="x" data-act="closesheet" aria-label="Mbyll">✕</button></div></div>
-    <p class="cs-num">${c.hw ? `${hwCur(hwById(c.hw)) ? '📝 Detyrë shtëpie' : hwTag(c)[0]} · ${esc(c.book[0])}<br><span style="font-weight:400">${hwTag(c)[1]} · ${esc(c.book[1])}</span>` : `Kapitulli ${i + 1} / Kapitel ${i + 1}`}</p>
+    <p class="cs-num">${c.hw ? `${hwCur(hwById(c.hw)) ? '📝 Detyrë shtëpie' : hwTag(c)[0]} · ${esc(c.book[0])}<br><span style="font-weight:400">${hwTag(c)[1]} · ${esc(c.book[1])}</span>` : `Kapitulli ${i + 1} / Kapitel ${i + 1}`}${newTag(c)}</p>
     <h2 class="cs-t">${esc(c.sq)}</h2><p class="de" style="margin:0">${esc(c.de)}</p>
     <p class="cs-d">${esc(c.desc)}</p>
     ${!c.hw && !unlocked(i) && b == null ? `<p class="cs-best">🧭 Në udhëtim vjen më vonë, por mund ta provosh!<br><small>Kommt später auf der Reise – du darfst es trotzdem schon üben.</small></p>` : ''}
@@ -531,12 +540,12 @@ function chapters(){
     <div class="gbar"><button class="x" data-act="home" aria-label="Kthehu">✕</button><h2 class="dict-h">📋 Kapitujt<span>Alle Kapitel</span></h2></div>
     <p class="de" style="margin:0 0 14px">Zgjidh çfarë do të mësosh sot. Wähle, was du heute lernen willst.</p>
     ${hwCard()}
-    <div class="topics" style="margin-top:14px">${HW.slice(0, -1).reverse().map(hwBlock).join('')}${CHAPTERS.map((c, i) => { const b = S.ch[c.id]?.best, s = starsOf(b || 0, passOf(c));
+    <div class="topics" style="margin-top:14px">${HW.filter(h => !hwCur(h)).reverse().map(hwBlock).join('')}${CHAPTERS.map((c, i) => { const b = S.ch[c.id]?.best, s = starsOf(b || 0, passOf(c));
       return `<button class="topic" style="--tc:${c.color}" data-act="chap" data-id="${c.id}">
         <span class="t-ico">${c.emoji}</span>
-        <span class="t-txt"><b>${i + 1}. ${esc(c.sq)}</b><span class="de">${esc(c.de)}</span></span>
+        <span class="t-txt"><b>${i + 1}. ${esc(c.sq)}${newTag(c)}</b><span class="de">${esc(c.de)}</span></span>
         <span class="t-stars">${[1,2,3].map(k => `<span class="${k <= s ? 'on' : ''}">★</span>`).join('')}
-          <small>${b == null ? 'E re / Neu' : b + '%'}</small></span>
+          <small>${b == null ? 'Ende jo / Offen' : b + '%'}</small></span>
       </button>`; }).join('')}</div>
   </div>`;
   window.scrollTo(0, 0);
@@ -553,9 +562,9 @@ function wordsPage(){
     <div class="topics" style="margin-top:14px">${WD.map(c => { const b = S.w[c.id]?.best, s = starsOf(b || 0);
       return `<button class="topic" style="--tc:${c.color}" data-act="wsheet" data-id="${c.id}">
         <span class="t-ico">${c.emoji}</span>
-        <span class="t-txt"><b>${esc(c.sq)}</b><span class="de">${esc(c.de)} · ${vocabPool(c).length} fjalë</span></span>
+        <span class="t-txt"><b>${esc(c.sq)}${newTag(c)}</b><span class="de">${esc(c.de)} · ${vocabPool(c).length} fjalë</span></span>
         <span class="t-stars">${[1,2,3].map(k => `<span class="${k <= s ? 'on' : ''}">★</span>`).join('')}
-          <small>${b == null ? 'E re / Neu' : b + '%'}</small></span>
+          <small>${b == null ? 'Ende jo / Offen' : b + '%'}</small></span>
       </button>`; }).join('')}</div>
   </div>`;
   window.scrollTo(0, 0);
@@ -653,7 +662,9 @@ function renderQ(){
   const q = cur(); G.tries = 0; G.locked = false; G.hint = false;
   const c = chById(q.tid);
   app.style.setProperty('--tc', c ? c.color : 'var(--brand)');
-  const R = {gap:rChoice, mc:rChoice, listen:rListen, write:rWrite, order:rOrder, match:rMatch, clock:rClock, clockpick:rClockPick};
+  const R = {gap:rChoice, mc:rChoice, listen:rListen, write:rWrite, order:rOrder, letters:rOrder, match:rMatch, clock:rClock, clockpick:rClockPick,
+    cloze:rCloze, table:rTable, sort:rSort};
+  G.chip = null;
   app.innerHTML = `<div class="game">${topbar()}${c && c.hw ? `<p class="hwtag">${hwTag(c)[0]} · ${esc(c.book[0])}</p>` : ''}${(R[q.type] || rChoice)(q)}</div>`;
   if (q.type === 'listen') setTimeout(() => autoSay(q.say), 350);
   window.scrollTo(0, 0);
@@ -745,17 +756,24 @@ function wcheck(){
   }
 }
 
-/* --- sentence order --- */
+/* --- sentence order: words, chunks (q.parts, book-style "a – b – c") or a letter salad (type letters) --- */
+const orderTarget = q => q.type === 'letters' ? [...q.a] : q.parts || q.de.split(' ');
 function rOrder(q){
+  const lt = q.type === 'letters', target = orderTarget(q), sep = lt ? '' : ' ';
   if (!q._pool) {
-    const toks = q.de.split(' ').map((w, id) => ({w, id}));
-    let s = shuffle(toks), n = 0;
-    while (s.map(t => t.w).join(' ') === q.de && n++ < 10) s = shuffle(toks);
+    const toks = (lt ? [...q.mix] : target).map((w, id) => ({w, id}));
+    let s = lt ? toks : shuffle(toks), n = 0;
+    while (!lt && s.map(t => t.w).join(sep) === target.join(sep) && n++ < 10) s = shuffle(toks);
     q._pool = s; q._picked = [];
   }
-  return `${head('Rendit fjalinë', 'Bilde den Satz')}
-  <div class="qcard"><div class="qhint" style="margin:0 0 8px">🇦🇱 Shqip</div><div class="qtext" style="font-size:22px">${esc(q.sq)}</div></div>
-  <div id="orderArea">${orderInner(q)}</div>
+  const top = lt
+    ? `${head(q.psq || 'Rendit shkronjat', q.pde || 'Ordne die Buchstaben')}
+      <div class="qcard"><div class="qtext">${blank(q.s)}</div>${q.h ? `<div class="qhint">💭 ${esc(q.h)}</div>` : ''}</div>`
+    : `${head(q.psq || 'Rendit fjalinë', q.pde || 'Bilde den Satz')}
+      <div class="qcard">${q.cue ? `<div class="qhint" style="margin:0 0 8px">📖 ${esc(q.cue)}</div>` : '<div class="qhint" style="margin:0 0 8px">🇦🇱 Shqip</div>'}
+      <div class="qtext" style="font-size:22px">${esc(q.sq)}</div></div>`;
+  return `${top}
+  <div id="orderArea" class="${lt ? 'letters' : ''}">${orderInner(q)}</div>
   <div class="actions"><button class="cta" data-act="ocheck" id="ocheck" ${q._picked.length < q._pool.length ? 'disabled' : ''}>Kontrollo / Prüfen</button></div>`;
 }
 function orderInner(q){
@@ -773,18 +791,95 @@ function otap(act, id){
 }
 function ocheck(){
   const q = cur(); if (G.locked) return;
-  const target = q.de.split(' ');
-  if (q._picked.map(t => t.w).join(' ') === q.de) {
+  const lt = q.type === 'letters', target = orderTarget(q), sep = lt ? '' : ' ';
+  if (q._picked.map(t => t.w).join(sep) === target.join(sep)) {
     G.locked = true; $('#orderArea').innerHTML = orderInner(q); $('#slot').classList.add('ok');
-    correct('Folja është në vendin e duhur. Perfekt!');
+    const bl = $('#blank'); if (bl) { bl.textContent = q.a; bl.classList.add('filled'); }
+    correct(lt ? 'Fjala është e saktë!' : 'Folja është në vendin e duhur. Perfekt!');
   } else {
     G.tries++;
     if (G.tries < maxTries()) {
       q._picked.forEach((t, i) => { t.wrong = t.w !== target[i]; });
       $('#orderArea').innerHTML = orderInner(q);
-      tryAgain('Fjalët e kuqe nuk janë në vend. Kujto: folja në vendin e dytë!');
-    } else { G.locked = true; q._picked.forEach(t => delete t.wrong); wrong('Kujto: folja qëndron në vendin e dytë.'); }
+      tryAgain(lt ? 'Shkronjat e kuqe nuk janë në vend.' : 'Fjalët e kuqe nuk janë në vend. Kujto: folja në vendin e dytë!');
+    } else { G.locked = true; q._picked.forEach(t => delete t.wrong); wrong(lt ? '' : 'Kujto: folja qëndron në vendin e dytë.'); }
   }
+}
+
+/* --- book-style writing: cloze texts ([[answer|hint]], alternatives with ;) and tables (rows [label, answer, given?]) --- */
+const czParts = q => q.text.split(/\[\[(.+?)\]\]/);
+const czGaps = q => q.type === 'table' ? q.rows.filter(r => !r[2]).map(r => [r[1], '']) : czParts(q).filter((x, i) => i % 2).map(g => g.split('|'));
+const czNorm = s => String(s).trim().toLowerCase().replace(/ß/g, 'ss').replace(/\s+/g, ' ');
+const umlRow = () => `<div class="uml">${['ä','ö','ü','ß'].map(c => `<button data-act="uml" data-c="${c}">${c}</button>`).join('')}</div>`;
+const czInput = (k, ans, hint) => `<input class="cz" data-k="${k}" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="next"
+  style="width:${Math.max(3, ans.split(';')[0].length + 1.5)}ch" placeholder="${esc(hint ? hint + '…' : '')}" aria-label="Plotëso">`;
+function rCloze(q){
+  let k = 0;
+  const html = czParts(q).map((x, i) => i % 2 ? czInput(k++, ...x.split('|')) : esc(x).replace(/\n/g, '<br>')).join('');
+  return `${head(q.psq || 'Plotëso', q.pde || 'Ergänzen Sie')}
+  ${q.bank ? `<div class="czbank">${q.bank.map(w => `<span>${esc(w)}</span>`).join('')}</div>` : ''}
+  ${q.h ? `<div class="qhint" style="margin:0 0 10px">💭 ${esc(q.h)}</div>` : ''}
+  <div class="qcard czcard">${html}</div>${umlRow()}
+  <div class="actions"><button class="cta" data-act="ccheck">Kontrollo / Prüfen</button></div>`;
+}
+function rTable(q){
+  let k = 0;
+  return `${head(q.psq || 'Plotëso tabelën', q.pde || 'Ergänzen Sie die Tabelle')}
+  ${q.h ? `<div class="qhint" style="margin:0 0 10px">💭 ${esc(q.h)}</div>` : ''}
+  <div class="tw"><table class="lt cztab">${q.th ? `<thead><tr>${q.th.map(x => `<th>${esc(x)}</th>`).join('')}</tr></thead>` : ''}<tbody>
+    ${q.rows.map(r => `<tr><td>${esc(r[0])}</td><td>${r[2] ? `<span class="czgiven">${esc(r[1])}</span>` : czInput(k++, r[1], '')}</td></tr>`).join('')}
+  </tbody></table></div>${umlRow()}
+  <div class="actions"><button class="cta" data-act="ccheck">Kontrollo / Prüfen</button></div>`;
+}
+function ccheck(){
+  const q = cur(); if (G.locked) return;
+  const ins = [...app.querySelectorAll('.cz')], gaps = czGaps(q);
+  const empty = ins.find(i => !i.disabled && !i.value.trim());
+  if (empty) { empty.focus(); return toast('✏️ Plotëso të gjitha fushat.<br><span style="font-weight:400">Füll alle Lücken aus.</span>', 2200); }
+  let bad = 0;
+  ins.forEach((inp, k) => {
+    if (inp.disabled) return;
+    const ok = gaps[k][0].split(';').some(a => czNorm(a) === czNorm(inp.value));
+    inp.classList.remove('bad'); void inp.offsetWidth;
+    if (ok) { inp.classList.add('ok'); inp.disabled = true; } else { inp.classList.add('bad'); bad++; }
+  });
+  if (!bad) { G.locked = true; return correct(); }
+  G.tries++;
+  if (G.tries < maxTries()) tryAgain(`${bad === 1 ? '1 fushë e kuqe' : bad + ' fusha të kuqe'}: provo edhe një herë! Die roten Felder nochmal.`);
+  else { G.locked = true; ins.forEach((inp, k) => { if (!inp.disabled) { inp.value = gaps[k][0].split(';')[0]; inp.classList.add('shown'); inp.disabled = true; } }); wrong(); }
+}
+
+/* --- book-style sorting: tap a word, then its box (q.cats, q.items [word, cat]) --- */
+function rSort(q){
+  if (!q._place) { q._place = {}; q._order = shuffle(q.items.map((x, i) => i)); q._bad = []; }
+  return `${head(q.psq || 'Rendit sipas grupeve', q.pde || 'Ordnen Sie zu')}
+  <p class="szhint" style="margin:-4px 0 10px">👆 Prek një fjalë, pastaj kutinë. Tippe ein Wort, dann die Box.</p>
+  <div id="sArea">${sortInner(q)}</div>
+  <div class="actions"><button class="cta" data-act="scheck" id="scheck" ${Object.keys(q._place).length < q.items.length ? 'disabled' : ''}>Kontrollo / Prüfen</button></div>`;
+}
+function sortInner(q){
+  const chip = i => `<button class="tok ${G.chip === i ? 'sel' : ''} ${q._bad.includes(i) ? 'wrong' : ''}" data-act="sc" data-id="${i}">${esc(q.items[i][0])}</button>`;
+  return `<div class="sbins">${q.cats.map((c, ci) => `<div class="sbin ${G.chip != null ? 'ready' : ''}" data-act="sb" data-id="${ci}" role="button"><b>${esc(c)}</b>
+    <span class="sbin-in">${q._order.filter(i => q._place[i] === ci).map(chip).join('')}</span></div>`).join('')}</div>
+  <div class="pool">${q._order.filter(i => q._place[i] == null).map(chip).join('')}</div>`;
+}
+function stap(act, id){
+  const q = cur(); if (G.locked) return; id = +id; SND.tap();
+  if (act === 'sc') {
+    if (q._place[id] != null && G.chip == null) { delete q._place[id]; q._bad = q._bad.filter(i => i !== id); }
+    else G.chip = G.chip === id ? null : id;
+  } else if (G.chip != null) { q._place[G.chip] = id; q._bad = q._bad.filter(i => i !== G.chip); G.chip = null; }
+  $('#sArea').innerHTML = sortInner(q);
+  $('#scheck').disabled = Object.keys(q._place).length < q.items.length;
+}
+function scheck(){
+  const q = cur(); if (G.locked) return;
+  const bad = q._order.filter(i => q.cats[q._place[i]] !== q.items[i][1]);
+  G.chip = null;
+  if (!bad.length) { G.locked = true; q._bad = []; $('#sArea').innerHTML = sortInner(q); return correct(); }
+  G.tries++; q._bad = bad;
+  if (G.tries < maxTries()) { $('#sArea').innerHTML = sortInner(q); tryAgain('Fjalët e kuqe janë në kutinë e gabuar. Die roten Wörter sind falsch.'); }
+  else { G.locked = true; q._bad = []; q.items.forEach((x, i) => { q._place[i] = q.cats.indexOf(x[1]); }); $('#sArea').innerHTML = sortInner(q); wrong(); }
 }
 
 /* --- match pairs --- */
@@ -863,28 +958,34 @@ function correct(note, title){
   const p = rnd(PRAISE);
   const t = love || title || (milestone ? `${G.combo} me radhë! 🔥 ${G.combo} in Folge!` : first ? `${p[0]} ${p[1]}` : 'Saktë në provën e dytë! Richtig!');
   const body = [note || (first ? '' : esc(q.e)), weak && `<span class="weaknote">${weak}</span>`].filter(Boolean).join('<br>');
-  const sayT = q.type === 'order' ? q.de : q.type === 'match' ? '' : q.full || (q.s ? q.s.replace('___', q.a) : q.say);
+  const sayT = sayOf(q);
   openSheet(true, t, body, sayT, !!love);
 }
 /* the correct answer of a question as one readable line */
 function ansOf(q){
   if (q.type === 'clockpick') return q.say;
+  if (q.type === 'cloze') return czParts(q).map((x, i) => i % 2 ? x.split('|')[0].split(';')[0] : x).join('').replace(/\s*\n\s*/g, ' ');
+  if (q.type === 'table') return q.rows.map(r => `${r[0]} ${r[1].split(';')[0]}`).join(', ');
+  if (q.type === 'sort') return q.cats.map(c => `${c}: ${q.items.filter(x => x[1] === c).map(x => x[0]).join(', ')}`).join(' · ');
   if (q.type === 'match') return q.pairs.map(p => p.join(' = ')).join(' · ');
   if (q.type === 'order') return q.de;
   if (q.type === 'write') return `${q.art ? q.art + ' ' : ''}${q.a}`;
   if (q.q && q.q.includes('___')) return q.q.replace('___', q.a);
   return q.full || (q.s ? q.s.replace('___', q.a) : q.a);
 }
+/* what the feedback sheet reads out */
+const sayOf = q => q.type === 'order' ? q.de : q.type === 'match' || q.type === 'sort' ? '' : q.type === 'cloze' || q.type === 'table' ? ansOf(q)
+  : q.full || (q.s ? q.s.replace('___', q.a) : q.say || '');
 function wrong(note){
   const q = cur();
   G.combo = 0;
-  const store = {...q}; ['_pool','_picked','_done','_mist','_L','_R','wk'].forEach(k => delete store[k]);
+  const store = clean({...q}); delete store.wk;
   S.mistakes[q.key] = store; S.miss[q.key] = (S.miss[q.key] || 0) + 1; S.okRun[q.key] = {n:0, d:null};
   if (q.wk) S.okRun[q.wk] = {n:0, d:null};
   histAdd(q); save();
   SND.bad(); buzz([80, 50, 80]);
   const body = `${note ? esc(note) + '<br>' : ''}${esc(q.e || '')}<br><b>E saktë / Richtig:</b> ${esc(ansOf(q))}`;
-  openSheet(false, 'Jo krejt. Nicht ganz.', body, q.say || (q.type === 'order' ? q.de : ''));
+  openSheet(false, 'Jo krejt. Nicht ganz.', body, sayOf(q));
 }
 function openSheet(ok, title, body, sayT, love){
   const last = G.i >= G.qs.length - 1;
@@ -985,7 +1086,7 @@ function finish(){
     ${streakUp && S.streak >= 2 ? `<div class="streakcard">🔥 ${S.streak} ditë rresht! <small>${S.streak} Tage am Stück!</small></div>` : ''}
     ${up ? `<div class="lvup">🎊 Niveli ${lvNow}: ${lvlName(lvNow)[0]}!<small>Level ${lvNow}: ${lvlName(lvNow)[1]}</small></div>` : ''}
     ${newB.length ? `<div class="newb">${newB.map(b => `<span>${b.e} ${esc(b.sq)}</span>`).join('')}</div>` : ''}
-    ${hwSet ? `<div class="res-j"><div class="j-top"><b>${hwCur(hwSet) ? '📝 Detyrat / Hausaufgaben' : '📘 ' + esc(hwSet.sq)}</b><span>${hwCount(hwSet)}/${hwSet.parts.length}</span></div><div class="jbar"><i style="width:${hwCount(hwSet) / hwSet.parts.length * 100}%"></i></div></div>`
+    ${hwSet ? `<div class="res-j"><div class="j-top"><b>${hwCur(hwSet) ? '📝 Detyrat / Hausaufgaben' : (hwSet.icon || '📘') + ' ' + esc(hwSet.sq)}</b><span>${hwCount(hwSet)}/${hwSet.parts.length}</span></div><div class="jbar"><i style="width:${hwCount(hwSet) / hwSet.parts.length * 100}%"></i></div></div>`
       : c ? `<div class="res-j"><div class="j-top"><b>Udhëtimi / Reise</b><span>${done}/${CHAPTERS.length}</span></div><div class="jbar"><i style="width:${jp}%"></i></div></div>` : ''}
     <div class="actions">
       ${newlyDone && nextC ? `<button class="cta" data-act="go" data-id="${nextC.id}">${hwSet ? (hwCur(hwSet) ? 'Detyra tjetër' : 'Ushtrimi tjetër') : 'Kapitulli tjetër'} ▶ / Weiter</button>`
@@ -1016,6 +1117,7 @@ const TOPICS = {
   satz:     ['Rendi i fjalisë', 'Satzstellung', 'Folja në vendin 2, folja e dytë në fund. Pyetje pa W: folja del e para.'],
   artikel:  ['der, die apo das', 'Artikel', 'Mësoje çdo emër bashkë me nyjën: der Tisch, die Lampe, das Bett.'],
   ein:      ['ein, einen, kein', 'ein / kein · Akkusativ', 'Pas foljes (nehmen, kaufen, haben, möchten) ndryshon vetëm der: den, einen, keinen.'],
+  possessiv:['mein, dein, Ihr', 'Possessivartikel', 'der/das → mein, dein, Ihr. die/shumës → meine, deine, Ihre.'],
   zeit:     ['am, um, im', 'Zeitangaben', 'am + ditë, um + orë, im + muaj ose stinë.'],
   perfekt:  ['E kaluara', 'Perfekt', 'haben në vendin 2, Partizip në fund: ge…t (gemacht) ose ge…en (gegessen).'],
   modal:    ['können, wollen, möchten, mögen', 'Modalverben', 'ich dhe er pa mbaresë (ich kann, er will). Folja tjetër shkon në fund.'],
@@ -1037,7 +1139,8 @@ function topicOf(q){
   const lo = q.o.map(o => String(o).toLowerCase()), only = (...w) => lo.every(o => w.includes(o));
   const s = (q.s || q.q || '').replace('___', '');
   if (only('der', 'die', 'das')) return 'artikel';
-  if (only('der', 'die', 'das', 'den', 'dem', 'ein', 'eine', 'einen', 'einem', 'einer', 'kein', 'keine', 'keinen', 'keinem', 'nicht', 'mein', 'meine', 'meinen')) return 'ein';
+  if (only('mein', 'meine', 'meinen', 'dein', 'deine', 'deinen', 'ihr', 'ihre', 'ihren')) return 'possessiv';
+  if (only('der', 'die', 'das', 'den', 'dem', 'ein', 'eine', 'einen', 'einem', 'einer', 'kein', 'keine', 'keinen', 'keinem', 'nicht')) return 'ein';
   if (only('am', 'um', 'im', 'in', 'an')) return 'zeit';
   if (only('ja', 'nein', 'doch')) return 'jnd';
   if (only('wer', 'was', 'wo', 'wann', 'wie', 'woher', 'wohin', 'warum', 'wie viel')) return 'wfragen';
@@ -1048,7 +1151,9 @@ function topicOf(q){
   if (lo.every(o => MODAL.test(o))) return 'modal';
   if (q.pde && /antwort|passt|sagst/i.test(q.pde)) return 'dialog';
   if (q.a === q.say && String(q.a).split(' ').length >= 3) return 'satz';
-  if (lo.every(o => /^[a-zäöüß]+$/.test(o) && /(e|st|t|en|n)$/.test(o))) return 'verben';
+  /* conjugation: single-word options where several are forms of the same verb (heiße, heißt …) */
+  const stem = o => o.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').slice(0, 4);
+  if (lo.every(o => /^[a-zäöüß]+$/.test(o) && /(e|st|t|en|n)$/.test(o)) && lo.filter(o => stem(o) === stem(String(q.a).toLowerCase())).length >= 2) return 'verben';
   return null;
 }
 const isWordQ = q => WORD_PSQ.has(q.psq) && q.say && q.say.split(' ').length <= 3;
@@ -1228,9 +1333,12 @@ document.addEventListener('click', e => {
     case 'say': return say(b.dataset.t);
     case 'slow': return say(b.dataset.t, true);
     case 'wcheck': return wcheck();
-    case 'uml': { const i = $('#w'); if (i && !i.disabled) { const s = i.selectionStart ?? i.value.length; i.value = i.value.slice(0, s) + b.dataset.c + i.value.slice(i.selectionEnd ?? s); i.focus(); i.setSelectionRange(s + 1, s + 1); } return; }
+    case 'uml': { const i = lastInp && document.body.contains(lastInp) ? lastInp : $('#w'); if (i && !i.disabled) { const s = i.selectionStart ?? i.value.length; i.value = i.value.slice(0, s) + b.dataset.c + i.value.slice(i.selectionEnd ?? s); i.focus(); i.setSelectionRange(s + 1, s + 1); } return; }
     case 'tp': case 'un': return otap(a, id);
     case 'ocheck': return ocheck();
+    case 'ccheck': return ccheck();
+    case 'sc': case 'sb': return stap(a, id);
+    case 'scheck': return scheck();
     case 'ml': return mtap('l', b.dataset.v);
     case 'mr': return mtap('r', b.dataset.v);
     case 'next': return next();
@@ -1249,7 +1357,17 @@ document.addEventListener('click', e => {
       return;
   }
 });
-document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'w') { e.preventDefault(); wcheck(); } });
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  if (e.target.id === 'w') { e.preventDefault(); wcheck(); }
+  else if (e.target.classList?.contains('cz')) {
+    e.preventDefault();
+    const next = [...app.querySelectorAll('.cz')].find(i => !i.disabled && !i.value.trim() && i !== e.target);
+    next ? next.focus() : ccheck();
+  }
+});
+let lastInp = null;
+document.addEventListener('focusin', e => { if (e.target.tagName === 'INPUT') lastInp = e.target; });
 
 /* older saves: build the weak-spot history once from the open mistakes */
 if (!Object.keys(S.hist).length && Object.keys(S.mistakes).length) { Object.values(S.mistakes).forEach(q => histAdd(q, S.miss[q.key] || 1)); save(); }

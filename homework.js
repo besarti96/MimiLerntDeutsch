@@ -504,5 +504,308 @@ const HOMEWORK = [
   lesson:[], nouns:[], words:[], items:[]
 }
   ]
+},
+
+/* =====================================================================
+   📖 Si në libër: Buchseiten als Übungen in der Reihenfolge des Buchs.
+   shelf:true = nicht die aktuelle Hausaufgabe, eigener Block unter Kapitujt.
+   seq:true   = Fragen in Buch-Reihenfolge, nicht gemischt.
+   Aufgabenarten wie im Buch:
+     cloze  { text:'Ich [[bin|b]] …', bank?:[] }  [[Antwort|Anfang]], Varianten mit ;
+     table  { th:[], rows:[[Person, Form, gegeben?]] }
+     letters{ s:'… ___ …', a:'Wetter', mix:'tetWer' }  Buchstabensalat
+     sort   { cats:['im','am'], items:[[Wort, Kategorie]] }
+     order  { de, sq, parts:[…], cue:'a – b – c' }   Satz aus Bausteinen
+   ===================================================================== */
+{
+  id:'book', shelf:true, icon:'📖', date:'2026-10-22', added:'2026-10-22T19:10',
+  sq:'Përsëritje: mësimet 1–7', de:'Wiederholung Lektion 1–7 · Arbeitsbuch Test L1, S. 21–79',
+  parts:[
+
+/* ---------- Test Lektion 1 ---------- */
+{
+  id:'bk-test1', emoji:'🙋‍♀️', color:'#F2545B', seq:true, book:['Testi i mësimit 1','Test Lektion 1'],
+  sq:'Testi: Mësimi 1', de:'Test Lektion 1',
+  desc:'të dhënat e Alinës, fjalët pyetëse dhe bisedat me heißen, kommen, sprechen.',
+  tip:'Wer = kush (njeri), Was = çfarë, Wie = si, Woher = nga. du sprichst, er spricht.',
+  lesson:[
+    {t:'Testi i mësimit 1 📖', d:'Test Lektion 1', p:'Këtu i bën ushtrimet <b>si në libër</b>: shkruan vetë fjalët në vijat bosh. 2, 3, 4a dhe 4b.',
+     tip:'Te fushat me shkronjën e parë (b…) shkruaj <b>gjithë fjalën</b>: b… → <b>bin</b>.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', psq:'2 Rendit', pde:'2 Ordnen Sie zu', pairs:[['Alina','Vorname'],['Egger','Familienname'],['Bändelgasse','Straße'],['1','Hausnummer'],['4057','Postleitzahl']]},
+    {type:'match', psq:'2 Rendit', pde:'2 Ordnen Sie zu', pairs:[['Basel','Stadt'],['Schweiz','Land'],['+41 61 822 94 33','Telefon'],['alina@egger.ch','E-Mail']]},
+    {type:'cloze', topic:'wfragen', psq:'3 Plotëso', pde:'3 Ergänzen Sie',
+     text:'[[Wie]] heißen Sie? – Alina Egger.\n[[Woher]] kommen Sie? – Aus der Schweiz.\nUnd [[was]] sprechen Sie? – Deutsch und Italienisch.\n[[Wer]] ist das? – Das ist Dario Egger.',
+     e:'Gjuhët → was. Njeri → wer.'},
+    {type:'cloze', topic:'verben', psq:'4a Plotëso', pde:'4a Ergänzen Sie',
+     text:'Hallo. Ich [[bin|b]] Mercy. Wie [[heißt|h]] du?\n– Ich [[heiße|h]] Kim und [[komme|k]] aus China.\n– Du [[sprichst|s]] gut Deutsch.\n– Nein, nur ein bisschen. Ich [[spreche|s]] gut Englisch.',
+     e:'du sprichst (e → i). heißen: ich heiße, du heißt.'},
+    {type:'cloze', topic:'verben', psq:'4b Plotëso', pde:'4b Ergänzen Sie',
+     text:'Guten Morgen. Mein Name [[ist|i]] Hinata Numajiri.\n– Entschuldigung, wie [[heißen|h]] Sie?\n– Hinata Numajiri.\n– Ah, ja. Guten Morgen, Herr Numajiri. Ich [[bin|b]] John Winterfield und das [[ist|i]] Frau Bianchi.',
+     e:'Sie heißen. ich bin, das ist.'}
+  ]
+},
+
+/* ---------- AB Lektion 2, S. 21 ---------- */
+{
+  id:'bk-s21', emoji:'👨‍👩‍👧', color:'#D6409F', seq:true, book:['faqe 21 · ushtrimi 10–14','S. 21 · Üb. 10–14'],
+  sq:'Faqe 21: mein, dein, Ihr', de:'Seite 21: Familie',
+  desc:'kryqëzo, plotëso dhe shkruaj pyetje me mein, dein, Ihr dhe bin, ist, sind.',
+  tip:'der/das → mein, dein, Ihr. die/shumës → meine, deine, Ihre. Një → ist, shumë → sind.',
+  lesson:[
+    {t:'Faqe 21 📖', d:'Seite 21', p:'<b>10</b> Kryqëzo të saktën. <b>11–13</b> Plotëso. <b>14</b> Shkruaj pyetjet e intervistës.',
+     tip:'der Vorname → <b>mein</b> Vorname. Kinder → das <b>sind</b> meine Kinder.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'gap', row:true, psq:'10a Kryqëzo', pde:'10a Kreuzen Sie an', s:'Das sind ___ Kinder.', o:['mein','meine'], a:'meine', e:'Shumës → meine.'},
+    {type:'gap', row:true, psq:'10a Kryqëzo', pde:'10a Kreuzen Sie an', s:'Aha. Und das ist ___ Mann?', o:['dein','deine'], a:'dein', e:'der Mann → dein.'},
+    {type:'gap', row:true, psq:'10a Kryqëzo', pde:'10a Kreuzen Sie an', s:'Nein. Das ist ___ Bruder.', o:['mein','meine'], a:'mein', e:'der Bruder → mein.'},
+    {type:'gap', row:true, psq:'10a Kryqëzo', pde:'10a Kreuzen Sie an', s:'Das sind ___ Eltern?', o:['dein','deine'], a:'deine', e:'Shumës → deine.'},
+    {type:'gap', row:true, psq:'10a Kryqëzo', pde:'10a Kreuzen Sie an', s:'Ja, stimmt. Das sind ___ Vater und meine Mutter.', o:['mein','meine'], a:'mein', e:'der Vater → mein.'},
+    {type:'gap', row:true, psq:'10b Kryqëzo', pde:'10b Kreuzen Sie an', s:'Wer ist das? ___ Frau?', o:['Ihr','Ihre'], a:'Ihre', e:'die Frau → Ihre.'},
+    {type:'gap', row:true, psq:'10b Kryqëzo', pde:'10b Kreuzen Sie an', s:'___ Frau? Nein! Das ist meine Schwester.', o:['Mein','Meine'], a:'Meine', e:'die Frau → meine.'},
+    {type:'gap', row:true, psq:'10b Kryqëzo', pde:'10b Kreuzen Sie an', s:'Das ist ___ Enkelin Sara.', o:['mein','meine'], a:'meine', e:'die Enkelin → meine.'},
+    {type:'gap', row:true, psq:'10b Kryqëzo', pde:'10b Kreuzen Sie an', s:'Aha! ___ Enkelin!', o:['Ihr','Ihre'], a:'Ihre', e:'die Enkelin → Ihre.'},
+    {type:'cloze', topic:'possessiv', psq:'11 Plotëso', pde:'11 Ergänzen Sie',
+     text:'a  Das sind [[mein|m]] Opa und [[meine|m]] Oma.\n– Ah. [[Deine|D]] Großeltern!\n– Ja.\n\nb  Das sind [[meine|m]] Geschwister: [[mein|m]] Bruder Emre und [[meine|m]] Schwester Ahu.\n– Und wer ist das? Auch [[Ihre|I]] Schwester?\n– Nein. Das ist [[meine|m]] Frau.',
+     e:'der Opa → mein, die Oma → meine, shumës → meine.'},
+    {type:'cloze', topic:'possessiv', psq:'12a Plotëso', pde:'12a Ergänzen Sie',
+     text:'Hallo, Frau Roth. Wie geht es Ihnen?\n– Danke, gut. Das ist [[mein]] Mann.\n– Ah, [[Ihr]] Mann. Freut mich. Guten Abend, Herr Roth.\n– Entschuldigung, [[mein]] Name ist nicht Roth. Ich heiße Peters.',
+     e:'Me Sie (respekt) → Ihr Mann.'},
+    {type:'cloze', topic:'possessiv', psq:'12b Plotëso', pde:'12b Ergänzen Sie',
+     text:'Hallo, Florian. Das ist [[meine]] Schwester Ines.\n– Ah, schön, [[deine]] Schwester. Wie geht es dir, Iris?\n– Gut, danke. Aber ich heiße nicht Iris. [[Mein]] Vorname ist Ines.',
+     e:'der Vorname → mein (jo meine!).'},
+    {type:'cloze', topic:'seinhaben', psq:'13 Plotëso', pde:'13 Ergänzen Sie', bank:['bin','ist','sind','mein','meine','heißt'],
+     text:'a  Das [[ist]] [[meine]] Tochter und das [[ist]] [[mein]] Sohn.\nb  Das [[sind]] [[mein]] Bruder und [[meine]] Schwester.',
+     e:'Dy persona (Bruder und Schwester) → sind.'},
+    {type:'cloze', topic:'seinhaben', psq:'13 Plotëso', pde:'13 Ergänzen Sie', bank:['bin','ist','sind','mein','meine','heißt'],
+     text:'c  Das [[sind]] [[meine]] Kinder: [[mein]] Sohn Lukas und [[meine]] Tochter Stefanie.\nd  Das [[bin]] ich und das [[sind]] [[meine]] Eltern.',
+     e:'Kinder, Eltern = shumë → sind. Das bin ich = kjo jam unë.'},
+    {type:'order', psq:'14 Shkruaj pyetjen', pde:'14 Schreiben Sie Fragen', cue:'Mein Name ist Manuela Klein.', de:'Wie ist Ihr Name?', sq:'Si e keni emrin?'},
+    {type:'order', psq:'14 Shkruaj pyetjen', pde:'14 Schreiben Sie Fragen', cue:'Ich komme aus Österreich.', de:'Woher kommen Sie?', sq:'Nga vini?'},
+    {type:'order', psq:'14 Shkruaj pyetjen', pde:'14 Schreiben Sie Fragen', cue:'Ich spreche Deutsch und Englisch.', de:'Was sprechen Sie?', sq:'Çfarë gjuhësh flisni?'},
+    {type:'order', psq:'14 Shkruaj pyetjen', pde:'14 Schreiben Sie Fragen', cue:'Das ist meine Familie.', de:'Wer ist das?', sq:'Kush është ky / kjo?'}
+  ]
+},
+
+/* ---------- AB Lektion 2, S. 23 ---------- */
+{
+  id:'bk-s23', emoji:'🔁', color:'#7650F0', seq:true, book:['faqe 23 · ushtrimi 18','S. 23 · Üb. 18'],
+  sq:'Faqe 23: tabela e foljeve', de:'Seite 23: kommen, leben, heißen, sprechen, sein',
+  desc:'plotëso tabelën për çdo folje, pastaj bisedat e vizatimeve.',
+  tip:'ich -e, du -st, er -t, wir -en, ihr -t, sie -en. sprechen: du sprichst, er spricht. sein: bin, bist, ist, sind, seid, sind.',
+  lesson:[
+    {t:'Faqe 23 📖', d:'Seite 23', p:'Plotëso tabelën si në libër. Format me ngjyrë gri janë dhënë tashmë.',
+     tip:'heißen → ich <b>heiße</b> (jo hasse = urrej!), er <b>heißt</b> (jo hat = ka).'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'table', topic:'verben', psq:'18 Tabela: kommen', pde:'18 Ergänzen Sie: kommen', th:['','kommen'],
+     rows:[['ich','komme'],['du','kommst',1],['er / sie','kommt',1],['wir','kommen',1],['ihr','kommt'],['sie / Sie','kommen']], e:'kommen është normale.'},
+    {type:'table', topic:'verben', psq:'18 Tabela: leben', pde:'18 Ergänzen Sie: leben', th:['','leben'],
+     rows:[['ich','lebe'],['du','lebst',1],['er / sie','lebt',1],['wir','leben'],['ihr','lebt',1],['sie / Sie','leben',1]], e:'ich lebe, wir leben.'},
+    {type:'table', topic:'verben', psq:'18 Tabela: heißen', pde:'18 Ergänzen Sie: heißen', th:['','heißen'],
+     rows:[['ich','heiße'],['du','heißt',1],['er / sie','heißt'],['wir','heißen',1],['ihr','heißt',1],['sie / Sie','heißen']], e:'ich heiße, er heißt, sie heißen.'},
+    {type:'table', topic:'verben', psq:'18 Tabela: sprechen', pde:'18 Ergänzen Sie: sprechen', th:['','sprechen'],
+     rows:[['ich','spreche'],['du','sprichst'],['er / sie','spricht'],['wir','sprechen'],['ihr','sprecht',1],['sie / Sie','sprechen',1]], e:'e → i vetëm te du dhe er: sprichst, spricht.'},
+    {type:'table', topic:'seinhaben', psq:'18 Tabela: sein', pde:'18 Ergänzen Sie: sein', th:['','sein'],
+     rows:[['ich','bin'],['du','bist'],['er / sie','ist'],['wir','sind',1],['ihr','seid'],['sie / Sie','sind',1]], e:'ihr seid (me d).'},
+    {type:'cloze', topic:'verben', psq:'18 Bisedat A–C', pde:'18 Die Gespräche A–C',
+     text:'A  Wie [[heißt]] du? Woher [[kommst]] du?\n– Ich [[heiße]] Hiba. Ich [[komme]] aus dem Libanon. Und du?\n– Ich [[bin]] Elias aus Griechenland. Ich [[lebe]] in Deutschland, in Freiburg.\n\nC  Hallo, wer [[seid]] ihr? – Mario. – Laura.\n– Und woher [[kommt]] ihr? – Aus Italien. Jetzt [[leben]] wir in Deutschland.',
+     e:'ihr seid, ihr kommt.'},
+    {type:'cloze', topic:'verben', psq:'18 Bisedat D–F', pde:'18 Die Gespräche D–F',
+     text:'D  Entschuldigung, wie [[heißen]] Sie? – Peter Vogel.\n– Und woher [[kommen]] Sie? – Aus Österreich.\n\nE  Wie bitte? Tut mir leid, ich [[spreche]] nur Deutsch. Was [[sprichst]] du?\n\nF  Wie [[heißt]] er? – Alexandre.\n– Und was [[spricht]] er? – Englisch und Französisch.',
+     e:'du sprichst, er spricht.'}
+  ]
+},
+
+/* ---------- AB Lektion 6, S. 63 (1–2) ---------- */
+{
+  id:'bk-s63a', emoji:'🌦️', color:'#2E86DE', seq:true, book:['faqe 63 · ushtrimi 1–2','S. 63 · Üb. 1–2'],
+  sq:'Faqe 63: moti (1–2)', de:'Seite 63: Wie ist das Wetter?',
+  desc:'lexo hartën dhe rendit shkronjat e fjalëve të motit.',
+  tip:'Es regnet, es schneit, die Sonne scheint, es ist bewölkt. Es sind … Grad.',
+  lesson:[
+    {t:'Faqe 63 📖', d:'Seite 63', p:'<b>1</b> Shiko hartën: cili qytet? <b>2</b> Rendit shkronjat: <b>tetWer</b> → <b>Wetter</b>.',
+     ex:[['Hamburg: Die Sonne scheint. 0°','Hamburg: ka diell, 0°'],['Köln: Es regnet. 6°','Köln: bie shi, 6°'],['Dresden: Es ist bewölkt. 5°','Dresden: vranët, 5°'],['München: Es schneit. 2°','München: bie borë, 2°']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', psq:'1 Cili qytet?', pde:'1 Welche Stadt?', q:'Die Sonne scheint, es ist kalt. Es sind null Grad.', h:'Hamburg ☀️ 0° · Köln 🌧️ 6° · Dresden ☁️ 5° · München 🌨️ 2°', o:['Hamburg','Köln','Dresden','München'], a:'Hamburg', say:'Die Sonne scheint, es ist kalt. Es sind null Grad.', e:'Hamburg: ☀️ 0°.'},
+    {type:'mc', psq:'1 Cili qytet?', pde:'1 Welche Stadt?', q:'Es ist bewölkt. Es sind fünf Grad.', h:'Hamburg ☀️ 0° · Köln 🌧️ 6° · Dresden ☁️ 5° · München 🌨️ 2°', o:['Dresden','Hamburg','Köln','München'], a:'Dresden', say:'Es ist bewölkt. Es sind fünf Grad.', e:'Dresden: ☁️ 5°.'},
+    {type:'mc', psq:'1 Cili qytet?', pde:'1 Welche Stadt?', q:'Es regnet. Es sind sechs Grad.', h:'Hamburg ☀️ 0° · Köln 🌧️ 6° · Dresden ☁️ 5° · München 🌨️ 2°', o:['Köln','Dresden','Hamburg','München'], a:'Köln', say:'Es regnet. Es sind sechs Grad.', e:'Köln: 🌧️ 6°.'},
+    {type:'mc', psq:'1 Cili qytet?', pde:'1 Welche Stadt?', q:'Es sind zwei Grad und es schneit.', h:'Hamburg ☀️ 0° · Köln 🌧️ 6° · Dresden ☁️ 5° · München 🌨️ 2°', o:['München','Köln','Hamburg','Dresden'], a:'München', say:'Es sind zwei Grad und es schneit.', e:'München: 🌨️ 2°.'},
+    {type:'letters', psq:'2a Rendit shkronjat', pde:'2a Ordne die Buchstaben', s:'Heute ist das ___ super!', a:'Wetter', mix:'tetWer', h:'tetWer', e:'das Wetter = moti.'},
+    {type:'letters', psq:'2a Rendit shkronjat', pde:'2a Ordne die Buchstaben', s:'Die ___ scheint.', a:'Sonne', mix:'ennSo', h:'ennSo', e:'die Sonne = dielli.'},
+    {type:'letters', psq:'2a Rendit shkronjat', pde:'2a Ordne die Buchstaben', s:'Die Sonne ___ und es ist sehr warm.', a:'scheint', mix:'eischtn', h:'eischtn', e:'scheinen → die Sonne scheint.'},
+    {type:'letters', psq:'2a Rendit shkronjat', pde:'2a Ordne die Buchstaben', s:'Es ist sehr ___.', a:'warm', mix:'ramw', h:'ramw · ngrohtë', e:'warm = ngrohtë.'},
+    {type:'letters', psq:'2a Rendit shkronjat', pde:'2a Ordne die Buchstaben', s:'Stimmt. Aber es ist auch sehr ___.', a:'windig', mix:'digwin', h:'digwin · me erë', e:'windig = me erë.'},
+    {type:'letters', psq:'2b Rendit shkronjat', pde:'2b Ordne die Buchstaben', s:'Brrr! Es ist so ___!', a:'kalt', mix:'talk', h:'talk · ftohtë', e:'kalt = ftohtë.'},
+    {type:'letters', psq:'2b Rendit shkronjat', pde:'2b Ordne die Buchstaben', s:'Ja, ___ Grad.', a:'null', mix:'luln', h:'luln · zero', e:'null = zero.'},
+    {type:'letters', psq:'2b Rendit shkronjat', pde:'2b Ordne die Buchstaben', s:'Oh! Jetzt ___ es.', a:'schneit', mix:'neitsch', h:'neitsch · bie borë', e:'es schneit = bie borë.'},
+    {type:'letters', psq:'2c Rendit shkronjat', pde:'2c Ordne die Buchstaben', s:'Wie ist das ___?', a:'Wetter', mix:'ettWre', h:'ettWre', e:'Wie ist das Wetter? = Si është moti?'},
+    {type:'letters', psq:'2c Rendit shkronjat', pde:'2c Ordne die Buchstaben', s:'Nicht gut. Es sind nur zehn ___.', a:'Grad', mix:'Gard', h:'Gard', e:'zehn Grad = dhjetë gradë.'},
+    {type:'letters', psq:'2c Rendit shkronjat', pde:'2c Ordne die Buchstaben', s:'Es ist ___.', a:'bewölkt', mix:'bwölekt', h:'bwölekt · vranët', e:'bewölkt (me k në fund).'},
+    {type:'letters', psq:'2c Rendit shkronjat', pde:'2c Ordne die Buchstaben', s:'Gleich ___ es.', a:'regnet', mix:'nrgtee', h:'nrgtee · bie shi', e:'es regnet = bie shi.'}
+  ]
+},
+
+/* ---------- AB Lektion 6, S. 63 (3–5) ---------- */
+{
+  id:'bk-s63b', emoji:'🧭', color:'#0E9F8E', seq:true, book:['faqe 63 · ushtrimi 3–5','S. 63 · Üb. 3–5'],
+  sq:'Faqe 63: Austria, harta, im/am/um/in', de:'Seite 63: Österreich, Karte, im/am/um/in',
+  desc:'moti në Austri, ku ndodhen qytetet dhe rendit im, am, um, in.',
+  tip:'In Wien scheint die Sonne (folja e dyta!). im + drejtim, am + ditë, um + orë, in + vend.',
+  lesson:[
+    {t:'Faqe 63 📖', d:'Seite 63', p:'<b>3</b> Moti në Austri. <b>4</b> Harta e Gjermanisë. <b>5</b> Rendit fjalët te im, am, um, in.',
+     ex:[['Wien: ☀️ 4°','Bregenz: ❄️ -3°'],['Graz: ☁️ -1°','Salzburg: 🌧️ 6°']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', psq:'3 Moti në Austri', pde:'3 Wie ist das Wetter in Österreich?', h:'Wien ☀️ 4° · Bregenz ❄️ -3° · Graz ☁️ -1° · Salzburg 🌧️ 6°',
+     text:'In Wien [[scheint]] die Sonne und es sind vier [[Grad]].\nIn Bregenz [[schneit]] es.\nIn Graz ist es heute [[bewölkt]] und [[kalt]].\nIn Salzburg [[regnet]] es.',
+     e:'Folja vjen e dyta: In Wien scheint …'},
+    {type:'gap', psq:'4 Shiko hartën', pde:'4 Sehen Sie die Karte an', s:'Wo scheint die Sonne? In ___.', h:'Hamburg ☀️ · Köln 🌧️ · Dresden ☁️ · München 🌨️', o:['Hamburg','Osten','München','Köln'], a:'Hamburg', e:'„Wo?“ pyet për qytetin: In Hamburg.'},
+    {type:'gap', psq:'4 Shiko hartën', pde:'4 Sehen Sie die Karte an', s:'Wo schneit es? In ___.', h:'Hamburg ☀️ · Köln 🌧️ · Dresden ☁️ · München 🌨️', o:['München','Westen','Hamburg','Dresden'], a:'München', e:'Bora ❄️ është te München.'},
+    {type:'gap', psq:'4 Shiko hartën', pde:'4 Sehen Sie die Karte an', s:'Wo ist es bewölkt? In ___.', h:'Hamburg ☀️ · Köln 🌧️ · Dresden ☁️ · München 🌨️', o:['Dresden','Köln','München','Hamburg'], a:'Dresden', e:'Dresden: ☁️'},
+    {type:'gap', psq:'4 Shiko hartën', pde:'4 Sehen Sie die Karte an', s:'Wo regnet es? In Köln und in ___.', h:'🌧️ edhe te qyteti afër Kölnit', o:['Düsseldorf','München','Dresden','Berlin'], a:'Düsseldorf', e:'In Köln und in Düsseldorf.'},
+    {type:'gap', psq:'4 Ku ndodhet?', pde:'4 Wo liegt …?', s:'Wo liegt Hamburg? Im ___.', o:['Norden','Süden','Westen','Osten'], a:'Norden', e:'Hamburg → im Norden.'},
+    {type:'gap', psq:'4 Ku ndodhet?', pde:'4 Wo liegt …?', s:'Wo liegt München? Im ___.', o:['Süden','Norden','Westen','Osten'], a:'Süden', e:'München → im Süden.'},
+    {type:'gap', psq:'4 Ku ndodhet?', pde:'4 Wo liegt …?', s:'Wo liegt Köln? Im ___.', o:['Westen','Osten','Norden','Süden'], a:'Westen', e:'Köln → im Westen.'},
+    {type:'gap', psq:'4 Ku ndodhet?', pde:'4 Wo liegt …?', s:'Wo liegt Dresden? Im ___.', o:['Osten','Westen','Süden','Norden'], a:'Osten', e:'Dresden → im Osten.'},
+    {type:'sort', topic:'zeit', psq:'5 Rendit', pde:'5 Ordnen Sie zu', cats:['im','am','um','in'],
+     items:[['Osten','im'],['Süden','im'],['Westen','im'],['Montag','am'],['Mittwoch','am'],['Vormittag','am'],['Abend','am'],
+       ['drei Uhr','um'],['kurz vor sieben','um'],['halb vier','um'],['Deutschland','in'],['München','in'],['der Schweiz','in'],['der Nacht','in']],
+     e:'im + drejtim, am + ditë/pjesë dite, um + orë, in + vend dhe in der Nacht.'}
+  ]
+},
+
+/* ---------- AB S. 65 ---------- */
+{
+  id:'bk-s65', emoji:'🛒', color:'#EE7A0C', seq:true, book:['faqe 65 · ushtrimi 10–12','S. 65 · Üb. 10–12'],
+  sq:'Faqe 65: në supermarket', de:'Seite 65: Einkaufen',
+  desc:'„Hast du das Brot?“, Wer/Was apo Wen/Was dhe lista e blerjeve.',
+  tip:'Kryefjala → der (Wer? Was?). Objekti → den, einen, keinen (Wen? Was?). die/das nuk ndryshojnë.',
+  lesson:[
+    {t:'Faqe 65 📖', d:'Seite 65', p:'<b>10</b> Hast du …? <b>11</b> Wer/Was apo Wen/Was? <b>12</b> Plotëso me der, das, die, ein-, kein-.',
+     ex:[['Ist der Kuchen gut? → Wer? Was?','Kryefjala (Nominativ)'],['Ich möchte einen Kuchen. → Wen? Was?','Objekti (Akkusativ)']],
+     tip:'Vetëm <b>der</b> ndryshon te objekti: der → <b>den</b>, ein → <b>einen</b>, kein → <b>keinen</b>.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'ein', psq:'10 Hast du …?', pde:'10 Fragen und antworten',
+     text:'Hast du das Brot? – Nein, [[das]] Brot habe ich nicht, aber die Brötchen.\nHast du den Saft? – Nein, [[den]] Saft habe ich nicht, aber [[den]] Wein.\nHast du die Milch? – Nein, [[die]] Milch habe ich nicht, aber [[den]] Zucker.',
+     e:'der → den (objekt). die, das nuk ndryshojnë.'},
+    {type:'cloze', topic:'ein', psq:'10 Hast du …?', pde:'10 Fragen und antworten',
+     text:'Hast du das Obst? – Nein, [[das]] Obst habe ich nicht, aber [[den]] Kuchen.\nHast du den Tee? – Nein, [[den]] Tee habe ich nicht, aber [[den]] Kaffee.\nHast du die Wurst? – Nein, [[die]] Wurst habe ich nicht, aber [[den]] Käse.',
+     e:'der Kuchen, der Kaffee, der Käse → den.'},
+    {type:'mc', row:true, topic:'ein', psq:'11 Wer?/Was? apo Wen?/Was?', pde:'11 Nominativ oder Akkusativ?', q:'Ist der Schokoladenkuchen gut?', h:'der Schokoladenkuchen', o:['Wer?/Was?','Wen?/Was?'], a:'Wer?/Was?', e:'Kryefjala → der → Wer?/Was?'},
+    {type:'mc', row:true, topic:'ein', psq:'11 Wer?/Was? apo Wen?/Was?', pde:'11 Nominativ oder Akkusativ?', q:'Dann möchte ich auch einen Schokoladenkuchen, bitte.', h:'einen Schokoladenkuchen', o:['Wer?/Was?','Wen?/Was?'], a:'Wen?/Was?', e:'Objekt pas möchten → einen → Wen?/Was?'},
+    {type:'mc', row:true, topic:'ein', psq:'11 Wer?/Was? apo Wen?/Was?', pde:'11 Nominativ oder Akkusativ?', q:'Wir haben keinen Schokoladenkuchen mehr.', h:'keinen Schokoladenkuchen', o:['Wer?/Was?','Wen?/Was?'], a:'Wen?/Was?', e:'Objekt pas haben → keinen.'},
+    {type:'mc', row:true, topic:'ein', psq:'11 Wer?/Was? apo Wen?/Was?', pde:'11 Nominativ oder Akkusativ?', q:'Wo ist die Wurst?', h:'die Wurst', o:['Wer?/Was?','Wen?/Was?'], a:'Wer?/Was?', e:'Kryefjala.'},
+    {type:'mc', row:true, topic:'ein', psq:'11 Wer?/Was? apo Wen?/Was?', pde:'11 Nominativ oder Akkusativ?', q:'Hast du die Wurst?', h:'die Wurst', o:['Wer?/Was?','Wen?/Was?'], a:'Wen?/Was?', e:'Objekt pas haben.'},
+    {type:'mc', row:true, topic:'ein', psq:'11 Wer?/Was? apo Wen?/Was?', pde:'11 Nominativ oder Akkusativ?', q:'Tut mir leid, ich kenne das Restaurant nicht.', h:'das Restaurant', o:['Wer?/Was?','Wen?/Was?'], a:'Wen?/Was?', e:'Objekt pas kennen.'},
+    {type:'cloze', topic:'ein', psq:'12 Plotëso', pde:'12 Ergänzen Sie in der richtigen Form', bank:['der','das','die','ein-','kein-'],
+     text:'Also, Julia, ich gehe zum Supermarkt. Was brauchen wir?\n– Ah, gute Idee, Nina. Also, wir brauchen zum Beispiel [[eine]] Packung Kaffee, [[ein]] Kilo Äpfel, [[eine]] Dose Tee, [[eine]] Flasche Saft.',
+     e:'die Packung, die Dose, die Flasche → eine. das Kilo → ein.'},
+    {type:'cloze', topic:'ein', psq:'12 Plotëso', pde:'12 Ergänzen Sie in der richtigen Form', bank:['der','das','die','ein-','kein-'],
+     text:'– Nein, wir brauchen [[keinen]] Saft. Wir haben noch [[eine]] Flasche Saft.\n– Gut, dann kauf bitte [[einen]] Joghurt, [[eine]] Flasche Öl und [[einen]] Salat. … Nein, nein, [[den]] Salat und [[die]] Äpfel kaufe ich. [[Das]] Gemüse und [[das]] Obst im Supermarkt schmeckt nicht gut, finde ich.',
+     e:'keinen Saft (nuk na duhet), eine Flasche, einen Salat, den Salat, die Äpfel.'}
+  ]
+},
+
+/* ---------- AB Lektion 7, S. 76 ---------- */
+{
+  id:'bk-s76', emoji:'🎨', color:'#0E9F8E', seq:true, book:['faqe 76 · ushtrimi 5–8','S. 76 · Üb. 5–8'],
+  sq:'Faqe 76: können', de:'Seite 76: Freizeit, können, sch/s',
+  desc:'çfarë bëjnë, fjali me können, biseda dhe sch apo s.',
+  tip:'können në vendin 2, folja tjetër në fund. sp/st në fillim lexohen „shp/sht“, por shkruhen me s!',
+  lesson:[
+    {t:'Faqe 76 📖', d:'Seite 76', p:'<b>5</b> Çfarë bëjnë? <b>6–7</b> Fjali dhe biseda me können. <b>8</b> sch apo s?'},
+    {t:'Bravo! 🌟', d:'Selbst korrigiert', p:'Në libër e ke korrigjuar vetë: <b>malt</b> ✓ (jo Mural). Super!',
+     fix:[['Kannst du kochen? – … aber ich kann sehr gut kochen.','Ich kann leider gar nicht gut kochen. – Aber Sie können sehr gut Kuchen backen.','Te 7b ndiqi fjalët: „ich – kochen – leider gar nicht gut“.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'verben', psq:'5a Çfarë bëjnë?', pde:'5a Was machen die Personen?', h:'reiten · singen · malen · surfen',
+     text:'1  Muriel [[reitet]].\n2  Karie und Jeany [[singen]].\n3  Alba [[malt]].\n4  Jason [[surft]].', e:'sie reitet, sie singen, sie malt, er surft.'},
+    {type:'order', topic:'satz', psq:'5b Sa mirë?', pde:'5b Wie gut können sie das?', cue:'😊😊 Muriel – reiten', parts:['Muriel','kann','sehr gut','reiten.'], de:'Muriel kann sehr gut reiten.', sq:'Muriel kalëron shumë mirë.'},
+    {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'sehr gut – Ricardo und Lea – Tango tanzen', parts:['Ricardo und Lea','können','sehr gut','Tango tanzen.'], de:'Ricardo und Lea können sehr gut Tango tanzen.', sq:'Ricardo dhe Lea kërcejnë tango shumë mirë.'},
+    {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'Ludmilla – reiten – nicht so gut', parts:['Ludmilla','kann','nicht so gut','reiten.'], de:'Ludmilla kann nicht so gut reiten.', sq:'Ludmilla nuk kalëron aq mirë.'},
+    {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'Ski fahren – Ivan – nicht gut', parts:['Ivan','kann','nicht gut','Ski fahren.'], de:'Ivan kann nicht gut Ski fahren.', sq:'Ivani nuk bën mirë ski.'},
+    {type:'order', topic:'satz', psq:'7a Bisedë', pde:'7a Gespräch', cue:'du – Gitarre spielen – auch – ?', parts:['Kannst','du','auch','Gitarre spielen?'], de:'Kannst du auch Gitarre spielen?', sq:'A di edhe ti të luash kitarë?'},
+    {type:'order', topic:'satz', psq:'7a Bisedë', pde:'7a Gespräch', cue:'aber ich – nein, – Klavier spielen – gut', parts:['Nein,','aber ich','kann','gut','Klavier spielen.'], de:'Nein, aber ich kann gut Klavier spielen.', sq:'Jo, por di të luaj mirë piano.'},
+    {type:'order', topic:'satz', psq:'7b Bisedë', pde:'7b Gespräch', cue:'leider gar nicht gut – ich – kochen', parts:['Ich','kann','leider gar nicht gut','kochen.'], de:'Ich kann leider gar nicht gut kochen.', sq:'Fatkeqësisht nuk di aspak të gatuaj.'},
+    {type:'order', topic:'satz', psq:'7b Bisedë', pde:'7b Gespräch', cue:'sehr gut – aber Sie – Kuchen backen', parts:['Aber Sie','können','sehr gut','Kuchen backen.'], de:'Aber Sie können sehr gut Kuchen backen.', sq:'Por ju dini të piqni shumë mirë ëmbëlsira.'},
+    {type:'cloze', psq:'8c sch apo s?', pde:'8c sch oder s?', h:'sp dhe st në fillim lexohen „shp“, „sht“, por shkruhen me s.',
+     text:'1  Gehen wir [[s]]pazieren?\n2  Wie [[s]]pät ist es?\n3  Buch[[s]]tabieren Sie, bitte.\n4  Das [[sch]]meckt gut.\n5  Er ist Fußball[[s]]pieler.\n6  [[S]]prichst du [[S]]panisch?',
+     e:'spazieren, spät, buchstabieren, Spieler, sprichst, Spanisch me s. Vetëm schmeckt me sch.'}
+  ]
+},
+
+/* ---------- AB Lektion 7, S. 77 ---------- */
+{
+  id:'bk-s77', emoji:'🌴', color:'#EE7A0C', seq:true, book:['faqe 77 · ushtrimi 9–11','S. 77 · Üb. 9–11'],
+  sq:'Faqe 77: wollen', de:'Seite 77: wollen',
+  desc:'tabela e wollen, fjali nga pjesët dhe flluskat e vizatimeve.',
+  tip:'ich will, du willst, er will, wir wollen, ihr wollt, sie wollen. Folja tjetër në fund.',
+  lesson:[
+    {t:'Faqe 77 📖', d:'Seite 77', p:'<b>9</b> Tabela. <b>10</b> Bëj fjali nga pjesët. <b>11</b> Plotëso flluskat.',
+     fix:[['ich wil','ich will','will me dy l.'],['du wellst','du willst','willst me i.']],
+     tip:'Ushtrimin 11 e ke bërë mirë: Wollen Sie, Was wollt ihr, Wir wollen ✓'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'table', topic:'modal', psq:'9 Tabela: wollen', pde:'9 Ergänzen Sie: wollen', th:['','wollen'],
+     rows:[['ich','will'],['du','willst'],['er / sie','will'],['wir','wollen'],['ihr','wollt',1],['sie / Sie','wollen',1]], e:'ich will, er will: pa mbaresë.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'In den Ferien – keinen Kurs – machen – Jakob', parts:['In den Ferien','will','Jakob','keinen Kurs','machen.'], de:'In den Ferien will Jakob keinen Kurs machen.', sq:'Në pushime Jakobi nuk do të bëjë asnjë kurs.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'keinen Stress – haben – in den Semesterferien – Jakob und Alina', parts:['In den Semesterferien','wollen','Jakob und Alina','keinen Stress','haben.'], de:'In den Semesterferien wollen Jakob und Alina keinen Stress haben.', sq:'Në pushimet e semestrit Jakobi dhe Alina nuk duan stres.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'zeichnen und fotografieren – Alina – in der Natur', parts:['Alina','will','in der Natur','zeichnen und fotografieren.'], de:'Alina will in der Natur zeichnen und fotografieren.', sq:'Alina do të vizatojë dhe fotografojë në natyrë.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'jeden Tag – Fußball spielen – Jakob', parts:['Jakob','will','jeden Tag','Fußball spielen.'], de:'Jakob will jeden Tag Fußball spielen.', sq:'Jakobi do të luajë futboll çdo ditë.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'Englisch – ein bisschen – Sie – lernen', parts:['Sie','wollen','ein bisschen','Englisch','lernen.'], de:'Sie wollen ein bisschen Englisch lernen.', sq:'Ju doni të mësoni pak anglisht.'},
+    {type:'order', topic:'satz', psq:'10 Fjali me wollen', pde:'10 Schreiben Sie Sätze', cue:'im Urlaub – viel Freizeit – Jakob und Alina – haben', parts:['Jakob und Alina','wollen','im Urlaub','viel Freizeit','haben.'], de:'Jakob und Alina wollen im Urlaub viel Freizeit haben.', sq:'Jakobi dhe Alina duan shumë kohë të lirë në pushime.'},
+    {type:'cloze', topic:'modal', psq:'11 Plotëso wollen', pde:'11 Ergänzen Sie wollen',
+     text:'A  Die Pizza schmeckt super. [[Willst]] du noch etwas?\nB  Bringst du bitte Struppi in den Flur? – Er [[will]] aber nicht.\nC  [[Wollen]] Sie schon gehen? – Ja, wir stehen morgen früh auf. – Ich [[will]] aber noch nicht ins Bett.\nD  Und ihr? Was [[wollt]] ihr im Urlaub machen? – Wir [[wollen]] im August nach Marokko fahren.',
+     e:'du willst, er will, Sie wollen, ich will, ihr wollt, wir wollen.'}
+  ]
+},
+
+/* ---------- AB Lektion 7, S. 79 ---------- */
+{
+  id:'bk-s79', emoji:'🕰️', color:'#2E86DE', seq:true, book:['faqe 79 · ushtrimi 15–17','S. 79 · Üb. 15–17'],
+  sq:'Faqe 79: hat … gemacht', de:'Seite 79: Perfekt',
+  desc:'tabela Partizip → folja, fjalitë me haben dhe dy tabelat ge…t / ge…en.',
+  tip:'haben në vendin 2, Partizip në fund. Normale: ge…t (gemacht). Rebele: ge…en (gegessen).',
+  lesson:[
+    {t:'Faqe 79 📖', d:'Seite 79', p:'<b>15</b> Shkruaj foljen dhe plotëso fjalitë. <b>16–17</b> Rendit në dy tabela: ge…t dhe ge…en.'},
+    {t:'Bravo! 🌟', d:'Selbst korrigiert', p:'Në libër i ke korrigjuar vetë: <b>geliebt</b> ✓ dhe <b>gefunden</b> ✓. Shumë mirë!',
+     fix:[['gekauft → taufen','gekauft → kaufen','taufen = pagëzoj 😄'],['gefunden → funden','gefunden → finden','finden = gjej.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'table', topic:'perfekt', psq:'15 Partizip → folja', pde:'15 Wie heißt das Verb?', th:['Partizip','Folja'],
+     rows:[['geübt','üben',1],['gegessen','essen'],['geschrieben','schreiben'],['gemacht','machen'],['gesprochen','sprechen'],['gekauft','kaufen'],['geliebt','lieben'],['gefunden','finden'],['gelesen','lesen']],
+     e:'gekauft → kaufen, geliebt → lieben (me ie), gefunden → finden.'},
+    {type:'cloze', topic:'perfekt', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['geübt','gegessen','geschrieben','gemacht','gesprochen','gekauft','geliebt','gefunden','gelesen'],
+     text:'Ich [[habe]] gestern viel Deutsch [[geübt]].\nDie Kinder [[haben]] schon [[gegessen]].\nEr [[hat]] die E-Mail schon [[geschrieben]].',
+     e:'ich habe, sie haben, er hat.'},
+    {type:'cloze', topic:'perfekt', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['geübt','gegessen','geschrieben','gemacht','gesprochen','gekauft','geliebt','gefunden','gelesen'],
+     text:'[[Habt]] ihr auch in Italien Urlaub [[gemacht]]?\n[[Haben]] Sie mit Frau Kindl [[gesprochen]]?\nElena [[hat]] Blumen für Oma [[gekauft]].',
+     e:'ihr habt, Sie haben, sie hat.'},
+    {type:'cloze', topic:'perfekt', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['geübt','gegessen','geschrieben','gemacht','gesprochen','gekauft','geliebt','gefunden','gelesen'],
+     text:'Wir [[haben]] Opa sehr [[geliebt]].\n[[Hast]] du dein Buch [[gefunden]]?\n[[Habt]] ihr den Text schon [[gelesen]]?',
+     e:'wir haben, du hast, ihr habt.'},
+    {type:'sort', topic:'perfekt', psq:'17 Dy tabela', pde:'17 Machen Sie zwei Tabellen', cats:['ge … (e)t','ge … en'],
+     items:[['gefrühstückt','ge … (e)t'],['gesagt','ge … (e)t'],['gekocht','ge … (e)t'],['geübt','ge … (e)t'],['gelebt','ge … (e)t'],['gekauft','ge … (e)t'],
+       ['gekostet','ge … (e)t'],['gegrillt','ge … (e)t'],['gesucht','ge … (e)t'],['gewohnt','ge … (e)t'],
+       ['getrunken','ge … en'],['gesehen','ge … en'],['getroffen','ge … en'],['gesprochen','ge … en']],
+     e:'Normale → ge…t. Rebele → ge…en: getrunken, gesehen, getroffen, gesprochen.'}
+  ]
 }
+  ]
+}
+
 ];

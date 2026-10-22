@@ -57,6 +57,18 @@ const WORDS = [
     ['dreißig','30 · tridhjetë'],['vierzig','40 · dyzet'],['fünfzig','50 · pesëdhjetë'],['hundert','100 · njëqind']]
 },
 {
+  id:'w-wetter', emoji:'🌦️', color:'#2E86DE', added:'2026-10-22T18:58', sq:'Moti & drejtimet', de:'Wetter & Himmelsrichtungen',
+  nouns:[['das','Wetter','moti'],['die','Sonne','dielli'],['der','Regen','shiu'],['der','Schnee','bora'],['die','Wolke','reja'],['der','Wind','era'],
+    ['der','Grad','grada'],['der','Norden','veriu'],['der','Süden','jugu'],['der','Westen','perëndimi'],['der','Osten','lindja']],
+  words:[['es regnet','bie shi'],['es schneit','bie borë'],['die Sonne scheint','ka diell'],['bewölkt','vranët'],['windig','me erë'],['warm','ngrohtë'],['kalt','ftohtë'],['heiß','shumë nxehtë']]
+},
+{
+  id:'w-einkaufen', emoji:'🛒', color:'#EE7A0C', added:'2026-10-22T18:58', sq:'Në supermarket', de:'Einkaufen',
+  nouns:[['der','Supermarkt','supermarketi'],['die','Packung','paketa'],['die','Dose','kanoçja'],['die','Flasche','shishja'],['das','Kilo','kilogrami'],
+    ['das','Obst','frutat'],['das','Gemüse','perimet'],['der','Joghurt','jogurti'],['das','Öl','vaji'],['die','Wurst','salsiçja'],['der','Wein','vera'],['das','Mehl','mielli']],
+  words:[['brauchen','më duhet'],['kaufen','blej'],['schmecken','ka shije'],['noch','akoma'],['Wie viel kostet das?','Sa kushton kjo?']]
+},
+{
   id:'w-hobbys', emoji:'🎨', color:'#D6409F', sq:'Hobi-t', de:'Hobbys & Freizeit',
   nouns:[['das','Hobby','hobi'],['die','Freizeit','koha e lirë'],['die','Musik','muzika'],['das','Kino','kinemaja'],['der','Ausflug','ekskursioni']],
   words:[['schwimmen','notoj'],['tanzen','kërcej'],['wandern','eci në natyrë'],['joggen','vrapoj'],['lesen','lexoj'],['singen','këndoj'],
@@ -74,10 +86,18 @@ const WORDS = [
     ['schreiben','shkruaj'],['rennen','vrapoj shpejt'],['üben','ushtroj']]
 },
 {
+  id:'w-laender', emoji:'🌍', color:'#16A34A', added:'2026-10-22T19:10', sq:'Shtetet & gjuhët', de:'Länder & Sprachen',
+  nouns:[],
+  words:[['Deutschland','Gjermania'],['die Schweiz','Zvicra'],['Österreich','Austria'],['Italien','Italia'],['Griechenland','Greqia'],['China','Kina'],
+    ['der Libanon','Libani'],['Albanien','Shqipëria'],['der Kosovo','Kosova'],['Deutsch','gjermanisht'],['Englisch','anglisht'],['Französisch','frëngjisht'],
+    ['Italienisch','italisht'],['Spanisch','spanjisht'],['Chinesisch','kinezisht'],['Albanisch','shqip'],['aus der Schweiz','nga Zvicra'],['Woher kommst du?','Nga vjen?']]
+},
+{
   id:'w-familie', emoji:'👨‍👩‍👧', color:'#F2545B', sq:'Familja', de:'Die Familie',
   nouns:[['die','Mutter','nëna'],['der','Vater','babai'],['die','Eltern','prindërit'],['der','Bruder','vëllai'],['die','Schwester','motra'],
     ['das','Kind','fëmija'],['der','Sohn','djali'],['die','Tochter','vajza'],['die','Oma','gjyshja'],['der','Opa','gjyshi'],
-    ['der','Mann','burri'],['die','Frau','gruaja'],['der','Freund','shoku, i dashuri'],['die','Freundin','shoqja, e dashura'],['das','Baby','foshnja']],
+    ['der','Mann','burri'],['die','Frau','gruaja'],['der','Freund','shoku, i dashuri'],['die','Freundin','shoqja, e dashura'],['das','Baby','foshnja'],
+    ['die','Geschwister','vëllezërit e motrat'],['die','Großeltern','gjyshërit'],['die','Enkelin','mbesa'],['der','Enkel','nipi']],
   words:[]
 },
 {
