@@ -370,7 +370,17 @@ const HOMEWORK = [
      tip:'das Zimmer → die Zimmer: shumësi është njësoj!'},
     {t:'Përshkruaj banesën', d:'Die Wohnung beschreiben',
      ex:[['Hans wohnt in einer 3,5-Zimmer-Wohnung.','Hansi banon në një banesë me 3,5 dhoma.'],['Die kleine Wohnung ist möbliert.','Banesa e vogël është e mobiluar.'],['Meine Wohnung hat ein Sofa.','Banesa ime ka një divan.'],['Im Zimmer gibt es einen Teppich.','Në dhomë ka një qilim.']],
-     tip:'<b>möbliert</b> = me mobilje (die Möbel).'}
+     tip:'<b>möbliert</b> = me mobilje (die Möbel).'},
+    {t:'Kujdes nga kurthet! 👀', d:'Achtung, Fallen!', p:'Këto gabime bëhen shpesh në test. Lexoji një herë me kujdes:',
+     fix:[
+      ['eine Brot','ein Brot','das Brot → ein, pa -e.'],
+      ['sechszehn / siebenzehn','sechzehn / siebzehn','Te 16 dhe 17 bie një copë e fjalës.'],
+      ['15:30 = halb drei','15:30 = halb vier','halb + ora TJETËR.'],
+      ['Am sieben Uhr','Um sieben Uhr','um + orë, am + ditë.'],
+      ['Ich aufstehe um sieben Uhr.','Ich stehe um sieben Uhr auf.','aufstehen ndahet: stehe … auf.'],
+      ['Am Montag Hans geht Hula-Hoop üben.','Am Montag geht Hans Hula-Hoop üben.','Folja është gjithmonë e dyta.'],
+      ['geschlaft / gespielen','geschlafen / gespielt','schlafen → ge…en (rebele), spielen → ge…t.'],
+      ['Ich mage Kaffee.','Ich mag Kaffee.','ich mag, pa mbaresë.']]}
   ],
   nouns:[['der','Apfel','molla'],['die','Orange','portokalli'],['das','Brot','buka'],['das','Wasser','uji'],['der','Kaffee','kafeja'],
     ['das','Zimmer','dhoma'],['das','Regal','rafti'],['der','Schrank','dollapi'],['der','Teppich','qilimi'],['der','Arbeitstisch','tavolina e punës'],

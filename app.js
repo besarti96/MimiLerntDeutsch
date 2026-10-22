@@ -23,14 +23,16 @@ const rnd = a => a[Math.random() * a.length | 0];
 const HW = typeof HOMEWORK !== 'undefined' ? HOMEWORK : [];
 HW.forEach(h => h.parts.forEach(p => p.hw = h.id));
 const HWP = HW.flatMap(h => h.parts);
+const WD = typeof WORDS !== 'undefined' ? WORDS : [];
+WD.forEach(c => c.wd = true);
 const chIdx = id => CHAPTERS.findIndex(c => c.id === id);
-const chById = id => CHAPTERS.find(c => c.id === id) || HWP.find(c => c.id === id);
+const chById = id => CHAPTERS.find(c => c.id === id) || HWP.find(c => c.id === id) || WD.find(c => c.id === id);
 const hwById = id => HW.find(h => h.id === id);
 const fmtDate = d => d.split('-').reverse().slice(0, 2).join('.') + '.';
 
 /* ================= Saved progress ================= */
 const fresh = () => ({ xp:0, streak:0, lastDay:null, day:null, dayXp:0, rounds:0, perfect:0, bestCombo:0,
-  ch:{}, hw:{}, mistakes:{}, badges:[], sound:true, cleared:false });
+  ch:{}, hw:{}, w:{}, mistakes:{}, badges:[], sound:true, cleared:false });
 let S = fresh();
 try {
   const d = JSON.parse(localStorage.getItem(KEY));
@@ -70,7 +72,7 @@ const doneCount = () => CHAPTERS.filter((c, i) => isDone(i)).length;
 /* stars split the range from the pass mark to 100 in thirds: 70 -> 70/80/90 */
 const starsOf = (b, p = PASS) => { const st = (100 - p) / 3; return b >= p + 2 * st ? 3 : b >= p + st ? 2 : b >= p ? 1 : 0; };
 /* progress record of a journey chapter or a homework part */
-const rec = (c, make) => { const box = c.hw ? S.hw : S.ch; return box[c.id] || (make ? (box[c.id] = {}) : {}); };
+const rec = (c, make) => { const box = c.hw ? S.hw : c.wd ? S.w : S.ch; return box[c.id] || (make ? (box[c.id] = {}) : {}); };
 const hwDone = p => (S.hw[p.id]?.best || 0) >= passOf(p);
 const hwCount = h => h.parts.filter(hwDone).length;
 
@@ -297,6 +299,31 @@ function genVocab(c){
   });
   return out;
 }
+/* word training: single words only, every word once per round, directions and question kinds mixed */
+const WKINDS = ['de2sq', 'sq2de', 'write', 'listen', 'art', 'sq2de', 'de2sq'];
+function wordQ(c, w, pool, kind){
+  const n = c.nouns.find(x => x[0] + ' ' + x[1] === w.de);
+  if (kind === 'art' && !n) kind = 'sq2de';
+  if (kind === 'listen' && !(canSpeak && S.sound)) kind = 'de2sq';
+  if (kind === 'write' && /[!?.,]/.test(w.de)) kind = 'sq2de';
+  const e = `${w.de} = ${w.sq}`;
+  if (kind === 'de2sq') return {type:'mc', psq:'Çfarë do të thotë?', pde:'Was bedeutet das?', q:w.de, speakQ:true, o:[w.sq, ...distract(pool, w, 'sq')], a:w.sq, say:w.de, e};
+  if (kind === 'sq2de') return {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das auf Deutsch?', q:w.sq, o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e};
+  if (kind === 'listen') return {type:'listen', psq:'Dëgjo dhe zgjidh', pde:'Hör zu und wähle', o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e};
+  if (kind === 'art') return {type:'mc', row:true, psq:'der, die apo das?', pde:'Welcher Artikel passt?', q:'___ ' + n[1], h:n[2], o:['der','die','das'], a:n[0], say:w.de, e};
+  return {type:'write', psq:'Shkruaje gjermanisht', pde:'Schreib das Wort auf Deutsch', q:w.sq, art:n ? n[0] : '', a:n ? n[1] : w.de, say:w.de, e};
+}
+function genWords(id){
+  const cats = id === 'w-all' ? WD : [chById(id)], seenDe = new Set(), items = [];
+  cats.forEach(c => vocabPool(c).forEach(w => { if (!seenDe.has(w.de)) { seenDe.add(w.de); items.push({c, w}); } }));
+  const n = id === 'w-all' ? 15 : 12, pick = shuffle(items).slice(0, n - 1);
+  const kinds = shuffle(pick.map((x, k) => WKINDS[k % WKINDS.length]));
+  const qs = pick.map(({c, w}, k) => ({...wordQ(c, w, vocabPool(c), kinds[k]), tid: c.id}));
+  const rest = items.filter(x => !pick.includes(x)), sqs = new Set();
+  const src = (rest.length >= 4 ? shuffle(rest) : shuffle(pick)).filter(x => !sqs.has(x.w.sq) && sqs.add(x.w.sq)).slice(0, 5);
+  if (src.length >= 4) qs.splice(1 + (Math.random() * (qs.length - 1) | 0), 0, {type:'match', pairs:src.map(x => [x.w.de, x.w.sq]), tid:src[0].c.id});
+  return qs;
+}
 function pickVaried(list, n){
   const out = [], perType = {}, used = new Set();
   for (const strict of [true, false]) for (const q of list) {
@@ -332,6 +359,7 @@ const keyOf = q => [q.type, q.tid, q.s || q.q || q.de || (q.hm && q.hm.join(':')
 function buildRound(mode, id){
   let qs = [];
   if (mode === 'mistakes') qs = shuffle(Object.values(S.mistakes).filter(q => S.sound || q.type !== 'listen')).slice(0, ROUND).map(q => ({...q}));
+  else if (mode === 'words') qs = genWords(id);
   else if (mode === 'chapter' && chById(id).final) {
     CHAPTERS.forEach(c => {
       if (c.final) return;
@@ -406,6 +434,7 @@ function home(){
   <h2 class="sec">Ushtrim i lirë<span>Freies Üben</span></h2>
   <div class="free">
     <button class="fbtn" data-act="chapters"><span class="em">📋</span><span><b>Zgjidh kapitullin</b><small>Kapitel selbst wählen</small></span></button>
+    ${WD.length ? `<button class="fbtn" data-act="words"><span class="em">🔤</span><span><b>Fjalët</b><small>Wörter-Training: nur Wörter, nach Thema</small></span></button>` : ''}
     <button class="fbtn" data-act="mix"><span class="em">⚡</span><span><b>Përzierje</b><small>Mix aus allen offenen Kapiteln</small></span></button>
     ${mc ? `<button class="fbtn mist" data-act="mistakes"><span class="em">🔁</span><span><b>Gabimet e mia (${mc})</b><small>Meine Fehler üben</small></span></button>` : ''}
     <button class="fbtn" data-act="dict"><span class="em">📚</span><span><b>Fjalori im</b><small>Mein Wörterbuch</small></span></button>
@@ -511,6 +540,38 @@ function chapters(){
       </button>`; }).join('')}</div>
   </div>`;
   window.scrollTo(0, 0);
+}
+/* ================= Word training ================= */
+function wordsPage(){
+  closeSheet(); G = null; L = null;
+  app.style.setProperty('--tc', 'var(--brand)');
+  const all = new Set(WD.flatMap(c => vocabPool(c).map(w => w.de))).size, ab = S.w['w-all']?.best;
+  app.innerHTML = `<div class="game">
+    <div class="gbar"><button class="x" data-act="home" aria-label="Kthehu">✕</button><h2 class="dict-h">🔤 Fjalët<span>Wörter-Training</span></h2></div>
+    <p class="de" style="margin:0 0 14px">Vetëm fjalë, pa fjali. Zgjidh një temë! 💪<br>Nur Wörter, keine Sätze. Wähle ein Thema!</p>
+    <button class="fbtn" data-act="wplay" data-id="w-all"><span class="em">🎲</span><span><b>Të gjitha fjalët</b><small>Alle Wörter gemischt · ${all} fjalë${ab != null ? ` · ${ab}%` : ''}</small></span></button>
+    <div class="topics" style="margin-top:14px">${WD.map(c => { const b = S.w[c.id]?.best, s = starsOf(b || 0);
+      return `<button class="topic" style="--tc:${c.color}" data-act="wsheet" data-id="${c.id}">
+        <span class="t-ico">${c.emoji}</span>
+        <span class="t-txt"><b>${esc(c.sq)}</b><span class="de">${esc(c.de)} · ${vocabPool(c).length} fjalë</span></span>
+        <span class="t-stars">${[1,2,3].map(k => `<span class="${k <= s ? 'on' : ''}">★</span>`).join('')}
+          <small>${b == null ? 'E re / Neu' : b + '%'}</small></span>
+      </button>`; }).join('')}</div>
+  </div>`;
+  window.scrollTo(0, 0);
+}
+function wordSheet(id){
+  const c = chById(id); SND.tap();
+  sheet.className = 'sheet plain';
+  sheet.style.setProperty('--tc', c.color);
+  sheet.innerHTML = `<div class="sh-in">
+    <div class="sh-top"><div class="grab"></div><div class="prof-h"><span class="cs-ico">${c.emoji}</span><button class="x" data-act="closesheet" aria-label="Mbyll">✕</button></div></div>
+    <h2 class="cs-t" style="margin-top:12px">${esc(c.sq)}</h2><p class="de" style="margin:0">${esc(c.de)}</p>
+    <button class="cta" data-act="wplay" data-id="${c.id}">🎯 Ushtro fjalët / Wörter üben</button>
+    <p class="de" style="margin:18px 0 8px">Prek një fjalë për ta dëgjuar. Tippe ein Wort an, um es zu hören.</p>
+    ${vocabPool(c).map(w => `<button class="drow" data-act="say" data-t="${esc(w.de)}"><b>${esc(w.de)}</b><span>${esc(w.sq)}</span></button>`).join('')}
+  </div>`;
+  openSheetEl();
 }
 function go(id){
   const c = chById(id);
@@ -669,9 +730,9 @@ function wcheck(){
   const q = cur(); if (G.locked) return;
   const inp = $('#w'), row = $('#wrow'), raw = inp.value.trim();
   if (!raw) { inp.focus(); return; }
-  const norm = s => s.toLowerCase().replace(/^(der|die|das)\s+/, '').trim();
+  const norm = s => s.toLowerCase().replace(/^(der|die|das)\s+/, '').replace(/ß/g, 'ss').trim();
   const flat = s => s.replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u');
-  const v = norm(raw), target = q.a.toLowerCase();
+  const v = norm(raw), target = norm(q.a);
   row.classList.remove('bad'); void row.offsetWidth;
   if (v === target) {
     G.locked = true; inp.disabled = true; row.classList.add('ok'); inp.blur();
@@ -868,6 +929,8 @@ function finish(){
   }
   const hwSet = c && c.hw ? hwById(c.hw) : null;
   if (G.mode === 'mistakes' && !Object.keys(S.mistakes).length) S.cleared = true;
+  const wc = G.mode === 'words' ? chById(G.id) : null;
+  if (G.mode === 'words') { const st = S.w[G.id] || (S.w[G.id] = {}); st.best = Math.max(st.best || 0, pct); st.plays = (st.plays || 0) + 1; }
   const newB = checkBadges(); save();
   const pass = passOf(c), lvNow = level(), up = lvNow > G.lvBefore, passed = !c || pct >= pass;
   const finale = c && c.final && passed;
@@ -885,7 +948,7 @@ function finish(){
     : pct >= 80 ? ['🌟', 'Fantastike, Mimoza!', 'Du bist super!']
     : ['🎉', 'Shumë mirë! Edhe pak ushtrim.', 'Sehr gut, weiter so!'];
   const done = doneCount(), jp = Math.round(done / CHAPTERS.length * 100);
-  app.style.setProperty('--tc', c ? c.color : 'var(--brand)');
+  app.style.setProperty('--tc', c ? c.color : wc ? wc.color : 'var(--brand)');
   app.innerHTML = `<section class="res">
     <div class="big-e">${e}</div>
     <h1>${G.ok}/${total}</h1>
@@ -910,6 +973,7 @@ function finish(){
         : `<button class="cta" data-act="again">${passed ? 'Luaj përsëri / Nochmal' : '💪 Provo përsëri / Nochmal'}</button>`}
       ${!passed && c && !c.final ? `<button class="cta light" data-act="lesson" data-id="${c.from || c.id}">📖 Përsërit mësimin / Lektion</button>` : ''}
       ${hwSet ? `<button class="cta light" data-act="hw" data-id="${hwSet.id}">${hwCur(hwSet) ? '📝 Detyrat / Hausaufgaben' : `${hwTag(c)[0]} / ${hwTag(c)[1]}`}</button>` : ''}
+      ${G.mode === 'words' ? '<button class="cta light" data-act="words">🔤 Fjalët / Wörter</button>' : ''}
       <button class="cta light" data-act="home">Harta / Zur Karte</button>
     </div>
   </section>`;
@@ -991,6 +1055,9 @@ document.addEventListener('click', e => {
     case 'again': return start(G.mode, G.id);
     case 'dict': return dict();
     case 'chapters': return chapters();
+    case 'words': return wordsPage();
+    case 'wsheet': return wordSheet(id);
+    case 'wplay': return start('words', id);
     case 'hw': return hwList(id);
     case 'home': return home();
     case 'hint': return hint();
