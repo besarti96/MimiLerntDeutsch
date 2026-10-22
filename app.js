@@ -32,7 +32,7 @@ const fmtDate = d => d.split('-').reverse().slice(0, 2).join('.') + '.';
 
 /* ================= Saved progress ================= */
 const fresh = () => ({ xp:0, streak:0, lastDay:null, day:null, dayXp:0, rounds:0, perfect:0, bestCombo:0,
-  ch:{}, hw:{}, w:{}, mistakes:{}, badges:[], sound:true, cleared:false });
+  ch:{}, hw:{}, w:{}, mistakes:{}, miss:{}, okRun:{}, hist:{}, badges:[], sound:true, cleared:false });
 let S = fresh();
 try {
   const d = JSON.parse(localStorage.getItem(KEY));
@@ -358,7 +358,7 @@ const keyOf = q => [q.type, q.tid, q.s || q.q || q.de || (q.hm && q.hm.join(':')
 
 function buildRound(mode, id){
   let qs = [];
-  if (mode === 'mistakes') qs = shuffle(Object.values(S.mistakes).filter(q => S.sound || q.type !== 'listen')).slice(0, ROUND).map(q => ({...q}));
+  if (mode === 'mistakes') qs = weakRound();
   else if (mode === 'words') qs = genWords(id);
   else if (mode === 'chapter' && chById(id).final) {
     CHAPTERS.forEach(c => {
@@ -436,8 +436,8 @@ function home(){
     <button class="fbtn" data-act="chapters"><span class="em">📋</span><span><b>Zgjidh kapitullin</b><small>Kapitel selbst wählen</small></span></button>
     ${WD.length ? `<button class="fbtn" data-act="words"><span class="em">🔤</span><span><b>Fjalët</b><small>Wörter-Training: nur Wörter, nach Thema</small></span></button>` : ''}
     <button class="fbtn" data-act="mix"><span class="em">⚡</span><span><b>Përzierje</b><small>Mix aus allen offenen Kapiteln</small></span></button>
-    ${mc ? `<button class="fbtn mist" data-act="mistakes"><span class="em">🔁</span><span><b>Gabimet e mia (${mc})</b><small>Meine Fehler üben</small></span></button>` : ''}
-    <button class="fbtn" data-act="dict"><span class="em">📚</span><span><b>Fjalori im</b><small>Mein Wörterbuch</small></span></button>
+    <button class="fbtn ${mc ? 'mist' : ''}" data-act="weak"><span class="em">💪</span><span><b>Pikat e dobëta${mc ? ` (${mc})` : ''}</b><small>Meine Schwächen: verstehen & üben</small></span></button>
+    <button class="fbtn" data-act="dict"><span class="em">📒</span><span><b>Fletë ndihme</b><small>Spickzettel: das Wichtigste & deine Fehler</small></span></button>
   </div>
   <p class="foot">Gemacht mit ❤️ für Mimoza</p>`;
   window.scrollTo(0, 0);
@@ -838,7 +838,16 @@ function correct(note, title){
   const gain = !first ? 5 : G.hint ? 6 : 10 + Math.min(G.combo - 1, 5) * 2;
   G.xp += gain; S.xp += gain; rollDay(); S.dayXp += gain;
   S.bestCombo = Math.max(S.bestCombo, G.combo);
-  if (S.mistakes[q.key] && first) delete S.mistakes[q.key];
+  /* weak spots: one point per day for a first-try answer (also via a sibling question), three points and it is gone */
+  let weak = '';
+  const wk = q.wk || q.key;
+  if (S.mistakes[wk]) {
+    const r = runOf(wk), sm = s => `<br><span style="font-weight:400">${s}</span>`;
+    if (!first) { S.okRun[wk] = {n:0, d:null}; weak = `💪 Pikë e dobët ${dots(0)} 0/${WEAK_OK}${sm('Nur beim 1. Versuch gibt es einen Punkt.')}`; }
+    else if (r.d === today()) weak = `💪 ${dots(r.n)} Saktë! Pika tjetër vjen nesër.${sm('Heute schon gezählt, morgen gibt es den nächsten Punkt.')}`;
+    else if (r.n + 1 >= WEAK_OK) { delete S.mistakes[wk]; delete S.okRun[wk]; G.out = (G.out || 0) + 1; weak = `🎉 ${dots(WEAK_OK)} Doli nga pikat e dobëta!${sm('3 Tage richtig: keine Schwäche mehr!')}`; }
+    else { S.okRun[wk] = {n:r.n + 1, d:today()}; weak = `💪 Pikë e dobët ${dots(r.n + 1)} ${r.n + 1}/${WEAK_OK}. Nesër pika tjetër!${sm(`Noch ${WEAK_OK - r.n - 1} Tag${WEAK_OK - r.n - 1 > 1 ? 'e' : ''} richtig, dann ist sie weg.`)}`; }
+  }
   save(); xpPop(gain);
   const milestone = first && [3, 5, 7, 10, 15].includes(G.combo);
   let love = null, note2 = null;
@@ -853,19 +862,28 @@ function correct(note, title){
   else { SND.ok(); buzz(25); }
   const p = rnd(PRAISE);
   const t = love || title || (milestone ? `${G.combo} me radhë! 🔥 ${G.combo} in Folge!` : first ? `${p[0]} ${p[1]}` : 'Saktë në provën e dytë! Richtig!');
-  const body = note || (first ? '' : esc(q.e));
+  const body = [note || (first ? '' : esc(q.e)), weak && `<span class="weaknote">${weak}</span>`].filter(Boolean).join('<br>');
   const sayT = q.type === 'order' ? q.de : q.type === 'match' ? '' : q.full || (q.s ? q.s.replace('___', q.a) : q.say);
   openSheet(true, t, body, sayT, !!love);
+}
+/* the correct answer of a question as one readable line */
+function ansOf(q){
+  if (q.type === 'clockpick') return q.say;
+  if (q.type === 'match') return q.pairs.map(p => p.join(' = ')).join(' · ');
+  if (q.type === 'order') return q.de;
+  if (q.type === 'write') return `${q.art ? q.art + ' ' : ''}${q.a}`;
+  if (q.q && q.q.includes('___')) return q.q.replace('___', q.a);
+  return q.full || (q.s ? q.s.replace('___', q.a) : q.a);
 }
 function wrong(note){
   const q = cur();
   G.combo = 0;
-  const store = {...q}; ['_pool','_picked','_done','_mist','_L','_R'].forEach(k => delete store[k]);
-  S.mistakes[q.key] = store; save();
+  const store = {...q}; ['_pool','_picked','_done','_mist','_L','_R','wk'].forEach(k => delete store[k]);
+  S.mistakes[q.key] = store; S.miss[q.key] = (S.miss[q.key] || 0) + 1; S.okRun[q.key] = {n:0, d:null};
+  if (q.wk) S.okRun[q.wk] = {n:0, d:null};
+  histAdd(q); save();
   SND.bad(); buzz([80, 50, 80]);
-  let ans = q.type === 'order' ? q.de : q.type === 'write' ? `${q.art} ${q.a}` : q.full || (q.s ? q.s.replace('___', q.a) : q.a);
-  if (q.type === 'clockpick') ans = q.say;
-  const body = `${note ? esc(note) + '<br>' : ''}${esc(q.e || '')}<br><b>E saktë / Richtig:</b> ${esc(ans)}`;
+  const body = `${note ? esc(note) + '<br>' : ''}${esc(q.e || '')}<br><b>E saktë / Richtig:</b> ${esc(ansOf(q))}`;
   openSheet(false, 'Jo krejt. Nicht ganz.', body, q.say || (q.type === 'order' ? q.de : ''));
 }
 function openSheet(ok, title, body, sayT, love){
@@ -959,6 +977,7 @@ function finish(){
       <div class="tile fire"><b>🔥${G.maxCombo}</b><small>Me radhë<br>In Folge</small></div>
     </div>
     ${love ? `<div class="lovecard">💌 ${esc(love)}</div>` : ''}
+    ${G.out ? `<div class="unlock">🎉 ${G.out} ${G.out > 1 ? 'pika të dobëta dolën' : 'pikë e dobët doli'} nga lista!<small>${G.out} Schwäche${G.out > 1 ? 'n' : ''} weniger. Noch ${Object.keys(S.mistakes).length} offen.</small></div>` : ''}
     ${hwSet && newlyDone ? (hwCur(hwSet)
       ? `<div class="unlock">📝 Detyra u krye! ${nextC ? `Tjetra: <b>${esc(nextC.sq)}</b>` : 'Të gjitha detyrat janë gati! 🎉'}<small>Hausaufgabe erledigt!</small></div>`
       : `<div class="unlock">📘 Ushtrimi u krye! ${nextC ? `Tjetri: <b>${esc(nextC.sq)}</b>` : 'Të gjitha ushtrimet janë gati! 🎉'}<small>Übung erledigt!</small></div>`) : ''}
@@ -974,6 +993,7 @@ function finish(){
       ${!passed && c && !c.final ? `<button class="cta light" data-act="lesson" data-id="${c.from || c.id}">📖 Përsërit mësimin / Lektion</button>` : ''}
       ${hwSet ? `<button class="cta light" data-act="hw" data-id="${hwSet.id}">${hwCur(hwSet) ? '📝 Detyrat / Hausaufgaben' : `${hwTag(c)[0]} / ${hwTag(c)[1]}`}</button>` : ''}
       ${G.mode === 'words' ? '<button class="cta light" data-act="words">🔤 Fjalët / Wörter</button>' : ''}
+      ${G.mode === 'mistakes' ? '<button class="cta light" data-act="weak">💪 Pikat e dobëta / Schwächen</button>' : ''}
       <button class="cta light" data-act="home">Harta / Zur Karte</button>
     </div>
   </section>`;
@@ -986,17 +1006,158 @@ function finish(){
   else SND.try();
 }
 
-/* ================= Dictionary ================= */
+/* ================= Weak spots (Pikat e dobëta) ================= */
+/* a wrong question stays a weak spot until it is answered right on the first try WEAK_OK times in a row */
+const WEAK_OK = 3;
+const dots = r => '●'.repeat(r) + '○'.repeat(WEAK_OK - r);
+const WORD_PSQ = new Set(['Çfarë do të thotë?', 'Si thuhet gjermanisht?', 'Dëgjo dhe zgjidh', 'der, die apo das?', 'Shkruaje gjermanisht']);
+/* grammar topics: [Albanian name, German name, the rule in one line] */
+const TOPICS = {
+  satz:     ['Rendi i fjalisë', 'Satzstellung', 'Folja në vendin 2, folja e dytë në fund. Pyetje pa W: folja del e para.'],
+  artikel:  ['der, die apo das', 'Artikel', 'Mësoje çdo emër bashkë me nyjën: der Tisch, die Lampe, das Bett.'],
+  ein:      ['ein, einen, kein', 'ein / kein · Akkusativ', 'Pas foljes (nehmen, kaufen, haben, möchten) ndryshon vetëm der: den, einen, keinen.'],
+  zeit:     ['am, um, im', 'Zeitangaben', 'am + ditë, um + orë, im + muaj ose stinë.'],
+  perfekt:  ['E kaluara', 'Perfekt', 'haben në vendin 2, Partizip në fund: ge…t (gemacht) ose ge…en (gegessen).'],
+  modal:    ['können, wollen, möchten, mögen', 'Modalverben', 'ich dhe er pa mbaresë (ich kann, er will). Folja tjetër shkon në fund.'],
+  seinhaben:['sein dhe haben', 'sein & haben', 'ich bin, du bist, er ist · ich habe, du hast, er hat.'],
+  verben:   ['Zgjedhimi i foljeve', 'Verben konjugieren', 'ich -e, du -st, er -t, wir -en, ihr -t. Rebelët: du fährst, er isst.'],
+  wfragen:  ['Fjalët pyetëse', 'W-Fragen', 'wer kush, was çfarë, wo ku, wann kur, wie si.'],
+  jnd:      ['Ja, Nein apo Doch', 'Ja / Nein / Doch', 'Doch = po, por vetëm kur pyetja ka nicht ose kein.'],
+  pronomen: ['Përemrat', 'Pronomen', 'der → er, die → sie, das → es.'],
+  uhrzeit:  ['Ora', 'Uhrzeit', 'halb + ora tjetër: 8:30 = halb neun. Viertel nach, Viertel vor.'],
+  dialog:   ['Përgjigjet në bisedë', 'Antworten im Gespräch', 'Lexo me kujdes: çfarë pyet ose çfarë do personi?']
+};
+const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög)/;
+/* finds the grammar topic of a question from what it asks; q.topic in the data wins */
+function topicOf(q){
+  if (q.topic) return q.topic;
+  if (q.type === 'order') return 'satz';
+  if (q.type === 'clock' || q.type === 'clockpick') return 'uhrzeit';
+  if (!q.o) return null;
+  const lo = q.o.map(o => String(o).toLowerCase()), only = (...w) => lo.every(o => w.includes(o));
+  const s = (q.s || q.q || '').replace('___', '');
+  if (only('der', 'die', 'das')) return 'artikel';
+  if (only('der', 'die', 'das', 'den', 'dem', 'ein', 'eine', 'einen', 'einem', 'einer', 'kein', 'keine', 'keinen', 'keinem', 'nicht', 'mein', 'meine', 'meinen')) return 'ein';
+  if (only('am', 'um', 'im', 'in', 'an')) return 'zeit';
+  if (only('ja', 'nein', 'doch')) return 'jnd';
+  if (only('wer', 'was', 'wo', 'wann', 'wie', 'woher', 'wohin', 'warum', 'wie viel')) return 'wfragen';
+  if (only('ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr')) return 'pronomen';
+  if (lo.filter(o => /^ge\S+(t|en)$/.test(o)).length >= 2) return 'perfekt';
+  if (lo.every(o => HABEN.test(o))) return /\bge\w+(t|en)\b/.test(s) ? 'perfekt' : 'seinhaben';
+  if (lo.every(o => /^(bin|bist|ist|sind|seid)$/.test(o))) return 'seinhaben';
+  if (lo.every(o => MODAL.test(o))) return 'modal';
+  if (q.pde && /antwort|passt|sagst/i.test(q.pde)) return 'dialog';
+  if (q.a === q.say && String(q.a).split(' ').length >= 3) return 'satz';
+  if (lo.every(o => /^[a-zäöüß]+$/.test(o) && /(e|st|t|en|n)$/.test(o))) return 'verben';
+  return null;
+}
+const isWordQ = q => WORD_PSQ.has(q.psq) && q.say && q.say.split(' ').length <= 3;
+/* mistakes are summed up per word (das Brot) or per grammar topic (Satzstellung, Perfekt …) */
+function groupOf(q){
+  if (isWordQ(q)) return {id:'w:' + q.say, k:'w', l:q.say, s:(q.e || '').split(' = ').find(p => p !== q.say) || ''};
+  const t = topicOf(q), c = chById(q.tid);
+  if (t) return {id:'t:' + t, k:'g', l:TOPICS[t][0], s:TOPICS[t][1], e:TOPICS[t][2]};
+  return {id:'c:' + (c ? c.id : 'x'), k:'g', l:c ? c.sq : 'Të tjera', s:c ? c.de : 'Sonstiges', e:q.e || ''};
+}
+/* progress of a weak spot: n points, at most one per day (d = day of the last point) */
+const runOf = k => { const r = S.okRun[k]; return r && typeof r === 'object' ? r : {n:r || 0, d:null}; };
+/* a different question that trains the same thing: same word in another kind, or same grammar topic */
+let QIDX = null;
+function qIndex(){
+  if (QIDX) return QIDX;
+  QIDX = {};
+  [...CHAPTERS.filter(c => !c.final), ...HWP.filter(p => !p.test)].forEach(c =>
+    tagged(c, [...c.items, ...(c.clocks ? genClocks(4) : [])]).forEach(q => {
+      const t = q.type !== 'match' && !isWordQ(q) && topicOf(q);
+      if (t) (QIDX[t] ||= []).push({...q, key:keyOf(q)});
+    }));
+  return QIDX;
+}
+const KIND_PSQ = {de2sq:'Çfarë do të thotë?', sq2de:'Si thuhet gjermanisht?', listen:'Dëgjo dhe zgjidh', art:'der, die apo das?', write:'Shkruaje gjermanisht'};
+function sibling(q){
+  if (isWordQ(q)) {
+    for (const c of [...WD, ...CHAPTERS, ...HWP]) {
+      const pool = vocabPool(c), w = pool.find(x => x.de === q.say);
+      if (!w || pool.length < 4) continue;
+      for (const k of shuffle(Object.keys(KIND_PSQ))) { const s = wordQ(c, w, pool, k); if (s.psq !== q.psq) return {...s, tid:c.id}; }
+    }
+    return null;
+  }
+  const t = topicOf(q), cands = t ? (qIndex()[t] || []).filter(x => x.key !== q.key && (S.sound || x.type !== 'listen')) : [];
+  return cands.length ? {...rnd(cands)} : null;
+}
+/* weak-spot round: questions without today's point first; about half are asked as a sibling question */
+function weakRound(){
+  const t = today();
+  const list = shuffle(Object.values(S.mistakes).filter(q => S.sound || q.type !== 'listen'))
+    .sort((a, b) => (runOf(a.key).d === t) - (runOf(b.key).d === t)).slice(0, ROUND);
+  return list.map(q => {
+    const s = Math.random() < .5 ? sibling(q) : null;
+    return s ? {...s, key:s.key || keyOf(s), wk:q.key} : {...q};
+  });
+}
+function histAdd(q, n = 1){
+  const g = groupOf(q), h = S.hist[g.id] || (S.hist[g.id] = {l:g.l, s:g.s, k:g.k, n:0});
+  h.n += n; h.e = g.e || ''; h.ex = ansOf(q);
+}
+function weakPage(){
+  closeSheet(); G = null; L = null;
+  app.style.setProperty('--tc', 'var(--brand)');
+  const open = Object.values(S.mistakes), openBy = {};
+  open.forEach(q => (openBy[groupOf(q).id] ||= []).push(q));
+  const groups = Object.entries(S.hist).map(([id, h]) => ({...h, open:openBy[id] || []})).sort((a, b) => b.open.length - a.open.length || b.n - a.n);
+  const learned = groups.filter(g => !g.open.length).length;
+  const todo = open.filter(q => runOf(q.key).d !== today()).length;
+  const row = g => { const o = g.open.length, r = o ? Math.min(...g.open.map(q => runOf(q.key).n)) : WEAK_OK;
+    return `<button class="wk ${o ? '' : 'ok'}" data-act="say" data-t="${esc(g.k === 'w' ? g.l : g.ex || '')}">
+      <span class="wk-top"><b>${esc(g.l)}</b><i class="misscount">✗ ${g.n}×</i></span>
+      ${g.s ? `<span class="wk-s">${esc(g.s)}</span>` : ''}
+      ${g.e ? `<small>💡 ${esc(strip(g.e))}</small>` : ''}
+      ${g.k !== 'w' && g.ex ? `<small class="wk-ex">✓ ${esc(g.ex)}</small>` : ''}
+      <span class="wk-st">${o ? `<span class="wk-dots">${dots(r)}</span> ${o} ${o > 1 ? 'pyetje të hapura' : 'pyetje e hapur'} · ${o} offen` : '✓ E mësuar · gelernt'}</span>
+    </button>`; };
+  const list = (gs, more) => gs.length ? `<div class="fixes">${gs.slice(0, 8).map(row).join('')}</div>
+    ${gs.length > 8 ? `<details class="szmore"><summary>${more} (${gs.length})</summary><div class="fixes">${gs.slice(8).map(row).join('')}</div></details>` : ''}`
+    : '<p class="szhint">Asnjë gabim këtu. Bravo! 🎉 Keine Fehler.</p>';
+  const book = [...HW].reverse().flatMap(h => h.parts.flatMap(p => p.lesson.flatMap(s => s.fix || [])));
+  const fixBtn = ([w, r, n]) => `<button class="fix" data-act="say" data-t="${esc(r)}"><span class="fx-w">✗ ${esc(w)}</span><span class="fx-r">✓ ${esc(r)}</span>${n ? `<small>${esc(n)}</small>` : ''}</button>`;
+  app.innerHTML = `<div class="game">
+    <div class="gbar"><button class="x" data-act="home" aria-label="Kthehu">✕</button><h2 class="dict-h">💪 Pikat e dobëta<span>Meine Schwächen</span></h2></div>
+    <section class="wkhero">
+      <b>🎯 Testo dobësitë</b><span class="de">Teste deine Schwächen</span>
+      <p>${!open.length ? 'Tani nuk ke asnjë pikë të dobët! 🎉 Kur gabon diçka, ajo shfaqet këtu.'
+        : todo ? `Ke <b>${open.length}</b> pika të dobëta. Çdo ditë që e bën saktë merr një pikë. Me <b>3 pikë</b> ●●● del nga lista. Nëse gabon përsëri, kthehet.`
+        : `Për sot i ke bërë të gjitha! ✓ Kthehu <b>nesër</b> për pikën tjetër. 😊`}</p>
+      <small>${!open.length ? 'Wenn du etwas falsch machst, erscheint es hier.'
+        : todo ? 'Jeden Tag richtig = 1 Punkt. 3 Punkte ●●● → die Schwäche ist weg. Wieder falsch → sie kommt zurück. Manchmal kommt eine ähnliche Frage zur gleichen Regel.'
+        : 'Für heute alles erledigt! Morgen gibt es die nächsten Punkte.'}</small>
+      ${open.length ? `<button class="cta" data-act="mistakes">${todo ? `🎯 Fillo / Starten (${Math.min(open.length, ROUND)} pyetje)` : '🔁 Ushtro përsëri / Nochmal üben'}</button>` : ''}
+      ${groups.length ? `<div class="wkstats"><span><b>${groups.length - learned}</b> për të ushtruar<br><i>zu üben</i></span><span><b>${learned}</b> të mësuara<br><i>gelernt</i></span><span><b>${groups.reduce((s, g) => s + g.n, 0)}</b> gabime gjithsej<br><i>Fehler gesamt</i></span></div>` : ''}
+    </section>
+    <section class="szsec"><div class="slide"><h2>📝 Fjalët</h2><p class="de sd">Wörter, die du oft falsch hast</p>
+      ${list(groups.filter(g => g.k === 'w'), 'Shfaq të gjitha · Alle zeigen')}</div></section>
+    <section class="szsec"><div class="slide"><h2>🧩 Gramatika & rendi</h2><p class="de sd">Grammatik & Satzstellung</p>
+      ${list(groups.filter(g => g.k !== 'w'), 'Shfaq të gjitha · Alle zeigen')}</div></section>
+    ${book.length ? `<section class="szsec"><div class="slide"><h2>📖 Nga libri yt</h2><p class="de sd">Fehler aus deinem Buch</p>
+      <div class="fixes">${book.slice(0, 5).map(fixBtn).join('')}</div>
+      ${book.length > 5 ? `<details class="szmore"><summary>Shfaq të gjitha · Alle zeigen (${book.length})</summary><div class="fixes">${book.slice(5).map(fixBtn).join('')}</div></details>` : ''}
+    </div></section>` : ''}
+  </div>`;
+  window.scrollTo(0, 0);
+}
+
+/* ================= Spickzettel (cheat sheet) ================= */
 function dict(){
   closeSheet(); G = null; L = null;
   app.style.setProperty('--tc', 'var(--brand)');
-  const list = CHAPTERS.filter((c, i) => !c.final && seen(i) && (c.nouns.length || c.words.length));
+  const secs = typeof SPICK !== 'undefined' ? SPICK : [];
   app.innerHTML = `<div class="game">
-    <div class="gbar"><button class="x" data-act="home" aria-label="Kthehu">✕</button><h2 class="dict-h">📚 Fjalori im<span>Mein Wörterbuch</span></h2></div>
-    <p class="de" style="margin:0 0 6px">Prek një fjalë për ta dëgjuar. Tippe ein Wort an, um es zu hören.</p>
-    ${list.map(c => `<section class="dsec" style="--tc:${c.color}"><h3>${c.emoji} ${esc(c.sq)}</h3>
-      ${vocabPool(c).map(w => `<button class="drow" data-act="say" data-t="${esc(w.de)}"><b>${esc(w.de)}</b><span>${esc(w.sq)}</span></button>`).join('')}</section>`).join('')}
-    <p class="foot">Fjalë të reja hapen me çdo kapitull! ✨</p></div>`;
+    <div class="gbar"><button class="x" data-act="home" aria-label="Kthehu">✕</button><h2 class="dict-h">📒 Fletë ndihme<span>Spickzettel</span></h2></div>
+    <p class="de" style="margin:0 0 10px">Gjithçka më e rëndësishme në një vend. Prek për ta dëgjuar. 🔊<br>Das Wichtigste auf einen Blick. Tippe, um es zu hören.</p>
+    <nav class="sznav">${secs.map(s => `<button class="szchip" data-act="jump" data-id="${s.id}">${esc(s.chip)}</button>`).join('')}</nav>
+    ${secs.map(s => `<section class="szsec" id="${s.id}">${slideHTML(s)}</section>`).join('')}
+    <p class="foot">Fjalët sipas temave i gjen te 🔤 Fjalët. Wortlisten findest du unter 🔤 Fjalët.</p>
+  </div>`;
   window.scrollTo(0, 0);
 }
 
@@ -1054,6 +1215,8 @@ document.addEventListener('click', e => {
     case 'mistakes': return start('mistakes');
     case 'again': return start(G.mode, G.id);
     case 'dict': return dict();
+    case 'weak': return weakPage();
+    case 'jump': return document.getElementById(id)?.scrollIntoView({behavior: reduced() ? 'auto' : 'smooth', block: 'start'});
     case 'chapters': return chapters();
     case 'words': return wordsPage();
     case 'wsheet': return wordSheet(id);
@@ -1088,5 +1251,7 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'w') { e.preventDefault(); wcheck(); } });
 
+/* older saves: build the weak-spot history once from the open mistakes */
+if (!Object.keys(S.hist).length && Object.keys(S.mistakes).length) { Object.values(S.mistakes).forEach(q => histAdd(q, S.miss[q.key] || 1)); save(); }
 applyTheme();
 home();
