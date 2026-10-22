@@ -49,8 +49,8 @@ function bumpStreak(){
   const t = today(); if (S.lastDay === t) return false;
   S.streak = S.lastDay && dayDiff(S.lastDay, t) === 1 ? S.streak + 1 : 1; S.lastDay = t; return true;
 }
-/* dark mode: follows the phone until she picks one in the settings */
-const isDark = () => S.dark ?? matchMedia('(prefers-color-scheme: dark)').matches;
+/* light mode by default; dark only when picked in the settings */
+const isDark = () => S.dark ?? false;
 const themeLabel = () => isDark() ? '☀️ E çelët / Hell' : '🌙 E errët / Dunkel';
 function applyTheme(){
   document.documentElement.dataset.theme = isDark() ? 'dark' : 'light';
@@ -61,15 +61,17 @@ const lvlName = l => LEVELS[Math.min(l - 1, LEVELS.length - 1)];
 
 /* journey state */
 const best = i => S.ch[CHAPTERS[i].id]?.best || 0;
-const isDone = i => best(i) >= PASS;
+const passOf = c => (c && c.pass) || PASS;
+const isDone = i => best(i) >= passOf(CHAPTERS[i]);
 const unlocked = i => i === 0 || isDone(i - 1);
 const seen = i => unlocked(i) || !!S.ch[CHAPTERS[i].id]?.lesson;
 const curIdx = () => { const i = CHAPTERS.findIndex((c, k) => !isDone(k)); return i < 0 ? CHAPTERS.length : i; };
 const doneCount = () => CHAPTERS.filter((c, i) => isDone(i)).length;
-const starsOf = b => b >= 90 ? 3 : b >= 80 ? 2 : b >= PASS ? 1 : 0;
+/* stars split the range from the pass mark to 100 in thirds: 70 -> 70/80/90 */
+const starsOf = (b, p = PASS) => { const st = (100 - p) / 3; return b >= p + 2 * st ? 3 : b >= p + st ? 2 : b >= p ? 1 : 0; };
 /* progress record of a journey chapter or a homework part */
 const rec = (c, make) => { const box = c.hw ? S.hw : S.ch; return box[c.id] || (make ? (box[c.id] = {}) : {}); };
-const hwDone = p => (S.hw[p.id]?.best || 0) >= PASS;
+const hwDone = p => (S.hw[p.id]?.best || 0) >= passOf(p);
 const hwCount = h => h.parts.filter(hwDone).length;
 
 const BADGES = [
@@ -283,6 +285,8 @@ function genVocab(c){
     out.push({type:'write', psq:'Shkruaje gjermanisht', pde:'Schreib das Wort auf Deutsch', q:n[2], art:n[0], a:n[1],
       say:n[0] + ' ' + n[1], e:`${n[2]} = ${n[0]} ${n[1]}`});
   });
+  if (c.writeWords) c.words.forEach(w => out.push({type:'write', psq:'Shkruaje gjermanisht', pde:'Schreib das Wort auf Deutsch', q:w[1], art:'', a:w[0],
+    say:w[0], e:`${w[1]} = ${w[0]}`}));
   if (pool.length >= 4) pool.forEach(w => {
     out.push({type:'mc', psq:'Çfarë do të thotë?', pde:'Was bedeutet das?', q:w.de, speakQ:true,
       o:[w.sq, ...distract(pool, w, 'sq')], a:w.sq, say:w.de, e:`${w.de} = ${w.sq}`});
@@ -306,16 +310,19 @@ function pickVaried(list, n){
 }
 const tagged = (c, list) => list.map(q => ({...q, tid: c.id}));
 function poolOf(c){ return { gen: tagged(c, genVocab(c)), its: tagged(c, [...c.items, ...(c.clocks ? genClocks(6) : [])]) }; }
-function compose(gen, its, n){
+/* mix: how many vocab questions (of them writing ones) and sentence orders a round gets */
+function compose(gen, its, n, {vocab = 3, write = 0, order = 2} = {}){
   gen = shuffle(gen);
   const match = rnd(its.filter(q => q.type === 'match'));
   const orders = shuffle(its.filter(q => q.type === 'order'));
   const rest = shuffle(its.filter(q => q.type !== 'match' && q.type !== 'order'));
   const need = n - (match ? 1 : 0);
-  let qs = [...pickVaried(gen, Math.min(3, gen.length)), ...orders.slice(0, 2)];
+  const writes = gen.filter(q => q.type === 'write').slice(0, write);
+  const other = gen.filter(q => !writes.some(w => w.say === q.say));
+  let qs = [...writes, ...pickVaried(other, Math.max(0, Math.min(vocab - writes.length, other.length))), ...orders.slice(0, order)];
   qs.push(...rest.slice(0, Math.max(0, need - qs.length)));
-  if (qs.length < need) qs.push(...pickVaried(gen.filter(q => !qs.includes(q)), need - qs.length));
-  if (qs.length < need) qs.push(...orders.slice(2, 2 + need - qs.length));
+  if (qs.length < need) qs.push(...pickVaried(other.filter(q => !qs.includes(q)), need - qs.length));
+  if (qs.length < need) qs.push(...orders.slice(order, order + need - qs.length));
   qs = shuffle(qs);
   if (match) qs.splice(1 + (Math.random() * Math.max(1, qs.length - 1) | 0), 0, match);
   return qs;
@@ -334,9 +341,10 @@ function buildRound(mode, id){
     const gen = shuffle(CHAPTERS.flatMap(c => tagged(c, genVocab(c))));
     qs = shuffle([...qs, ...pickVaried(gen, FINAL_ROUND - qs.length)]).slice(0, FINAL_ROUND);
   } else {
-    const list = mode === 'chapter' ? [chById(id)] : CHAPTERS.filter((c, i) => !c.final && seen(i));
+    const c = mode === 'chapter' ? chById(id) : null, n = (c && c.n) || ROUND;
+    const list = c ? [...(c.from ? [chById(c.from)] : []), c] : CHAPTERS.filter((c, i) => !c.final && seen(i));
     const pools = list.map(poolOf);
-    qs = compose(pools.flatMap(p => p.gen), pools.flatMap(p => p.its), ROUND).slice(0, ROUND);
+    qs = compose(pools.flatMap(p => p.gen), pools.flatMap(p => p.its), n, c ? c.mix : undefined).slice(0, n);
   }
   return qs.map(q => {
     q.key = q.key || keyOf(q);
@@ -406,7 +414,7 @@ function home(){
   window.scrollTo(0, 0);
 }
 function nodeHTML(c, i){
-  const d = isDone(i), u = unlocked(i), cur = i === curIdx(), s = starsOf(best(i));
+  const d = isDone(i), u = unlocked(i), cur = i === curIdx(), s = starsOf(best(i), passOf(c));
   return `${c.unit ? `<div class="unit"><b>${esc(c.unit[0])}</b><span>${esc(c.unit[1])}</span></div>` : ''}
   <div class="nrow" style="--off:${OFF[i % OFF.length]}px"><div class="nwrap">
     ${cur ? '<span class="bubble">Fillo! Start!</span>' : ''}
@@ -418,6 +426,9 @@ function nodeHTML(c, i){
 }
 
 /* ================= Homework ================= */
+/* only the newest set is the current homework */
+const hwCur = h => h === HW[HW.length - 1];
+const hwTag = c => { const h = hwById(c.hw); return hwCur(h) ? ['📝 Detyrë', 'Hausaufgabe'] : ['📘 ' + h.sq.split(':')[0], h.de.split(' · ')[0]]; };
 function hwCard(){
   const h = HW[HW.length - 1]; if (!h) return '';
   const n = h.parts.length, d = hwCount(h);
@@ -425,24 +436,34 @@ function hwCard(){
     <span class="hw-tape" aria-hidden="true"></span>
     <span class="hw-top"><span class="hw-tag">${h.date === today() ? 'SOT · HEUTE' : '📅 ' + fmtDate(h.date)}</span>
       ${d === n ? '<span class="hw-ok">✓ Gati</span>' : '<span class="hw-new">E RE · NEU</span>'}</span>
-    <b>📝 Detyrat e shtëpisë</b><small>Hausaufgaben · ${esc(h.de)}</small>
+    <b>📝 Detyrat e shtëpisë${h.badge ? ` <span class="hw-test">${esc(h.badge[0])}</span>` : ''}</b><small>Hausaufgaben · ${esc(h.de)}</small>
     <span class="hw-prog"><i style="width:${d / n * 100}%"></i></span>
     <small>${d}/${n} ushtrime gati · Übungen erledigt</small>
   </button>`;
 }
-function hwList(){
+/* older homework sets stay as their own block in the chapter list */
+function hwBlock(h){
+  const n = h.parts.length, d = hwCount(h);
+  return `<button class="topic" style="--tc:${h.parts[0].color}" data-act="hw" data-id="${h.id}">
+    <span class="t-ico">📘</span>
+    <span class="t-txt"><b>${esc(h.sq)}</b><span class="de">${esc(h.de)}</span></span>
+    <span class="t-stars"><b>${d === n ? '✓' : `${d}/${n}`}</b><small>ushtrime</small></span>
+  </button>`;
+}
+function hwList(id){
   closeSheet(); G = null; L = null;
+  const h = hwById(id) || HW[HW.length - 1], now = hwCur(h);
   app.style.setProperty('--tc', 'var(--brand)');
   app.innerHTML = `<div class="game">
-    <div class="gbar"><button class="x" data-act="chapters" aria-label="Kthehu">✕</button><h2 class="dict-h">📝 Detyrat e shtëpisë<span>Hausaufgaben</span></h2></div>
+    <div class="gbar"><button class="x" data-act="chapters" aria-label="Kthehu">✕</button><h2 class="dict-h">${now ? '📝 Detyrat e shtëpisë<span>Hausaufgaben</span>' : `📘 ${esc(h.sq)}<span>${esc(h.de)}</span>`}</h2></div>
     <p class="de" style="margin:0 0 6px">Këto janë ushtrimet nga libri yt. Bëji me radhë! 💪<br>Das sind die Übungen aus deinem Buch.</p>
-    ${[...HW].reverse().map(h => `<section class="hwset">
-      <div class="hw-head"><b>${esc(h.sq)}</b><small>${h.date === today() ? 'Sot / Heute' : fmtDate(h.date)} · ${esc(h.de)}</small></div>
+    ${[h].map(h => `<section class="hwset">
+      <div class="hw-head"><b>${esc(h.sq)}${h.badge ? ` <span class="hw-test">${esc(h.badge[0])}</span>` : ''}</b><small>${h.date === today() ? 'Sot / Heute' : fmtDate(h.date)} · ${esc(h.de)}</small></div>
       <div class="topics">${h.parts.map((p, k) => { const b = S.hw[p.id]?.best, d = hwDone(p);
         return `<button class="topic hwrow ${d ? 'done' : ''}" style="--tc:${p.color}" data-act="chap" data-id="${p.id}">
           <span class="hw-chk">${d ? '✓' : k + 1}</span>
           <span class="t-txt"><b>${p.emoji} ${esc(p.sq)}</b><span class="de">${esc(p.de)}</span><small class="hw-book">📖 ${esc(p.book[0])}</small></span>
-          <span class="t-stars">${[1,2,3].map(s => `<span class="${s <= starsOf(b || 0) ? 'on' : ''}">★</span>`).join('')}
+          <span class="t-stars">${[1,2,3].map(s => `<span class="${s <= starsOf(b || 0, passOf(p)) ? 'on' : ''}">★</span>`).join('')}
             <small>${b == null ? 'E re / Neu' : b + '%'}</small></span>
         </button>`; }).join('')}</div>
     </section>`).join('')}
@@ -457,6 +478,7 @@ function chapSheet(id){
   const st = rec(c), b = st.best;
   let btns;
   if (c.final) btns = `<button class="cta" data-act="play" data-id="${c.id}">🏆 Fillo testin / Prüfung starten</button>`;
+  else if (c.test) btns = `<button class="cta" data-act="play" data-id="${c.id}">🎓 Fillo testin / Test starten</button>`;
   else if (!st.lesson) btns = `<button class="cta" data-act="lesson" data-id="${c.id}">📖 Fillo me mësimin / Zur Lektion</button>`;
   else btns = `<button class="cta" data-act="play" data-id="${c.id}">🎯 Ushtro / Üben</button>
     <button class="cta light" data-act="lesson" data-id="${c.id}">📖 Përsërit mësimin / Lektion</button>`;
@@ -464,11 +486,11 @@ function chapSheet(id){
   sheet.style.setProperty('--tc', c.color);
   sheet.innerHTML = `<div class="sh-in">
     <div class="sh-top"><div class="grab"></div><div class="prof-h"><span class="cs-ico">${c.emoji}</span><button class="x" data-act="closesheet" aria-label="Mbyll">✕</button></div></div>
-    <p class="cs-num">${c.hw ? `📝 Detyrë shtëpie · ${esc(c.book[0])}<br><span style="font-weight:400">Hausaufgabe · ${esc(c.book[1])}</span>` : `Kapitulli ${i + 1} / Kapitel ${i + 1}`}</p>
+    <p class="cs-num">${c.hw ? `${hwCur(hwById(c.hw)) ? '📝 Detyrë shtëpie' : hwTag(c)[0]} · ${esc(c.book[0])}<br><span style="font-weight:400">${hwTag(c)[1]} · ${esc(c.book[1])}</span>` : `Kapitulli ${i + 1} / Kapitel ${i + 1}`}</p>
     <h2 class="cs-t">${esc(c.sq)}</h2><p class="de" style="margin:0">${esc(c.de)}</p>
     <p class="cs-d">${esc(c.desc)}</p>
     ${!c.hw && !unlocked(i) && b == null ? `<p class="cs-best">🧭 Në udhëtim vjen më vonë, por mund ta provosh!<br><small>Kommt später auf der Reise – du darfst es trotzdem schon üben.</small></p>` : ''}
-    ${b != null ? `<p class="cs-best">Rezultati më i mirë: <b>${b}%</b> ${'★'.repeat(starsOf(b))}${b < PASS ? `<br><small>Të duhen ${PASS}% për ta kaluar. Du brauchst ${PASS}%.</small>` : ''}</p>` : ''}
+    ${b != null ? `<p class="cs-best">Rezultati më i mirë: <b>${b}%</b> ${'★'.repeat(starsOf(b, passOf(c)))}${b < passOf(c) ? `<br><small>Të duhen ${passOf(c)}% për ta kaluar. Du brauchst ${passOf(c)}%.</small>` : ''}</p>` : ''}
     ${btns}
   </div>`;
   openSheetEl();
@@ -480,7 +502,7 @@ function chapters(){
     <div class="gbar"><button class="x" data-act="home" aria-label="Kthehu">✕</button><h2 class="dict-h">📋 Kapitujt<span>Alle Kapitel</span></h2></div>
     <p class="de" style="margin:0 0 14px">Zgjidh çfarë do të mësosh sot. Wähle, was du heute lernen willst.</p>
     ${hwCard()}
-    <div class="topics" style="margin-top:14px">${CHAPTERS.map((c, i) => { const b = S.ch[c.id]?.best, s = starsOf(b || 0);
+    <div class="topics" style="margin-top:14px">${HW.slice(0, -1).reverse().map(hwBlock).join('')}${CHAPTERS.map((c, i) => { const b = S.ch[c.id]?.best, s = starsOf(b || 0, passOf(c));
       return `<button class="topic" style="--tc:${c.color}" data-act="chap" data-id="${c.id}">
         <span class="t-ico">${c.emoji}</span>
         <span class="t-txt"><b>${i + 1}. ${esc(c.sq)}</b><span class="de">${esc(c.de)}</span></span>
@@ -492,7 +514,7 @@ function chapters(){
 }
 function go(id){
   const c = chById(id);
-  if (c.final) return start('chapter', id);
+  if (c.final || c.test) return start('chapter', id);
   if (!rec(c).lesson) return lesson(id);
   start('chapter', id);
 }
@@ -507,10 +529,10 @@ function lesson(id){
 function renderLesson(){
   const c = chById(L.id), s = c.lesson[L.i], n = c.lesson.length, last = L.i === n - 1;
   app.innerHTML = `<div class="game">
-    <div class="gbar"><button class="x" data-act="${c.hw ? 'hw' : 'home'}" aria-label="Kthehu">✕</button>
+    <div class="gbar"><button class="x" data-act="${c.hw ? 'hw' : 'home'}" data-id="${c.hw || ''}" aria-label="Kthehu">✕</button>
       <div class="dots">${c.lesson.map((x, k) => `<i class="${k <= L.i ? 'on' : ''}"></i>`).join('')}</div>
       <span class="lnum">${L.i + 1}/${n}</span></div>
-    <p class="l-kicker">${c.emoji} ${c.hw ? `Detyrë · ${esc(c.book[0])}` : 'Mësimi / Lektion'}</p>
+    <p class="l-kicker">${c.emoji} ${c.hw ? `${hwTag(c)[0].slice(3)} · ${esc(c.book[0])}` : 'Mësimi / Lektion'}</p>
     ${slideHTML(s)}
     <div class="actions lnav">
       ${L.i > 0 ? '<button class="cta light" data-act="lprev">‹ Prapa</button>' : ''}
@@ -544,10 +566,13 @@ function start(mode, id){
   if (mode === 'chapter') { rec(chById(id), true).lesson = true; save(); }
   const qs = buildRound(mode, id);
   if (!qs.length) return home();
-  G = {mode, id, qs, i:0, ok:0, first:0, xp:0, combo:0, maxCombo:0, tries:0, locked:false, hint:false, love:false, lvBefore:level()};
+  G = {mode, id, qs, i:0, ok:0, first:0, xp:0, combo:0, maxCombo:0, tries:0, locked:false, hint:false, love:false, lvBefore:level(),
+    test: mode === 'chapter' && !!chById(id).test};
   SND.page(); renderQ();
 }
 const cur = () => G.qs[G.i];
+/* a test gives one try per question, practice gives two */
+const maxTries = () => G.test ? 1 : 2;
 function topbar(){
   const p = G.i / G.qs.length * 100;
   return `<div class="gbar">
@@ -558,7 +583,7 @@ function topbar(){
 }
 function head(sq, de){
   return `<div class="qhead"><div><p class="sq">${esc(sq)}</p><p class="de">${esc(de)}</p></div>
-    <button class="hintbtn" data-act="hint" aria-label="Ndihmë">💡</button></div>`;
+    ${G && G.test ? '' : '<button class="hintbtn" data-act="hint" aria-label="Ndihmë">💡</button>'}</div>`;
 }
 const blank = s => esc(s).replace('___', '<span class="blank" id="blank">&nbsp;</span>');
 const spk = t => canSpeak ? `<button class="say" data-act="say" data-t="${esc(t)}" aria-label="Dëgjo">🔊</button>` : '';
@@ -568,7 +593,7 @@ function renderQ(){
   const c = chById(q.tid);
   app.style.setProperty('--tc', c ? c.color : 'var(--brand)');
   const R = {gap:rChoice, mc:rChoice, listen:rListen, write:rWrite, order:rOrder, match:rMatch, clock:rClock, clockpick:rClockPick};
-  app.innerHTML = `<div class="game">${topbar()}${c && c.hw ? `<p class="hwtag">📝 Detyrë · ${esc(c.book[0])}</p>` : ''}${(R[q.type] || rChoice)(q)}</div>`;
+  app.innerHTML = `<div class="game">${topbar()}${c && c.hw ? `<p class="hwtag">${hwTag(c)[0]} · ${esc(c.book[0])}</p>` : ''}${(R[q.type] || rChoice)(q)}</div>`;
   if (q.type === 'listen') setTimeout(() => autoSay(q.say), 350);
   window.scrollTo(0, 0);
 }
@@ -617,7 +642,7 @@ function pick(k){
     correct();
   } else {
     btns[k].classList.add('bad'); btns[k].disabled = true; G.tries++;
-    if (G.tries < 2 && q.o.length - G.tries > 1) tryAgain(q.t || hintFor(q));
+    if (G.tries < maxTries() && q.o.length - G.tries > 1) tryAgain(q.t || hintFor(q));
     else {
       G.locked = true;
       btns.forEach((b, j) => { b.disabled = true; if (q.o[j] === q.a) b.classList.add('ok'); });
@@ -651,10 +676,10 @@ function wcheck(){
   if (v === target) {
     G.locked = true; inp.disabled = true; row.classList.add('ok'); inp.blur();
     const typed = raw.replace(/^(der|die|das)\s+/i, '');
-    correct(typed[0] !== q.a[0] ? 'Kujdes: emrat në gjermanisht shkruhen gjithmonë me shkronjë të madhe! Nomen schreibt man groß.' : '');
+    correct(q.art && typed[0] !== q.a[0] ? 'Kujdes: emrat në gjermanisht shkruhen gjithmonë me shkronjë të madhe! Nomen schreibt man groß.' : '');
   } else {
     G.tries++; row.classList.add('bad');
-    if (G.tries < 2) tryAgain(flat(v) === flat(target) ? 'Pothuajse! Kujdes me ä, ö, ü 😉' : `Fillon me „${q.a[0]}“ dhe ka ${q.a.length} shkronja.`);
+    if (G.tries < maxTries()) tryAgain(flat(v) === flat(target) ? 'Pothuajse! Kujdes me ä, ö, ü 😉' : `Fillon me „${q.a[0]}“ dhe ka ${q.a.length} shkronja.`);
     else { G.locked = true; inp.disabled = true; wrong(); }
   }
 }
@@ -693,7 +718,7 @@ function ocheck(){
     correct('Folja është në vendin e duhur. Perfekt!');
   } else {
     G.tries++;
-    if (G.tries < 2) {
+    if (G.tries < maxTries()) {
       q._picked.forEach((t, i) => { t.wrong = t.w !== target[i]; });
       $('#orderArea').innerHTML = orderInner(q);
       tryAgain('Fjalët e kuqe nuk janë në vend. Kujto: folja në vendin e dytë!');
@@ -835,17 +860,17 @@ function finish(){
   if (G.mode === 'chapter') {
     c = chById(G.id);
     const st = rec(c, true);
-    const was = (st.best || 0) >= PASS;
+    const was = (st.best || 0) >= passOf(c);
     st.best = Math.max(st.best || 0, pct); st.plays = (st.plays || 0) + 1; st.lesson = true;
-    newlyDone = !was && pct >= PASS;
+    newlyDone = !was && pct >= passOf(c);
     if (c.hw) { const ps = hwById(c.hw).parts; nextC = ps[ps.indexOf(c) + 1]; }
     else nextC = CHAPTERS[chIdx(c.id) + 1];
   }
   const hwSet = c && c.hw ? hwById(c.hw) : null;
   if (G.mode === 'mistakes' && !Object.keys(S.mistakes).length) S.cleared = true;
   const newB = checkBadges(); save();
-  const lvNow = level(), up = lvNow > G.lvBefore, passed = !c || pct >= PASS;
-  const finale = c && c.final && pct >= PASS;
+  const pass = passOf(c), lvNow = level(), up = lvNow > G.lvBefore, passed = !c || pct >= pass;
+  const finale = c && c.final && passed;
 
   let love = null;
   if (finale) love = LOVE[0];
@@ -853,8 +878,9 @@ function finish(){
   else if (!G.love && loveOk() && (newlyDone || up) && Math.random() < .2) love = loveMsg();
   if (love && !finale) loveUsed();
 
-  const [e, msq, mde] = !passed ? ['💪', `Pothuajse! Të duhen ${PASS}% për ta kaluar.`, 'Fast! Versuch es nochmal, du schaffst das!']
+  const [e, msq, mde] = !passed ? ['💪', `Pothuajse! Të duhen ${pass}% për ta kaluar.`, 'Fast! Versuch es nochmal, du schaffst das!']
     : finale ? ['👑', 'Mbretëresha e gjermanishtes!', 'Du hast die ganze Reise geschafft!']
+    : c && c.test ? ['🎓', `Testi u kalua me ${pct}%, Mimoza!`, 'Test bestanden! Du bist bereit!']
     : G.first === total ? ['🏆', 'Perfekt! Asnjë gabim!', 'Keine Fehler! Wahnsinn!']
     : pct >= 80 ? ['🌟', 'Fantastike, Mimoza!', 'Du bist super!']
     : ['🎉', 'Shumë mirë! Edhe pak ushtrim.', 'Sehr gut, weiter so!'];
@@ -870,18 +896,20 @@ function finish(){
       <div class="tile fire"><b>🔥${G.maxCombo}</b><small>Me radhë<br>In Folge</small></div>
     </div>
     ${love ? `<div class="lovecard">💌 ${esc(love)}</div>` : ''}
-    ${hwSet && newlyDone ? `<div class="unlock">📝 Detyra u krye! ${nextC ? `Tjetra: <b>${esc(nextC.sq)}</b>` : 'Të gjitha detyrat janë gati! 🎉'}<small>Hausaufgabe erledigt!</small></div>` : ''}
+    ${hwSet && newlyDone ? (hwCur(hwSet)
+      ? `<div class="unlock">📝 Detyra u krye! ${nextC ? `Tjetra: <b>${esc(nextC.sq)}</b>` : 'Të gjitha detyrat janë gati! 🎉'}<small>Hausaufgabe erledigt!</small></div>`
+      : `<div class="unlock">📘 Ushtrimi u krye! ${nextC ? `Tjetri: <b>${esc(nextC.sq)}</b>` : 'Të gjitha ushtrimet janë gati! 🎉'}<small>Übung erledigt!</small></div>`) : ''}
     ${!hwSet && newlyDone && nextC ? `<div class="unlock">🔓 U hap kapitulli ${chIdx(nextC.id) + 1}: <b>${esc(nextC.sq)}</b><small>Nächstes Kapitel freigeschaltet!</small></div>` : ''}
     ${streakUp && S.streak >= 2 ? `<div class="streakcard">🔥 ${S.streak} ditë rresht! <small>${S.streak} Tage am Stück!</small></div>` : ''}
     ${up ? `<div class="lvup">🎊 Niveli ${lvNow}: ${lvlName(lvNow)[0]}!<small>Level ${lvNow}: ${lvlName(lvNow)[1]}</small></div>` : ''}
     ${newB.length ? `<div class="newb">${newB.map(b => `<span>${b.e} ${esc(b.sq)}</span>`).join('')}</div>` : ''}
-    ${hwSet ? `<div class="res-j"><div class="j-top"><b>📝 Detyrat / Hausaufgaben</b><span>${hwCount(hwSet)}/${hwSet.parts.length}</span></div><div class="jbar"><i style="width:${hwCount(hwSet) / hwSet.parts.length * 100}%"></i></div></div>`
+    ${hwSet ? `<div class="res-j"><div class="j-top"><b>${hwCur(hwSet) ? '📝 Detyrat / Hausaufgaben' : '📘 ' + esc(hwSet.sq)}</b><span>${hwCount(hwSet)}/${hwSet.parts.length}</span></div><div class="jbar"><i style="width:${hwCount(hwSet) / hwSet.parts.length * 100}%"></i></div></div>`
       : c ? `<div class="res-j"><div class="j-top"><b>Udhëtimi / Reise</b><span>${done}/${CHAPTERS.length}</span></div><div class="jbar"><i style="width:${jp}%"></i></div></div>` : ''}
     <div class="actions">
-      ${newlyDone && nextC ? `<button class="cta" data-act="go" data-id="${nextC.id}">${hwSet ? 'Detyra tjetër' : 'Kapitulli tjetër'} ▶ / Weiter</button>`
+      ${newlyDone && nextC ? `<button class="cta" data-act="go" data-id="${nextC.id}">${hwSet ? (hwCur(hwSet) ? 'Detyra tjetër' : 'Ushtrimi tjetër') : 'Kapitulli tjetër'} ▶ / Weiter</button>`
         : `<button class="cta" data-act="again">${passed ? 'Luaj përsëri / Nochmal' : '💪 Provo përsëri / Nochmal'}</button>`}
-      ${!passed && c && !c.final ? `<button class="cta light" data-act="lesson" data-id="${c.id}">📖 Përsërit mësimin / Lektion</button>` : ''}
-      ${hwSet ? '<button class="cta light" data-act="hw">📝 Detyrat / Hausaufgaben</button>' : ''}
+      ${!passed && c && !c.final ? `<button class="cta light" data-act="lesson" data-id="${c.from || c.id}">📖 Përsërit mësimin / Lektion</button>` : ''}
+      ${hwSet ? `<button class="cta light" data-act="hw" data-id="${hwSet.id}">${hwCur(hwSet) ? '📝 Detyrat / Hausaufgaben' : `${hwTag(c)[0]} / ${hwTag(c)[1]}`}</button>` : ''}
       <button class="cta light" data-act="home">Harta / Zur Karte</button>
     </div>
   </section>`;
@@ -963,7 +991,7 @@ document.addEventListener('click', e => {
     case 'again': return start(G.mode, G.id);
     case 'dict': return dict();
     case 'chapters': return chapters();
-    case 'hw': return hwList();
+    case 'hw': return hwList(id);
     case 'home': return home();
     case 'hint': return hint();
     case 'pick': return pick(+b.dataset.k);

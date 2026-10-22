@@ -3,7 +3,15 @@
    Ein Set = ein Tag/eine Lektion, parts = Unterkapitel (gleiches Format
    wie CHAPTERS in data.js, plus book:[sq, de] = Seite/Übung im Buch).
    Extra-Folientyp:  fix:[[falsch, richtig, Erklärung]]  -> „Kujdes! 👀“
+   Test-Teil:  test:true, pass:80, n:20, from:'id'  -> Fragen aus dem Teil 'id',
+               nur ein Versuch pro Frage, kein 💡, bestanden ab pass %.
+   n = Anzahl Fragen pro Runde (sonst 10).
+   mix:{vocab, write, order} = so viele Wortfragen (davon Schreiben) und Satzbau
+   pro Runde (sonst 3/0/2). writeWords:true = auch words[] schreiben lassen.
+   Set-Feld badge:[sq, de] = kleines Label neben „Detyrat e shtëpisë“.
    Neue Hausaufgaben? Einfach ein neues Set unten anhängen (neuestes zuletzt).
+   Nur das neueste Set ist „Detyrat e shtëpisë“; ältere Sets erscheinen
+   automatisch als eigener Block (mit ihrem Namen sq/de) unter „Kapitujt“.
    ===================================================================== */
 
 const HOMEWORK = [
@@ -311,6 +319,179 @@ const HOMEWORK = [
     {type:'order', de:'Elena hat Blumen für Oma gekauft.', sq:'Elena ka blerë lule për gjyshen.'},
     {type:'order', de:'Das hat richtig Spaß gemacht.', sq:'Kjo ishte vërtet argëtuese.'}
   ]
+}
+  ]
+},
+
+{
+  id:'l8', date:'2026-10-22', emoji:'🎯', badge:['TEST të premten','Test am Freitag'],
+  sq:'Përgatitja për testin', de:'Testvorbereitung · alles bis jetzt',
+  parts:[
+
+/* ---------- Übung: alles wiederholen ---------- */
+{
+  id:'hw8-uebung', emoji:'💪', color:'#0E9F8E', book:['ushtrim · 15 pyetje','Übung · 15 Fragen'], clocks:true, n:15,
+  writeWords:true, mix:{vocab:5, write:2},
+  sq:'Ushtrimi për testin', de:'Übung für den Test',
+  desc:'Ora, porosia, foljet, e kaluara dhe banesa: përsërit gjithçka para testit!',
+  tip:'der → einen, das → ein, die → eine. Folja në vendin 2, Partizip në fund. 15:30 = fünfzehn Uhr dreißig = halb vier.',
+  lesson:[
+    {t:'Testi po vjen! 📝', d:'Bald ist der Test', p:'Sot përsërisim <b>gjithçka</b>: nga ora deri te porosia në restorant. Ushtro këtu, pastaj bëj <b>testin e provës</b>.<br>Për ta kaluar të duhen <b>80%</b>. Ti mundesh! 💪',
+     tip:'Në test ke vetëm <b>një provë</b> për çdo pyetje dhe nuk ka 💡 ndihmë. Këtu në ushtrim po!'},
+    {t:'Numrat 13 deri 45', d:'Die Zahlen', p:'Kujdes: <b>sechzehn</b> (jo sechszehn) dhe <b>siebzehn</b> (jo siebenzehn).', say:1, th:['','Gjermanisht'],
+     table:[['13','dreizehn'],['14','vierzehn'],['15','fünfzehn'],['16','sechzehn'],['17','siebzehn'],['18','achtzehn'],['19','neunzehn'],['20','zwanzig'],['30','dreißig'],['45','fünfundvierzig']],
+     tip:'45 = fünf<b>und</b>vierzig: gjermanishtja thotë së pari <b>5</b>, pastaj <b>40</b>!'},
+    {t:'Ora zyrtare', d:'Die offizielle Uhrzeit', p:'Në tren, në radio ose në punë ora thuhet me numrat <b>0 deri 24</b>: ora + <b>Uhr</b> + minutat.', say:1, th:['','Gjermanisht'],
+     table:[['7:00','sieben Uhr'],['8:15','acht Uhr fünfzehn'],['13:30','dreizehn Uhr dreißig'],['15:30','fünfzehn Uhr dreißig'],['20:45','zwanzig Uhr fünfundvierzig']],
+     tip:'15:30 = <b>fünfzehn Uhr dreißig</b> = <b>halb vier</b>. Të dyja janë të sakta!'},
+    {t:'Ora në bisedë', d:'Die Uhrzeit im Alltag', clocks:[[8,15,'Viertel nach acht'],[8,30,'halb neun'],[8,45,'Viertel vor neun'],[3,30,'halb vier']],
+     tip:'halb + ora <b>TJETËR</b>: 8:30 = halb neun.'},
+    {t:'Koha në fillim', d:'Zeit zuerst, Verb auf Platz 2', p:'Kur fjalia fillon me kohën, folja mbetet <b>e dyta</b>. Folja <b>aufstehen</b> (ngrihem) ndahet: <b>stehe</b> … <b>auf</b>.',
+     ex:[['Um fünfzehn Uhr dreißig stehe ich auf.','Në orën 15:30 ngrihem. 😄'],['Ich stehe um sieben Uhr auf.','Ngrihem në orën shtatë.'],['Am Montag geht Hans Hula-Hoop üben.','Të hënën Hansi shkon të ushtrojë hula hoop.']],
+     tip:'<b>am</b> + ditë, <b>um</b> + orë. <b>geht</b> në vendin 2, <b>üben</b> në fund, si te können!'},
+    {t:'Porosia', d:'Bestellen', p:'Me <b>nehmen</b>, <b>möchten</b> dhe <b>hätte gern</b> ndryshon vetëm <b>der</b>: ein → <b>einen</b>.', say:2, th:['','Nyja','Porosia'],
+     table:[['der','der Apfel','Ich möchte <b>einen</b> Apfel.'],['der','der Kaffee','Ich hätte gern <b>einen</b> Kaffee.'],['die','die Orange','Ich nehme <b>eine</b> Orange.'],['das','das Brot','Ich nehme <b>ein</b> Brot.'],['das','das Wasser','Zu trinken <b>ein</b> Wasser, bitte.']],
+     ex:[['Ich nehme ein Brot und zu trinken ein Wasser.','Marr një bukë dhe për të pirë një ujë.']],
+     tip:'das Brot → <b>ein</b> Brot (jo „eine Brot“!).'},
+    {t:'mögen = më pëlqen', d:'Das Verb mögen', say:'join', th:['','mögen'],
+     table:[['ich','<b>mag</b>'],['du','magst'],['er / sie / es','<b>mag</b>'],['wir','mögen'],['ihr','mögt'],['sie / Sie','mögen']],
+     ex:[['Ich mag Kaffee.','Më pëlqen kafeja.'],['Magst du Orangen?','A të pëlqejnë portokallet?'],['Ich liebe dich!','Të dua! ❤️']],
+     tip:'Si te können: <b>ich mag</b> dhe <b>er mag</b> pa mbaresë!'},
+    {t:'Folje të rëndësishme', d:'Wichtige Verben', th:['Folja','er / sie','Shqip'],
+     table:[['essen','<b>isst</b>','ha'],['schlafen','<b>schläft</b>','fle'],['trinken','trinkt','pi'],['spielen','spielt','luaj'],['gehen','geht','shkoj (në këmbë)'],['rennen','rennt','vrapoj'],['wandern','wandert','eci në natyrë'],['üben','übt','ushtroj']],
+     ex:[['Lara wandert zum Bahnhof.','Lara ecën deri te stacioni i trenit.']],
+     tip:'Rebelët: essen → <b>isst</b>, schlafen → <b>schläft</b>.'},
+    {t:'E kaluara', d:'Das Perfekt', p:'<b>haben</b> në vendin 2, Partizip <b>në fund</b>.', say:1, th:['Folja','Partizip','Shqip'],
+     table:[['essen','<b>ge</b>gess<b>en</b>','ngrënë'],['schlafen','<b>ge</b>schlaf<b>en</b>','fjetur'],['trinken','<b>ge</b>trunk<b>en</b>','pirë'],['spielen','<b>ge</b>spiel<b>t</b>','luajtur'],['üben','<b>ge</b>üb<b>t</b>','ushtruar'],['lieben','<b>ge</b>lieb<b>t</b>','dashur']],
+     ex:[['Ich habe gut geschlafen.','Kam fjetur mirë.'],['Wir haben Fußball gespielt.','Kemi luajtur futboll.']],
+     tip:'ge…t = foljet normale. ge…en = rebelët, këto mësohen përmendsh.'},
+    {t:'Banesa ime', d:'Meine Wohnung', th:['Gjermanisht','Shqip'],
+     table:[['das Zimmer','dhoma'],['das Regal','rafti'],['der Schrank','dollapi'],['der Teppich','qilimi'],['der Arbeitstisch','tavolina e punës'],['der Tisch','tavolina'],['der Stuhl','karrigia'],['das Sofa','divani'],['das Bett','shtrati'],['die Waschmaschine','lavatriçja']],
+     tip:'das Zimmer → die Zimmer: shumësi është njësoj!'},
+    {t:'Përshkruaj banesën', d:'Die Wohnung beschreiben',
+     ex:[['Hans wohnt in einer 3,5-Zimmer-Wohnung.','Hansi banon në një banesë me 3,5 dhoma.'],['Die kleine Wohnung ist möbliert.','Banesa e vogël është e mobiluar.'],['Meine Wohnung hat ein Sofa.','Banesa ime ka një divan.'],['Im Zimmer gibt es einen Teppich.','Në dhomë ka një qilim.']],
+     tip:'<b>möbliert</b> = me mobilje (die Möbel).'}
+  ],
+  nouns:[['der','Apfel','molla'],['die','Orange','portokalli'],['das','Brot','buka'],['das','Wasser','uji'],['der','Kaffee','kafeja'],
+    ['das','Zimmer','dhoma'],['das','Regal','rafti'],['der','Schrank','dollapi'],['der','Teppich','qilimi'],['der','Arbeitstisch','tavolina e punës'],
+    ['der','Tisch','tavolina'],['der','Stuhl','karrigia'],['das','Sofa','divani'],['das','Bett','shtrati'],['die','Waschmaschine','lavatriçja'],
+    ['die','Wohnung','banesa'],['das','Foto','fotoja'],['der','Bahnhof','stacioni i trenit'],
+    ['die','Küche','kuzhina'],['das','Bad','banjoja'],['das','Wohnzimmer','dhoma e ndenjjes'],['das','Schlafzimmer','dhoma e gjumit'],['die','Lampe','llamba'],
+    ['der','Fernseher','televizori'],['das','Brötchen','simitja'],['das','Ei','veza'],['die','Milch','qumështi'],['die','Rechnung','llogaria']],
+  words:[['essen','ha'],['schlafen','fle'],['spielen','luaj'],['lieben','dua (dashuroj)'],['mögen','më pëlqen'],['trinken','pi'],['gehen','shkoj'],
+    ['rennen','vrapoj'],['üben','ushtroj'],['wandern','eci në natyrë'],['aufstehen','ngrihem'],['möbliert','e mobiluar'],
+    ['gegessen','ngrënë'],['geschlafen','fjetur'],['gespielt','luajtur'],['fünfzehn','pesëmbëdhjetë'],['dreißig','tridhjetë'],['zwanzig','njëzet'],
+    ['nehmen','marr'],['kaufen','blej'],['können','di, mund'],['wollen','dua (të bëj)'],['heute','sot'],['morgen','nesër'],['gestern','dje'],['jetzt','tani']],
+  items:[
+    /* Uhrzeit */
+    {type:'match', pairs:[['dreizehn','13'],['fünfzehn','15'],['zwanzig','20'],['dreißig','30'],['fünfundvierzig','45']]},
+    {type:'match', pairs:[['15:30','fünfzehn Uhr dreißig'],['20:15','zwanzig Uhr fünfzehn'],['7:45','sieben Uhr fünfundvierzig'],['13:00','dreizehn Uhr'],['18:30','achtzehn Uhr dreißig']]},
+    {type:'mc', psq:'Ora zyrtare', pde:'Die offizielle Uhrzeit', q:'15:30', o:['fünfzehn Uhr dreißig','fünf Uhr dreißig','fünfzehn Uhr dreizehn','dreißig Uhr fünfzehn'], a:'fünfzehn Uhr dreißig', say:'Es ist fünfzehn Uhr dreißig.', e:'15 = fünfzehn, 30 = dreißig: ora + Uhr + minutat.'},
+    {type:'mc', psq:'Ora zyrtare', pde:'Die offizielle Uhrzeit', q:'7:45', o:['sieben Uhr fünfundvierzig','sieben Uhr vierundfünfzig','siebzehn Uhr fünfundvierzig','acht Uhr fünfundvierzig'], a:'sieben Uhr fünfundvierzig', say:'Es ist sieben Uhr fünfundvierzig.', e:'45 = fünfundvierzig (5 + 40).'},
+    {type:'mc', psq:'Sa është ora?', pde:'Wie spät ist es?', q:'Es ist zwanzig Uhr fünfzehn.', speakQ:true, o:['20:15','12:15','20:50','2:15'], a:'20:15', say:'Es ist zwanzig Uhr fünfzehn.', e:'zwanzig = 20, fünfzehn = 15.'},
+    {type:'mc', psq:'Sa është ora?', pde:'Wie spät ist es?', q:'Es ist dreizehn Uhr dreißig.', speakQ:true, o:['13:30','3:30','13:13','12:30'], a:'13:30', say:'Es ist dreizehn Uhr dreißig.', e:'dreizehn = 13, dreißig = 30.'},
+    {type:'mc', psq:'Dy mënyra', pde:'Zwei Möglichkeiten', q:'fünfzehn Uhr dreißig = …', o:['halb vier','halb drei','Viertel nach drei','drei Uhr'], a:'halb vier', say:'Es ist halb vier.', e:'15:30 = 3:30 pasdite → halb vier (halb + ora tjetër!).'},
+    {type:'mc', psq:'Kujdes kurthin!', pde:'Achtung, Falle!', q:'6:30', o:['halb sieben','halb sechs','sechs halb','Viertel nach sechs'], a:'halb sieben', say:'Es ist halb sieben.', e:'halb + ora tjetër: 6:30 = halb sieben.'},
+    {type:'gap', s:'Ich stehe ___ sieben Uhr auf.', h:'në orën shtatë', o:['um','am','in'], a:'um', row:true, e:'Orë → um.'},
+    {type:'gap', s:'Um fünfzehn Uhr dreißig ___ ich auf.', h:'aufstehen = ngrihem', o:['stehe','stehst','steht','aufstehe'], a:'stehe', e:'ich stehe … auf. „auf“ shkon në fund.'},
+    {type:'gap', s:'Ich stehe um sieben Uhr ___.', h:'aufstehen', o:['auf','an','um'], a:'auf', row:true, e:'aufstehen ndahet: ich stehe … auf.'},
+    {type:'gap', s:'___ Montag geht Hans Hula-Hoop üben.', h:'ditë', o:['Am','Um','Im'], a:'Am', row:true, e:'Ditë → am.'},
+    {type:'gap', s:'Am Montag ___ Hans Hula-Hoop üben.', h:'gehen; folja e dyta', o:['geht','gehe','gehen','gehst'], a:'geht', e:'Am Montag (1) geht (2) Hans (3) … üben (në fund).'},
+    {type:'gap', s:'___ stehst du auf? Um sieben Uhr.', h:'pyet për kohën', o:['Wann','Wo','Wer','Was'], a:'Wann', e:'Kohë → Wann.'},
+    {type:'mc', psq:'Cila fjali është e saktë?', pde:'Welcher Satz ist richtig?', q:'Të hënën Hansi shkon të ushtrojë hula hoop.',
+     o:['Am Montag geht Hans Hula-Hoop üben.','Am Montag Hans geht Hula-Hoop üben.','Am Montag geht Hans üben Hula-Hoop.','Um Montag geht Hans Hula-Hoop üben.'],
+     a:'Am Montag geht Hans Hula-Hoop üben.', say:'Am Montag geht Hans Hula-Hoop üben.', e:'Koha (1), folja (2), subjekti (3), üben në fund.'},
+    {type:'order', de:'Um fünfzehn Uhr dreißig stehe ich auf.', sq:'Në orën 15:30 ngrihem.'},
+    {type:'order', de:'Am Montag geht Hans Hula-Hoop üben.', sq:'Të hënën Hansi shkon të ushtrojë hula hoop.'},
+    {type:'order', de:'Der Bus kommt um acht Uhr fünfzehn.', sq:'Autobusi vjen në orën 8:15.'},
+
+    /* Bestellen */
+    {type:'match', pairs:[['der Apfel','molla'],['die Orange','portokalli'],['das Brot','buka'],['das Wasser','uji'],['der Kaffee','kafeja']]},
+    {type:'gap', psq:'Porosia', pde:'Bestellen', s:'Ich nehme ___ Brot.', h:'das Brot', o:['ein','eine','einen'], a:'ein', row:true, e:'das Brot → ein Brot.'},
+    {type:'gap', psq:'Porosia', pde:'Bestellen', s:'Und zu trinken ___ Wasser, bitte.', h:'das Wasser', o:['ein','eine','einen'], a:'ein', row:true, e:'das Wasser → ein Wasser.'},
+    {type:'gap', psq:'Porosia', pde:'Bestellen', s:'Ich möchte ___ Apfel.', h:'der Apfel', o:['ein','eine','einen'], a:'einen', row:true, e:'der + objekt → einen.'},
+    {type:'gap', psq:'Porosia', pde:'Bestellen', s:'Ich nehme ___ Orange.', h:'die Orange', o:['ein','eine','einen'], a:'eine', row:true, e:'die nuk ndryshon → eine.'},
+    {type:'gap', psq:'Porosia', pde:'Bestellen', s:'Ich hätte gern ___ Kaffee.', h:'der Kaffee', o:['ein','eine','einen'], a:'einen', row:true, e:'der Kaffee → einen Kaffee.'},
+    {type:'gap', psq:'Në restorant', pde:'Im Restaurant', s:'Was ___ du?', h:'nehmen = marr', o:['nimmst','nehmst','nimmt','nehmt'], a:'nimmst', e:'du nimmst (e → i).'},
+    {type:'gap', psq:'Në restorant', pde:'Im Restaurant', s:'Was ___ Sie trinken?', h:'möchten; Sie = Ju', o:['möchten','möchtest','möchte','möchtet'], a:'möchten', e:'Sie möchten.'},
+    {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das?', q:'Marr një bukë dhe për të pirë një ujë.',
+     o:['Ich nehme ein Brot und zu trinken ein Wasser.','Ich nehme eine Brot und zu trinken ein Wasser.','Ich nehme ein Brot und zu trinken einen Wasser.','Ich nehmen ein Brot und zu trinken ein Wasser.'],
+     a:'Ich nehme ein Brot und zu trinken ein Wasser.', say:'Ich nehme ein Brot und zu trinken ein Wasser.', e:'das Brot → ein Brot, das Wasser → ein Wasser.'},
+    {type:'mc', psq:'Në restorant', pde:'Im Restaurant', q:'Was möchten Sie?', speakQ:true, h:'Kamarieri pyet. Ti do një kafe.',
+     o:['Ich hätte gern einen Kaffee.','Die Rechnung, bitte.','Guten Appetit!','Ich bin Kaffee.'],
+     a:'Ich hätte gern einen Kaffee.', say:'Ich hätte gern einen Kaffee.', e:'Ich hätte gern … = do të doja …'},
+    {type:'order', de:'Ich nehme ein Brot und zu trinken ein Wasser.', sq:'Marr një bukë dhe për të pirë një ujë.'},
+    {type:'order', de:'Ich möchte einen Apfel und eine Orange.', sq:'Dëshiroj një mollë dhe një portokall.'},
+
+    /* Verben */
+    {type:'match', pairs:[['essen','ha'],['schlafen','fle'],['trinken','pi'],['rennen','vrapoj'],['üben','ushtroj']]},
+    {type:'match', pairs:[['lieben','dua (dashuroj)'],['mögen','më pëlqen'],['spielen','luaj'],['gehen','shkoj'],['wandern','eci në natyrë']]},
+    {type:'match', pairs:[['ich','mag'],['du','magst'],['wir','mögen'],['ihr','mögt']]},
+    {type:'gap', psq:'Folja mögen', pde:'Das Verb mögen', s:'Ich ___ Kaffee.', h:'mögen = më pëlqen', o:['mag','magst','mögen','möge'], a:'mag', e:'ich mag, pa mbaresë (si ich kann).'},
+    {type:'gap', psq:'Folja mögen', pde:'Das Verb mögen', s:'___ du Orangen?', h:'mögen', o:['Magst','Mag','Mögt','Mögen'], a:'Magst', e:'du magst.'},
+    {type:'gap', psq:'Folja mögen', pde:'Das Verb mögen', s:'Wir ___ Pizza.', h:'mögen', o:['mögen','mögt','mag','magst'], a:'mögen', e:'wir mögen.'},
+    {type:'gap', s:'Lara ___ zum Bahnhof.', h:'wandern', o:['wandert','wandere','wanderst','wandern'], a:'wandert', e:'sie wandert.'},
+    {type:'gap', s:'Du ___ sehr schnell!', h:'rennen = vrapoj', o:['rennst','rennt','renne','rennen'], a:'rennst', e:'du rennst.'},
+    {type:'gap', s:'Das Kind ___ viel.', h:'schlafen', o:['schläft','schlaft','schläfst','schlafe'], a:'schläft', e:'es schläft (a → ä).'},
+    {type:'gap', s:'Er ___ einen Apfel.', h:'essen', o:['isst','esst','esse','essen'], a:'isst', e:'er isst (e → i).'},
+    {type:'gap', s:'Ich ___ dich!', h:'lieben', o:['liebe','liebst','liebt','lieben'], a:'liebe', e:'ich liebe. ❤️'},
+    {type:'gap', s:'Was ___ du gern?', h:'trinken', o:['trinkst','trinkt','trinke','trinken'], a:'trinkst', e:'du trinkst.'},
+    {type:'gap', s:'Hans ___ gut Hula-Hoop.', h:'können', o:['kann','kannst','können','könnt'], a:'kann', e:'er kann, pa mbaresë.'},
+    {type:'gap', s:'Wir ___ am Samstag wandern.', h:'wollen', o:['wollen','wollt','will','willst'], a:'wollen', e:'wir wollen.'},
+    {type:'mc', row:true, psq:'Ja, Nein apo Doch?', pde:'Ja, Nein oder Doch?', q:'Magst du keinen Kaffee?', h:'Do të thuash: Po, më pëlqen.', o:['Ja','Nein','Doch'], a:'Doch', say:'Doch, ich mag Kaffee.', e:'Pyetja ka kein dhe ti thua PO → Doch.'},
+    {type:'mc', psq:'Cila fjali është e saktë?', pde:'Welcher Satz ist richtig?', q:'Lara ecën deri te stacioni i trenit.',
+     o:['Lara wandert zum Bahnhof.','Lara wandern zum Bahnhof.','Lara zum Bahnhof wandert.','Lara wanderst zum Bahnhof.'],
+     a:'Lara wandert zum Bahnhof.', say:'Lara wandert zum Bahnhof.', e:'sie wandert, folja në vendin 2.'},
+    {type:'order', de:'Lara wandert zum Bahnhof.', sq:'Lara ecën deri te stacioni i trenit.'},
+    {type:'order', de:'Magst du Orangen?', sq:'A të pëlqejnë portokallet?'},
+
+    /* Perfekt */
+    {type:'match', pairs:[['essen','gegessen'],['schlafen','geschlafen'],['spielen','gespielt'],['trinken','getrunken'],['üben','geübt']]},
+    {type:'gap', psq:'Si është e kaluara?', pde:'Wie heißt das Partizip?', s:'Ich habe gut ___.', h:'schlafen', o:['geschlafen','geschlaft','geschläft','schlafen'], a:'geschlafen', e:'schlafen → geschlafen (ge…en).'},
+    {type:'gap', psq:'Si është e kaluara?', pde:'Wie heißt das Partizip?', s:'Wir haben Fußball ___.', h:'spielen', o:['gespielt','gespielen','spielt','gespiel'], a:'gespielt', e:'spielen → gespielt (ge…t).'},
+    {type:'gap', psq:'Si është e kaluara?', pde:'Wie heißt das Partizip?', s:'Hast du schon ___?', h:'essen', o:['gegessen','geesst','gegesst','gessen'], a:'gegessen', e:'essen → gegessen.'},
+    {type:'gap', psq:'Si është e kaluara?', pde:'Wie heißt das Partizip?', s:'Hans hat Hula-Hoop ___.', h:'üben', o:['geübt','geüben','übt','geübst'], a:'geübt', e:'üben → geübt (ge…t).'},
+    {type:'gap', psq:'Plotëso haben', pde:'Ergänze haben', s:'Ich ___ Pizza gegessen.', h:'ich', o:['habe','hat','hast','haben'], a:'habe', e:'ich habe … gegessen.'},
+    {type:'gap', psq:'Plotëso haben', pde:'Ergänze haben', s:'Lara ___ viel Wasser getrunken.', h:'ajo', o:['hat','habe','hast','haben'], a:'hat', e:'sie hat … getrunken.'},
+    {type:'mc', psq:'Si është e kaluara?', pde:'Wie heißt das Partizip?', q:'trinken', speakQ:true, o:['getrunken','getrinkt','getrinken','getrunkt'], a:'getrunken', say:'getrunken', e:'trinken → getrunken (rebele: i → u).'},
+    {type:'mc', psq:'Cila fjali është e saktë?', pde:'Welcher Satz ist richtig?', q:'Kam ngrënë një mollë.',
+     o:['Ich habe einen Apfel gegessen.','Ich habe gegessen einen Apfel.','Ich bin einen Apfel gegessen.','Ich habe einen Apfel essen.'],
+     a:'Ich habe einen Apfel gegessen.', say:'Ich habe einen Apfel gegessen.', e:'habe në vendin 2, gegessen në fund.'},
+    {type:'order', de:'Ich habe gut geschlafen.', sq:'Kam fjetur mirë.'},
+    {type:'order', de:'Wir haben Fußball gespielt.', sq:'Kemi luajtur futboll.'},
+    {type:'order', de:'Hast du schon gegessen?', sq:'A ke ngrënë tashmë?'},
+
+    /* Wohnung */
+    {type:'match', pairs:[['das Regal','rafti'],['der Schrank','dollapi'],['der Teppich','qilimi'],['der Arbeitstisch','tavolina e punës'],['die Waschmaschine','lavatriçja']]},
+    {type:'match', pairs:[['das Zimmer','dhoma'],['das Sofa','divani'],['das Bett','shtrati'],['der Stuhl','karrigia'],['der Tisch','tavolina']]},
+    {type:'gap', psq:'Përshkruaj banesën', pde:'Die Wohnung beschreiben', s:'Meine Wohnung ___ ein Sofa.', h:'haben', o:['hat','habe','hast','ist'], a:'hat', e:'die Wohnung = sie → hat.'},
+    {type:'gap', psq:'Përshkruaj banesën', pde:'Die Wohnung beschreiben', s:'Die kleine Wohnung ist ___.', h:'me mobilje', o:['möbliert','Möbel','möbeliert','möblieren'], a:'möbliert', e:'möbliert = e mobiluar.'},
+    {type:'gap', psq:'Përshkruaj banesën', pde:'Die Wohnung beschreiben', s:'Die Wohnung hat drei ___.', h:'dhoma (shumës)', o:['Zimmer','Zimmers','Zimmern'], a:'Zimmer', row:true, e:'das Zimmer → die Zimmer: shumësi njësoj!'},
+    {type:'gap', psq:'Përshkruaj banesën', pde:'Die Wohnung beschreiben', s:'Im Zimmer gibt es ___ Teppich.', h:'der Teppich', o:['ein','eine','einen'], a:'einen', row:true, e:'es gibt + der → einen.'},
+    {type:'gap', psq:'Përshkruaj banesën', pde:'Die Wohnung beschreiben', s:'Meine Wohnung hat ___ Regal.', h:'das Regal', o:['ein','eine','einen'], a:'ein', row:true, e:'das Regal → ein Regal.'},
+    {type:'gap', psq:'Përshkruaj banesën', pde:'Die Wohnung beschreiben', s:'Ich habe ___ Arbeitstisch.', h:'der Arbeitstisch, mohim', o:['kein','keine','keinen'], a:'keinen', row:true, e:'der + mohim → keinen.'},
+    {type:'gap', s:'___ Waschmaschine ist neu.', h:'die Waschmaschine', o:['Der','Die','Das'], a:'Die', row:true, e:'die Waschmaschine.'},
+    {type:'mc', row:true, psq:'Zëvendëso me përemër', pde:'Ersetze durch ein Pronomen', q:'Der Schrank ist alt. → ___ ist alt.', o:['Er','Sie','Es'], a:'Er', e:'der → er.'},
+    {type:'mc', psq:'Cila fjali është e saktë?', pde:'Welcher Satz ist richtig?', q:'Banesa ime ka një divan.',
+     o:['Meine Wohnung hat ein Sofa.','Meine Wohnung hat einen Sofa.','Meine Wohnung ist ein Sofa.','Mein Wohnung hat ein Sofa.'],
+     a:'Meine Wohnung hat ein Sofa.', say:'Meine Wohnung hat ein Sofa.', e:'die Wohnung → meine Wohnung. das Sofa → ein Sofa.'},
+    {type:'mc', psq:'Çfarë do të thotë?', pde:'Was bedeutet das?', q:'Hans wohnt in einer 3,5-Zimmer-Wohnung.', speakQ:true,
+     o:['Hansi banon në një banesë me 3,5 dhoma.','Hansi ka 3,5 banesa.','Hansi banon në dhomën 3,5.','Hansi kërkon një banesë me 3,5 dhoma.'],
+     a:'Hansi banon në një banesë me 3,5 dhoma.', say:'Hans wohnt in einer 3,5-Zimmer-Wohnung.', e:'3,5-Zimmer-Wohnung = banesë me 3,5 dhoma.'},
+    {type:'order', de:'Hans wohnt in einer 3,5-Zimmer-Wohnung.', sq:'Hansi banon në një banesë me 3,5 dhoma.'},
+    {type:'order', de:'Die kleine Wohnung ist möbliert.', sq:'Banesa e vogël është e mobiluar.'},
+    {type:'order', de:'Meine Wohnung hat ein Sofa.', sq:'Banesa ime ka një divan.'}
+  ]
+},
+
+/* ---------- Probetest: 20 Fragen, 80 % ---------- */
+{
+  id:'hw8-test', emoji:'🎓', color:'#E3A008', book:['test · 20 pyetje · 80%','Test · 20 Fragen · 80 %'],
+  test:true, pass:80, n:20, from:'hw8-uebung', mix:{vocab:8, write:3, order:3},
+  sq:'Testi i provës', de:'Der Probetest',
+  desc:'20 pyetje nga gjithçka që ke mësuar. Për ta kaluar të duhen 80%. Vetëm një provë për pyetje, pa 💡. Ti mundesh! 💪',
+  tip:'Lexo me kujdes dhe merr frymë thellë!',
+  lesson:[], nouns:[], words:[], items:[]
 }
   ]
 }

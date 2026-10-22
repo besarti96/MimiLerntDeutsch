@@ -346,6 +346,7 @@ table.lt{width:100%;border-collapse:collapse;font-size:16px}
 .hw-new{background:var(--bad);animation:bob 1.6s ease-in-out infinite}
 .hw-ok{background:var(--ok)}
 .hwcard b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:22px;line-height:1.15}
+.hw-test{display:inline-block;vertical-align:middle;position:relative;top:-2px;margin-left:4px;font-family:'Atkinson Hyperlegible',sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em;color:#fff;background:var(--brand);padding:3px 9px;border-radius:99px;white-space:nowrap}
 .hwcard small{display:block;color:var(--muted);font-size:14px}
 .hw-prog{display:block;height:10px;border-radius:99px;background:#F1E3B5;margin:10px 0 4px;overflow:hidden}
 .hw-prog i{display:block;height:100%;background:var(--ok);border-radius:99px;transition:width .4s}
