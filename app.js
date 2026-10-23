@@ -636,12 +636,14 @@ function slideHTML(s){
   let h = `<div class="slide"><h2>${s.t}</h2>${s.d ? `<p class="de sd">${s.d}</p>` : ''}`;
   if (s.p) h += `<p class="sp">${s.p}</p>`;
   if (s.clocks) h += `<div class="sclocks">${s.clocks.map(([hh, mm, t]) =>
-    `<button class="sclock" data-act="say" data-t="Es ist ${esc(t)}.">${clockSVG(hh, mm, 112)}<b>${esc(t)}</b><small>${digital(hh, mm)}</small></button>`).join('')}</div>`;
+    `<button class="sclock" data-act="say" data-t="Es ist ${esc(t)}.">${clockSVG(hh, mm, 112)}<b>${esc(t)}</b><small class="tr">${timeSq(hh, mm)}</small><small>${digital(hh, mm)}</small></button>`).join('')}</div>`;
   if (s.table) {
     const col = s.say ?? 0;
     const sayRow = r => col === -1 ? '' : col === 'join' ? r.map(strip).join(' ') : strip(r[col]);
     h += `<div class="tw"><table class="lt">${s.th ? `<thead><tr>${s.th.map(x => `<th>${x}</th>`).join('')}</tr></thead>` : ''}<tbody>
-      ${s.table.map(r => { const t = sayRow(r); return `<tr ${t ? `data-act="say" data-t="${esc(t)}" class="sayable"` : ''}>${r.map(x => `<td>${x}</td>`).join('')}</tr>`; }).join('')}
+      ${s.table.map((r, ri) => { const t = sayRow(r); return `<tr ${t ? `data-act="say" data-t="${esc(t)}" class="sayable"` : ''}>${r.map((x, ci) => {
+        const tr = s.tr && s.tr[ri] && s.tr[ri][ci];   /* tr: Albanian translation per cell, shown small under the German */
+        return `<td>${x}${tr ? `<small class="tr">${esc(tr)}</small>` : ''}</td>`; }).join('')}</tr>`; }).join('')}
       </tbody></table></div>`;
   }
   if (s.ex) h += `<div class="exs">${s.ex.map(([de, sq]) =>

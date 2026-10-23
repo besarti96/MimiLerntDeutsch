@@ -29,6 +29,7 @@ const HOMEWORK = [
   lesson:[
     {t:'Detyra jote 📖', d:'Deine Hausaufgabe', p:'Faqe 75, <b>ushtrimi 1</b>: Rendit fjalitë te bisedat a–e.<br><b>Ushtrimi 2</b>: Plotëso tabelën e foljes <b>können</b>.'},
     {t:'können', d:'Das Verb können', say:'join', th:['','können'],
+     tr:[['unë','mund'],['ti','mund'],['ai / ajo','mund'],['ne','mundemi'],['ju','mundeni'],['ata / Ju','mundin / mundeni']],
      table:[['ich','<b>kann</b>'],['du','kannst'],['er / sie / es','<b>kann</b>'],['wir','können'],['ihr','könnt'],['sie / Sie','können']],
      tip:'<b>ich kann</b> dhe <b>er kann</b>: pa mbaresë!'},
     {t:'Bisedat e sakta', d:'Die Lösungen', ex:[
@@ -90,7 +91,7 @@ const HOMEWORK = [
      tip:'Foljet shkruhen me shkronjë të <b>vogël</b>: reiten, singen, malen, surfen. Vetëm emrat me të madhe!'},
     {t:'Sa mirë?', d:'Wie gut?', say:1, th:['','Deutsch','Shqip'],
      table:[['😊😊','sehr gut','shumë mirë'],['😊','gut','mirë'],['😐','nicht so gut','jo aq mirë'],['☹️','nicht gut','jo mirë'],['☹️☹️','gar nicht gut','aspak mirë']],
-     tip:'Muriel <b>kann</b> sehr gut <b>reiten</b>. → können në vendin 2, folja në fund.'},
+     tip:'Muriel <b>kann</b> sehr gut <b>reiten</b>. <i class="tr">(Muriel kalëron shumë mirë.)</i> → können në vendin 2, folja në fund.'},
     {t:'Zgjidhjet 6 + 7', d:'Lösungen Übung 6 + 7', ex:[
       ['Ricardo und Lea können sehr gut Tango tanzen.','Ricardo dhe Lea kërcejnë tango shumë mirë.'],
       ['Ludmilla kann nicht so gut reiten.','Ludmilla nuk kalëron aq mirë.'],
@@ -162,6 +163,7 @@ const HOMEWORK = [
   lesson:[
     {t:'Detyra jote 📖', d:'Deine Hausaufgabe', p:'Faqe 77: <b>9</b> Plotëso tabelën e foljes <b>wollen</b>. <b>10</b> Shkruaj fjali me wollen. <b>11</b> Plotëso wollen në formën e saktë.'},
     {t:'wollen = dua (të bëj)', d:'Das Verb wollen', say:'join', th:['','wollen'],
+     tr:[['unë','dua'],['ti','do'],['ai / ajo','do'],['ne','duam'],['ju','doni'],['ata / Ju','duan / doni']],
      table:[['ich','<b>will</b>'],['du','willst'],['er / sie / es','<b>will</b>'],['wir','wollen'],['ihr','wollt'],['sie / Sie','wollen']],
      tip:'Si te können: <b>ich will</b> dhe <b>er will</b> pa mbaresë!'},
     {t:'Folja në fund! 🔚', d:'Die Satzklammer', p:'<b>wollen</b> në vendin 2, folja tjetër <b>në fund</b>, edhe kur fjalia është e gjatë.',
@@ -236,6 +238,7 @@ const HOMEWORK = [
      table:[['Ich möchte fernsehen.','Do të doja të shikoja TV.','🙂 e butë'],['Ich will fernsehen!','Dua të shikoj TV!','😤 e fortë']],
      tip:'Te kamarieri, te mjeku, me njerëz që nuk i njeh → gjithmonë <b>möchte</b>. 😉'},
     {t:'möchten', d:'Das Verb möchten', say:'join', th:['','möchten'],
+     tr:[['unë','do të doja'],['ti','do të doje'],['ai / ajo','do të donte'],['ne','do të donim'],['ju','do të donit'],['ata / Ju','do të donin / do të donit']],
      table:[['ich','möchte'],['du','möchtest'],['er / sie / es','möchte'],['wir','möchten'],['ihr','möchtet'],['sie / Sie','möchten']]},
     {t:'Bisedat', d:'Die Gespräche', ex:[
       ['Gehen wir ein bisschen spazieren?','Shkojmë pak shëtitje?'],
@@ -289,6 +292,7 @@ const HOMEWORK = [
      ex:[['Ich habe Deutsch geübt.','Kam ushtruar gjermanisht.'],['Das hat Spaß gemacht.','Ishte shumë argëtuese.'],['Wir haben Pizza gegessen.','Kemi ngrënë pica.']],
      tip:'Si te können: <b>habe</b> në vendin 2, <b>geübt</b> në fund. 🔚'},
     {t:'haben', d:'Das Verb haben', say:'join', th:['','haben'],
+     tr:[['unë','kam'],['ti','ke'],['ai / ajo','ka'],['ne','kemi'],['ju','keni'],['ata / Ju','kanë / keni']],
      table:[['ich','habe'],['du','hast'],['er / sie / es','hat'],['wir','haben'],['ihr','habt'],['sie / Sie','haben']]},
     {t:'ge … t', d:'Regelmäßige Verben', p:'Shumica e foljeve: <b>ge</b> + folja pa -en + <b>t</b>.', say:1, th:['Folja','Partizip','Shqip'],
      table:[['machen','<b>ge</b>mach<b>t</b>','bërë'],['kaufen','<b>ge</b>kauf<b>t</b>','blerë'],['üben','<b>ge</b>üb<b>t</b>','ushtruar'],['lieben','<b>ge</b>lieb<b>t</b>','dashur'],['sagen','<b>ge</b>sag<b>t</b>','thënë'],['kochen','<b>ge</b>koch<b>t</b>','gatuar']],
@@ -391,14 +395,17 @@ const HOMEWORK = [
      ex:[['Um fünfzehn Uhr dreißig stehe ich auf.','Në orën 15:30 ngrihem. 😄'],['Ich stehe um sieben Uhr auf.','Ngrihem në orën shtatë.'],['Am Montag geht Hans Hula-Hoop üben.','Të hënën Hansi shkon të ushtrojë hula hoop.']],
      tip:'<b>am</b> + ditë, <b>um</b> + orë. <b>geht</b> në vendin 2, <b>üben</b> në fund, si te können!'},
     {t:'Porosia', d:'Bestellen', p:'Me <b>nehmen</b>, <b>möchten</b> dhe <b>hätte gern</b> ndryshon vetëm <b>der</b>: ein → <b>einen</b>.', say:2, th:['','Nyja','Porosia'],
+     tr:[['','molla','Do të doja një mollë.'],['','kafeja','Do të doja një kafe.'],['','portokalli','Marr një portokall.'],['','buka','Marr një bukë.'],['','uji','Për të pirë një ujë, ju lutem.']],
      table:[['der','der Apfel','Ich möchte <b>einen</b> Apfel.'],['der','der Kaffee','Ich hätte gern <b>einen</b> Kaffee.'],['die','die Orange','Ich nehme <b>eine</b> Orange.'],['das','das Brot','Ich nehme <b>ein</b> Brot.'],['das','das Wasser','Zu trinken <b>ein</b> Wasser, bitte.']],
      ex:[['Ich nehme ein Brot und zu trinken ein Wasser.','Marr një bukë dhe për të pirë një ujë.']],
      tip:'das Brot → <b>ein</b> Brot (jo „eine Brot“!).'},
     {t:'mögen = më pëlqen', d:'Das Verb mögen', say:'join', th:['','mögen'],
+     tr:[['unë','më pëlqen'],['ti','të pëlqen'],['ai / ajo','i pëlqen'],['ne','na pëlqen'],['ju','ju pëlqen'],['ata / Ju','u pëlqen / ju pëlqen']],
      table:[['ich','<b>mag</b>'],['du','magst'],['er / sie / es','<b>mag</b>'],['wir','mögen'],['ihr','mögt'],['sie / Sie','mögen']],
      ex:[['Ich mag Kaffee.','Më pëlqen kafeja.'],['Magst du Orangen?','A të pëlqejnë portokallet?'],['Ich liebe dich!','Të dua! ❤️']],
      tip:'Si te können: <b>ich mag</b> dhe <b>er mag</b> pa mbaresë!'},
     {t:'Folje të rëndësishme', d:'Wichtige Verben', th:['Folja','er / sie','Shqip'],
+     tr:[['','ai ha'],['','ai fle'],['','ai pi'],['','ai luan'],['','ai shkon'],['','ai vrapon'],['','ai ecën'],['','ai ushtron']],
      table:[['essen','<b>isst</b>','ha'],['schlafen','<b>schläft</b>','fle'],['trinken','trinkt','pi'],['spielen','spielt','luaj'],['gehen','geht','shkoj (në këmbë)'],['rennen','rennt','vrapoj'],['wandern','wandert','eci në natyrë'],['üben','übt','ushtroj']],
      ex:[['Lara wandert zum Bahnhof.','Lara ecën deri te stacioni i trenit.']],
      tip:'Rebelët: essen → <b>isst</b>, schlafen → <b>schläft</b>.'},
@@ -598,7 +605,7 @@ const HOMEWORK = [
   tip:'der/das → mein, dein, Ihr. die/shumës → meine, deine, Ihre. Një → ist, shumë → sind.',
   lesson:[
     {t:'Faqe 21 📖', d:'Seite 21', p:'<b>10</b> Kryqëzo të saktën. <b>11–13</b> Plotëso. <b>14</b> Shkruaj pyetjet e intervistës.',
-     tip:'der Vorname → <b>mein</b> Vorname. Kinder → das <b>sind</b> meine Kinder.'}
+     tip:'der Vorname → <b>mein</b> Vorname <i class="tr">(emri im)</i>. Kinder → das <b>sind</b> meine Kinder. <i class="tr">(Këta janë fëmijët e mi.)</i>'}
   ],
   nouns:[], words:[],
   items:[

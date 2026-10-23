@@ -10,7 +10,8 @@ const SPICK = [
 {
   id:'sz-w', chip:'❓ W-Fragen', t:'❓ Fjalët pyetëse', d:'Die W-Fragen',
   th:['Deutsch','Shqip','Shembull'], say:2,
-  table:[['<b>wer</b>','kush','Wer bist du?'],['<b>was</b>','çfarë','Was machst du?'],['<b>wo</b>','ku','Wo wohnst du?'],
+  tr:[['','','Kush je ti?'],['','','Çfarë bën?'],['','','Ku banon?'],['','','Nga vjen?'],['','','Ku po shkon?'],['','','Kur vjen?'],['','','Si quhesh?'],['','','Sa kushton kjo?'],['','','Sa është ora?'],['','','Pse mëson gjermanisht?']],
+     table:[['<b>wer</b>','kush','Wer bist du?'],['<b>was</b>','çfarë','Was machst du?'],['<b>wo</b>','ku','Wo wohnst du?'],
     ['<b>woher</b>','nga','Woher kommst du?'],['<b>wohin</b>','për ku','Wohin gehst du?'],['<b>wann</b>','kur','Wann kommst du?'],
     ['<b>wie</b>','si','Wie heißt du?'],['<b>wie viel</b>','sa','Wie viel kostet das?'],['<b>wie spät</b>','sa është ora','Wie spät ist es?'],
     ['<b>warum</b>','pse','Warum lernst du Deutsch?']],
@@ -19,7 +20,8 @@ const SPICK = [
 {
   id:'sz-zeit', chip:'🕐 am · um · im', t:'🕐 am · um · im', d:'Wann? Zeit-Wörter',
   th:['','Kur?','Shembull'], say:2,
-  table:[['<b>am</b>','+ ditë','am Montag'],['<b>am</b>','+ pjesë e ditës','am Morgen, am Abend'],['<b>um</b>','+ orë','um acht Uhr'],
+  tr:[['','','të hënën'],['','','në mëngjes, në mbrëmje'],['','','në orën tetë'],['','','në korrik'],['','','në verë'],['','','natën']],
+     table:[['<b>am</b>','+ ditë','am Montag'],['<b>am</b>','+ pjesë e ditës','am Morgen, am Abend'],['<b>um</b>','+ orë','um acht Uhr'],
     ['<b>im</b>','+ muaj','im Juli'],['<b>im</b>','+ stinë','im Sommer'],['<b>in der</b>','natën','in der Nacht']],
   tip:'<b>um</b> = ora e saktë ⏰. <b>am</b> = dita 📅. <b>im</b> = muaji ose stina ☀️.'
 },
@@ -41,14 +43,16 @@ const SPICK = [
 {
   id:'sz-verb', chip:'🔁 Foljet', t:'🔁 Foljet më të rëndësishme', d:'Die wichtigsten Verben',
   th:['','sein · jam','haben · kam','können · di'], say:-1,
-  table:[['ich','bin','habe','kann'],['du','bist','hast','kannst'],['er / sie / es','ist','hat','kann'],
+  tr:[['unë','jam','kam','mund'],['ti','je','ke','mund'],['ai / ajo','është','ka','mund'],['ne','jemi','kemi','mundemi'],['ju','jeni','keni','mundeni'],['ata / Ju','janë / jeni','kanë / keni','mundin / mundeni']],
+     table:[['ich','bin','habe','kann'],['du','bist','hast','kannst'],['er / sie / es','ist','hat','kann'],
     ['wir','sind','haben','können'],['ihr','seid','habt','könnt'],['sie / Sie','sind','haben','können']],
   tip:'<b>können, wollen, mögen</b>: ich dhe er pa mbaresë (ich kann, er kann).'
 },
 {
   id:'sz-verb2', chip:'🔁 wollen · möchten', t:'🔁 Dua, do të doja, më pëlqen', d:'wollen, möchten, mögen',
   th:['','wollen · dua','möchten · do të doja','mögen · më pëlqen'], say:-1,
-  table:[['ich','will','möchte','mag'],['du','willst','möchtest','magst'],['er / sie / es','will','möchte','mag'],
+  tr:[['unë','dua','do të doja','më pëlqen'],['ti','do','do të doje','të pëlqen'],['ai / ajo','do','do të donte','i pëlqen'],['ne','duam','do të donim','na pëlqen'],['ju','doni','do të donit','ju pëlqen'],['ata / Ju','duan / doni','do të donin / do të donit','u pëlqen / ju pëlqen']],
+     table:[['ich','will','möchte','mag'],['du','willst','möchtest','magst'],['er / sie / es','will','möchte','mag'],
     ['wir','wollen','möchten','mögen'],['ihr','wollt','möchtet','mögt'],['sie / Sie','wollen','möchten','mögen']],
   tip:'<b>möchte</b> = e sjellshme 🙂 (në restorant). <b>will</b> = e fortë 😤.'
 },

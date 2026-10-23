@@ -276,6 +276,9 @@ table.lt{width:100%;border-collapse:collapse;font-size:16px}
 .lt td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
 .lt td:first-child{font-weight:700}
 .lt b{color:var(--tc)}
+.lt td .tr{display:block;margin-top:1px;font-size:13px;font-weight:400;font-style:italic;color:var(--muted);line-height:1.2}
+.tipbox .tr{font-size:14px;color:var(--muted)}
+.sclock .tr{font-style:italic;font-size:13px;text-align:center;line-height:1.2}
 .lt tr.sayable{cursor:pointer}
 .lt tr.sayable:active td{background:#EFEBFF}
 .exs{display:grid;gap:10px;margin-top:14px}
