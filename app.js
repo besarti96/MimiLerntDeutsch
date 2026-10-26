@@ -701,8 +701,12 @@ function hint(){
 }
 
 /* --- choice types --- */
+/* reading questions: read:true shows the chapter's text (c.read) above the question */
+const readOf = q => q.read === true ? chById(q.tid)?.read : q.read;
 function rChoice(q){
+  const rd = readOf(q);
   return `${head(q.psq || (q.type === 'gap' ? 'Plotëso zbrazëtirën' : 'Zgjidh përgjigjen'), q.pde || (q.type === 'gap' ? 'Ergänze die Lücke' : 'Wähle die richtige Antwort'))}
+  ${rd ? `<div class="readbox">${rd}</div>` : ''}
   <div class="qcard ${q.speakQ ? 'has-say' : ''}">
     <div class="qtext">${blank(q.s || q.q)}</div>
     ${q.h ? `<div class="qhint">💭 ${esc(q.h)}</div>` : ''}
@@ -1151,7 +1155,11 @@ const TOPICS = {
   jnd:      ['Ja, Nein apo Doch', 'Ja / Nein / Doch', 'Doch = po, por vetëm kur pyetja ka nicht ose kein.'],
   pronomen: ['Përemrat', 'Pronomen', 'der → er, die → sie, das → es.'],
   uhrzeit:  ['Ora', 'Uhrzeit', 'halb + ora tjetër: 8:30 = halb neun. Viertel nach, Viertel vor.'],
-  dialog:   ['Përgjigjet në bisedë', 'Antworten im Gespräch', 'Lexo me kujdes: çfarë pyet ose çfarë do personi?']
+  dialog:   ['Përgjigjet në bisedë', 'Antworten im Gespräch', 'Lexo me kujdes: çfarë pyet ose çfarë do personi?'],
+  subjekt:  ['Subjekti dhe mbaresa', 'Subjekt & Verbendung', 'Sabine = sie → -t (schwimmt). Meine Freunde = sie → -en (leben). ihr → -t (wohnt).'],
+  trennbar: ['Foljet e ndashme', 'Trennbare Verben', 'Folja në vendin 2, parashtesa në fund: Ich stehe um 7 Uhr auf.'],
+  zahlen:   ['Numrat', 'Zahlen', 'Së pari njëshja, pastaj dhjetëshja: 35 = fünfunddreißig. 30 = dreißig.'],
+  lesen:    ['Leximi', 'Leseverstehen', 'Lexo pyetjen, gjej fjalën kyçe dhe kërkoje në tekst.']
 };
 const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög)/;
 /* finds the grammar topic of a question from what it asks; q.topic in the data wins */

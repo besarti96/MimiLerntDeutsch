@@ -54,7 +54,9 @@ const WORDS = [
     ['sieben','7 · shtatë'],['acht','8 · tetë'],['neun','9 · nëntë'],['zehn','10 · dhjetë'],['elf','11 · njëmbëdhjetë'],['zwölf','12 · dymbëdhjetë'],
     ['dreizehn','13 · trembëdhjetë'],['vierzehn','14 · katërmbëdhjetë'],['fünfzehn','15 · pesëmbëdhjetë'],['sechzehn','16 · gjashtëmbëdhjetë'],
     ['siebzehn','17 · shtatëmbëdhjetë'],['achtzehn','18 · tetëmbëdhjetë'],['neunzehn','19 · nëntëmbëdhjetë'],['zwanzig','20 · njëzet'],
-    ['dreißig','30 · tridhjetë'],['vierzig','40 · dyzet'],['fünfzig','50 · pesëdhjetë'],['hundert','100 · njëqind']]
+    ['dreißig','30 · tridhjetë'],['vierzig','40 · dyzet'],['fünfzig','50 · pesëdhjetë'],['hundert','100 · njëqind'],
+    ['sechzig','60 · gjashtëdhjetë'],['siebzig','70 · shtatëdhjetë'],['achtzig','80 · tetëdhjetë'],['neunzig','90 · nëntëdhjetë'],['tausend','1000 · një mijë'],
+    ['einundzwanzig','21 · njëzet e një'],['fünfunddreißig','35 · tridhjetë e pesë'],['siebenundvierzig','47 · dyzet e shtatë'],['siebenundsechzig','67 · gjashtëdhjetë e shtatë']]
 },
 {
   id:'w-wetter', emoji:'🌦️', color:'#2E86DE', added:'2026-10-22T18:58', sq:'Moti & drejtimet', de:'Wetter & Himmelsrichtungen',
@@ -83,7 +85,20 @@ const WORDS = [
     ['wohnen','banoj'],['arbeiten','punoj'],['lernen','mësoj'],['sprechen','flas'],['machen','bëj'],['kaufen','blej'],['nehmen','marr'],
     ['helfen','ndihmoj'],['spielen','luaj'],['lieben','dua (dashuroj)'],['mögen','më pëlqen'],['können','di, mund'],['wollen','dua (të bëj)'],
     ['aufstehen','ngrihem'],['suchen','kërkoj'],['finden','gjej'],['sehen','shoh'],['hören','dëgjoj'],['sagen','them'],['fragen','pyes'],
-    ['schreiben','shkruaj'],['rennen','vrapoj shpejt'],['üben','ushtroj']]
+    ['schreiben','shkruaj'],['rennen','vrapoj shpejt'],['üben','ushtroj'],['schwimmen','notoj'],['kennen','njoh'],['leben','jetoj']]
+},
+{
+  id:'w-trennbar', emoji:'⏰', color:'#7650F0', added:'2026-10-26T08:00', sq:'Foljet e ndashme', de:'Trennbare Verben',
+  nouns:[],
+  words:[['aufstehen','ngrihem'],['anrufen','telefonoj'],['aufräumen','rregulloj'],['einkaufen','bëj pazar'],['fernsehen','shikoj televizor'],
+    ['mitkommen','vij bashkë'],['anfangen','filloj'],['Ich stehe auf.','Ngrihem.'],['Ich rufe dich an.','Të telefonoj.'],['Ich kaufe ein.','Bëj pazar.']]
+},
+{
+  id:'w-schule', emoji:'🏫', color:'#0E9F8E', added:'2026-10-26T08:00', sq:'Shkolla, puna & kafshët', de:'Schule, Beruf & Tiere',
+  nouns:[['die','Schule','shkolla'],['das','Lieblingsfach','lënda e preferuar'],['die','Mathematik','matematika'],['die','Physik','fizika'],['die','Chemie','kimia'],
+    ['der','Lehrer','mësuesi'],['die','Lehrerin','mësuesja'],['die','Bank','banka'],['der','Koch','kuzhinieri'],['die','Köchin','kuzhinierja'],
+    ['das','Tier','kafsha'],['der','Hund','qeni'],['die','Katze','macja'],['der','Goldfisch','peshku i kuq'],['das','Eis','akullorja'],['der','See','liqeni'],['der','Park','parku']],
+  words:[['arbeiten','punoj'],['gern','me qejf'],['oft','shpesh'],['manchmal','ndonjëherë'],['lange','gjatë']]
 },
 {
   id:'w-laender', emoji:'🌍', color:'#16A34A', added:'2026-10-22T19:10', sq:'Shtetet & gjuhët', de:'Länder & Sprachen',

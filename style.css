@@ -276,6 +276,8 @@ table.lt{width:100%;border-collapse:collapse;font-size:16px}
 .lt td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
 .lt td:first-child{font-weight:700}
 .lt b{color:var(--tc)}
+.readbox{max-height:34dvh;overflow:auto;margin:0 0 12px;padding:12px 14px;border-radius:16px;background:#FFFDF6;border:2px solid #F1E3B5;font-size:16px;line-height:1.5}
+[data-theme="dark"] .readbox{background:#24212F;border-color:#4A4230}
 .lt td .tr{display:block;margin-top:1px;font-size:13px;font-weight:400;font-style:italic;color:var(--muted);line-height:1.2}
 .tipbox .tr{font-size:14px;color:var(--muted)}
 .sclock .tr{font-style:italic;font-size:13px;text-align:center;line-height:1.2}

@@ -6,6 +6,7 @@
    unit = Abschnitts-Titel beim ersten Kapitel jeder Lektion.
 
    lesson-Folie:  { t, d, p, table, th, ex:[[de, sq]], clocks:[[h,m,text]], tip }
+   read: Lesetext des Kapitels; mc mit read:true zeigt ihn über der Frage.
    items-Typen:   gap   { s:'… ___ …', h, o:[], a, e, full?, row?, t? }
                   mc    { q, h?, o:[], a, e, say?, row?, t? }
                   order { de, sq }
@@ -142,6 +143,60 @@ const CHAPTERS = [
   ]
 },
 {
+  id:'subjekt', lek:1, emoji:'🏊‍♀️', color:'#2E86DE', added:'2026-10-26T08:00',
+  sq:'Kush? → mbaresa', de:'Sabine schwimmt, Freunde leben',
+  desc:'Kur para foljes qëndron një emër: Sabine, Manfred, meine Freunde. Cila mbaresë vjen?',
+  tip:'Një person (Sabine, Manfred, mein Bruder) = er/sie → -t. Dy ose më shumë (Julia und Martin, meine Freunde) = sie → -en. ihr → -t.',
+  lesson:[
+    {t:'Kush është subjekti?', d:'Wer ist das Subjekt?', p:'Para foljes shpesh nuk qëndron <b>ich</b> apo <b>du</b>, por një <b>emër</b>. Pyet veten: me cilin përemër e zëvendësoj?',
+     th:['Subjekti','=','Mbaresa'],
+     tr:[['Sabina','ajo',''],['Manfredi','ai',''],['vëllai im','ai',''],['fëmija','ai / ajo',''],['miqtë e mi','ata',''],['Julia dhe Martini','ata',''],['Klara dhe unë','ne','']],
+     table:[['Sabine','sie','<b>-t</b>'],['Manfred','er','<b>-t</b>'],['mein Bruder','er','<b>-t</b>'],['das Kind','es','<b>-t</b>'],['meine Freunde','sie','<b>-en</b>'],['Julia und Martin','sie','<b>-en</b>'],['Klara und ich','wir','<b>-en</b>']],
+     tip:'Një person → <b>-t</b>. Shumë persona → <b>-en</b>. „… und ich“ = <b>wir</b> → -en.'},
+    {t:'Shembuj', d:'Beispiele',
+     ex:[['Sabine schwimmt im Schwimmbad.','Sabina noton në pishinë.'],['Manfred schreibt seiner Freundin.','Manfredi i shkruan të dashurës.'],
+       ['Meine Freunde leben in Spanien.','Miqtë e mi jetojnë në Spanjë.'],['Julia und Martin tanzen gern Salsa.','Julia dhe Martini kërcejnë me qejf salsa.'],['Wo wohnt ihr?','Ku banoni?']],
+     tip:'Kujdes: <b>ihr</b> → <b>-t</b> (ihr wohnt), jo -en!'},
+    {t:'Mbaresat', d:'Die Endungen', say:-1, th:['','wohnen','schreiben','schwimmen'],
+     tr:[['unë','banoj','shkruaj','notoj'],['ti','banon','shkruan','noton'],['ai / ajo','banon','shkruan','noton'],['ne','banojmë','shkruajmë','notojmë'],['ju','banoni','shkruani','notoni'],['ata / Ju','banojnë / banoni','shkruajnë / shkruani','notojnë / notoni']],
+     table:[['ich','wohn<b>e</b>','schreib<b>e</b>','schwimm<b>e</b>'],['du','wohn<b>st</b>','schreib<b>st</b>','schwimm<b>st</b>'],['er / sie / es','wohn<b>t</b>','schreib<b>t</b>','schwimm<b>t</b>'],
+       ['wir','wohn<b>en</b>','schreib<b>en</b>','schwimm<b>en</b>'],['ihr','wohn<b>t</b>','schreib<b>t</b>','schwimm<b>t</b>'],['sie / Sie','wohn<b>en</b>','schreib<b>en</b>','schwimm<b>en</b>']]},
+    {t:'Kujdes! 👀', d:'Aus dem Test vom Freitag', p:'Këto gabime ishin në testin e së premtes. Pjesa tjetër ishte shumë e mirë! 💪',
+     fix:[
+      ['Sabine schwimmen im Schwimmbad.','Sabine schwimmt im Schwimmbad.','Sabine = sie (ajo) → -t.'],
+      ['Meine Freunde lebt in Spanien.','Meine Freunde leben in Spanien.','Freunde = shumë (ata) → -en.'],
+      ['Manfred schreiben seiner Freundin.','Manfred schreibt seiner Freundin.','Manfred = er (ai) → -t.'],
+      ['Wo wohnen ihr?','Wo wohnt ihr?','ihr → -t.'],
+      ['du sprechst / er sprecht','du sprichst / er spricht','sprechen është rebel: e → i te du dhe er.']]}
+  ],
+  nouns:[['das','Schwimmbad','pishina'],['die','Schule','shkolla'],['der','Lehrer','mësuesi']],
+  words:[['schwimmen','notoj'],['schreiben','shkruaj'],['kennen','njoh'],['fragen','pyes'],['sagen','them'],['leben','jetoj'],['hören','dëgjoj'],['kaufen','blej']],
+  items:[
+    {type:'match', pairs:[['Sabine','schwimmt'],['meine Freunde','leben'],['ihr','wohnt'],['ich','frage'],['du','kennst']]},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Sabine ___ im Schwimmbad.', h:'schwimmen', o:['schwimmt','schwimmen','schwimmst','schwimme'], a:'schwimmt', e:'Sabine = sie → schwimmt.'},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Meine Freunde ___ in Spanien.', h:'leben', o:['leben','lebt','lebst','lebe'], a:'leben', e:'Freunde = sie (ata) → leben.'},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Manfred ___ seiner Freundin.', h:'schreiben', o:['schreibt','schreiben','schreibst','schreibe'], a:'schreibt', e:'Manfred = er → schreibt.'},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Wo ___ ihr?', h:'wohnen', o:['wohnt','wohnen','wohnst','wohne'], a:'wohnt', e:'ihr → -t: ihr wohnt.'},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Julia und Martin ___ gern Salsa.', h:'tanzen', o:['tanzen','tanzt','tanze','tanzst'], a:'tanzen', e:'Julia und Martin = sie → tanzen.'},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Mein Bruder ___ in die Schule.', h:'gehen', o:['geht','gehen','gehst','gehe'], a:'geht', e:'mein Bruder = er → geht.'},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Die Kinder ___ Musik.', h:'hören', o:['hören','hört','hörst','höre'], a:'hören', e:'die Kinder = sie (ata) → hören.'},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Klara und ich ___ ins Kino.', h:'gehen; Klara und ich = ?', o:['gehen','geht','gehst','gehe'], a:'gehen', e:'Klara und ich = wir → gehen.'},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Anna ___ seit drei Jahren in Deutschland.', h:'leben', o:['lebt','leben','lebst','lebe'], a:'lebt', e:'Anna = sie → lebt.'},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Meine Eltern ___ in München.', h:'wohnen', o:['wohnen','wohnt','wohnst','wohne'], a:'wohnen', e:'die Eltern = sie (ata) → wohnen.'},
+    {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Der Hund ___ im Park.', h:'spielen', o:['spielt','spielen','spielst','spiele'], a:'spielt', e:'der Hund = er → spielt.'},
+    {type:'gap', psq:'Plotëso foljen', pde:'Ergänze das Verb', s:'___ du diesen Mann?', h:'kennen', o:['Kennst','Kennt','Kenne','Kennen'], a:'Kennst', e:'du kennst.'},
+    {type:'gap', psq:'Plotëso foljen', pde:'Ergänze das Verb', s:'Ich ___ den Lehrer.', h:'fragen', o:['frage','fragt','fragst','fragen'], a:'frage', e:'ich frage.'},
+    {type:'gap', psq:'Plotëso foljen', pde:'Ergänze das Verb', s:'Was ___ Sie heute Abend?', h:'machen; Sie = Ju', o:['machen','macht','machst','mache'], a:'machen', e:'Sie → -en: Sie machen.'},
+    {type:'gap', psq:'Plotëso foljen', pde:'Ergänze das Verb', s:'Er ___ Englisch und Französisch.', h:'sprechen', o:['spricht','sprecht','sprechst','spreche'], a:'spricht', e:'sprechen: e → i: er spricht.'},
+    {type:'mc', row:true, topic:'pronomen', psq:'Cili përemër?', pde:'Welches Pronomen?', q:'Meine Freunde leben in Spanien. → ___ leben in Spanien.', o:['Sie','Er','Ihr'], a:'Sie', e:'Freunde = shumë → sie (ata).'},
+    {type:'mc', row:true, topic:'pronomen', psq:'Cili përemër?', pde:'Welches Pronomen?', q:'Manfred schreibt. → ___ schreibt.', o:['Er','Sie','Es'], a:'Er', e:'Manfred = er.'},
+    {type:'order', de:'Sabine schwimmt im Schwimmbad.', sq:'Sabina noton në pishinë.'},
+    {type:'order', de:'Meine Freunde leben in Spanien.', sq:'Miqtë e mi jetojnë në Spanjë.'},
+    {type:'order', de:'Wo wohnt ihr?', sq:'Ku banoni?'},
+    {type:'order', de:'Julia und Martin tanzen gern Salsa.', sq:'Julia dhe Martini kërcejnë me qejf salsa.'}
+  ]
+},
+{
   id:'wfragen', lek:1, emoji:'❓', color:'#0E9F8E',
   sq:'Kush? Çfarë? Ku?', de:'W-Fragen: wer, was, wo',
   desc:'Wer, was, wo, wann, wie, woher: si të bësh pyetje.',
@@ -242,6 +297,90 @@ const CHAPTERS = [
     {type:'order', de:'Das ist mein Bruder.', sq:'Ky është vëllai im.'},
     {type:'order', de:'Mein Name ist Manuela Klein.', sq:'Emri im është Manuela Klein.'},
     {type:'order', de:'Das ist meine Enkelin Sara.', sq:'Kjo është mbesa ime Sara.'}
+  ]
+},
+
+{
+  id:'zahlen', lek:2, emoji:'🔢', color:'#E3A008', added:'2026-10-26T08:00', writeWords:true, mix:{vocab:4, write:2},
+  sq:'Numrat & mosha', de:'Zahlen bis 1000 · Wie alt bist du?',
+  desc:'Numrat 13 deri 1000, si shkruhen me fjalë dhe si e thua moshën.',
+  tip:'Së pari njëshja, pastaj dhjetëshja: 35 = fünfunddreißig. 30 = dreißig (me ß). drei + zehn = dreizehn.',
+  lesson:[
+    {t:'Numrat 13–19', d:'Die Zahlen 13–19', say:1, th:['','Gjermanisht'],
+     table:[['13','dreizehn'],['14','vierzehn'],['15','fünfzehn'],['16','<b>sech</b>zehn'],['17','<b>sieb</b>zehn'],['18','achtzehn'],['19','neunzehn']],
+     tip:'drei + zehn = drei<b>zehn</b> (jo „dreizhen“). Kujdes: <b>sech</b>zehn dhe <b>sieb</b>zehn janë më të shkurtra!'},
+    {t:'Dhjetëshet', d:'Die Zehner', say:1, th:['','Gjermanisht'],
+     table:[['20','zwanzig'],['30','drei<b>ß</b>ig'],['40','vierzig'],['50','fünfzig'],['60','<b>sech</b>zig'],['70','<b>sieb</b>zig'],['80','achtzig'],['90','neunzig'],['100','(ein)hundert'],['1000','(ein)tausend']],
+     tip:'Të gjitha me <b>-zig</b>, vetëm 30 = drei<b>ßig</b> (në Zvicër: dreissig).'},
+    {t:'Njëshja para!', d:'Erst die Einer', p:'Shqip: tridhjetë e <b>pesë</b>. Gjermanisht: <b>pesë</b> e tridhjetë → fünf<b>und</b>dreißig.', say:1, th:['','Gjermanisht'],
+     tr:[['','njëzet e një'],['','tridhjetë e pesë'],['','dyzet e shtatë'],['','gjashtëdhjetë e shtatë'],['','nëntëdhjetë e nëntë'],['','njëqind e tridhjetë e dy']],
+     table:[['21','<b>ein</b>undzwanzig'],['35','fünfunddreißig'],['47','siebenundvierzig'],['67','siebenundsechzig'],['99','neunundneunzig'],['132','hundertzweiunddreißig']],
+     tip:'21 = <b>ein</b>undzwanzig (jo eins-). Numri shkruhet si <b>një fjalë</b>, pa hapësira.'},
+    {t:'Sa vjeç je?', d:'Wie alt bist du?',
+     ex:[['Wie alt bist du?','Sa vjeç je?'],['Ich bin 27 Jahre alt.','Jam 27 vjeç.'],['Wie alt ist Klara? – Sie ist 13 Jahre alt.','Sa vjeç është Klara? – Është 13 vjeç.'],['Mein Bruder ist 18.','Vëllai im është 18 vjeç.']],
+     tip:'Gjermanisht thuhet me <b>sein</b>: Ich <b>bin</b> 27 <b>Jahre</b> alt. Jahre me J të madhe.'},
+    {t:'Kujdes! 👀', d:'Aus dem Test vom Freitag', p:'Numrat nga testi i së premtes. 20 dhe 47 i ke shkruar saktë ✓',
+     fix:[
+      ['funfunddreizig','fünfunddreißig','fünf me ü, dreißig me ß (ose ss).'],
+      ['dreizhen','dreizehn','drei + zehn.'],
+      ['seibenundsechzig','siebenundsechzig','sieben: s-i-e-b-e-n.'],
+      ['einhundertzweiunddreizig','(ein)hundertzweiunddreißig','30 = dreißig, jo -zig.'],
+      ['Ich bin 27 jare alt.','Ich bin 27 Jahre alt.','das Jahr → die Jahre, me J të madhe dhe h.']]}
+  ],
+  nouns:[['das','Jahr','viti'],['die','Zahl','numri']],
+  words:[['dreizehn','13'],['sechzehn','16'],['siebzehn','17'],['zwanzig','20'],['dreißig','30'],['vierzig','40'],['fünfzig','50'],['sechzig','60'],
+    ['siebzig','70'],['achtzig','80'],['neunzig','90'],['hundert','100'],['tausend','1000'],['fünfunddreißig','35'],['siebenundsechzig','67']],
+  items:[
+    {type:'match', pairs:[['dreizehn','13'],['dreißig','30'],['sechzig','60'],['siebzig','70'],['hundert','100']]},
+    {type:'match', pairs:[['fünfunddreißig','35'],['siebenundvierzig','47'],['siebenundsechzig','67'],['einundzwanzig','21'],['neunundneunzig','99']]},
+    {type:'mc', topic:'zahlen', psq:'Si shkruhet?', pde:'Wie schreibt man das?', q:'35', o:['fünfunddreißig','dreißigfünf','fünfunddreizig','fünfzigdrei'], a:'fünfunddreißig', say:'fünfunddreißig', e:'Së pari 5, pastaj 30: fünf-und-dreißig.'},
+    {type:'mc', topic:'zahlen', psq:'Si shkruhet?', pde:'Wie schreibt man das?', q:'13', o:['dreizehn','dreizhen','dreizig','dreißig'], a:'dreizehn', say:'dreizehn', e:'drei + zehn = dreizehn.'},
+    {type:'mc', topic:'zahlen', psq:'Si shkruhet?', pde:'Wie schreibt man das?', q:'67', o:['siebenundsechzig','seibenundsechzig','sechsundsiebzig','siebzigsechs'], a:'siebenundsechzig', say:'siebenundsechzig', e:'7 + 60 = sieben-und-sechzig.'},
+    {type:'mc', topic:'zahlen', psq:'Si shkruhet?', pde:'Wie schreibt man das?', q:'132', o:['hundertzweiunddreißig','hundertdreißigzwei','zweihundertdreißig','hundertdreiundzwanzig'], a:'hundertzweiunddreißig', say:'hundertzweiunddreißig', e:'100 + 2 + 30 = hundert-zwei-und-dreißig.'},
+    {type:'mc', topic:'zahlen', psq:'Si shkruhet?', pde:'Wie schreibt man das?', q:'16', o:['sechzehn','sechszehn','sechzig','sechsehn'], a:'sechzehn', say:'sechzehn', e:'16 = sechzehn, pa s.'},
+    {type:'mc', topic:'zahlen', psq:'Çfarë numri?', pde:'Welche Zahl?', q:'achtzehn', speakQ:true, o:['18','80','8','81'], a:'18', say:'achtzehn', e:'acht + zehn = 18. (80 = achtzig)'},
+    {type:'mc', topic:'zahlen', psq:'Çfarë numri?', pde:'Welche Zahl?', q:'siebenundvierzig', speakQ:true, o:['47','74','407','17'], a:'47', say:'siebenundvierzig', e:'sieben und vierzig = 7 + 40 = 47.'},
+    {type:'mc', topic:'zahlen', psq:'Sa vjeç?', pde:'Wie alt?', q:'Wie alt ist Klara? – Sie ist dreizehn.', speakQ:true, o:['13','30','3','31'], a:'13', say:'Sie ist dreizehn Jahre alt.', e:'dreizehn = 13.'},
+    {type:'gap', topic:'seinhaben', psq:'Mosha', pde:'Das Alter', s:'Ich ___ 27 Jahre alt.', h:'sein', o:['bin','habe','ist','bist'], a:'bin', e:'Mosha me sein: Ich bin … Jahre alt.'},
+    {type:'gap', topic:'seinhaben', psq:'Mosha', pde:'Das Alter', s:'Wie alt ___ du?', h:'sein', o:['bist','bin','hast','ist'], a:'bist', e:'du bist.'},
+    {type:'gap', psq:'Mosha', pde:'Das Alter', s:'Mein Bruder ist 18 ___ alt.', o:['Jahre','Jahr','jare'], a:'Jahre', row:true, e:'Jahre me J të madhe.'},
+    {type:'letters', topic:'zahlen', psq:'Rendit shkronjat', pde:'Ordne die Buchstaben', s:'13 = ___', a:'dreizehn', mix:'ehrzidne', e:'drei + zehn.'},
+    {type:'letters', topic:'zahlen', psq:'Rendit shkronjat', pde:'Ordne die Buchstaben', s:'70 = ___', a:'siebzig', mix:'gizbesi', e:'sieb + zig.'},
+    {type:'order', de:'Ich bin 27 Jahre alt.', sq:'Jam 27 vjeç.'},
+    {type:'order', de:'Wie alt bist du?', sq:'Sa vjeç je?'},
+    {type:'order', de:'Mein Bruder ist achtzehn Jahre alt.', sq:'Vëllai im është tetëmbëdhjetë vjeç.'}
+  ]
+},
+{
+  id:'lesen', lek:2, emoji:'📖', color:'#0E9F8E', added:'2026-10-26T08:00',
+  sq:'Leximi: Elif', de:'Lesen: Ich heiße Elif',
+  desc:'Lexo tekstin për Elifin dhe përgjigju pyetjeve, ashtu si në test.',
+  tip:'Lexo pyetjen, gjej fjalën kyçe (alt, wo, wann …) dhe kërkoje në tekst.',
+  read:'Ich heiße Elif und bin 24 Jahre alt. Ich komme aus der Türkei, aber ich wohne seit zwei Jahren in Zürich. Ich habe einen Bruder: Er heißt Can und ist 20 Jahre alt. Meine Eltern wohnen in Istanbul. Mein Vater ist Lehrer, meine Mutter arbeitet in einem Supermarkt.<br><br>Ich arbeite in einem Café. Ich stehe jeden Tag um sechs Uhr auf. Am Abend lerne ich Deutsch. Ich spreche Türkisch, Englisch und ein bisschen Deutsch.<br><br>Am Samstag räume ich die Wohnung auf und kaufe im Supermarkt ein. Am Sonntag rufe ich meine Eltern an. Ich mag Katzen, aber ich habe keine Katze. Meine Wohnung ist zu klein!',
+  lesson:[
+    {t:'Si lexoj një tekst? 📖', d:'Lesetipps', p:'1. Lexo <b>pyetjen</b>. 2. Gjej <b>fjalën kyçe</b>. 3. Kërkoje në tekst. 4. Lexo fjalinë rreth saj.', th:['Pyetja','Kërko në tekst'], say:-1,
+     tr:[['Sa vjeç …?','… vjeç'],['Ku …?','në …'],['Kur …?','në orën … / ditën …'],['Çfarë bën …?','foljen'],['Kush …?','një person']],
+     table:[['Wie alt …?','… Jahre alt'],['Wo …?','in …'],['Wann …?','um … / am …'],['Was macht …?','das Verb'],['Wer …?','eine Person']]},
+    {t:'Fjalë nga teksti', d:'Wörter aus dem Text', say:0, th:['Deutsch','Shqip'],
+     table:[['seit zwei Jahren','prej dy vitesh'],['arbeiten','punoj'],['das Café','kafeneja'],['jeden Tag','çdo ditë'],['die Katze','macja'],['zu klein','shumë e vogël'],['aber','por']]},
+    {t:'Teksti', d:'Der Text', p:'Ich heiße Elif und bin 24 Jahre alt. Ich komme aus der Türkei, aber ich wohne seit zwei Jahren in Zürich. Ich habe einen Bruder: Er heißt Can und ist 20 Jahre alt. Meine Eltern wohnen in Istanbul. Mein Vater ist Lehrer, meine Mutter arbeitet in einem Supermarkt.<br><br>Ich arbeite in einem Café. Ich stehe jeden Tag um sechs Uhr auf. Am Abend lerne ich Deutsch. Ich spreche Türkisch, Englisch und ein bisschen Deutsch.<br><br>Am Samstag räume ich die Wohnung auf und kaufe im Supermarkt ein. Am Sonntag rufe ich meine Eltern an. Ich mag Katzen, aber ich habe keine Katze. Meine Wohnung ist zu klein!',
+     tip:'Te pyetjet teksti është gjithmonë sipër. Lexoje sa herë të duash. 😊'}
+  ],
+  nouns:[['die','Katze','macja'],['der','Hund','qeni'],['das','Café','kafeneja'],['der','Beruf','profesioni']],
+  words:[['arbeiten','punoj'],['seit','prej'],['jeden Tag','çdo ditë'],['aber','por'],['oft','shpesh']],
+  items:[
+    {type:'match', pairs:[['die Katze','macja'],['der Hund','qeni'],['arbeiten','punoj'],['jeden Tag','çdo ditë'],['seit zwei Jahren','prej dy vitesh']]},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wie alt ist Elif?', o:['24','20','26','42'], a:'24', e:'„Ich heiße Elif und bin 24 Jahre alt.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wo wohnt Elif?', o:['in Zürich','in Istanbul','in der Türkei','in Berlin'], a:'in Zürich', e:'„… ich wohne seit zwei Jahren in Zürich.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wer ist Can?', o:['ihr Bruder','ihr Vater','ihr Freund','ihr Sohn'], a:'ihr Bruder', e:'„Ich habe einen Bruder: Er heißt Can.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Was macht Elifs Vater?', o:['Er ist Lehrer.','Er arbeitet in einem Café.','Er arbeitet in einem Supermarkt.','Er lernt Deutsch.'], a:'Er ist Lehrer.', e:'„Mein Vater ist Lehrer.“ Nëna punon në supermarket.'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wann steht Elif auf?', o:['um sechs Uhr','um sieben Uhr','am Abend','am Sonntag'], a:'um sechs Uhr', e:'„Ich stehe jeden Tag um sechs Uhr auf.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Welche Sprachen spricht Elif?', o:['Türkisch, Englisch und ein bisschen Deutsch','Deutsch und Italienisch','nur Türkisch','Englisch und Französisch'], a:'Türkisch, Englisch und ein bisschen Deutsch', e:'„Ich spreche Türkisch, Englisch und ein bisschen Deutsch.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Was macht Elif am Sonntag?', o:['Sie ruft ihre Eltern an.','Sie kauft im Supermarkt ein.','Sie arbeitet im Café.','Sie räumt die Wohnung auf.'], a:'Sie ruft ihre Eltern an.', e:'„Am Sonntag rufe ich meine Eltern an.“ Pazarin e bën të shtunën.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Hat Elif eine Katze?', o:['Ja','Nein'], a:'Nein', e:'„Ich mag Katzen, aber ich habe keine Katze.“'},
+    {type:'order', de:'Ich stehe jeden Tag um sechs Uhr auf.', sq:'Ngrihem çdo ditë në orën gjashtë.'},
+    {type:'order', de:'Am Sonntag rufe ich meine Eltern an.', sq:'Të dielën u telefonoj prindërve.'},
+    {type:'order', de:'Mein Vater ist Lehrer.', sq:'Babai im është mësues.'}
   ]
 },
 
@@ -602,6 +741,58 @@ const CHAPTERS = [
     {type:'order', de:'Der Bus kommt um acht Uhr.', sq:'Autobusi vjen në orën tetë.'},
     {type:'order', de:'Was machst du am Sonntag?', sq:'Çfarë bën të dielën?'},
     {type:'order', de:'Heute habe ich keine Zeit.', sq:'Sot nuk kam kohë.'}
+  ]
+},
+
+{
+  id:'trennbar', lek:5, emoji:'⏰', color:'#7650F0', added:'2026-10-26T08:00',
+  sq:'Foljet e ndashme', de:'Trennbare Verben: ich stehe … auf',
+  desc:'aufstehen, anrufen, aufräumen, einkaufen: folja ndahet në dy pjesë!',
+  tip:'Folja në vendin 2, parashtesa (auf-, an-, ein-, fern-) në fund: Ich stehe um sieben Uhr auf.',
+  lesson:[
+    {t:'Folja ndahet në dy!', d:'Trennbare Verben', p:'Disa folje kanë një <b>parashtesë</b>: auf-, an-, ein-, fern-. Në fjali, parashtesa shkon <b>në fund</b>.', say:1, th:['Folja','Në fjali','Shqip'],
+     tr:[['','Ngrihem në orën shtatë.',''],['','I telefonoj nënës sime.',''],['','Rregulloj dhomën time.',''],['','Bëj pazar në supermarket.',''],['','Në mbrëmje shikoj televizor.','']],
+     table:[['aufstehen','Ich stehe um sieben Uhr <b>auf</b>.','ngrihem'],['anrufen','Ich rufe meine Mutter <b>an</b>.','telefonoj'],['aufräumen','Ich räume mein Zimmer <b>auf</b>.','rregulloj'],
+       ['einkaufen','Ich kaufe im Supermarkt <b>ein</b>.','bëj pazar'],['fernsehen','Ich sehe am Abend <b>fern</b>.','shikoj televizor']],
+     tip:'Si kllapë: <b>stehe</b> … <b>auf</b>. Ashtu si te können: kann … tanzen! 🔚'},
+    {t:'Ku shkon çdo pjesë?', d:'Die Satzklammer', p:'Folja në <b>vendin 2</b>, parashtesa <b>në fund</b>. Edhe kur fjalia fillon me kohën!',
+     ex:[['Ich stehe um sieben Uhr auf.','Ngrihem në orën shtatë.'],['Am Samstag räume ich die Wohnung auf.','Të shtunën rregulloj banesën.'],['Rufst du mich morgen an?','Më telefonon nesër?'],['Wann kaufst du ein?','Kur bën pazar?']],
+     tip:'Pyetje pa W: folja del e para, parashtesa prapë në fund: <b>Rufst</b> du mich <b>an</b>?'},
+    {t:'aufstehen dhe anrufen', d:'Konjugation', say:-1, th:['','aufstehen','anrufen'],
+     tr:[['unë','ngrihem','telefonoj'],['ti','ngrihesh','telefonon'],['ai / ajo','ngrihet','telefonon'],['ne','ngrihemi','telefonojmë'],['ju','ngriheni','telefononi'],['ata / Ju','ngrihen / ngriheni','telefonojnë / telefononi']],
+     table:[['ich','stehe … <b>auf</b>','rufe … <b>an</b>'],['du','stehst … <b>auf</b>','rufst … <b>an</b>'],['er / sie / es','steht … <b>auf</b>','ruft … <b>an</b>'],
+       ['wir','stehen … <b>auf</b>','rufen … <b>an</b>'],['ihr','steht … <b>auf</b>','ruft … <b>an</b>'],['sie / Sie','stehen … <b>auf</b>','rufen … <b>an</b>']]},
+    {t:'Kujdes nga kurthet! 👀', d:'Achtung, Fallen!', p:'Në testin e së premtes ushtrimi me foljet e ndashme mbeti bosh. Tani e mëson! 💪',
+     fix:[
+      ['Ich aufstehe um sieben Uhr.','Ich stehe um sieben Uhr auf.','auf- shkon në fund.'],
+      ['Ich anrufe meine Mutter.','Ich rufe meine Mutter an.','an- shkon në fund.'],
+      ['Am Samstag ich räume auf.','Am Samstag räume ich auf.','Folja e dyta, pastaj ich.']]}
+  ],
+  nouns:[['der','Supermarkt','supermarketi'],['das','Zimmer','dhoma']],
+  words:[['aufstehen','ngrihem'],['anrufen','telefonoj'],['aufräumen','rregulloj'],['einkaufen','bëj pazar'],['fernsehen','shikoj televizor'],['mitkommen','vij bashkë'],['jeden Tag','çdo ditë']],
+  items:[
+    {type:'match', pairs:[['aufstehen','ngrihem'],['anrufen','telefonoj'],['aufräumen','rregulloj'],['einkaufen','bëj pazar'],['fernsehen','shikoj televizor']]},
+    {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'Ich ___ um sieben Uhr auf.', h:'aufstehen', o:['stehe','aufstehe','stehst','steht'], a:'stehe', e:'ich stehe … auf.'},
+    {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'Ich stehe um sieben Uhr ___.', h:'aufstehen', o:['auf','an','ein'], a:'auf', row:true, e:'aufstehen → … auf.'},
+    {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'Ich rufe meine Mutter ___.', h:'anrufen', o:['an','auf','ein'], a:'an', row:true, e:'anrufen → … an.'},
+    {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'Wir kaufen im Supermarkt ___.', h:'einkaufen', o:['ein','an','auf'], a:'ein', row:true, e:'einkaufen → … ein.'},
+    {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'Am Samstag ___ ich die Wohnung auf.', h:'aufräumen', o:['räume','aufräume','räumst','räumt'], a:'räume', e:'Am Samstag (1) räume (2) ich … auf.'},
+    {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'___ du mich morgen an?', h:'anrufen', o:['Rufst','Anrufst','Ruft','Rufe'], a:'Rufst', e:'du rufst … an.'},
+    {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'Mein Bruder ___ nie sein Zimmer auf.', h:'aufräumen', o:['räumt','räumst','räume','aufräumt'], a:'räumt', e:'er räumt … auf.'},
+    {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'Wann ___ ihr ein?', h:'einkaufen', o:['kauft','kaufen','kaufst','einkauft'], a:'kauft', e:'ihr kauft … ein.'},
+    {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'Elif ___ jeden Tag um sechs Uhr auf.', h:'aufstehen', o:['steht','stehen','stehst','aufsteht'], a:'steht', e:'sie steht … auf.'},
+    {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'Am Abend ___ wir fern.', h:'fernsehen', o:['sehen','seht','sieht','fernsehen'], a:'sehen', e:'wir sehen … fern.'},
+    {type:'mc', topic:'trennbar', psq:'Cila fjali është e saktë?', pde:'Welcher Satz ist richtig?', q:'Ngrihem në orën shtatë.',
+     o:['Ich stehe um sieben Uhr auf.','Ich aufstehe um sieben Uhr.','Ich stehe auf um sieben Uhr.','Ich um sieben Uhr aufstehe.'], a:'Ich stehe um sieben Uhr auf.', say:'Ich stehe um sieben Uhr auf.', e:'stehe në vendin 2, auf në fund.'},
+    {type:'mc', topic:'trennbar', psq:'Cila fjali është e saktë?', pde:'Welcher Satz ist richtig?', q:'I telefonoj nënës sime.',
+     o:['Ich rufe meine Mutter an.','Ich anrufe meine Mutter.','Ich rufe an meine Mutter.','Ich meine Mutter anrufe.'], a:'Ich rufe meine Mutter an.', say:'Ich rufe meine Mutter an.', e:'rufe në vendin 2, an në fund.'},
+    {type:'mc', topic:'trennbar', psq:'Cila fjali është e saktë?', pde:'Welcher Satz ist richtig?', q:'Të shtunën bëj pazar.',
+     o:['Am Samstag kaufe ich ein.','Am Samstag ich kaufe ein.','Am Samstag einkaufe ich.','Am Samstag kaufe ein ich.'], a:'Am Samstag kaufe ich ein.', say:'Am Samstag kaufe ich ein.', e:'Koha (1), folja (2), ich (3), ein në fund.'},
+    {type:'order', de:'Ich stehe um sieben Uhr auf.', sq:'Ngrihem në orën shtatë.'},
+    {type:'order', de:'Ich rufe meine Mutter an.', sq:'I telefonoj nënës sime.'},
+    {type:'order', de:'Ich räume mein Zimmer auf.', sq:'Rregulloj dhomën time.'},
+    {type:'order', de:'Am Samstag kaufe ich im Supermarkt ein.', sq:'Të shtunën bëj pazar në supermarket.'},
+    {type:'order', de:'Rufst du mich morgen an?', sq:'Më telefonon nesër?'}
   ]
 },
 

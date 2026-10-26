@@ -770,5 +770,201 @@ const HOMEWORK = [
 
   ]
 }
+,
+
+/* =====================================================================
+   📋 Testi i së premtes: der Test vom Freitag (A1.1, Future Focus), Übung 1–10
+   genau wie auf dem Blatt, mit Mimis Fehlern auf den „Kujdes“-Folien.
+   ===================================================================== */
+{
+  id:'l9', date:'2026-10-26', emoji:'📋', badge:['Testi i së premtes','Test vom Freitag'],
+  sq:'Testi i së premtes', de:'Test vom Freitag · A1.1',
+  parts:[
+
+/* ---------- Übung 1 + 2: Verben ---------- */
+{
+  id:'hw9-verben', emoji:'🗣️', color:'#F2545B', seq:true, book:['ushtrimi 1 + 2','Übung 1 + 2'],
+  sq:'Zgjedho foljet', de:'Übung 1 + 2: Verben konjugieren',
+  desc:'sprechen, sein, essen në tabelë dhe mbaresat e foljeve në fjali.',
+  tip:'Sabine = sie → -t. Meine Freunde = sie (ata) → -en. ihr → -t. sprechen: du sprichst, er spricht.',
+  lesson:[
+    {t:'Testi i së premtes 📋', d:'Der Test vom Freitag', p:'Këtu janë ushtrimet <b>e sakta nga testi</b>. I bën përsëri, si në fletë. 💪<br><b>1</b> Zgjedho foljet në tabelë. <b>2</b> Shkruaj mbaresën e foljes.',
+     tip:'Te ushtrimi 2 shkruan vetëm <b>mbaresën</b>: komm + <b>e</b> = komme.'},
+    {t:'Kujdes! 👀', d:'Schau nochmal', p:'<b>sein</b> dhe <b>essen</b> i ke bërë krejt saktë ✓. Vetëm këto:',
+     fix:[
+      ['du Sprechst','du sprichst','sprechen është rebel: e → i te du dhe er.'],
+      ['er Sprecht','er spricht','e → i, dhe folja me shkronjë të vogël.'],
+      ['Sabine schwimmen im Schwimmbad.','Sabine schwimmt im Schwimmbad.','Sabine = sie (ajo) → -t.'],
+      ['Meine Freunde lebt in Spanien.','Meine Freunde leben in Spanien.','Freunde = shumë (ata) → -en.'],
+      ['Manfred schreiben seiner Freundin.','Manfred schreibt seiner Freundin.','Manfred = er (ai) → -t.'],
+      ['Wo wohnen ihr?','Wo wohnt ihr?','ihr → -t.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'table', topic:'verben', psq:'1 Zgjedho: sprechen', pde:'1 Konjugieren Sie: sprechen', th:['','sprechen'],
+     rows:[['ich','spreche'],['du','sprichst'],['er / sie / es','spricht'],['wir','sprechen'],['ihr','sprecht'],['sie / Sie','sprechen']], e:'du sprichst, er spricht (e → i).'},
+    {type:'table', topic:'seinhaben', psq:'1 Zgjedho: sein', pde:'1 Konjugieren Sie: sein', th:['','sein'],
+     rows:[['ich','bin'],['du','bist'],['er / sie / es','ist'],['wir','sind'],['ihr','seid'],['sie / Sie','sind']], e:'ich bin, du bist, er ist, wir sind, ihr seid, sie sind.'},
+    {type:'table', topic:'verben', psq:'1 Zgjedho: essen', pde:'1 Konjugieren Sie: essen', th:['','essen'],
+     rows:[['ich','esse'],['du','isst'],['er / sie / es','isst'],['wir','essen'],['ihr','esst'],['sie / Sie','essen']], e:'du isst, er isst (e → i).'},
+    {type:'cloze', topic:'subjekt', psq:'2 Shkruaj mbaresën', pde:'2 Ergänzen Sie', h:'Shembull: Ich komm + e = komme',
+     text:'1  Ich komme aus Frankreich. ✓\n2  Er geh[[t]] in die Schule.\n3  Wir kauf[[en]] ein Auto.\n4  Du trink[[st]] Kaffee.\n5  Sie hör[[en]] Musik. (Plural)\n6  Ich frag[[e]] den Lehrer.\n7  Was mach[[en]] Sie heute Abend?',
+     e:'er -t, wir -en, du -st, sie (shumës) -en, ich -e, Sie -en.'},
+    {type:'cloze', topic:'subjekt', psq:'2 Shkruaj mbaresën', pde:'2 Ergänzen Sie', h:'Kush është subjekti? Një person → -t, shumë → -en.',
+     text:'9  Sabine schwimm[[t]] im Schwimmbad.\n10  Kenn[[st]] du diesen Mann?\n11  Ich sag[[e]] es dir morgen.\n12  Meine Freunde leb[[en]] in Spanien.\n13  Manfred schreib[[t]] seiner Freundin.\n14  Wo wohn[[t]] ihr?\n15  Julia und Martin tanz[[en]] gerne Salsa.',
+     e:'Sabine → -t, du → -st, ich → -e, Freunde → -en, Manfred → -t, ihr → -t, Julia und Martin → -en.'}
+  ]
+},
+
+/* ---------- Übung 3: Zahlen ---------- */
+{
+  id:'hw9-zahlen', emoji:'🔢', color:'#E3A008', seq:true, book:['ushtrimi 3','Übung 3'],
+  sq:'Numrat me fjalë', de:'Übung 3: Zahlen schreiben',
+  desc:'Shkruaj numrat me fjalë: 20, 35, 47, 132, 13, 67.',
+  tip:'Së pari njëshja: 35 = fünfunddreißig. 30 = dreißig (ose dreissig). 13 = dreizehn.',
+  lesson:[
+    {t:'Ushtrimi 3 📋', d:'Schreiben Sie die Zahlen', p:'Shkruaj numrat <b>me fjalë</b>, si një fjalë e vetme.',
+     tip:'Së pari njëshja: 35 = fünf<b>und</b>dreißig. 30 = drei<b>ß</b>ig (ss lejohet). ü: përdor butonin poshtë.'},
+    {t:'Kujdes! 👀', d:'Schau nochmal', p:'<b>20 zwanzig</b> dhe <b>47 siebenundvierzig</b> ishin saktë ✓. Këto jo:',
+     fix:[
+      ['funfunddreizig','fünfunddreißig','fünf me ü, dreißig me ß / ss.'],
+      ['einhundertzweiunddreizig','(ein)hundertzweiunddreißig','30 = dreißig, jo -zig.'],
+      ['dreizhen','dreizehn','drei + zehn.'],
+      ['seibenundsechzig','siebenundsechzig','sieben: s-i-e-b-e-n.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'zahlen', psq:'3 Shkruaj me fjalë', pde:'3 Schreiben Sie mit Wörtern',
+     text:'20  [[zwanzig]]\n35  [[fünfunddreißig]]\n47  [[siebenundvierzig]]\n132  [[hundertzweiunddreißig;einhundertzweiunddreißig]]\n13  [[dreizehn]]\n67  [[siebenundsechzig]]',
+     e:'zwanzig, fünfunddreißig, siebenundvierzig, hundertzweiunddreißig, dreizehn, siebenundsechzig.'},
+    {type:'match', psq:'Gjej çiftet', pde:'Finde die Paare', pairs:[['13','dreizehn'],['20','zwanzig'],['35','fünfunddreißig'],['47','siebenundvierzig'],['67','siebenundsechzig']]},
+    {type:'mc', topic:'zahlen', psq:'Si shkruhet?', pde:'Wie schreibt man das?', q:'30', o:['dreißig','dreizig','dreisig','dreizehn'], a:'dreißig', say:'dreißig', e:'30 = dreißig, i vetmi pa -zig.'}
+  ]
+},
+
+/* ---------- Übung 4 + 7: nicht / kein, Artikel ---------- */
+{
+  id:'hw9-artikel', emoji:'📌', color:'#EE7A0C', seq:true, book:['ushtrimi 4 + 7','Übung 4 + 7'],
+  sq:'nicht, kein & nyjat', de:'Übung 4 + 7: nicht/kein, Artikel',
+  desc:'nicht apo kein? Dhe tabelat e nyjave në Nominativ dhe Akkusativ.',
+  tip:'kein + emër: das Auto → kein, die Angst → keine. nicht + mbiemër ose folje: nicht dick, nicht spielen.',
+  lesson:[
+    {t:'Ushtrimi 4 + 7 📋', d:'nicht oder kein? Tabellen', p:'<b>4</b> Plotëso nicht ose kein. <b>7</b> Plotëso tabelat e nyjave.',
+     tip:'<b>kein</b> para emrit (sipas gjinisë: kein / keine). <b>nicht</b> për mbiemra dhe folje.'},
+    {t:'Kujdes! 👀', d:'Schau nochmal', p:'Tabelën e nyjës së shquar e ke bërë krejt saktë ✓. Vetëm këto:',
+     fix:[
+      ['Wir haben keine Auto.','Wir haben kein Auto.','das Auto → kein (pa -e).'],
+      ['Ino hat kein Angst vor dem Hund.','Ino hat keine Angst vor dem Hund.','die Angst → keine.'],
+      ['Plural (ein-): bosh','Plural: – (pa nyjë)','Në shumës „ein“ nuk ekziston: Das sind Kinder.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'ein', psq:'4 nicht apo kein?', pde:'4 Ergänzen Sie nicht oder kein', bank:['nicht','kein','keine'],
+     text:'1  Wir haben [[kein]] Auto.\n2  Ich bin [[nicht]] dick.\n3  Ich habe [[keine]] Schwester.\n4  Ino hat [[keine]] Angst vor dem Hund.\n5  Ich spiele [[nicht]] mit den Kindern.',
+     e:'das Auto → kein, die Schwester / die Angst → keine, dick dhe spielen → nicht.'},
+    {type:'table', topic:'ein', psq:'7 Nyja e shquar', pde:'7 Definiter Artikel', th:['','der / die / das'],
+     rows:[['maskulin · Nominativ','der'],['maskulin · Akkusativ','den'],['feminin · Nominativ','die'],['feminin · Akkusativ','die'],
+       ['neutral · Nominativ','das'],['neutral · Akkusativ','das'],['Plural · Nominativ','die'],['Plural · Akkusativ','die']],
+     e:'Vetëm maskulin ndryshon: der → den.'},
+    {type:'table', topic:'ein', psq:'7 Nyja e pashquar', pde:'7 Indefiniter Artikel', th:['','ein / eine'],
+     rows:[['maskulin · Nominativ','ein'],['maskulin · Akkusativ','einen'],['feminin · Nominativ','eine'],['feminin · Akkusativ','eine'],
+       ['neutral · Nominativ','ein'],['neutral · Akkusativ','ein'],['Plural · Nominativ','– (pa nyjë)',1],['Plural · Akkusativ','– (pa nyjë)',1]],
+     e:'Vetëm maskulin ndryshon: ein → einen. Shumësi: pa nyjë.'},
+    {type:'gap', topic:'ein', psq:'Shumësi', pde:'Plural', s:'Das sind ___ Kinder.', o:['eine','ein','pa nyjë'], a:'pa nyjë', full:'Das sind Kinder.', row:true, e:'„ein“ nuk ka shumës.'}
+  ]
+},
+
+/* ---------- Übung 5: trennbare Verben ---------- */
+{
+  id:'hw9-trennbar', emoji:'⏰', color:'#7650F0', seq:true, book:['ushtrimi 5','Übung 5'],
+  sq:'Foljet e ndashme', de:'Übung 5: Sätze mit trennbaren Verben',
+  desc:'Fjali me anrufen, aufräumen, aufstehen dhe einkaufen.',
+  tip:'Folja në vendin 2, pjesa e parë (an, auf, ein) në fund: Ich rufe meine Mutter an.',
+  lesson:[
+    {t:'Ushtrimi 5 📋', d:'Trennbare Verben', p:'Në test ky ushtrim mbeti <b>bosh</b>. S’ka problem, tani e mësojmë bashkë! 💪', say:1, th:['Folja','Fjali'],
+     tr:[['telefonoj','I telefonoj nënës sime.'],['rregulloj','Rregulloj dhomën time.'],['ngrihem','Ngrihem në orën shtatë.'],['bëj pazar','Bëj pazar në supermarket.']],
+     table:[['anrufen','Ich rufe meine Mutter <b>an</b>.'],['aufräumen','Ich räume mein Zimmer <b>auf</b>.'],['aufstehen','Ich stehe um sieben Uhr <b>auf</b>.'],['einkaufen','Ich kaufe im Supermarkt <b>ein</b>.']],
+     tip:'Folja në <b>vendin 2</b>, pjesa e parë (an, auf, ein) <b>në fund</b>.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'order', topic:'trennbar', psq:'5 Fjali me anrufen', pde:'5 Satz mit anrufen', cue:'anrufen – ich – meine Mutter', parts:['Ich','rufe','meine Mutter','an.'], de:'Ich rufe meine Mutter an.', sq:'I telefonoj nënës sime.'},
+    {type:'order', topic:'trennbar', psq:'5 Fjali me aufräumen', pde:'5 Satz mit aufräumen', cue:'aufräumen – am Samstag – ich – mein Zimmer', parts:['Am Samstag','räume','ich','mein Zimmer','auf.'], de:'Am Samstag räume ich mein Zimmer auf.', sq:'Të shtunën rregulloj dhomën time.'},
+    {type:'order', topic:'trennbar', psq:'5 Fjali me aufstehen', pde:'5 Satz mit aufstehen', cue:'aufstehen – ich – um sieben Uhr', parts:['Ich','stehe','um sieben Uhr','auf.'], de:'Ich stehe um sieben Uhr auf.', sq:'Ngrihem në orën shtatë.'},
+    {type:'order', topic:'trennbar', psq:'5 Fjali me einkaufen', pde:'5 Satz mit einkaufen', cue:'einkaufen – wir – im Supermarkt', parts:['Wir','kaufen','im Supermarkt','ein.'], de:'Wir kaufen im Supermarkt ein.', sq:'Ne bëjmë pazar në supermarket.'},
+    {type:'cloze', topic:'trennbar', psq:'Plotëso', pde:'Ergänzen Sie', h:'aufstehen · anrufen · aufräumen · einkaufen',
+     text:'Ich [[stehe]] jeden Tag um sieben Uhr [[auf]].\n[[Rufst]] du mich morgen [[an]]?\nMein Bruder [[räumt]] nie sein Zimmer [[auf]].\nAm Samstag [[kaufe]] ich im Supermarkt [[ein]].',
+     e:'stehe … auf, rufst … an, räumt … auf, kaufe … ein.'}
+  ]
+},
+
+/* ---------- Übung 6, 8 + 9: Sätze schreiben ---------- */
+{
+  id:'hw9-saetze', emoji:'✍️', color:'#D6409F', seq:true, book:['ushtrimi 6, 8 + 9','Übung 6, 8 + 9'],
+  sq:'Prezantimi, können & wollen', de:'Übung 6, 8 + 9: Sätze schreiben',
+  desc:'Prezantimi yt, fjali me können dhe me wollen.',
+  tip:'Emrat dhe fillimi i fjalisë me shkronjë të madhe: Tennis, Fußball, Kaffee, Wollt ihr …?',
+  lesson:[
+    {t:'Ushtrimi 6, 8 + 9 📋', d:'Sätze schreiben', p:'<b>6</b> Prezantim i shkurtër për veten. <b>8</b> Fjali me können. <b>9</b> Fjali me wollen.',
+     tip:'Emrat dhe fillimi i fjalisë me shkronjë <b>të madhe</b>: <b>T</b>ennis, <b>F</b>ußball, <b>K</b>affee, <b>W</b>ollt ihr …?'},
+    {t:'Kujdes! 👀', d:'Schau nochmal', p:'<b>Ich kann kochen</b> ✓ dhe <b>Du kannst tanzen</b> ✓ ishin perfekt! Këto pak gjëra:',
+     fix:[
+      ['Ich bin 27 jare alt.','Ich bin 27 Jahre alt.','das Jahr → die Jahre.'],
+      ['Ich komme Aus Albanien.','Ich komme aus Albanien.','aus me shkronjë të vogël.'],
+      ['Ich vone in Tirana.','Ich wohne in Tirana.','wohnen: w-o-h-n-e-n.'],
+      ['Ich spreche English und ein bissen Deutsch.','Ich spreche Englisch und ein bisschen Deutsch.','Englisch me sch, bisschen me ss.'],
+      ['Konnen Sie Deutsch sprechen?','Können Sie Deutsch sprechen?','können me ö.'],
+      ['Kann er fussball spielen?','Kann er Fußball spielen?','Emrat me shkronjë të madhe. (Në Zvicër: Fussball.)'],
+      ['Ich will eine kafee bitte.','Ich möchte einen Kaffee, bitte.','der Kaffee → einen. Më e sjellshme: möchte.'],
+      ['Wir wollen tennis spielen.','Wir wollen Tennis spielen.','das Tennis me T të madhe.'],
+      ['wollt ihr einen Tee?','Wollt ihr einen Tee?','Fjalia fillon me shkronjë të madhe.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', psq:'6 Prezantimi', pde:'6 Präsentation über dich selbst',
+     text:'Ich [[bin]] Mimoza Darsi. Ich bin 27 [[Jahre|J]] alt.\nIch komme [[aus]] Albanien. Ich [[wohne|w]] in Tirana.\nIch spreche [[Englisch|E]] und ein [[bisschen|b]] Deutsch.',
+     e:'Jahre, aus, wohne, Englisch, bisschen.'},
+    {type:'cloze', topic:'modal', psq:'8 + 9 können & wollen', pde:'8 + 9 Modalverben',
+     text:'Ich [[kann]] kochen.\nDu [[kannst]] tanzen.\n[[Können]] Sie Deutsch sprechen?\nWir [[wollen]] Tennis spielen.\n[[Wollt]] ihr einen Tee?\n[[Wollen]] Sie spazieren gehen?',
+     e:'ich kann, du kannst, Sie können, wir wollen, ihr wollt, Sie wollen.'},
+    {type:'mc', topic:'modal', psq:'8 Cila është e saktë?', pde:'8 Was ist richtig?', q:'A mund të flisni gjermanisht? (me respekt)',
+     o:['Können Sie Deutsch sprechen?','Konnen Sie Deutsch sprechen?','Kann Sie Deutsch sprechen?','Können Sie sprechen Deutsch?'], a:'Können Sie Deutsch sprechen?', say:'Können Sie Deutsch sprechen?', e:'Können me ö, sprechen në fund.'},
+    {type:'gap', row:true, psq:'8 Shkronjë e madhe?', pde:'8 Groß oder klein?', s:'Kann er ___ spielen?', o:['Fußball','fußball'], a:'Fußball', e:'Emrat me shkronjë të madhe: der Fußball.'},
+    {type:'gap', row:true, topic:'ein', psq:'9 einen, eine apo ein?', pde:'9 einen, eine oder ein?', s:'Ich möchte ___ Kaffee, bitte.', o:['einen','eine','ein'], a:'einen', e:'der Kaffee → einen Kaffee.'},
+    {type:'gap', row:true, psq:'9 Shkronjë e madhe?', pde:'9 Groß oder klein?', s:'Wir wollen ___ spielen.', o:['Tennis','tennis'], a:'Tennis', e:'das Tennis me T të madhe.'},
+    {type:'mc', topic:'modal', psq:'9 Cila është e saktë?', pde:'9 Was ist richtig?', q:'A doni një çaj? (ju, miq)',
+     o:['Wollt ihr einen Tee?','wollt ihr einen Tee?','Wollen ihr einen Tee?','Wollt ihr ein Tee?'], a:'Wollt ihr einen Tee?', say:'Wollt ihr einen Tee?', e:'ihr wollt, fjalia me W të madhe, der Tee → einen.'},
+    {type:'order', topic:'satz', psq:'8 Fjali me können', pde:'8 Satz mit können', cue:'können – ich – gut – kochen', parts:['Ich','kann','gut','kochen.'], de:'Ich kann gut kochen.', sq:'Di të gatuaj mirë.'},
+    {type:'order', topic:'satz', psq:'9 Fjali me wollen', pde:'9 Satz mit wollen', cue:'wollen – Sie – spazieren gehen – ?', parts:['Wollen','Sie','spazieren gehen?'], de:'Wollen Sie spazieren gehen?', sq:'Doni të shëtisni?'}
+  ]
+},
+
+/* ---------- Übung 10: Lesen ---------- */
+{
+  id:'hw9-lesen', emoji:'📖', color:'#0E9F8E', seq:true, book:['ushtrimi 10 · leximi','Übung 10 · Lesen'],
+  sq:'Leximi: Anna', de:'Übung 10: Lesen',
+  desc:'Teksti për Annën dhe 5 pyetjet e testit, plus 3 pyetje shtesë.',
+  tip:'Lexo pyetjen, gjej fjalën kyçe dhe kërkoje në tekst.',
+  read:'Mein Name ist Anna. Ich komme aus Österreich und lebe seit drei Jahren in Deutschland. Ich bin 15 Jahre alt und habe zwei Geschwister: Meine Schwester heißt Klara und ist 13 Jahre alt, mein Bruder Michael ist 18 Jahre alt. Wir wohnen mit unseren Eltern in einem Haus in München. Meine Mutter ist Köchin, mein Vater arbeitet in einer Bank.<br><br>Ich lese gerne und mag <b>Tiere</b>: Wir haben einen Hund, zwei Katzen und Goldfische. Ich gehe auch gerne in die Schule, mein Lieblingsfach ist Mathematik. Physik und Chemie mag ich nicht so gerne.<br><br>Nach der Schule gehe ich oft mit meinen Freundinnen im Park spazieren, manchmal essen wir ein Eis. Am Samstag gehen wir oft ins Kino. Am Sonntag schlafe ich lange, dann koche ich mit meiner Mutter das Mittagessen. Nach dem Essen gehen wir mit dem Hund am See spazieren. Sonntag ist mein Lieblingstag!',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Alles richtig!', p:'Te leximi në test i ke gjetur <b>të 5 përgjigjet saktë</b>! Provoje edhe një herë, plus 3 pyetje shtesë. 😊',
+     th:['Deutsch','Shqip'], say:0,
+     table:[['das Tier','kafsha'],['der Hund','qeni'],['die Katze','macja'],['das Lieblingsfach','lënda e preferuar'],['nach der Schule','pas shkollës'],['der See','liqeni'],['der Lieblingstag','dita e preferuar']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'10 Pyetja 1', pde:'10 Frage 1', q:'Wie alt ist Annas Schwester?', o:['12','14','15','13'], a:'13', e:'„Meine Schwester heißt Klara und ist 13 Jahre alt.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'10 Pyetja 2', pde:'10 Frage 2', q:'Wo arbeitet Annas Vater?', o:['in Österreich','im Kino','in der Schule','in der Bank'], a:'in der Bank', e:'„… mein Vater arbeitet in einer Bank.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'10 Pyetja 3', pde:'10 Frage 3', q:'Was macht Anna gern in der Schule?', o:['Kochen','Mathematik','Chemie','Physik'], a:'Mathematik', e:'„… mein Lieblingsfach ist Mathematik.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'10 Pyetja 4', pde:'10 Frage 4', q:'Was macht Anna nach der Schule?', h:'nach = pas',
+     o:['Sie kocht das Mittagessen.','Sie geht mit ihren Freundinnen spazieren.','Sie geht ins Kino.','Sie schläft lange.'], a:'Sie geht mit ihren Freundinnen spazieren.', e:'„Nach der Schule gehe ich oft mit meinen Freundinnen im Park spazieren.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'10 Pyetja 5', pde:'10 Frage 5', q:'Wo geht die Familie am Sonntag mit dem Hund spazieren?', h:'der Hund = qeni', o:['am See','im Haus','im Park','im Garten'], a:'am See', e:'„Nach dem Essen gehen wir mit dem Hund am See spazieren.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Pyetje shtesë', pde:'Zusatzfrage', q:'Wie heißt Annas Bruder?', o:['Michael','Klara','Anna','Max'], a:'Michael', e:'„… mein Bruder Michael ist 18 Jahre alt.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Pyetje shtesë', pde:'Zusatzfrage', q:'Welche Tiere hat Annas Familie?', o:['einen Hund, zwei Katzen und Goldfische','zwei Hunde und eine Katze','nur Goldfische','keine Tiere'], a:'einen Hund, zwei Katzen und Goldfische', e:'„Wir haben einen Hund, zwei Katzen und Goldfische.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Pyetje shtesë', pde:'Zusatzfrage', q:'Was macht Anna am Samstag?', o:['Sie geht ins Kino.','Sie schläft lange.','Sie kocht mit ihrer Mutter.','Sie geht in die Schule.'], a:'Sie geht ins Kino.', e:'„Am Samstag gehen wir oft ins Kino.“'}
+  ]
+}
+  ]
+}
 
 ];
