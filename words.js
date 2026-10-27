@@ -94,6 +94,16 @@ const WORDS = [
     ['mitkommen','vij bashkë'],['anfangen','filloj'],['Ich stehe auf.','Ngrihem.'],['Ich rufe dich an.','Të telefonoj.'],['Ich kaufe ein.','Bëj pazar.']]
 },
 {
+  id:'w-berufe', emoji:'👩‍⚕️', color:'#0E9F8E', added:'2026-10-27T08:00', sq:'Profesionet & puna', de:'Berufe & Arbeit (Buch 2)',
+  nouns:[['der','Beruf','profesioni'],['die','Arbeit','puna'],['die','Praxis','klinika'],['die','Ausbildung','trajnimi profesional'],['das','Praktikum','praktika'],
+    ['die','Firma','firma'],['das','Büro','zyra'],['die','Stelle','vendi i punës'],['der','Job','puna (job)'],['der','Chef','shefi'],['die','Chefin','shefja'],
+    ['der','Patient','pacienti'],['die','Patientin','pacientja'],['der','Arzt','mjeku'],['die','Ärztin','mjekja'],['der','Hausmeister','kujdestari i ndërtesës'],
+    ['die','Physiotherapeutin','fizioterapistja'],['die','Arzthelferin','asistentja e mjekut'],['der','Ingenieur','inxhinieri'],['die','Polizistin','policja'],
+    ['die','Hausfrau','amvisja'],['der','Krankenpfleger','infermieri'],['die','Krankenschwester','infermierja'],['der','Journalist','gazetari'],['die','Studentin','studentja']],
+  words:[['arbeiten als','punoj si'],['selbstständig','i vetëpunësuar'],['angestellt','i punësuar'],['arbeitslos','i papunë'],['studieren','studioj'],['dauern','zgjat'],
+    ['vor zehn Jahren','para dhjetë vitesh'],['seit vier Jahren','prej katër vitesh'],['wie lange','sa kohë'],['seit wann','që kur']]
+},
+{
   id:'w-schule', emoji:'🏫', color:'#0E9F8E', added:'2026-10-26T08:00', sq:'Shkolla, puna & kafshët', de:'Schule, Beruf & Tiere',
   nouns:[['die','Schule','shkolla'],['das','Lieblingsfach','lënda e preferuar'],['die','Mathematik','matematika'],['die','Physik','fizika'],['die','Chemie','kimia'],
     ['der','Lehrer','mësuesi'],['die','Lehrerin','mësuesja'],['die','Bank','banka'],['der','Koch','kuzhinieri'],['die','Köchin','kuzhinierja'],

@@ -70,9 +70,22 @@ const lvlName = l => LEVELS[Math.min(l - 1, LEVELS.length - 1)];
 const best = i => S.ch[CHAPTERS[i].id]?.best || 0;
 const passOf = c => (c && c.pass) || PASS;
 const isDone = i => best(i) >= passOf(CHAPTERS[i]);
-const unlocked = i => i === 0 || isDone(i - 1);
+/* books: chapters carry band (1 = A1.1, 2 = A1.2 …); the newest book is the one the class is in now */
+const bandOf = c => c.band || 1;
+const BAND_NOW = Math.max(...CHAPTERS.map(bandOf));
+const bandInfo = b => (typeof BOOKS !== 'undefined' && BOOKS[b]) || ['Libri ' + b, 'Buch ' + b, '📘'];
+/* the first chapter of a book is always open: a new book never waits for the old one */
+const unlocked = i => i === 0 || isDone(i - 1) || bandOf(CHAPTERS[i]) !== bandOf(CHAPTERS[i - 1]);
 const seen = i => unlocked(i) || !!S.ch[CHAPTERS[i].id]?.lesson;
-const curIdx = () => { const i = CHAPTERS.findIndex((c, k) => !isDone(k)); return i < 0 ? CHAPTERS.length : i; };
+/* "Weiter" goes to the first open chapter of the current book, then to older leftovers */
+const curIdx = () => {
+  let i = CHAPTERS.findIndex((c, k) => bandOf(c) === BAND_NOW && !isDone(k));
+  if (i < 0) i = CHAPTERS.findIndex((c, k) => !isDone(k));
+  return i < 0 ? CHAPTERS.length : i;
+};
+/* big divider where a new book starts (map and chapter list) */
+const bookDiv = (c, prev) => BAND_NOW > 1 && (!prev || bandOf(prev) !== bandOf(c))
+  ? (([sq, de, e]) => `<div class="bookdiv"><span class="bk-e">${e}</span><span><b>${esc(sq)}</b><small>${esc(de)}</small></span></div>`)(bandInfo(bandOf(c))) : '';
 const doneCount = () => CHAPTERS.filter((c, i) => isDone(i)).length;
 /* stars split the range from the pass mark to 100 in thirds: 70 -> 70/80/90 */
 const starsOf = (b, p = PASS) => { const st = (100 - p) / 3; return b >= p + 2 * st ? 3 : b >= p + st ? 2 : b >= p ? 1 : 0; };
@@ -370,12 +383,12 @@ function buildRound(mode, id){
   else if (mode === 'words') qs = genWords(id);
   else if (mode === 'chapter' && chById(id).seq) qs = tagged(chById(id), chById(id).items);
   else if (mode === 'chapter' && chById(id).final) {
-    CHAPTERS.forEach(c => {
-      if (c.final) return;
+    const book = CHAPTERS.filter(c => !c.final && bandOf(c) === bandOf(chById(id)));   /* a finale only tests its own book */
+    book.forEach(c => {
       const p = poolOf(c), cand = p.its.filter(q => q.type !== 'match');
       if (cand.length) qs.push(rnd(cand));
     });
-    const gen = shuffle(CHAPTERS.flatMap(c => tagged(c, genVocab(c))));
+    const gen = shuffle(book.flatMap(c => tagged(c, genVocab(c))));
     qs = shuffle([...qs, ...pickVaried(gen, FINAL_ROUND - qs.length)]).slice(0, FINAL_ROUND);
   } else {
     const c = mode === 'chapter' ? chById(id) : null, n = (c && c.n) || ROUND;
@@ -397,7 +410,8 @@ function home(){
   G = null; L = null; closeSheet(); rollDay();
   const lv = level(), into = S.xp % XP_LVL, st = streakNow(), mc = Object.keys(S.mistakes).length;
   const [lsq, lde] = lvlName(lv), goal = Math.min(S.dayXp / GOAL, 1), C = 2 * Math.PI * 27;
-  const cur = curIdx(), done = doneCount(), total = CHAPTERS.length, jp = Math.round(done / total * 100);
+  const cur = curIdx(), done = doneCount();
+  const bk = CHAPTERS.filter(c => bandOf(c) === BAND_NOW), total = bk.length, bdone = bk.filter(c => isDone(chIdx(c.id))).length, jp = Math.round(bdone / total * 100);
   const next = CHAPTERS[cur];
   app.style.setProperty('--tc', 'var(--brand)');
   app.innerHTML = `
@@ -414,7 +428,7 @@ function home(){
     <p>Mirë se erdhe! Sot mësojmë bashkë.</p>
     <p class="de">Willkommen! Heute lernen wir zusammen.</p>
     <div class="journey">
-      <div class="j-top"><b>Udhëtimi yt</b><span>${done} / ${total}</span></div>
+      <div class="j-top"><b>Udhëtimi yt${BAND_NOW > 1 ? ' · ' + esc(bandInfo(BAND_NOW)[0]) : ''}</b><span>${bdone} / ${total}</span></div>
       <div class="jbar"><i style="width:${jp}%"></i></div>
       <small>Deine Reise: ${jp}% geschafft</small>
     </div>
@@ -452,7 +466,7 @@ function home(){
 }
 function nodeHTML(c, i){
   const d = isDone(i), u = unlocked(i), cur = i === curIdx(), s = starsOf(best(i), passOf(c));
-  return `${c.unit ? `<div class="unit"><b>${esc(c.unit[0])}</b><span>${esc(c.unit[1])}</span></div>` : ''}
+  return `${bookDiv(c, CHAPTERS[i - 1])}${c.unit ? `<div class="unit"><b>${esc(c.unit[0])}</b><span>${esc(c.unit[1])}</span></div>` : ''}
   <div class="nrow" style="--off:${OFF[i % OFF.length]}px"><div class="nwrap">
     ${cur ? '<span class="bubble">Fillo! Start!</span>' : ''}
     <button class="node ${d ? 'done' : u ? 'open' : 'lock'} ${cur ? 'cur' : ''} ${c.final ? 'final' : ''}" style="--tc:${c.color}" data-act="chap" data-id="${c.id}" aria-label="${esc(c.sq)}">
@@ -558,14 +572,14 @@ function chapters(){
   app.style.setProperty('--tc', 'var(--brand)');
   const pages = HWP.filter(p => !hwCur(hwById(p.hw)) && lekOf(p));
   const groups = [];
-  CHAPTERS.forEach((c, i) => { if (c.unit || !groups.length) groups.push({unit:c.unit, lek:c.lek, rows:[]}); groups[groups.length - 1].rows.push(chapRow(c, i)); });
+  CHAPTERS.forEach((c, i) => { if (c.unit || !groups.length) groups.push({unit:c.unit, lek:c.lek, band:bandOf(c), rows:[]}); groups[groups.length - 1].rows.push(chapRow(c, i)); });
   const rest = HW.filter(h => !hwCur(h) && h.parts.some(p => !lekOf(p)));
   app.innerHTML = `<div class="game">
     <div class="gbar"><button class="x" data-act="home" aria-label="Kthehu">✕</button><h2 class="dict-h">📋 Kapitujt<span>Alle Kapitel</span></h2></div>
     <p class="de" style="margin:0 0 14px">Sipas mësimeve të librit: kapitujt dhe faqet e fletores. 📖<br>Nach Lektionen wie im Buch: Kapitel und Arbeitsbuch-Seiten.</p>
     ${hwCard()}
-    ${groups.map(g => { const pg = g.lek ? pages.filter(p => lekOf(p) === g.lek).sort((a, b) => a.pg - b.pg) : [];
-      return `${g.unit ? `<div class="unit"><b>${esc(g.unit[0])}</b><span>${esc(g.unit[1])}</span></div>` : ''}
+    ${groups.map((g, k) => { const pg = g.lek ? pages.filter(p => lekOf(p) === g.lek).sort((a, b) => a.pg - b.pg) : [];
+      return `${bookDiv(g, groups[k - 1])}${g.unit ? `<div class="unit"><b>${esc(g.unit[0])}</b><span>${esc(g.unit[1])}</span></div>` : ''}
       <div class="topics">${g.rows.join('')}
         ${pg.length ? `<p class="pagehead">📖 Fletorja e ushtrimeve · Arbeitsbuch</p>${pg.map(pageRow).join('')}` : ''}</div>`; }).join('')}
     ${rest.length ? `<div class="unit"><b>Të tjera</b><span>Weitere Übungen</span></div><div class="topics">${rest.map(hwBlock).join('')}</div>` : ''}

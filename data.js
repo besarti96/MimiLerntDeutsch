@@ -15,6 +15,12 @@
    words: [Deutsch, Albanisch]        -> automatische Wort-/Hörfragen
    ===================================================================== */
 
+/* Bücher: band an einem Kapitel = Buch (ohne band = Buch 1). Neues Buch = neuer Trennbalken auf der Reise. */
+const BOOKS = {
+  1:['Libri 1','Buch 1 · Schritte plus Neu A1.1 · Lektion 1–7','📘'],
+  2:['Libri 2','Buch 2 · Schritte plus Neu A1.2 · ab Lektion 8','📗']
+};
+
 const CHAPTERS = [
 
 /* ======================= LEKTION 1: GUTEN TAG. MEIN NAME IST … ======================= */
@@ -1054,5 +1060,203 @@ const CHAPTERS = [
   desc:'15 pyetje nga e gjithë rruga. A je gati? 💪',
   tip:'Ke mësuar gjithçka që të duhet. Merr frymë thellë dhe lexo me kujdes!',
   lesson:[], nouns:[], words:[], items:[]
+},
+
+/* ##################################################################### */
+/* ======================= 📗 BUCH 2 (A1.2) ======================= */
+/* ======================= LEKTION 8: BERUF UND ARBEIT ======================= */
+{
+  id:'kurs2', band:2, lek:8, unit:['Mësimi 8: Profesioni dhe puna','Lektion 8: Beruf und Arbeit'], emoji:'👋', color:'#F2545B', added:'2026-10-27T08:00',
+  sq:'Personat e librit 2', de:'Die erste Stunde im Kurs',
+  desc:'Lara, Tim, Sofia, Lili dhe Walter: personat e rinj të librit. Lexo dhe prezantoji!',
+  tip:'Për dikë tjetër: er/sie + -t. Sie ist 20 Jahre alt und kommt aus Polen.',
+  read:'<b>Lara:</b> Hallo! Ich bin Lara Nowak. Ich bin zwanzig Jahre alt und komme aus Polen. Im Moment lebe ich aber in München. Hier gefällt es mir sehr gut. Ich gehe in eine Sprachschule und lerne Deutsch. Ich wohne bei Sofia und Lili. Das ist richtig schön.<br><br><b>Tim:</b> Hallo! Mein Name ist Tim Wilson. Ich komme aus Ottawa. Ottawa ist die Hauptstadt von Kanada. Zurzeit lebe ich in München und lerne Deutsch. Das macht total Spaß! Lara kenne ich aus der Sprachschule. Sie macht auch einen Deutschkurs dort.<br><br><b>Sofia:</b> Hallo, ich heiße Sofia Baumann. Ich bin nicht verheiratet und habe eine Tochter. Sie heißt Lili. Von Montag bis Freitag habe ich leider nicht viel Zeit für Lili. Ich bin nämlich Physiotherapeutin. Ich gehe morgens schon früh in die Praxis und komme abends spät nach Hause.<br><br><b>Lili:</b> Hallo, ich heiße Lili. Ich bin neun und gehe schon ganz lange zur Schule, ungefähr vier Jahre. Seit ein paar Monaten wohnt Lara bei uns. Das gefällt mir. Ich mag sie nämlich sehr gern. Nein: sehr, sehr gern! … Ach ja, noch was: Meine Hobbys sind Essen und Lachen.<br><br><b>Walter:</b> Grüß Gott! Ich bin Walter Baumann. Ich bin der Vater von Sofia, und Lili ist meine Enkelin. Ich wohne auch in München, aber allein, nicht zusammen mit Sofia, Lili und Lara.',
+  lesson:[
+    {t:'Libri 2 fillon! 📗', d:'Die erste Stunde im Kurs', p:'Në librin e ri do të takosh shpesh këta pesë persona:', say:1, th:['Kush?','Çfarë dimë?'],
+     tr:[['','20 vjeç, nga Polonia, mëson gjermanisht'],['','nga Kanadaja (Otava), mëson gjermanisht'],['','fizioterapiste, nëna e Lilit'],['','9 vjeçe, shkon në shkollë'],['','babai i Sofias, gjyshi i Lilit']],
+     table:[['Lara Nowak','20 Jahre alt, aus Polen, lernt Deutsch'],['Tim Wilson','aus Kanada (Ottawa), lernt Deutsch'],['Sofia Baumann','Physiotherapeutin, Mutter von Lili'],['Lili','9 Jahre alt, geht zur Schule'],['Walter Baumann','Vater von Sofia, Opa von Lili']]},
+    {t:'Prezanto dikë', d:'Eine Person vorstellen', p:'Për veten: <b>ich</b> + -e. Për dikë tjetër: <b>er / sie</b> + -t.',
+     ex:[['Das ist Lara. Sie ist 20 Jahre alt und kommt aus Polen.','Kjo është Lara. Është 20 vjeç dhe vjen nga Polonia.'],['Sie lernt Deutsch und wohnt bei Sofia.','Mëson gjermanisht dhe banon te Sofia.'],
+       ['Das ist Tim. Er kommt aus Kanada.','Ky është Timi. Vjen nga Kanadaja.'],['Ich bin Mimoza. Ich bin 27 Jahre alt und komme aus Albanien.','Unë jam Mimoza. Jam 27 vjeç dhe vij nga Shqipëria.']],
+     tip:'ich bin → sie <b>ist</b> · ich komme → sie komm<b>t</b> · ich lerne → sie lern<b>t</b>'},
+    {t:'Fjalë të reja', d:'Neue Wörter', say:0, th:['Deutsch','Shqip'],
+     table:[['im Moment','tani për tani'],['zurzeit','aktualisht'],['verheiratet','i/e martuar'],['nämlich','sepse, në fakt'],['von Montag bis Freitag','nga e hëna deri të premten'],
+       ['morgens / abends','në mëngjes / në mbrëmje'],['allein','vetëm'],['Das macht Spaß!','Është argëtuese!'],['Grüß Gott!','Përshëndetje! (në jug)']]},
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'Te ushtrimi 2 ke shkruar një fjali për punën:',
+     fix:[['Ich arbaite beruf.','Ich arbeite als Kellnerin. / Mein Beruf ist …','arbeiten me ei. Profesioni pas „als“, pa nyjë.']],
+     tip:'Profesionet i mëson te kapitulli <b>Profesionet</b>. 😊'}
+  ],
+  nouns:[['die','Sprachschule','shkolla e gjuhëve'],['die','Hauptstadt','kryeqyteti'],['die','Tochter','vajza (bija)'],['die','Enkelin','mbesa'],['die','Praxis','klinika']],
+  words:[['im Moment','tani për tani'],['zurzeit','aktualisht'],['verheiratet','i martuar'],['allein','vetëm'],['morgens','në mëngjes'],['abends','në mbrëmje'],['ungefähr','përafërsisht'],['lachen','qesh']],
+  items:[
+    {type:'match', pairs:[['Lara','aus Polen'],['Tim','aus Kanada'],['Sofia','Physiotherapeutin'],['Lili','neun Jahre alt'],['Walter','Sofias Vater']]},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wie alt ist Lara?', o:['20','9','27','12'], a:'20', e:'„Ich bin zwanzig Jahre alt …“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Woher kommt Tim?', o:['aus Kanada','aus Polen','aus München','aus Österreich'], a:'aus Kanada', e:'„Ottawa ist die Hauptstadt von Kanada.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Was ist Sofia von Beruf?', o:['Physiotherapeutin','Lehrerin','Ärztin','Studentin'], a:'Physiotherapeutin', e:'„Ich bin nämlich Physiotherapeutin.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wer ist Lili?', o:['Sofias Tochter','Laras Schwester','Walters Tochter','Tims Freundin'], a:'Sofias Tochter', e:'Sofia: „Ich habe eine Tochter. Sie heißt Lili.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wo wohnt Lara?', o:['bei Sofia und Lili','bei Walter','bei Tim','allein'], a:'bei Sofia und Lili', e:'„Ich wohne bei Sofia und Lili.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wie lange geht Lili schon zur Schule?', o:['ungefähr vier Jahre','neun Jahre','ein paar Monate','zwei Jahre'], a:'ungefähr vier Jahre', e:'„… gehe schon ganz lange zur Schule, ungefähr vier Jahre.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Was sind Lilis Hobbys?', o:['Essen und Lachen','Lesen und Schwimmen','Tanzen und Singen','Joggen'], a:'Essen und Lachen', e:'„Meine Hobbys sind Essen und Lachen.“'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wohnt Walter zusammen mit Sofia?', o:['Ja','Nein'], a:'Nein', e:'„… aber allein, nicht zusammen mit Sofia, Lili und Lara.“'},
+    {type:'gap', topic:'subjekt', psq:'Prezanto dikë', pde:'Eine Person vorstellen', s:'Das ist Lara. Sie ___ 20 Jahre alt.', h:'sein', o:['ist','bin','bist','sind'], a:'ist', e:'sie ist.'},
+    {type:'gap', topic:'subjekt', psq:'Prezanto dikë', pde:'Eine Person vorstellen', s:'Sie ___ aus Polen.', h:'kommen', o:['kommt','komme','kommst','kommen'], a:'kommt', e:'sie kommt.'},
+    {type:'gap', topic:'subjekt', psq:'Prezanto dikë', pde:'Eine Person vorstellen', s:'Tim ___ in München und lernt Deutsch.', h:'leben', o:['lebt','lebe','leben','lebst'], a:'lebt', e:'Tim = er → lebt.'},
+    {type:'gap', topic:'subjekt', psq:'Prezanto dikë', pde:'Eine Person vorstellen', s:'Sofia ___ eine Tochter.', h:'haben', o:['hat','habe','hast','haben'], a:'hat', e:'sie hat.'},
+    {type:'gap', topic:'modal', psq:'Prezanto dikë', pde:'Eine Person vorstellen', s:'Lili ___ Lara sehr gern.', h:'mögen', o:['mag','magst','mögen','möge'], a:'mag', e:'sie mag, pa mbaresë.'},
+    {type:'gap', psq:'Plotëso foljen', pde:'Ergänze das Verb', s:'Ich ___ als Kellnerin.', h:'arbeiten', o:['arbeite','arbaite','arbeitet','arbeitest'], a:'arbeite', e:'ich arbeite (me ei).'},
+    {type:'order', de:'Sie ist zwanzig Jahre alt.', sq:'Ajo është njëzet vjeç.'},
+    {type:'order', de:'Tim kommt aus Kanada.', sq:'Timi vjen nga Kanadaja.'},
+    {type:'order', de:'Im Moment lebe ich in München.', sq:'Tani për tani jetoj në Mynih.'},
+    {type:'order', de:'Lili ist Sofias Tochter.', sq:'Lili është vajza e Sofias.'}
+  ]
+},
+{
+  id:'fotogen', band:2, lek:8, emoji:'📸', color:'#D6409F', added:'2026-10-27T08:00',
+  sq:'Historia: Total fotogen', de:'Foto-Hörgeschichte: Total fotogen',
+  desc:'Lara dhe Timi bëjnë një intervistë në klinikën e Sofias. Kush është zoti Koch?',
+  tip:'Sofia = Physiotherapeutin. Herr Koch = Hausmeister dhe pacienti i Sofias. Lara dhe Tim bëjnë një intervistë për kursin e gjermanishtes.',
+  read:'Lara will ein Interview für den Deutschkurs machen. Das Thema ist „Arbeit und Beruf“. Tim hilft ihr. Sie sind in Sofias Praxis.<br><br>Sofia ist Physiotherapeutin von Beruf. Sie hat eine Ausbildung gemacht. Dann hat sie zuerst drei Jahre in einer Praxis gearbeitet. Ihr Chef war sehr gut. Aber nun hat Sofia eine eigene Praxis.<br><br>Herr Koch ist der Patient von Sofia. Er ist Hausmeister von Beruf und arbeitet seit 35 Jahren als Hausmeister. Er kommt auch zum Interview. Herr Koch denkt, Lara und Tim sind Journalisten bei einer Zeitung. Und er ist total fotogen! 📸',
+  lesson:[
+    {t:'Total fotogen 📸', d:'Folge 8', p:'Historia e mësimit 8, shkurt:<br><br>Lara will ein Interview für den Deutschkurs machen. Das Thema ist „Arbeit und Beruf“. Sie sind in Sofias Praxis. Sofia ist Physiotherapeutin. Herr Koch ist ihr Patient. Er ist Hausmeister von Beruf. Herr Koch denkt, Lara und Tim sind Journalisten. 😄',
+     tip:'<b>fotogen</b> = që del bukur në foto.'},
+    {t:'Fjalë nga historia', d:'Wörter aus der Geschichte', say:0, th:['Deutsch','Shqip'],
+     table:[['der Beruf','profesioni'],['die Arbeit','puna'],['die Praxis','klinika'],['die Ausbildung','trajnimi profesional'],['der Patient','pacienti'],['der Hausmeister','kujdestari i ndërtesës'],
+       ['der Chef','shefi'],['die Zeitung','gazeta'],['der Journalist','gazetari'],['eine eigene Praxis','një klinikë e vetja'],['denken','mendoj']]},
+    {t:'Bravo! 🌟', d:'Selbst korrigiert', p:'Te ushtrimi 3 i ke korrigjuar vetë gabimet: <b>Hausmeister</b> ✓ (jo Physiotherapeutin) dhe <b>Chef</b> ✓ (jo Patient). Shumë mirë!'}
+  ],
+  nouns:[['der','Beruf','profesioni'],['die','Arbeit','puna'],['die','Praxis','klinika'],['die','Ausbildung','trajnimi profesional'],['der','Patient','pacienti'],
+    ['der','Hausmeister','kujdestari i ndërtesës'],['der','Chef','shefi'],['der','Journalist','gazetari'],['die','Zeitung','gazeta'],['das','Interview','intervista']],
+  words:[['denken','mendoj'],['fotogen','fotogjenik'],['eigene','i/e vet'],['zuerst','fillimisht'],['nun','tani']],
+  items:[
+    {type:'match', pairs:[['der Beruf','profesioni'],['die Praxis','klinika'],['der Patient','pacienti'],['der Chef','shefi'],['die Zeitung','gazeta']]},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', q:'Wo spielt die Geschichte?', o:['in Sofias Praxis','im Krankenhaus'], a:'in Sofias Praxis', e:'„Sie sind in Sofias Praxis.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', q:'Was machen Lara und Tim?', o:['ein Interview für den Deutschkurs','ein Interview für eine Zeitung oder das Fernsehen'], a:'ein Interview für den Deutschkurs', e:'„Lara will ein Interview für den Deutschkurs machen.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', q:'Sie sprechen mit Sofia über …', o:['Ausbildung und Beruf','Familie und Beruf'], a:'Ausbildung und Beruf', e:'Das Thema ist „Arbeit und Beruf“.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', q:'Wer ist Herr Koch?', o:['Sofias Patient','Sofias Chef'], a:'Sofias Patient', e:'„Herr Koch ist der Patient von Sofia.“'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', q:'Was ist Herr Koch von Beruf?', o:['Hausmeister','Journalist'], a:'Hausmeister', e:'„Er ist Hausmeister von Beruf.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Was denkt Herr Koch?', o:['Lara und Tim sind Journalisten.','Lara und Tim sind Patienten.','Sofia ist seine Chefin.','Tim ist Hausmeister.'], a:'Lara und Tim sind Journalisten.', e:'„Herr Koch denkt, Lara und Tim sind Journalisten bei einer Zeitung.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Seit wann arbeitet Herr Koch als Hausmeister?', o:['seit 35 Jahren','seit drei Jahren','seit zehn Jahren','seit fünf Jahren'], a:'seit 35 Jahren', e:'„… arbeitet seit 35 Jahren als Hausmeister.“'},
+    {type:'cloze', psq:'3 Rendit', pde:'3 Ordnen Sie zu', bank:['Physiotherapeutin','Hausmeister','Praxis','Beruf','Deutschkurs'],
+     text:'a  Lara will ein Interview für den [[Deutschkurs]] machen. Das Thema ist „Arbeit und [[Beruf]]“.\nb  Herr Koch ist [[Hausmeister]] von Beruf. Er kommt auch zum Interview.\nc  Sofia ist [[Physiotherapeutin]] von Beruf. Sie hat eine Ausbildung gemacht.\nd  Sofia hat zuerst drei Jahre in einer [[Praxis]] gearbeitet.',
+     e:'Deutschkurs, Beruf, Hausmeister, Physiotherapeutin, Praxis.'},
+    {type:'cloze', psq:'3 Rendit', pde:'3 Ordnen Sie zu', bank:['Patient','Chef','Journalisten','35'],
+     text:'e  Sofias [[Chef]] war sehr gut. Aber nun hat Sofia eine eigene Praxis.\nf  Herr Koch ist der [[Patient]] von Sofia.\ng  Herr Koch arbeitet seit [[35]] Jahren als Hausmeister.\nh  Herr Koch denkt, Lara und Tim sind [[Journalisten]] bei einer Zeitung.',
+     e:'Chef, Patient, 35, Journalisten.'},
+    {type:'order', de:'Sofia hat eine eigene Praxis.', sq:'Sofia ka klinikën e vet.'},
+    {type:'order', de:'Herr Koch ist Hausmeister von Beruf.', sq:'Zoti Koch është kujdestar ndërtese me profesion.'},
+    {type:'order', de:'Lara will ein Interview machen.', sq:'Lara do të bëjë një intervistë.'}
+  ]
+},
+{
+  id:'berufe', band:2, lek:8, emoji:'👩‍⚕️', color:'#0E9F8E', added:'2026-10-27T08:00',
+  sq:'Profesionet', de:'Berufe: Ich bin Physiotherapeutin',
+  desc:'Profesionet për burra dhe gra, „Ich arbeite als … bei …“ dhe si pyet për profesionin.',
+  tip:'Për gra: + in (Lehrer → Lehrerin, Arzt → Ärztin). Pa nyjë: Ich bin Lehrerin. Ich arbeite als … bei …',
+  lesson:[
+    {t:'Burrë dhe grua', d:'Berufe: er und sie', p:'Për gratë shumica e profesioneve marrin <b>-in</b>. Disa marrin edhe Umlaut (a → ä, o → ö).', say:'join', th:['♂ er','♀ sie'],
+     tr:[['mësuesi','mësuesja'],['inxhinieri','inxhinierja'],['polici','policja'],['fizioterapeuti','fizioterapistja'],['mjeku','mjekja'],['kuzhinieri','kuzhinierja'],['burri shtëpiak','amvisja'],['infermieri','infermierja']],
+     table:[['der Lehrer','die Lehrer<b>in</b>'],['der Ingenieur','die Ingenieur<b>in</b>'],['der Polizist','die Polizist<b>in</b>'],['der Physiotherapeut','die Physiotherapeut<b>in</b>'],
+       ['der Arzt','die <b>Ä</b>rzt<b>in</b>'],['der Koch','die K<b>ö</b>ch<b>in</b>'],['der Hausmann','die Haus<b>frau</b>'],['der Krankenpfleger','die Kranken<b>schwester</b>']],
+     tip:'Kujdes: <b>Hausmann → Hausfrau</b> dhe <b>Krankenpfleger → Krankenschwester</b> janë ndryshe!'},
+    {t:'Ich bin … / Ich arbeite als …', d:'Über den Beruf sprechen', p:'Te profesioni <b>nuk</b> vihet nyjë: Ich bin Ärztin. (jo „eine Ärztin“)',
+     ex:[['Ich bin Physiotherapeutin.','Jam fizioterapiste.'],['Ich bin Arzthelferin von Beruf.','Me profesion jam asistente mjeku.'],['Ich arbeite als Hausmeister bei TerraMax.','Punoj si kujdestar ndërtese te TerraMax.'],
+       ['Was sind Sie von Beruf?','Çfarë profesioni keni?'],['Was machst du beruflich?','Me çfarë merresh në punë?']],
+     tip:'<b>als</b> + profesioni, <b>bei</b> + firma: Ich arbeite <b>als</b> Kellnerin <b>bei</b> „Café Mio“.'},
+    {t:'Përgjigje të tjera', d:'Was machst du?', say:0, th:['Deutsch','Shqip'],
+     table:[['Ich bin Schülerin.','Jam nxënëse.'],['Ich bin Studentin.','Jam studente.'],['Ich gehe noch zur Schule.','Shkoj ende në shkollë.'],['Ich studiere noch.','Ende studioj.'],
+       ['Ich mache eine Ausbildung als …','Po bëj një trajnim profesional si …'],['Ich habe einen Job als …','Kam një punë si …'],['Ich bin angestellt.','Jam e punësuar.'],
+       ['Ich bin selbstständig.','Jam e vetëpunësuar.'],['Ich bin zurzeit arbeitslos.','Aktualisht jam e papunë.'],['Ich bin nicht berufstätig.','Nuk punoj.']]},
+    {t:'Kujdes nga kurthet! 👀', d:'Achtung, Fallen!', p:'Tabelën e profesioneve në libër e ke bërë mirë ✓. Këto janë kurthet më të shpeshta:',
+     fix:[['Ich bin eine Ärztin.','Ich bin Ärztin.','Te profesioni pa nyjë.'],['Ich arbeite bei Hausmeister.','Ich arbeite als Hausmeister.','als + profesioni, bei + firma.'],
+      ['die Arztin','die Ärztin','Arzt → Ärztin me ä.'],['Ich arbaite beruf.','Ich arbeite als …','arbeiten me ei.']]}
+  ],
+  nouns:[['der','Arzt','mjeku'],['die','Ärztin','mjekja'],['der','Ingenieur','inxhinieri'],['die','Ingenieurin','inxhinierja'],['der','Polizist','polici'],['die','Polizistin','policja'],
+    ['die','Hausfrau','amvisja'],['der','Hausmann','burri shtëpiak'],['der','Krankenpfleger','infermieri'],['die','Krankenschwester','infermierja'],['die','Physiotherapeutin','fizioterapistja'],
+    ['die','Arzthelferin','asistentja e mjekut'],['der','Student','studenti'],['die','Studentin','studentja']],
+  words:[['arbeiten als','punoj si'],['selbstständig','i vetëpunësuar'],['angestellt','i punësuar'],['arbeitslos','i papunë'],['studieren','studioj'],['beruflich','në punë'],['Was sind Sie von Beruf?','Çfarë profesioni keni?']],
+  items:[
+    {type:'match', pairs:[['der Arzt','die Ärztin'],['der Polizist','die Polizistin'],['der Hausmann','die Hausfrau'],['der Krankenpfleger','die Krankenschwester'],['der Ingenieur','die Ingenieurin']]},
+    {type:'match', pairs:[['die Ärztin','mjekja'],['die Polizistin','policja'],['der Hausmeister','kujdestari i ndërtesës'],['der Krankenpfleger','infermieri'],['der Ingenieur','inxhinieri']]},
+    {type:'gap', psq:'Profesioni për gra', pde:'Die weibliche Form', s:'der Lehrer → die ___', o:['Lehrerin','Lehre','Lehrin','Lehrerfrau'], a:'Lehrerin', e:'+ in: Lehrerin.'},
+    {type:'gap', psq:'Profesioni për gra', pde:'Die weibliche Form', s:'der Arzt → die ___', o:['Ärztin','Arztin','Ärzte','Arzthelfer'], a:'Ärztin', e:'a → ä + in: Ärztin.'},
+    {type:'gap', psq:'Profesioni për gra', pde:'Die weibliche Form', s:'der Koch → die ___', o:['Köchin','Kochin','Köche','Kochfrau'], a:'Köchin', e:'o → ö + in: Köchin.'},
+    {type:'gap', psq:'Profesioni për gra', pde:'Die weibliche Form', s:'der Hausmann → die ___', o:['Hausfrau','Hausmännin','Hausfrauin','Hausmeisterin'], a:'Hausfrau', e:'Hausmann → Hausfrau.'},
+    {type:'gap', psq:'Profesioni për gra', pde:'Die weibliche Form', s:'der Krankenpfleger → die ___', o:['Krankenschwester','Krankenfrau','Krankenpflegin'], a:'Krankenschwester', e:'Krankenpfleger → Krankenschwester.'},
+    {type:'gap', row:true, psq:'Me apo pa nyjë?', pde:'Mit oder ohne Artikel?', s:'Sofia ist ___ Physiotherapeutin.', o:['pa nyjë','eine','die'], a:'pa nyjë', full:'Sofia ist Physiotherapeutin.', e:'Te profesioni pa nyjë.'},
+    {type:'gap', row:true, psq:'als, bei apo von?', pde:'als, bei oder von?', s:'Ich arbeite ___ Hausmeister.', o:['als','bei','von'], a:'als', e:'als + profesioni.'},
+    {type:'gap', row:true, psq:'als, bei apo von?', pde:'als, bei oder von?', s:'Er arbeitet ___ „TerraMax“.', o:['bei','als','von'], a:'bei', e:'bei + firma.'},
+    {type:'gap', row:true, psq:'als, bei apo von?', pde:'als, bei oder von?', s:'Ich bin Arzthelferin ___ Beruf.', o:['von','als','bei'], a:'von', e:'… von Beruf.'},
+    {type:'gap', psq:'Pyet për profesionin', pde:'Nach dem Beruf fragen', s:'Was ___ Sie von Beruf?', h:'sein', o:['sind','ist','haben','machen'], a:'sind', e:'Was sind Sie von Beruf?'},
+    {type:'gap', psq:'Pyet për profesionin', pde:'Nach dem Beruf fragen', s:'Was ___ du beruflich?', h:'machen', o:['machst','macht','mache','bist'], a:'machst', e:'Was machst du beruflich?'},
+    {type:'mc', topic:'dialog', psq:'Çfarë përgjigjesh?', pde:'Was antwortest du?', q:'Was bist du von Beruf?', speakQ:true,
+     o:['Ich bin Studentin und habe einen Job als Babysitterin.','Ich bin 27 Jahre alt.','Ich komme aus Albanien.','Ich wohne in Zürich.'], a:'Ich bin Studentin und habe einen Job als Babysitterin.', say:'Ich bin Studentin und habe einen Job als Babysitterin.', e:'Pyetja është për profesionin.'},
+    {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das?', q:'Jam e vetëpunësuar.', o:['Ich bin selbstständig.','Ich bin angestellt.','Ich bin arbeitslos.','Ich bin berufstätig.'], a:'Ich bin selbstständig.', say:'Ich bin selbstständig.', e:'selbstständig = i/e vetëpunësuar.'},
+    {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das?', q:'Aktualisht jam e papunë.', o:['Ich bin zurzeit arbeitslos.','Ich bin zurzeit selbstständig.','Ich arbeite zurzeit als Ärztin.','Ich bin nicht verheiratet.'], a:'Ich bin zurzeit arbeitslos.', say:'Ich bin zurzeit arbeitslos.', e:'arbeitslos = i/e papunë.'},
+    {type:'order', de:'Ich arbeite als Hausmeister bei TerraMax.', sq:'Punoj si kujdestar ndërtese te TerraMax.'},
+    {type:'order', de:'Was sind Sie von Beruf?', sq:'Çfarë profesioni keni?'},
+    {type:'order', de:'Ich bin Physiotherapeutin von Beruf.', sq:'Me profesion jam fizioterapiste.'},
+    {type:'order', de:'Ich mache eine Ausbildung als Krankenschwester.', sq:'Po bëj trajnim profesional për infermiere.'}
+  ]
+},
+{
+  id:'vorseit', band:2, lek:8, emoji:'⏳', color:'#2E86DE', added:'2026-10-27T08:00',
+  sq:'vor, seit, wie lange', de:'Wann hast du die Ausbildung gemacht?',
+  desc:'Kur? Që kur? Sa kohë? Fjalët vor dhe seit, intervista me zotin Koch dhe e-maili i Katalinës.',
+  tip:'Wann? → vor (vor zehn Jahren, ka mbaruar). Seit wann? → seit (seit vier Jahren, vazhdon ende). Wie lange? → vetëm koha (drei Jahre).',
+  read:'Sehr geehrter Herr Winter,<br><br>ich möchte sehr gern in Ihrer Marketing-Abteilung ein Praktikum machen. Ich bin Ungarin und habe in Budapest Wirtschaft und Marketing studiert und gerade mein Diplom gemacht. Jetzt lebe ich in Deutschland und mache im Moment ein Praktikum bei „Inova-Marketing“ in Düsseldorf. Ich habe auch schon im Büro bei „S&amp;P Media“ in Köln gearbeitet. Ich spreche sehr gut Englisch und lerne auch Deutsch.<br><br>Für weitere Informationen stehe ich Ihnen gern zur Verfügung.<br><br>Mit freundlichen Grüßen<br>Katalin Szabo',
+  lesson:[
+    {t:'Kur? Që kur? Sa kohë?', d:'Temporale Präpositionen', say:1, th:['Pyetja','Përgjigjja','Kuptimi'],
+     tr:[['Kur?','Para dhjetë vitesh. / Më 2012.',''],['Sa kohë?','Tre vjet. / Gjashtë muaj.',''],['Që kur?','Prej katër vitesh. / Që nga 2014.','']],
+     table:[['Wann?','<b>Vor</b> zehn Jahren. / 2012.','në të kaluarën, ka mbaruar'],['Wie lange?','Drei Jahre. / Sechs Monate.','sa kohë zgjati'],['Seit wann?','<b>Seit</b> vier Jahren. / Seit 2014.','filloi dhe vazhdon edhe sot']],
+     tip:'<b>vor</b> = para (ka mbaruar). <b>seit</b> = prej (vazhdon ende). 🕰️'},
+    {t:'Shembuj', d:'Beispiele',
+     ex:[['Wann hast du die Ausbildung gemacht? – Vor zehn Jahren.','Kur e ke bërë trajnimin? – Para dhjetë vitesh.'],['Wie lange hat die Ausbildung gedauert? – Drei Jahre.','Sa kohë zgjati trajnimi? – Tre vjet.'],
+       ['Seit wann bist du selbstständig? – Seit vier Jahren.','Që kur je e vetëpunësuar? – Prej katër vitesh.'],['Ich lerne seit zwei Monaten Deutsch.','Mësoj gjermanisht prej dy muajsh.']]},
+    {t:'vor / seit + einem, einer', d:'vor und seit mit Dativ', p:'Pas <b>vor</b> dhe <b>seit</b> fjala ndryshon pak:', say:1, th:['','vor / seit …'],
+     tr:[['muaji','një muaj'],['viti','një vit'],['java','një javë'],['','dy vjet, gjashtë muaj']],
+     table:[['der Monat','einem Monat'],['das Jahr','einem Jahr'],['die Woche','einer Woche'],['shumës','zwei Jahre<b>n</b>, sechs Monate<b>n</b>']],
+     tip:'vor einem Jahr · seit einer Woche · seit zehn Jahre<b>n</b> (shumësi merr -n).'},
+    {t:'Intervista me zotin Koch', d:'Interview mit Herrn Koch',
+     ex:[['Wie lange arbeiten Sie schon als Hausmeister? – 38 Jahre!','Sa kohë punoni si kujdestar ndërtese? – 38 vjet!'],['Wann haben Sie die Ausbildung gemacht? – Vor 40 Jahren!','Kur e keni bërë trajnimin? – Para 40 vitesh!'],
+       ['Und seit wann arbeiten Sie bei TerraMax? – Seit 35 Jahren!','Dhe që kur punoni te TerraMax? – Prej 35 vitesh!']],
+     tip:'Wann? → <b>vor</b>. Seit wann? → <b>seit</b>. Wie lange? → vetëm numri.'},
+    {t:'Kujdes nga kurthet! 👀', d:'Achtung, Fallen!', p:'Këto ngatërrohen shpesh:',
+     fix:[['Wann haben Sie die Ausbildung gemacht? – Seit 40 Jahren.','… – Vor 40 Jahren.','Wann? → vor: ka mbaruar.'],['Seit wann arbeiten Sie hier? – Vor 35 Jahren.','… – Seit 35 Jahren.','Seit wann? → seit: vazhdon ende.'],
+      ['seit zwei Jahre','seit zwei Jahren','Shumësi pas seit / vor merr -n.']]}
+  ],
+  nouns:[['das','Praktikum','praktika'],['das','Diplom','diploma'],['die','Firma','firma'],['das','Büro','zyra'],['die','Abteilung','departamenti'],
+    ['der','Abteilungsleiter','drejtuesi i departamentit'],['die','Bewerbung','aplikimi për punë'],['der','Monat','muaji'],['die','Woche','java']],
+  words:[['vor zehn Jahren','para dhjetë vitesh'],['seit vier Jahren','prej katër vitesh'],['wie lange','sa kohë'],['seit wann','që kur'],['dauern','zgjat'],['gerade','sapo'],
+    ['Mit freundlichen Grüßen','Me respekt'],['Sehr geehrter Herr …','I nderuar zotëri …']],
+  items:[
+    {type:'match', pairs:[['Wann hast du die Ausbildung gemacht?','Vor zehn Jahren.'],['Wie lange hat die Ausbildung gedauert?','Drei Jahre.'],['Seit wann bist du selbstständig?','Seit vier Jahren.']]},
+    {type:'sort', topic:'zeit', psq:'Rendit sipas pyetjes', pde:'Ordnen Sie zu', cats:['Wann?','Wie lange?','Seit wann?'],
+     items:[['Vor zehn Jahren.','Wann?'],['Vor zwei Monaten.','Wann?'],['2012.','Wann?'],['Drei Jahre.','Wie lange?'],['Sechs Monate.','Wie lange?'],['Seit vier Jahren.','Seit wann?'],['Seit acht Monaten.','Seit wann?'],['Seit 2014.','Seit wann?']],
+     e:'Wann? → vor / vit. Wie lange? → vetëm koha. Seit wann? → seit.'},
+    {type:'gap', row:true, topic:'zeit', psq:'vor apo seit?', pde:'vor oder seit?', s:'Wann hast du die Ausbildung gemacht? – ___ zehn Jahren.', o:['Vor','Seit'], a:'Vor', e:'Wann? → vor: ka mbaruar.'},
+    {type:'gap', row:true, topic:'zeit', psq:'vor apo seit?', pde:'vor oder seit?', s:'Seit wann bist du selbstständig? – ___ vier Jahren.', o:['Seit','Vor'], a:'Seit', e:'Seit wann? → seit.'},
+    {type:'gap', row:true, topic:'zeit', psq:'vor apo seit?', pde:'vor oder seit?', s:'Ich lerne ___ zwei Monaten Deutsch.', h:'dhe mëson ende', o:['seit','vor'], a:'seit', e:'Vazhdon ende → seit.'},
+    {type:'gap', row:true, topic:'zeit', psq:'vor apo seit?', pde:'vor oder seit?', s:'Ich habe ___ einem Jahr mein Diplom gemacht.', h:'ka mbaruar', o:['vor','seit'], a:'vor', e:'Ka mbaruar → vor.'},
+    {type:'gap', row:true, topic:'zeit', psq:'vor apo seit?', pde:'vor oder seit?', s:'Herr Koch arbeitet ___ 35 Jahren bei TerraMax.', o:['seit','vor'], a:'seit', e:'Punon ende → seit.'},
+    {type:'gap', topic:'wfragen', psq:'Cila pyetje?', pde:'Welche Frage?', s:'___ hat die Ausbildung gedauert? – Drei Jahre.', o:['Wie lange','Wann','Seit wann'], a:'Wie lange', e:'Drei Jahre = sa kohë → Wie lange?'},
+    {type:'gap', topic:'wfragen', psq:'Cila pyetje?', pde:'Welche Frage?', s:'___ haben Sie das Diplom gemacht? – Vor einem Jahr.', o:['Wann','Seit wann','Wie lange'], a:'Wann', e:'Vor einem Jahr → Wann?'},
+    {type:'gap', row:true, topic:'wfragen', psq:'Cila pyetje?', pde:'Welche Frage?', s:'___ wohnen Sie in Deutschland? – Seit einem Jahr.', o:['Seit wann','Wann'], a:'Seit wann', e:'Seit einem Jahr → Seit wann?'},
+    {type:'gap', row:true, topic:'zeit', psq:'vor / seit + …', pde:'vor / seit + Dativ', s:'seit zwei ___', o:['Jahren','Jahre','Jahr'], a:'Jahren', e:'Shumësi pas seit merr -n: seit zwei Jahren.'},
+    {type:'gap', row:true, topic:'zeit', psq:'vor / seit + …', pde:'vor / seit + Dativ', s:'vor ___ Woche', o:['einer','einem','eine'], a:'einer', e:'die Woche → vor einer Woche.'},
+    {type:'gap', row:true, topic:'zeit', psq:'vor / seit + …', pde:'vor / seit + Dativ', s:'seit ___ Monat', o:['einem','einer','ein'], a:'einem', e:'der Monat → seit einem Monat.'},
+    {type:'mc', read:true, topic:'lesen', psq:'B3 E-maili', pde:'B3 Die E-Mail', q:'Was möchte Frau Szabo machen?', o:['ein Praktikum bei „mediaplanet“','ein Diplom in Budapest','einen Deutschkurs','ein Interview'], a:'ein Praktikum bei „mediaplanet“', e:'„… in Ihrer Marketing-Abteilung ein Praktikum machen.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'B3 E-maili', pde:'B3 Die E-Mail', q:'Woher kommt Katalin Szabo?', o:['aus Ungarn','aus Deutschland','aus Düsseldorf','aus Köln'], a:'aus Ungarn', e:'„Ich bin Ungarin …“'},
+    {type:'mc', read:true, topic:'lesen', psq:'B3 E-maili', pde:'B3 Die E-Mail', q:'Was hat sie studiert?', o:['Wirtschaft und Marketing','Deutsch und Englisch','Medizin','Physiotherapie'], a:'Wirtschaft und Marketing', e:'„… habe in Budapest Wirtschaft und Marketing studiert.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'B3 E-maili', pde:'B3 Die E-Mail', q:'Wo macht sie im Moment ein Praktikum?', o:['bei „Inova-Marketing“ in Düsseldorf','bei „S&P Media“ in Köln','bei „mediaplanet“','in Budapest'], a:'bei „Inova-Marketing“ in Düsseldorf', e:'„… mache im Moment ein Praktikum bei Inova-Marketing in Düsseldorf.“'},
+    {type:'gap', read:true, topic:'wfragen', psq:'B3 Herr Winter pyet', pde:'B3 Herr Winter fragt', s:'___ haben Sie das Diplom gemacht?', o:['Wann','Seit wann','Wie lange'], a:'Wann', e:'Diplomën e ka mbaruar → Wann?'},
+    {type:'gap', read:true, row:true, topic:'wfragen', psq:'B3 Herr Winter pyet', pde:'B3 Herr Winter fragt', s:'___ leben Sie in Deutschland?', o:['Seit wann','Wann'], a:'Seit wann', e:'Jeton ende në Gjermani → Seit wann?'},
+    {type:'gap', read:true, row:true, topic:'wfragen', psq:'B3 Herr Winter pyet', pde:'B3 Herr Winter fragt', s:'Wie ___ machen Sie schon das Praktikum?', o:['lange','wann','seit'], a:'lange', e:'Wie lange … schon?'},
+    {type:'gap', read:true, row:true, topic:'wfragen', psq:'B3 Herr Winter pyet', pde:'B3 Herr Winter fragt', s:'___ haben Sie bei „S&P Media“ gearbeitet?', o:['Wann','Seit wann'], a:'Wann', e:'Ka mbaruar → Wann?'},
+    {type:'order', de:'Wann hast du die Ausbildung gemacht?', sq:'Kur e ke bërë trajnimin?'},
+    {type:'order', de:'Ich lerne seit zwei Monaten Deutsch.', sq:'Mësoj gjermanisht prej dy muajsh.'},
+    {type:'order', de:'Die Ausbildung hat drei Jahre gedauert.', sq:'Trajnimi zgjati tre vjet.'},
+    {type:'order', de:'Seit wann bist du selbstständig?', sq:'Që kur je e vetëpunësuar?'}
+  ]
 }
+
 ];
