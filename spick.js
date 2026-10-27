@@ -46,7 +46,7 @@ const SPICK = [
   tr:[['unë','jam','kam','mund'],['ti','je','ke','mund'],['ai / ajo','është','ka','mund'],['ne','jemi','kemi','mundemi'],['ju','jeni','keni','mundeni'],['ata / Ju','janë / jeni','kanë / keni','mundin / mundeni']],
      table:[['ich','bin','habe','kann'],['du','bist','hast','kannst'],['er / sie / es','ist','hat','kann'],
     ['wir','sind','haben','können'],['ihr','seid','habt','könnt'],['sie / Sie','sind','haben','können']],
-  tip:'<b>können, wollen, mögen</b>: ich dhe er pa mbaresë (ich kann, er kann).'
+  tip:'<b>können, wollen, mögen</b>: ich dhe er pa mbaresë (ich kann, er kann). Emri si subjekt: Sabine = sie → schwimm<b>t</b>, meine Freunde = sie → leb<b>en</b>.'
 },
 {
   id:'sz-verb2', chip:'🔁 wollen · möchten', t:'🔁 Dua, do të doja, më pëlqen', d:'wollen, möchten, mögen',
@@ -60,7 +60,8 @@ const SPICK = [
   id:'sz-satz', chip:'🧩 Satzbau', t:'🧩 Rendi i fjalisë', d:'So baut man Sätze',
   ex:[['Ich lerne Deutsch.','Folja në vendin 2.'],['Heute lerne ich Deutsch.','Edhe kur fillon me kohën, folja mbetet e dyta.'],
     ['Lernst du Deutsch?','Pyetje pa W: folja del e para.'],['Ich kann gut tanzen.','können në vendin 2, folja tjetër në fund.'],
-    ['Ich habe Pizza gegessen.','haben në vendin 2, Partizip në fund.'],['Ich stehe um sieben Uhr auf.','aufstehen ndahet: stehe … auf.']],
+    ['Ich habe Pizza gegessen.','haben në vendin 2, Partizip në fund.'],['Ich stehe um sieben Uhr auf.','aufstehen ndahet: stehe … auf.'],
+    ['Ich rufe meine Mutter an.','Edhe anrufen, einkaufen, aufräumen ndahen: an / ein / auf në fund.']],
   tip:'Rregulli më i rëndësishëm: <b>folja gjithmonë e dyta</b>, folja e dytë <b>në fund</b>. 🔚'
 },
 {
@@ -72,7 +73,8 @@ const SPICK = [
   id:'sz-zahl', chip:'🔢 Zahlen', t:'🔢 Numrat', d:'Die Zahlen',
   th:['','Gjermanisht'], say:1,
   table:[['1–5','eins, zwei, drei, vier, fünf'],['6–12','sechs, sieben, acht, neun, zehn, elf, zwölf'],['13–15','dreizehn, vierzehn, fünfzehn'],
-    ['16–19','sechzehn, siebzehn, achtzehn, neunzehn'],['20–50','zwanzig, dreißig, vierzig, fünfzig'],['21','einundzwanzig'],['45','fünfundvierzig'],['100','hundert']],
+    ['16–19','sechzehn, siebzehn, achtzehn, neunzehn'],['20–50','zwanzig, dreißig, vierzig, fünfzig'],['60–90','sechzig, siebzig, achtzig, neunzig'],
+    ['21','einundzwanzig'],['45','fünfundvierzig'],['100','hundert'],['1000','tausend']],
   tip:'21 = <b>ein</b>und<b>zwanzig</b>: së pari 1, pastaj 20. Kujdes: sechzehn, siebzehn.'
 },
 {
@@ -81,6 +83,20 @@ const SPICK = [
   table:[['8:00','acht Uhr','acht Uhr'],['8:15','Viertel nach acht','acht Uhr fünfzehn'],['8:30','halb neun','acht Uhr dreißig'],
     ['8:45','Viertel vor neun','acht Uhr fünfundvierzig'],['15:30','halb vier','fünfzehn Uhr dreißig']],
   tip:'<b>halb</b> + ora <b>tjetër</b>: 8:30 = halb <b>neun</b>.'
+},
+{
+  id:'sz-beruf', chip:'👩‍⚕️ Beruf', t:'👩‍⚕️ Profesioni', d:'Beruf und Arbeit',
+  th:['Deutsch','Shqip'], say:0,
+  table:[['Was sind Sie von Beruf?','Çfarë profesioni keni?'],['Ich bin Ärztin.','Jam mjeke. (pa nyjë!)'],['Ich arbeite als Kellnerin bei „Café Mio“.','Punoj si kameriere te „Café Mio“.'],
+    ['der Lehrer → die Lehrerin','për gra: + in'],['der Arzt → die Ärztin','a → ä + in'],['Ich bin selbstständig / angestellt / arbeitslos.','Jam e vetëpunësuar / e punësuar / e papunë.']],
+  tip:'<b>als</b> + profesioni, <b>bei</b> + firma. Te profesioni <b>pa nyjë</b>: Ich bin Lehrerin.'
+},
+{
+  id:'sz-vorseit', chip:'⏳ vor · seit', t:'⏳ Kur? Që kur? Sa kohë?', d:'vor, seit, wie lange',
+  th:['Pyetja','Përgjigjja'], say:1,
+  tr:[['Kur?','Para dhjetë vitesh.'],['Që kur?','Prej katër vitesh. (vazhdon)'],['Sa kohë?','Tre vjet.']],
+  table:[['Wann?','<b>Vor</b> zehn Jahren.'],['Seit wann?','<b>Seit</b> vier Jahren.'],['Wie lange?','Drei Jahre.']],
+  tip:'<b>vor</b> = ka mbaruar. <b>seit</b> = vazhdon ende. vor / seit + einem Jahr, einer Woche, zwei Jahre<b>n</b>.'
 },
 {
   id:'sz-saetze', chip:'💬 Fjali të dobishme', t:'💬 Fjali të dobishme', d:'Nützliche Sätze',

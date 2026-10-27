@@ -74,15 +74,10 @@ const isDone = i => best(i) >= passOf(CHAPTERS[i]);
 const bandOf = c => c.band || 1;
 const BAND_NOW = Math.max(...CHAPTERS.map(bandOf));
 const bandInfo = b => (typeof BOOKS !== 'undefined' && BOOKS[b]) || ['Libri ' + b, 'Buch ' + b, '📘'];
-/* the first chapter of a book is always open: a new book never waits for the old one */
-const unlocked = i => i === 0 || isDone(i - 1) || bandOf(CHAPTERS[i]) !== bandOf(CHAPTERS[i - 1]);
+/* one journey, one active step: books follow each other (locked chapters can still be practised from their sheet) */
+const unlocked = i => i === 0 || isDone(i - 1);
 const seen = i => unlocked(i) || !!S.ch[CHAPTERS[i].id]?.lesson;
-/* "Weiter" goes to the first open chapter of the current book, then to older leftovers */
-const curIdx = () => {
-  let i = CHAPTERS.findIndex((c, k) => bandOf(c) === BAND_NOW && !isDone(k));
-  if (i < 0) i = CHAPTERS.findIndex((c, k) => !isDone(k));
-  return i < 0 ? CHAPTERS.length : i;
-};
+const curIdx = () => { const i = CHAPTERS.findIndex((c, k) => !isDone(k)); return i < 0 ? CHAPTERS.length : i; };
 /* big divider where a new book starts (map and chapter list) */
 const bookDiv = (c, prev) => BAND_NOW > 1 && (!prev || bandOf(prev) !== bandOf(c))
   ? (([sq, de, e]) => `<div class="bookdiv"><span class="bk-e">${e}</span><span><b>${esc(sq)}</b><small>${esc(de)}</small></span></div>`)(bandInfo(bandOf(c))) : '';
@@ -411,8 +406,8 @@ function home(){
   const lv = level(), into = S.xp % XP_LVL, st = streakNow(), mc = Object.keys(S.mistakes).length;
   const [lsq, lde] = lvlName(lv), goal = Math.min(S.dayXp / GOAL, 1), C = 2 * Math.PI * 27;
   const cur = curIdx(), done = doneCount();
-  const bk = CHAPTERS.filter(c => bandOf(c) === BAND_NOW), total = bk.length, bdone = bk.filter(c => isDone(chIdx(c.id))).length, jp = Math.round(bdone / total * 100);
-  const next = CHAPTERS[cur];
+  const next = CHAPTERS[cur], band = next ? bandOf(next) : BAND_NOW;   /* progress of the book she is in now */
+  const bk = CHAPTERS.filter(c => bandOf(c) === band), total = bk.length, bdone = bk.filter(c => isDone(chIdx(c.id))).length, jp = Math.round(bdone / total * 100);
   app.style.setProperty('--tc', 'var(--brand)');
   app.innerHTML = `
   <header class="hb">
@@ -428,7 +423,7 @@ function home(){
     <p>Mirë se erdhe! Sot mësojmë bashkë.</p>
     <p class="de">Willkommen! Heute lernen wir zusammen.</p>
     <div class="journey">
-      <div class="j-top"><b>Udhëtimi yt${BAND_NOW > 1 ? ' · ' + esc(bandInfo(BAND_NOW)[0]) : ''}</b><span>${bdone} / ${total}</span></div>
+      <div class="j-top"><b>Udhëtimi yt${BAND_NOW > 1 ? ' · ' + esc(bandInfo(band)[0]) : ''}</b><span>${bdone} / ${total}</span></div>
       <div class="jbar"><i style="width:${jp}%"></i></div>
       <small>Deine Reise: ${jp}% geschafft</small>
     </div>
@@ -451,8 +446,8 @@ function home(){
       <div class="st-xp">${goal >= 1 ? 'Qëllimi i sotëm u arrit! 🎉' : `Qëllimi sot: ${GOAL} XP / Tagesziel`}</div>
     </div>
   </section>
-  <h2 class="sec">Harta e udhëtimit<span>Die Reisekarte</span></h2>
-  <div class="map">${CHAPTERS.map(nodeHTML).join('')}</div>
+  <h2 class="sec" id="mapsec">Harta e udhëtimit<span>Die Reisekarte</span></h2>
+  ${mapHTML(cur)}
   <h2 class="sec">Ushtrim i lirë<span>Freies Üben</span></h2>
   <div class="free">
     <button class="fbtn" data-act="chapters"><span class="em">📋</span><span><b>Zgjidh kapitullin</b><small>Kapitel selbst wählen</small></span></button>
@@ -462,11 +457,56 @@ function home(){
     <button class="fbtn" data-act="dict"><span class="em">📒</span><span><b>Fletë ndihme</b><small>Spickzettel: das Wichtigste auf einen Blick</small></span></button>
   </div>
   <p class="foot">Gemacht mit ❤️ für Mimoza</p>`;
+  const chip = app.querySelector('.lekchip.sel') || app.querySelector('.lekchip.here');   /* keep the lesson in view in the chip row */
+  if (chip) chip.parentElement.scrollLeft = chip.offsetLeft - (chip.parentElement.clientWidth - chip.clientWidth) / 2;
   window.scrollTo(0, 0);
 }
-function nodeHTML(c, i){
+/* ================= Journey map: zoomed in around the current step ================= */
+/* MAPV: null = the last few and next few steps, 'all' = the whole map, a number = one lesson */
+let MAPV = null;
+const MAP_BEFORE = 2, MAP_AFTER = 3;
+function mapGroups(){
+  const gs = [];
+  CHAPTERS.forEach((c, i) => { if (c.unit || !gs.length) gs.push({unit:c.unit || ['', ''], band:bandOf(c), idx:[]}); gs[gs.length - 1].idx.push(i); });
+  return gs;
+}
+/* one chip per lesson: progress at a glance, tap to look at that lesson */
+function lekChips(gs, cur){
+  return `<div class="lekchips" role="tablist">${gs.map((g, k) => {
+    const c0 = CHAPTERS[g.idx[0]], n = g.idx.length, d = g.idx.filter(isDone).length;
+    const book = k && g.band !== gs[k - 1].band ? `<span class="lc-book" aria-hidden="true">${bandInfo(g.band)[2]}</span>` : '';
+    return `${book}<button class="lekchip ${d === n ? 'done' : ''} ${g.idx.includes(cur) ? 'here' : ''} ${MAPV === k ? 'sel' : ''}"
+      style="--tc:${c0.color};--p:${Math.round(d / n * 100)}%" data-act="mapv" data-id="${k}" aria-label="${esc(g.unit[0])}">
+      <b>${c0.final ? '🏆' : c0.lek ? 'L' + c0.lek : k + 1}</b><small>${d === n ? '✓' : `${d}/${n}`}</small></button>`; }).join('')}</div>`;
+}
+function mapHTML(cur){
+  const gs = mapGroups(), N = CHAPTERS.length, c = Math.min(cur, N - 1);
+  let from = Math.max(0, c - MAP_BEFORE), to = Math.min(N - 1, c + MAP_AFTER);
+  if (MAPV === 'all') { from = 0; to = N - 1; }
+  else if (typeof MAPV === 'number' && gs[MAPV]) { from = gs[MAPV].idx[0]; to = gs[MAPV].idx[gs[MAPV].idx.length - 1]; }
+  /* when the view starts in the middle of a lesson, still show which book and lesson it is */
+  const g0 = gs.find(g => g.idx.includes(from)), c0 = CHAPTERS[from];
+  const ctx = c0.unit ? '' : `${BAND_NOW > 1 ? bookDiv(c0) : ''}<div class="unit"><b>${esc(g0.unit[0])}</b><span>${esc(g0.unit[1])}</span></div>`;
+  const nodes = CHAPTERS.slice(from, to + 1).map((ch, k) => nodeHTML(ch, from + k, from + k === from)).join('');
+  const more = (n, dir) => `<button class="mapmore" data-act="mapv" data-id="all">${dir === 'up' ? '▲' : '▼'} ${n} ${n > 1 ? 'hapa' : 'hap'} ${dir === 'up' ? 'më parë' : 'më tej'}<small>${dir === 'up' ? 'Frühere' : 'Weitere'} Schritte anzeigen</small></button>`;
+  return `${lekChips(gs, cur)}
+  ${MAPV != null ? `<button class="mapback" data-act="mapv" data-id="auto">🎯 Te hapi aktual <small>Zum aktuellen Schritt</small></button>` : ''}
+  <div class="map ${MAPV === 'all' ? 'all' : ''}">
+    ${MAPV !== 'all' && from > 0 ? more(from, 'up') : ''}
+    ${ctx}${nodes}
+    ${MAPV !== 'all' && to < N - 1 ? more(N - 1 - to, 'down') : ''}
+  </div>
+  ${MAPV === 'all' ? `<button class="mapback" data-act="mapv" data-id="auto">▲ Mbyll hartën <small>Karte zuklappen</small></button>` : ''}`;
+}
+function mapView(v){
+  MAPV = v === 'all' ? 'all' : v === 'auto' || MAPV === +v ? null : +v; SND.tap();
+  home();
+  const sec = $('#mapsec'); if (sec) window.scrollTo(0, sec.getBoundingClientRect().top + window.scrollY - 8);
+}
+/* first: the first node shown; the book divider then comes from mapHTML's context instead */
+function nodeHTML(c, i, first){
   const d = isDone(i), u = unlocked(i), cur = i === curIdx(), s = starsOf(best(i), passOf(c));
-  return `${bookDiv(c, CHAPTERS[i - 1])}${c.unit ? `<div class="unit"><b>${esc(c.unit[0])}</b><span>${esc(c.unit[1])}</span></div>` : ''}
+  return `${first ? (c.unit ? bookDiv(c) : '') : bookDiv(c, CHAPTERS[i - 1])}${c.unit ? `<div class="unit"><b>${esc(c.unit[0])}</b><span>${esc(c.unit[1])}</span></div>` : ''}
   <div class="nrow" style="--off:${OFF[i % OFF.length]}px"><div class="nwrap">
     ${cur ? '<span class="bubble">Fillo! Start!</span>' : ''}
     <button class="node ${d ? 'done' : u ? 'open' : 'lock'} ${cur ? 'cur' : ''} ${c.final ? 'final' : ''}" style="--tc:${c.color}" data-act="chap" data-id="${c.id}" aria-label="${esc(c.sq)}">
@@ -1374,6 +1414,7 @@ document.addEventListener('click', e => {
     case 'wplay': return start('words', id);
     case 'hw': return hwList(id);
     case 'home': return home();
+    case 'mapv': return mapView(id);
     case 'hint': return hint();
     case 'pick': return pick(+b.dataset.k);
     case 'say': return say(b.dataset.t);
