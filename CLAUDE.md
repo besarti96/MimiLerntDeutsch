@@ -33,7 +33,7 @@ Kein Build, kein Server: reines HTML/CSS/JS. Der Fortschritt liegt in `localStor
 - Ein neues `band` erzeugt auf Reise und in „Kapitujt“ einen großen Buch-Balken (Texte in `BOOKS`).
 - Die Reise ist **linear**: genau ein aktiver Schritt (das erste nicht bestandene Kapitel). Gesperrte Kapitel kann man trotzdem antippen und üben.
 - Jedes Buch hat ein `final:true`-Kapitel am Ende (testet nur sein eigenes Buch). Kapitel eines neuen Buches kommen **hinter** das Finale des alten.
-- Die Karte zeigt gezoomt nur die Umgebung des aktiven Schritts; die Lektions-Leiste (L1, L2 …) und „ganze Karte“ zeigen mehr.
+- Die Karte rendert immer die ganze Reise, sichtbar sind aber nur die letzten 2 und nächsten 3 Schritte um den aktiven Schritt (hervorgehoben mit „📍 Je këtu“). Davor und danach liegen Faltbereiche (`#fold-up`, `#fold-down`), die an Ort und Stelle aufgehen, ohne dass der aktive Schritt verrutscht (`mapFold`). Die Lektions-Leiste (L1, L2 …) gleitet zu einer Lektion (`mapJump`). Kein Karten-/Karussell-Design: Es soll eine Reise bleiben.
 - `added:'JJJJ-MM-TTTHH:MM'` zeigt 24 Stunden lang „E RE“ (neu).
 
 ### Kapitel-Felder

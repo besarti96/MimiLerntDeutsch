@@ -457,62 +457,78 @@ function home(){
     <button class="fbtn" data-act="dict"><span class="em">📒</span><span><b>Fletë ndihme</b><small>Spickzettel: das Wichtigste auf einen Blick</small></span></button>
   </div>
   <p class="foot">Gemacht mit ❤️ für Mimoza</p>`;
-  const chip = app.querySelector('.lekchip.sel') || app.querySelector('.lekchip.here');   /* keep the lesson in view in the chip row */
+  const chip = app.querySelector('.lekchip.here');   /* keep the current lesson in view in the chip row */
   if (chip) chip.parentElement.scrollLeft = chip.offsetLeft - (chip.parentElement.clientWidth - chip.clientWidth) / 2;
   window.scrollTo(0, 0);
 }
-/* ================= Journey map: zoomed in around the current step ================= */
-/* MAPV: null = the last few and next few steps, 'all' = the whole map, a number = one lesson */
-let MAPV = null;
+/* ================= Journey map: the whole journey, folded around the current step ================= */
+/* all nodes are always rendered; the steps before and after the visible part sit in folds that open in place */
 const MAP_BEFORE = 2, MAP_AFTER = 3;
 function mapGroups(){
   const gs = [];
   CHAPTERS.forEach((c, i) => { if (c.unit || !gs.length) gs.push({unit:c.unit || ['', ''], band:bandOf(c), idx:[]}); gs[gs.length - 1].idx.push(i); });
   return gs;
 }
-/* one chip per lesson: progress at a glance, tap to look at that lesson */
+/* one chip per lesson: progress ring, the current lesson filled; tap = glide to that lesson */
 function lekChips(gs, cur){
-  return `<div class="lekchips" role="tablist">${gs.map((g, k) => {
+  return `<div class="lekchips" id="lekchips">${gs.map((g, k) => {
     const c0 = CHAPTERS[g.idx[0]], n = g.idx.length, d = g.idx.filter(isDone).length;
     const book = k && g.band !== gs[k - 1].band ? `<span class="lc-book" aria-hidden="true">${bandInfo(g.band)[2]}</span>` : '';
-    return `${book}<button class="lekchip ${d === n ? 'done' : ''} ${g.idx.includes(cur) ? 'here' : ''} ${MAPV === k ? 'sel' : ''}"
-      style="--tc:${c0.color};--p:${Math.round(d / n * 100)}%" data-act="mapv" data-id="${k}" aria-label="${esc(g.unit[0])}">
+    return `${book}<button class="lekchip ${d === n ? 'done' : ''} ${g.idx.includes(cur) ? 'here' : ''}"
+      style="--tc:${c0.color};--p:${Math.round(d / n * 100)}%" data-act="mapjump" data-id="${c0.id}" aria-label="${esc(g.unit[0])}">
       <b>${c0.final ? '🏆' : c0.lek ? 'L' + c0.lek : k + 1}</b><small>${d === n ? '✓' : `${d}/${n}`}</small></button>`; }).join('')}</div>`;
 }
 function mapHTML(cur){
   const gs = mapGroups(), N = CHAPTERS.length, c = Math.min(cur, N - 1);
-  let from = Math.max(0, c - MAP_BEFORE), to = Math.min(N - 1, c + MAP_AFTER);
-  if (MAPV === 'all') { from = 0; to = N - 1; }
-  else if (typeof MAPV === 'number' && gs[MAPV]) { from = gs[MAPV].idx[0]; to = gs[MAPV].idx[gs[MAPV].idx.length - 1]; }
-  /* when the view starts in the middle of a lesson, still show which book and lesson it is */
+  const from = Math.max(0, c - MAP_BEFORE), to = Math.min(N - 1, c + MAP_AFTER);
+  const nodes = (a, b) => CHAPTERS.slice(a, b + 1).map((ch, k) => nodeHTML(ch, a + k)).join('');
+  /* while the earlier steps are folded, still show which book and lesson the visible part belongs to */
   const g0 = gs.find(g => g.idx.includes(from)), c0 = CHAPTERS[from];
-  const ctx = c0.unit ? '' : `${BAND_NOW > 1 ? bookDiv(c0) : ''}<div class="unit"><b>${esc(g0.unit[0])}</b><span>${esc(g0.unit[1])}</span></div>`;
-  const nodes = CHAPTERS.slice(from, to + 1).map((ch, k) => nodeHTML(ch, from + k, from + k === from)).join('');
-  const more = (n, dir) => `<button class="mapmore" data-act="mapv" data-id="all">${dir === 'up' ? '▲' : '▼'} ${n} ${n > 1 ? 'hapa' : 'hap'} ${dir === 'up' ? 'më parë' : 'më tej'}<small>${dir === 'up' ? 'Frühere' : 'Weitere'} Schritte anzeigen</small></button>`;
+  const ctx = from && !c0.unit ? `<div class="mapctx">${bookDiv(c0)}<div class="unit"><b>${esc(g0.unit[0])}</b><span>${esc(g0.unit[1])}</span></div></div>` : '';
+  const btn = (dir, n) => `<button class="mapmore ${dir}" data-act="mapfold" data-id="${dir}" aria-expanded="false">
+    <span class="l-open">${dir === 'up' ? '▲' : '▼'} ${n} ${n > 1 ? 'hapa' : 'hap'} ${dir === 'up' ? 'më parë' : 'më tej'}<small>${dir === 'up' ? 'Frühere' : 'Weitere'} Schritte anzeigen</small></span>
+    <span class="l-close">${dir === 'up' ? '▼' : '▲'} Mbyll<small>Zuklappen</small></span></button>`;
   return `${lekChips(gs, cur)}
-  ${MAPV != null ? `<button class="mapback" data-act="mapv" data-id="auto">🎯 Te hapi aktual <small>Zum aktuellen Schritt</small></button>` : ''}
-  <div class="map ${MAPV === 'all' ? 'all' : ''}">
-    ${MAPV !== 'all' && from > 0 ? more(from, 'up') : ''}
-    ${ctx}${nodes}
-    ${MAPV !== 'all' && to < N - 1 ? more(N - 1 - to, 'down') : ''}
-  </div>
-  ${MAPV === 'all' ? `<button class="mapback" data-act="mapv" data-id="auto">▲ Mbyll hartën <small>Karte zuklappen</small></button>` : ''}`;
+  <div class="map" id="map">
+    ${from ? `${btn('up', from)}<div class="mapfold" id="fold-up">${nodes(0, from - 1)}</div>${ctx}` : ''}
+    ${nodes(from, to)}
+    ${to < N - 1 ? `<div class="mapfold" id="fold-down">${nodes(to + 1, N - 1)}</div>${btn('down', N - 1 - to)}` : ''}
+  </div>`;
 }
-function mapView(v){
-  MAPV = v === 'all' ? 'all' : v === 'auto' || MAPV === +v ? null : +v; SND.tap();
-  home();
-  const sec = $('#mapsec'); if (sec) window.scrollTo(0, sec.getBoundingClientRect().top + window.scrollY - 8);
+/* open or close a fold; the current step stays exactly where it is on the screen */
+function mapFold(dir, open, quiet){
+  const map = $('#map'), fold = $('#fold-' + dir); if (!map || !fold) return;
+  const cls = dir + 'open', now = open ?? !map.classList.contains(cls);
+  if (now === map.classList.contains(cls)) return;
+  if (!quiet) SND.tap();
+  const anchor = map.querySelector('.nrow.here') || fold.nextElementSibling || map;
+  const y0 = anchor.getBoundingClientRect().top;
+  map.classList.toggle(cls, now);
+  map.querySelector('.mapmore.' + dir)?.setAttribute('aria-expanded', now);
+  if (dir === 'up') {
+    window.scrollBy(0, anchor.getBoundingClientRect().top - y0);
+    /* peek a little upwards, so she sees what opened (only when not jumping somewhere else) */
+    if (now && !quiet) window.scrollBy({top: -Math.min(280, fold.offsetHeight), behavior: reduced() ? 'auto' : 'smooth'});
+  }
 }
-/* first: the first node shown; the book divider then comes from mapHTML's context instead */
-function nodeHTML(c, i, first){
+/* lesson chip: open what is needed and glide to that lesson's banner */
+function mapJump(id){
+  const t = $('#map')?.querySelector(`[data-u="${id}"]`); if (!t) return;
+  SND.tap();
+  ['up', 'down'].forEach(d => { if ($('#fold-' + d)?.contains(t)) mapFold(d, true, true); });
+  const y = t.getBoundingClientRect().top + window.scrollY - 70;
+  window.scrollTo({top: y, behavior: reduced() ? 'auto' : 'smooth'});
+}
+function nodeHTML(c, i){
   const d = isDone(i), u = unlocked(i), cur = i === curIdx(), s = starsOf(best(i), passOf(c));
-  return `${first ? (c.unit ? bookDiv(c) : '') : bookDiv(c, CHAPTERS[i - 1])}${c.unit ? `<div class="unit"><b>${esc(c.unit[0])}</b><span>${esc(c.unit[1])}</span></div>` : ''}
-  <div class="nrow" style="--off:${OFF[i % OFF.length]}px"><div class="nwrap">
-    ${cur ? '<span class="bubble">Fillo! Start!</span>' : ''}
+  return `${bookDiv(c, CHAPTERS[i - 1])}${c.unit ? `<div class="unit" data-u="${c.id}"><b>${esc(c.unit[0])}</b><span>${esc(c.unit[1])}</span></div>` : ''}
+  <div class="nrow ${cur ? 'here' : ''}" style="--off:${OFF[i % OFF.length]}px"><div class="nwrap">
+    ${cur ? '<span class="bubble">📍 Je këtu · Du bist hier</span>' : ''}
     <button class="node ${d ? 'done' : u ? 'open' : 'lock'} ${cur ? 'cur' : ''} ${c.final ? 'final' : ''}" style="--tc:${c.color}" data-act="chap" data-id="${c.id}" aria-label="${esc(c.sq)}">
       <span>${c.emoji}</span></button>
     <div class="nlbl"><b>${i + 1}. ${esc(c.sq)}${newTag(c)}</b><small>${esc(c.de)}</small>
-      ${d ? `<span class="nst">${[1,2,3].map(k => `<i class="${k <= s ? 'on' : ''}">★</i>`).join('')}</span>` : ''}</div>
+      ${d ? `<span class="nst">${[1,2,3].map(k => `<i class="${k <= s ? 'on' : ''}">★</i>`).join('')}</span>` : ''}
+      ${cur ? `<button class="herego" data-act="go" data-id="${c.id}">▶ Fillo / Start</button>` : ''}</div>
   </div></div>`;
 }
 
@@ -1414,7 +1430,8 @@ document.addEventListener('click', e => {
     case 'wplay': return start('words', id);
     case 'hw': return hwList(id);
     case 'home': return home();
-    case 'mapv': return mapView(id);
+    case 'mapfold': return mapFold(id);
+    case 'mapjump': return mapJump(id);
     case 'hint': return hint();
     case 'pick': return pick(+b.dataset.k);
     case 'say': return say(b.dataset.t);

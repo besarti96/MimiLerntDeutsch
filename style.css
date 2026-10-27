@@ -495,7 +495,7 @@ input.cz::placeholder{color:var(--muted);font-weight:400}
 .pagerow .t-ico{width:44px;height:44px;border-radius:14px;font-size:22px}
 .pagerow.done .t-txt b::after{content:' ✓';color:var(--ok)}
 
-/* ---------- Zoomed journey map: lesson chips, more/back buttons ---------- */
+/* ---------- Journey map: lesson chips, folds before/after the current step ---------- */
 .lekchips{position:relative;display:flex;align-items:center;gap:8px;overflow-x:auto;margin:0 -16px 4px;padding:6px 16px 12px;scrollbar-width:none;scroll-snap-type:x proximity}
 .lekchips::-webkit-scrollbar{display:none}
 .lekchip{position:relative;flex:none;scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;width:58px;height:58px;
@@ -511,9 +511,25 @@ input.cz::placeholder{color:var(--muted);font-weight:400}
 .lekchip.sel{outline:3px solid var(--sun);outline-offset:2px}
 .lekchip:active{transform:scale(.93)}
 .lc-book{flex:none;font-size:22px;padding:0 2px}
-.mapmore{display:block;width:100%;margin:8px 0 2px;padding:10px 14px;border-radius:16px;border:2px dashed var(--line);color:var(--brand);font-weight:800;text-align:center}
+
+.mapfold{display:none;width:100%;flex-direction:column;align-items:center;gap:4px}
+.map.upopen #fold-up,.map.downopen #fold-down{display:flex;animation:foldin .35s ease-out}
+.map.upopen .mapctx{display:none}
+.mapctx{width:100%}
+@keyframes foldin{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.mapmore{display:flex;justify-content:center;width:100%;margin:6px 0;padding:10px 14px;border-radius:16px;border:2px dashed var(--line);color:var(--brand);font-weight:800;text-align:center}
 .mapmore small{display:block;font-weight:400;font-style:italic;color:var(--muted);font-size:13px}
 .mapmore:active{background:var(--card)}
-.mapback{display:block;margin:2px auto 4px;padding:8px 16px;border-radius:99px;background:var(--card);border:2px solid var(--line);box-shadow:0 3px 0 var(--line);font-weight:800;color:var(--brand)}
-.mapback small{font-weight:400;font-style:italic;color:var(--muted);margin-left:4px}
-.mapback:active{transform:translateY(2px);box-shadow:none}
+.mapmore .l-close{display:none}
+.map.upopen .mapmore.up .l-open,.map.downopen .mapmore.down .l-open{display:none}
+.map.upopen .mapmore.up .l-close,.map.downopen .mapmore.down .l-close{display:block}
+.map.upopen .mapmore.up,.map.downopen .mapmore.down{border-style:solid;background:var(--card);padding:6px 14px}
+/* the current step: soft spotlight, bigger node, label */
+.nrow.here{padding-top:44px}
+.nrow.here .nwrap::before{content:'';position:absolute;z-index:-1;left:50%;top:-30px;width:230px;height:230px;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(91,61,245,.18),rgba(91,61,245,.07) 60%,transparent)}
+.nrow.here .node{width:96px;height:96px;font-size:44px}
+.nrow.here .bubble{top:-36px;background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 3px 0 var(--brand-d)}
+.nrow.here .nlbl b{font-size:17px}
+.herego{display:inline-block;margin-top:6px;padding:4px 12px;border-radius:99px;background:var(--sun);color:#3B2A00;font-weight:800;font-size:13px;box-shadow:0 2px 0 var(--sun-d)}
+[data-theme="dark"] .nrow.here .nwrap::before{background:radial-gradient(closest-side,rgba(123,97,255,.3),rgba(123,97,255,.1) 60%,transparent)}
