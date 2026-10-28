@@ -965,6 +965,150 @@ const HOMEWORK = [
   ]
 }
   ]
+},
+
+/* =====================================================================
+   💼 Detyrat: Mësimi 8 (Arbeitsbuch S. 86–89), genau wie auf den Blättern,
+   mit Mimis Fehlern („Kujdes“) und ihren Selbstkorrekturen („Bravo“).
+   ===================================================================== */
+{
+  id:'l10', date:'2026-10-28', added:'2026-10-28T20:30', emoji:'💼',
+  sq:'Detyrat: Mësimi 8', de:'Hausaufgaben · Arbeitsbuch Lektion 8, S. 86–89',
+  parts:[
+
+/* ---------- AB S. 86: A Ich bin Physiotherapeutin ---------- */
+{
+  id:'hw10-s86', lek:8, pg:86, emoji:'👩‍⚕️', color:'#0E9F8E', seq:true, book:['faqe 86 · ushtrimi 1–5','S. 86 · Üb. 1–5'],
+  sq:'Profesionet', de:'S. 86: Ich bin Physiotherapeutin',
+  desc:'Shkronja të ngatërruara, rrokje, profesione për burra dhe gra, biseda dhe lidhje.',
+  tip:'Për gra: + in (Journalist → Journalistin). Arzt → Ärztin me ä. Schüler me ü.',
+  lesson:[
+    {t:'Faqe 86 📖', d:'A · Ich bin Physiotherapeutin', p:'<b>1</b> Rendit shkronjat e profesioneve. <b>2</b> Ndërto profesionet nga rrokjet dhe shkruaj formën tjetër. <b>4</b> Zgjidh fjalinë. <b>5</b> Lidhi.',
+     tip:'Për gra: + <b>in</b>: Journalist → Journalist<b>in</b> <i class="tr">(gazetari → gazetarja)</i>'},
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'<b>Ärztin</b> dhe <b>Arzthelferin</b> i ke shkruar saktë ✓. Vetëm kjo:',
+     fix:[['Ich bin Schuler.','Ich bin Schüler.','lerSchü → Schüler me ü. Butoni ü është poshtë.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'letters', psq:'1 Profesioni', pde:'1 Ergänzen Sie die Berufe', s:'Ich schreibe Texte für eine Zeitung. Ich bin ___.', a:'Journalistin', mix:'lisnaJourtin', h:'lisnaJourtin', e:'Shkruan për gazetë → Journalistin.'},
+    {type:'letters', psq:'1 Profesioni', pde:'1 Ergänzen Sie die Berufe', s:'Ich arbeite in einem Krankenhaus. Ich bin ___.', a:'Ärztin', mix:'tinzrÄ', h:'tinzrÄ', e:'Krankenhaus → Ärztin.'},
+    {type:'letters', psq:'1 Profesioni', pde:'1 Ergänzen Sie die Berufe', s:'Ich arbeite für einen Arzt. Ich bin ___.', a:'Arzthelferin', mix:'ferArztinhel', h:'ferArztinhel', e:'Arzt + Helferin = Arzthelferin.'},
+    {type:'letters', psq:'1 Profesioni', pde:'1 Ergänzen Sie die Berufe', s:'Ich habe noch keine Arbeit. Ich bin ___.', a:'Schüler', mix:'lerSchü', h:'lerSchü', e:'Schüler me ü.'},
+    {type:'cloze', psq:'2 Ndërto fjalët', pde:'2 Bilden Sie Wörter',
+     text:'Ärz + tin = Ärztin ✓\nIn + ge + nieur = [[Ingenieur]]\nPo + li + zist = [[Polizist]]\nVer + käu + fer = [[Verkäufer]]\nHaus + meis + ter = [[Hausmeister]]\nHaus + frau = [[Hausfrau]]\nKran + ken + pfle + ger = [[Krankenpfleger]]\nJour + na + lis + tin = [[Journalistin]]',
+     e:'Ingenieur, Polizist, Verkäufer, Hausmeister, Hausfrau, Krankenpfleger, Journalistin.'},
+    {type:'table', psq:'2 Formë për gra', pde:'2 Ergänzen Sie: die …', th:['der ♂','die ♀'],
+     rows:[['der Arzt','Ärztin',1],['der Ingenieur','Ingenieurin;die Ingenieurin'],['der Polizist','Polizistin;die Polizistin'],['der Verkäufer','Verkäuferin;die Verkäuferin'],
+       ['der Hausmeister','Hausmeisterin;die Hausmeisterin'],['der Krankenpfleger','Krankenschwester;die Krankenschwester']],
+     e:'+ in. Kujdes: Krankenpfleger → Krankenschwester.'},
+    {type:'table', psq:'2 Formë për burra', pde:'2 Ergänzen Sie: der …', th:['die ♀','der ♂'],
+     rows:[['die Hausfrau','Hausmann;der Hausmann'],['die Journalistin','Journalist;der Journalist']],
+     e:'Hausfrau → Hausmann. Journalistin → Journalist.'},
+    {type:'gap', topic:'dialog', psq:'4 Zgjidh', pde:'4 Ordnen Sie zu', s:'Was machen Sie beruflich? – ___ Studentin.', o:['Ich bin','ich arbeite als','Sehr gut','Haben Sie auch einen Job'], a:'Ich bin', e:'Ich bin Studentin.'},
+    {type:'gap', topic:'dialog', psq:'4 Zgjidh', pde:'4 Ordnen Sie zu', s:'___? – Ja, ich arbeite als Arzthelferin.', o:['Haben Sie auch einen Job','Sehr gut','Ich bin','eine Ausbildung als Arzthelferin'], a:'Haben Sie auch einen Job', e:'Haben Sie auch einen Job? = A keni edhe një punë?'},
+    {type:'gap', topic:'dialog', psq:'4 Zgjidh', pde:'4 Ordnen Sie zu', s:'Ja, ___ Arzthelferin.', o:['ich arbeite als','Ich bin bei','Sehr gut','Haben Sie auch einen Job'], a:'ich arbeite als', e:'ich arbeite als + profesioni.'},
+    {type:'gap', topic:'dialog', psq:'4 Zgjidh', pde:'4 Ordnen Sie zu', s:'Haben Sie ___ gemacht? – Ja, natürlich!', o:['eine Ausbildung als Arzthelferin','Sehr gut','ich arbeite als','Ich bin'], a:'eine Ausbildung als Arzthelferin', e:'eine Ausbildung machen = bëj trajnim profesional.'},
+    {type:'gap', topic:'dialog', psq:'4 Zgjidh', pde:'4 Ordnen Sie zu', s:'Wie gefällt Ihnen die Arbeit? – ___.', o:['Sehr gut','Ich bin','ich arbeite als','eine Ausbildung als Arzthelferin'], a:'Sehr gut', e:'Wie gefällt Ihnen …? – Sehr gut.'},
+    {type:'match', psq:'5 Lidhi', pde:'5 Verbinden Sie', pairs:[['Was sind','Sie von Beruf?'],['Was machen','Sie beruflich?'],['Ich mache','eine Ausbildung als Arzthelferin.'],['Ich habe','eine Stelle als Physiotherapeut.']]},
+    {type:'match', psq:'5 Lidhi', pde:'5 Verbinden Sie', pairs:[['Ich bin bei','Riemer & Partner angestellt.'],['Ich bin','zurzeit nicht berufstätig.'],['Ich arbeite','als Architektin.']]}
+  ]
+},
+
+/* ---------- AB S. 87: Übung 6–7 ---------- */
+{
+  id:'hw10-s87', lek:8, pg:87, emoji:'🗂️', color:'#D6409F', seq:true, book:['faqe 87 · ushtrimi 6–7','S. 87 · Üb. 6–7'],
+  sq:'Çfarë bëni?', de:'S. 87: Was machen Sie beruflich?',
+  desc:'machst, bin, habe, bist, studiere, arbeite në biseda, dhe Sofia e Chiara.',
+  tip:'Ich studiere noch = ende studioj. Ich bin Schülerin = jam nxënëse. als + profesioni, bei + firma.',
+  lesson:[
+    {t:'Faqe 87 📖', d:'Übung 6 + 7', p:'<b>6</b> Vendos foljen e duhur. <b>7</b> Shkruaj çfarë bëjnë Sofia dhe Chiara.',
+     tip:'Sie arbeitet <b>als</b> Verkäuferin <b>bei</b> Possmann. <i class="tr">(Ajo punon si shitëse te Possmann.)</i>'},
+    {t:'Bravo! 🌟', d:'Selbst korrigiert', p:'Te ushtrimi 6 i ke korrigjuar vetë: Ich <b>studiere</b> noch ✓ dhe Ich <b>bin</b> Schülerin ✓. Shumë mirë!',
+     fix:[['Ich bin noch.','Ich studiere noch.','„noch“ këtu do të thotë: ende studioj.'],['Ich studiere Schülerin.','Ich bin Schülerin.','Schülerin është ajo që je → bin.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'verben', psq:'6 Rendit', pde:'6 Ordnen Sie zu', bank:['machst','bin','habe','bist','studiere','arbeite'],
+     text:'a  Was machen Sie beruflich? ✓\n– Ich [[studiere]] noch. Und am Wochenende [[habe]] ich einen Job beim Fernsehen.\nb  Was [[machst]] du von Beruf?\n– Ich bin Arzthelferin, aber ich [[arbeite]] zurzeit nicht. Ich bin arbeitslos.\nc  Was [[bist]] du?\n– Ich [[bin]] Schülerin und nicht berufstätig.',
+     e:'studiere, habe, machst, arbeite, bist, bin.'},
+    {type:'order', topic:'satz', psq:'7a Sofia Renzel', pde:'7a Schreiben Sie', cue:'Sofia Renzel – Beruf: Studentin', parts:['Sofia Renzel','ist','Studentin.'], de:'Sofia Renzel ist Studentin.', sq:'Sofia Renzel është studente.'},
+    {type:'order', topic:'satz', psq:'7a Sofia Renzel', pde:'7a Schreiben Sie', cue:'Job: Verkäuferin – Firma: Possmann', parts:['Sie','arbeitet','als Verkäuferin','bei Possmann.'], de:'Sie arbeitet als Verkäuferin bei Possmann.', sq:'Ajo punon si shitëse te Possmann.'},
+    {type:'gap', row:true, psq:'als apo bei?', pde:'als oder bei?', s:'Sofia arbeitet als Verkäuferin ___ Possmann.', o:['bei','als','von'], a:'bei', e:'bei + firma.'},
+    {type:'order', topic:'satz', psq:'7b Chiara Morrone', pde:'7b Schreiben Sie', cue:'Chiara Morrone – Beruf: Physiotherapeutin', parts:['Chiara Morrone','ist','Physiotherapeutin','von Beruf.'], de:'Chiara Morrone ist Physiotherapeutin von Beruf.', sq:'Chiara Morrone është fizioterapiste me profesion.'},
+    {type:'order', topic:'satz', psq:'7b Chiara Morrone', pde:'7b Schreiben Sie', cue:'zurzeit: arbeitslos', parts:['Sie','ist','zurzeit','arbeitslos.'], de:'Sie ist zurzeit arbeitslos.', sq:'Aktualisht ajo është e papunë.'},
+    {type:'order', topic:'satz', psq:'7b Chiara Morrone', pde:'7b Schreiben Sie', cue:'jetzt: Deutschkurs', parts:['Jetzt','macht','sie','einen Deutschkurs.'], de:'Jetzt macht sie einen Deutschkurs.', sq:'Tani ajo bën një kurs gjermanishteje.'}
+  ]
+},
+
+/* ---------- AB S. 88: B Wann hast du die Ausbildung gemacht? ---------- */
+{
+  id:'hw10-s88', lek:8, pg:88, emoji:'⏳', color:'#2E86DE', seq:true, book:['faqe 88 · ushtrimi 11–14','S. 88 · Üb. 11–14'],
+  sq:'Kur? Që kur? Sa kohë?', de:'S. 88: Wann hast du die Ausbildung gemacht?',
+  desc:'Pyetje dhe përgjigje me Wann, Seit wann, Wie lange, e-maili i Elenës dhe vor apo seit.',
+  tip:'Wann? → vor (ka mbaruar). Seit wann? → seit (vazhdon). Wie lange? → vetëm koha: Zwei Jahre.',
+  lesson:[
+    {t:'Faqe 88 📖', d:'B · Wann hast du die Ausbildung gemacht?', p:'<b>11</b> Lidhi. <b>12</b> Shkruaj fjalën pyetëse. <b>13</b> E-maili. <b>14</b> vor apo seit?',
+     tip:'<b>Wann?</b> → vor drei Jahren <i class="tr">(para tre vitesh)</i> · <b>Seit wann?</b> → seit zwei Jahren <i class="tr">(prej dy vitesh)</i> · <b>Wie lange?</b> → zwei Jahre <i class="tr">(dy vjet)</i>'},
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'<b>Wann</b> te 12b dhe <b>Was</b> te 12c i ke saktë ✓. Vetëm këto:',
+     fix:[
+      ['12e: Was haben Sie Deutsch gelernt? – Zwei Jahre.','Wie lange haben Sie Deutsch gelernt?','„Zwei Jahre“ = sa kohë → Wie lange?'],
+      ['14b: Seit wann leben Sie in Salzburg? – Um sechs Monaten.','… – Seit sechs Monaten.','„Seit wann?“ → seit. „um“ vetëm për orën.'],
+      ['14c: Wann haben Sie geheiratet? – Im drei Monaten.','… – Vor drei Monaten.','„Wann?“ dhe ka mbaruar → vor. „im“ për muaj dhe stinë.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', psq:'11 Lidhi', pde:'11 Verbinden Sie', pairs:[['Wann haben Sie die Ausbildung gemacht?','Vor zehn Jahren.'],['Wie lange hat die Ausbildung gedauert?','Zwei Jahre.'],['Seit wann sind Sie schon selbstständig?','Seit 2005.']]},
+    {type:'cloze', topic:'wfragen', psq:'12 Plotëso', pde:'12 Ergänzen Sie', h:'Shembull: Wann sind Sie geboren? – 1980.',
+     text:'b  [[Wann]] sind Sie nach Österreich gekommen? – Vor drei Jahren.\nc  [[Was]] machen Sie beruflich? – Ich bin angestellt und arbeite als Ingenieur.\nd  [[Seit wann;Wie lange;Wie lange schon]] arbeiten Sie als Ingenieur? – Seit zwei Jahren.\ne  [[Wie lange]] haben Sie Deutsch gelernt? – Zwei Jahre, als Schüler.',
+     e:'Vor drei Jahren → Wann. Seit zwei Jahren → Seit wann (ose Wie lange). Zwei Jahre → Wie lange.'},
+    {type:'cloze', psq:'13 Rendit', pde:'13 Ordnen Sie zu', bank:['Diplom','Informationen','geehrter','Praktikum','Gerade','Fragen','gern','Grüßen','Wirtschaft'],
+     text:'Betreff: Bewerbung um ein Praktikum im Marketing ✓\n\nSehr [[geehrter]] Herr Lornsen,\nich möchte gern in Ihrem Büro ein [[Praktikum]] machen. Ich bin Spanierin und habe in Madrid [[Wirtschaft]] und Marketing studiert. 2015 habe ich mein [[Diplom]] gemacht. [[Gerade]] mache ich hier in Hamburg einen Deutschkurs. Ich spreche auch sehr gut Englisch. Haben Sie noch [[Fragen]]?\nFür weitere [[Informationen]] stehe ich Ihnen [[gern]] zur Verfügung.\nMit freundlichen [[Grüßen]]\nElena Santos',
+     e:'Sehr geehrter … · ein Praktikum · Wirtschaft · Diplom · Gerade · Fragen · Informationen · gern · Grüßen.'},
+    {type:'cloze', topic:'zeit', psq:'14 vor apo seit?', pde:'14 Ergänzen Sie: vor – seit', h:'Shembull: Wann sind Sie nach Wien gekommen? – Vor zwei Jahren.',
+     text:'b  Seit wann leben Sie schon in Salzburg? – [[Seit]] sechs Monaten.\nc  Wann haben Sie geheiratet? – [[Vor]] drei Monaten.\nd  Haben Sie schon eine Arbeit gefunden? – Ja, [[vor]] vier Wochen.\ne  Wie lange studieren Sie schon Wirtschaft? – [[Seit]] drei Jahren.\nf  Wann haben Sie das Praktikum bei XLAN gemacht? – [[Vor]] zwei Jahren.',
+     e:'Ka mbaruar → vor. Vazhdon ende → seit.'},
+    {type:'gap', row:true, topic:'zeit', psq:'14g vor apo seit?', pde:'14g vor oder seit?', s:'Wie lange lernen Sie schon Deutsch? – ___ vier Monaten.', o:['Seit','Vor'], a:'Seit', e:'Mëson ende → seit.'}
+  ]
+},
+
+/* ---------- AB S. 89: Übung 15–16 ---------- */
+{
+  id:'hw10-s89', lek:8, pg:89, emoji:'🗓️', color:'#E3A008', seq:true, book:['faqe 89 · ushtrimi 15–16','S. 89 · Üb. 15–16'],
+  sq:'seit, vor, von … bis, am, um, im', de:'S. 89: Zeitangaben',
+  desc:'Fjalët e kohës në biseda dhe vor / seit me einem, einer.',
+  tip:'seit / vor + einem (der, das) / einer (die). Shumësi: seit zwei Monaten. am + ditë, um + orë, im + stinë.',
+  lesson:[
+    {t:'Faqe 89 📖', d:'Übung 15 + 16', p:'<b>15</b> Plotëso me seit, vor, von … bis, am, um, im. <b>16</b> Shkruaj formën e saktë.', say:2, th:['','Kur?','Shembull'],
+     tr:[['','','prej dy muajsh · para një jave'],['','','nga ora 8 deri në 14'],['','','të premten · pasdite'],['','','në orën tre'],['','','në verë']],
+     table:[['<b>seit / vor</b>','koha','seit zwei Monaten · vor einer Woche'],['<b>von … bis</b>','nga … deri','von acht bis vierzehn Uhr'],['<b>am</b>','dita, pjesa e ditës','am Freitag · am Nachmittag'],
+       ['<b>um</b>','ora','um drei Uhr'],['<b>im</b>','muaji, stina','im Sommer']],
+     tip:'Një muaj, një vit: vor <b>einem</b> Monat, vor <b>einem</b> Jahr (pa -en!). Shumë: vor zwei Jahre<b>n</b>.'},
+    {t:'Bravo + Kujdes 👀', d:'Aus deinem Buch', p:'Te 15b dhe 15d i ke korrigjuar vetë: <b>seit</b> zwei Monaten ✓ dhe <b>am</b> Sonnabend ✓. Bravo! 🌟 Kujdes vetëm këtu:',
+     fix:[
+      ['15f: Seit Nachmittag oder schon vor Vormittag?','Am Nachmittag oder schon am Vormittag?','Pjesë e ditës → am.'],
+      ['15f: Ich möchte kurz um fünf Uhr zu Hause sein.','… kurz vor fünf Uhr …','kurz vor = pak para.'],
+      ['16: Er hat vor einem Jahren geheiratet.','… vor einem Jahr …','Një vit = njëjës → pa -en.'],
+      ['16: Ja, vor ein Monat.','Ja, vor einem Monat.','der Monat → vor einem Monat.'],
+      ['16: Sie lernt erst seit einer Monaten Deutsch.','… seit einem Monat …','der Monat → einem (jo einer), pa -en.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'zeit', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['seit','vor','von … bis','am','um','im'],
+     text:'a  Hast du Markus getroffen? – Ja, vor einer Woche. ✓\nb  Miriam macht [[seit]] zwei Monaten einen Deutschkurs.\nc  Wie lange arbeiten Sie [[am]] Freitag? – [[Von]] acht [[bis]] vierzehn Uhr.\nd  Ich kann [[am]] Sonnabend nicht kommen. Ich arbeite im Kaufhaus.',
+     e:'seit zwei Monaten · am Freitag · von … bis · am Sonnabend.'},
+    {type:'cloze', topic:'zeit', psq:'15 Plotëso', pde:'15 Ergänzen Sie', bank:['seit','vor','von … bis','am','um','im'],
+     text:'e  Wie lange kennst du Paolo schon? – Erst [[seit]] einer Woche. Wir haben uns genau [[am]] Sonntag [[vor]] einer Woche bei Daniela getroffen.\nf  Wann gehst du heute einkaufen? [[Am]] Nachmittag oder schon [[am]] Vormittag? – [[Um]] drei Uhr. Ich möchte kurz [[vor]] fünf Uhr wieder zu Hause sein.\ng  Wann kommen deine Eltern? – [[Im]] Sommer.',
+     e:'seit einer Woche · am Sonntag vor einer Woche · am Nachmittag · am Vormittag · um drei Uhr · kurz vor fünf · im Sommer.'},
+    {type:'cloze', topic:'zeit', psq:'16 Forma e saktë', pde:'16 Ergänzen Sie in der richtigen Form', h:'Shembull: Er ist vor acht Monaten aus Mexiko zurückgekommen.',
+     text:'Was macht eigentlich Felix?\n– Er ist vor acht Monaten aus Mexiko zurückgekommen – mit Rosa. Er hat vor [[einem Jahr]] (ein Jahr) geheiratet.\n– Toll! Hast du Rosa denn auch schon getroffen?\n– Ja, vor [[einem Monat]] (ein Monat).\n– Spricht sie auch Deutsch?\n– Noch nicht so gut. Sie lernt erst seit [[einem Monat]] (ein Monat) Deutsch.',
+     e:'vor einem Jahr · vor einem Monat · seit einem Monat (njëjës: pa -en).'},
+    {type:'gap', row:true, topic:'zeit', psq:'Një apo shumë?', pde:'Singular oder Plural?', s:'Er hat vor einem ___ geheiratet.', o:['Jahr','Jahren','Jahre'], a:'Jahr', e:'einem Jahr: njëjës, pa -en.'},
+    {type:'gap', row:true, topic:'zeit', psq:'Një apo shumë?', pde:'Singular oder Plural?', s:'Sie lernt seit zwei ___ Deutsch.', o:['Monaten','Monate','Monat'], a:'Monaten', e:'Shumësi pas seit / vor merr -n: zwei Monaten.'},
+    {type:'gap', row:true, topic:'zeit', psq:'einem apo einer?', pde:'einem oder einer?', s:'Ja, vor ___ Monat.', o:['einem','einer','ein'], a:'einem', e:'der Monat → einem Monat.'},
+    {type:'gap', row:true, topic:'zeit', psq:'einem apo einer?', pde:'einem oder einer?', s:'Erst seit ___ Woche.', o:['einer','einem','ein'], a:'einer', e:'die Woche → einer Woche.'}
+  ]
+}
+  ]
 }
 
 ];

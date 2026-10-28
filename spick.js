@@ -46,7 +46,8 @@ const SPICK = [
   tr:[['unë','jam','kam','mund'],['ti','je','ke','mund'],['ai / ajo','është','ka','mund'],['ne','jemi','kemi','mundemi'],['ju','jeni','keni','mundeni'],['ata / Ju','janë / jeni','kanë / keni','mundin / mundeni']],
      table:[['ich','bin','habe','kann'],['du','bist','hast','kannst'],['er / sie / es','ist','hat','kann'],
     ['wir','sind','haben','können'],['ihr','seid','habt','könnt'],['sie / Sie','sind','haben','können']],
-  tip:'<b>können, wollen, mögen</b>: ich dhe er pa mbaresë (ich kann, er kann). Emri si subjekt: Sabine = sie → schwimm<b>t</b>, meine Freunde = sie → leb<b>en</b>.'
+  tip:'<b>können, wollen, mögen</b>: ich dhe er pa mbaresë (ich kann, er kann). Emri si subjekt: Sabine = sie → schwimm<b>t</b>, meine Freunde = sie → leb<b>en</b>.<br>'
+    + 'E kaluara: ich <b>war</b>, du warst, wir waren <i class="tr">(isha, ishe, ishim)</i> · ich <b>hatte</b>, du hattest, wir hatten <i class="tr">(kisha, kishe, kishim)</i>'
 },
 {
   id:'sz-verb2', chip:'🔁 wollen · möchten', t:'🔁 Dua, do të doja, më pëlqen', d:'wollen, möchten, mögen',

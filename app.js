@@ -1220,6 +1220,7 @@ const TOPICS = {
   perfekt:  ['E kaluara', 'Perfekt', 'haben në vendin 2, Partizip në fund: ge…t (gemacht) ose ge…en (gegessen).'],
   modal:    ['können, wollen, möchten, mögen', 'Modalverben', 'ich dhe er pa mbaresë (ich kann, er will). Folja tjetër shkon në fund.'],
   seinhaben:['sein dhe haben', 'sein & haben', 'ich bin, du bist, er ist · ich habe, du hast, er hat.'],
+  praeteritum:['war dhe hatte', 'Präteritum: sein & haben', 'ich war (isha), du warst, er war, wir waren · ich hatte (kisha), du hattest, er hatte, wir hatten.'],
   verben:   ['Zgjedhimi i foljeve', 'Verben konjugieren', 'ich -e, du -st, er -t, wir -en, ihr -t. Rebelët: du fährst, er isst.'],
   wfragen:  ['Fjalët pyetëse', 'W-Fragen', 'wer kush, was çfarë, wo ku, wann kur, wie si.'],
   jnd:      ['Ja, Nein apo Doch', 'Ja / Nein / Doch', 'Doch = po, por vetëm kur pyetja ka nicht ose kein.'],
@@ -1248,6 +1249,7 @@ function topicOf(q){
   if (only('wer', 'was', 'wo', 'wann', 'wie', 'woher', 'wohin', 'warum', 'wie viel')) return 'wfragen';
   if (only('ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr')) return 'pronomen';
   if (lo.filter(o => /^ge\S+(t|en)$/.test(o)).length >= 2) return 'perfekt';
+  if (lo.every(o => /^(war|warst|waren|wart|hatte|hattest|hatten|hattet)$/.test(o))) return 'praeteritum';
   if (lo.every(o => HABEN.test(o))) return /\bge\w+(t|en)\b/.test(s) ? 'perfekt' : 'seinhaben';
   if (lo.every(o => /^(bin|bist|ist|sind|seid)$/.test(o))) return 'seinhaben';
   if (lo.every(o => MODAL.test(o))) return 'modal';
