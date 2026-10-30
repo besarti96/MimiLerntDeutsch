@@ -289,7 +289,12 @@ function genClocks(n){
 }
 
 /* ================= Question generation ================= */
-function vocabPool(c){ return c.nouns.map(n => ({de: n[0] + ' ' + n[1], sq: n[2]})).concat(c.words.map(w => ({de: w[0], sq: w[1]}))); }
+/* a word entry may end with the date it was added ('2026-10-30'): then it shows "E RE" for 24 hours, like everything new */
+const NEW_WORD_MS = NEW_MS;
+const wordIsNew = e => { const d = e[e.length - 1]; return /^\d{4}-\d\d-\d\d/.test(d) && Date.now() - Date.parse(d) < NEW_WORD_MS; };
+function vocabPool(c){ return c.nouns.map(n => ({de: n[0] + ' ' + n[1], sq: n[2], nw: wordIsNew(n)})).concat(c.words.map(w => ({de: w[0], sq: w[1], nw: wordIsNew(w)}))); }
+const newWordCount = c => vocabPool(c).filter(w => w.nw).length;
+const newWordTag = n => n ? `<span class="newtag">E RE${n > 1 ? ' · ' + n : ''}</span>` : '';
 const distract = (pool, item, f) => shuffle(pool.filter(p => p[f] !== item[f])).slice(0, 3).map(p => p[f]);
 function genVocab(c){
   if (c.noGen) return [];
@@ -451,7 +456,7 @@ function home(){
   <h2 class="sec">Ushtrim i lirë<span>Freies Üben</span></h2>
   <div class="free">
     <button class="fbtn" data-act="chapters"><span class="em">📋</span><span><b>Zgjidh kapitullin</b><small>Kapitel selbst wählen</small></span></button>
-    ${WD.length ? `<button class="fbtn" data-act="words"><span class="em">🔤</span><span><b>Fjalët</b><small>Wörter-Training: nur Wörter, nach Thema</small></span></button>` : ''}
+    ${WD.length ? `<button class="fbtn" data-act="words"><span class="em">🔤</span><span><b>Fjalët${newWordTag(WD.reduce((s, c) => s + newWordCount(c), 0))}</b><small>Wörter-Training: nur Wörter, nach Thema</small></span></button>` : ''}
     <button class="fbtn ${mc ? 'mist' : ''}" data-act="weak"><span class="em">💪</span><span><b>Pikat e dobëta${mc ? ` (${mc})` : ''}</b><small>Meine Schwächen: verstehen & üben</small></span></button>
     <button class="fbtn" data-act="mix"><span class="em">⚡</span><span><b>Përzierje</b><small>Mix aus allen offenen Kapiteln</small></span></button>
     <button class="fbtn" data-act="dict"><span class="em">📒</span><span><b>Fletë ndihme</b><small>Spickzettel: das Wichtigste auf einen Blick</small></span></button>
@@ -654,7 +659,7 @@ function wordsPage(){
     <div class="topics" style="margin-top:14px">${WD.map(c => { const b = S.w[c.id]?.best, s = starsOf(b || 0);
       return `<button class="topic" style="--tc:${c.color}" data-act="wsheet" data-id="${c.id}">
         <span class="t-ico">${c.emoji}</span>
-        <span class="t-txt"><b>${esc(c.sq)}${newTag(c)}</b><span class="de">${esc(c.de)} · ${vocabPool(c).length} fjalë</span></span>
+        <span class="t-txt"><b>${esc(c.sq)}${isNew(c) ? newTag(c) : newWordTag(newWordCount(c))}</b><span class="de">${esc(c.de)} · ${vocabPool(c).length} fjalë</span></span>
         <span class="t-stars">${[1,2,3].map(k => `<span class="${k <= s ? 'on' : ''}">★</span>`).join('')}
           <small>${b == null ? 'Ende jo / Offen' : b + '%'}</small></span>
       </button>`; }).join('')}</div>
@@ -670,7 +675,9 @@ function wordSheet(id){
     <h2 class="cs-t" style="margin-top:12px">${esc(c.sq)}</h2><p class="de" style="margin:0">${esc(c.de)}</p>
     <button class="cta" data-act="wplay" data-id="${c.id}">🎯 Ushtro fjalët / Wörter üben</button>
     <p class="de" style="margin:18px 0 8px">Prek një fjalë për ta dëgjuar. Tippe ein Wort an, um es zu hören.</p>
-    ${vocabPool(c).map(w => `<button class="drow" data-act="say" data-t="${esc(w.de)}"><b>${esc(w.de)}</b><span>${esc(w.sq)}</span></button>`).join('')}
+    ${(row => { const pool = vocabPool(c), fresh = pool.filter(w => w.nw);   /* new words first, then the whole list */
+      return (fresh.length && fresh.length < pool.length ? `<p class="wnew-h">🆕 Fjalë të reja <span>Neue Wörter</span></p>${fresh.map(row).join('')}<p class="wnew-h">📚 Të gjitha <span>Alle Wörter</span></p>` : '')
+        + pool.map(row).join(''); })(w => `<button class="drow ${w.nw ? 'wnew' : ''}" data-act="say" data-t="${esc(w.de)}"><b>${esc(w.de)}${w.nw ? '<span class="newtag">E RE</span>' : ''}</b><span>${esc(w.sq)}</span></button>`)}
   </div>`;
   openSheetEl();
 }

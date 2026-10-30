@@ -38,8 +38,10 @@ all.forEach(c => {
 });
 ctx.S.forEach(s => slideCheck('spick ' + s.id, s));
 ctx.W.forEach(w => {
-  w.nouns.forEach(n => { if (n.length !== 3 || !['der', 'die', 'das'].includes(n[0])) err(w.id, `Nomen falsch: ${n.join(',')}`); });
-  w.words.forEach(x => { if (x.length !== 2) err(w.id, `Wort falsch: ${x.join(',')}`); });
+  /* optional last element: the date the word was added (shows E RE), e.g. ['der','Bus','autobusi','2026-10-30'] */
+  const dated = (e, n) => e.length === n || (e.length === n + 1 && /^\d{4}-\d\d-\d\d/.test(e[n]));
+  w.nouns.forEach(n => { if (!dated(n, 3) || !['der', 'die', 'das'].includes(n[0])) err(w.id, `Nomen falsch: ${n.join(',')}`); });
+  w.words.forEach(x => { if (!dated(x, 2)) err(w.id, `Wort falsch: ${x.join(',')}`); });
 });
 
 /* Info: Kapitel-Wörter, die im Wörter-Training fehlen (nur Hinweis, kein Fehler) */

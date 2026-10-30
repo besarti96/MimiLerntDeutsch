@@ -34,7 +34,6 @@ Kein Build, kein Server: reines HTML/CSS/JS. Der Fortschritt liegt in `localStor
 - Die Reise ist **linear**: genau ein aktiver Schritt (das erste nicht bestandene Kapitel). Gesperrte Kapitel kann man trotzdem antippen und üben.
 - Jedes Buch hat ein `final:true`-Kapitel am Ende (testet nur sein eigenes Buch). Kapitel eines neuen Buches kommen **hinter** das Finale des alten.
 - Die Karte rendert immer die ganze Reise, sichtbar sind aber nur die letzten 2 und nächsten 3 Schritte um den aktiven Schritt (hervorgehoben mit „📍 Je këtu“). Davor und danach liegen Faltbereiche (`#fold-up`, `#fold-down`), die an Ort und Stelle aufgehen, ohne dass der aktive Schritt verrutscht (`mapFold`). Die Lektions-Leiste (L1, L2 …) gleitet zu einer Lektion (`mapJump`). Kein Karten-/Karussell-Design: Es soll eine Reise bleiben.
-- `added:'JJJJ-MM-TTTHH:MM'` zeigt 24 Stunden lang „E RE“ (neu).
 
 ### Kapitel-Felder
 
@@ -81,20 +80,38 @@ Gemeinsam: `psq`/`pde` (Überschrift), `topic` (für „Pikat e dobëta“: z. B
 ## Wörter (`words.js`) und Spickzettel (`spick.js`)
 
 - `WORDS`: Themen `{ id, emoji, color, added?, sq, de, nouns, words }`. Neue Wörter ins **passende Thema**, sonst ein neues Thema.
+- **Neue Wörter bekommen ihr Datum als letztes Element**: `['der','Bus','autobusi','2026-10-30']` bzw. `['mieten','marr me qira','2026-10-30']` (siehe „E RE“ unten).
 - `SPICK`: Abschnitte im Folienformat plus `id` und `chip` (Sprungleiste). **Schlank halten**: nur das Wichtigste, lieber eine Zeile in einem bestehenden Abschnitt ergänzen als einen neuen anlegen.
+
+## „E RE“: alles Neue wird 24 Stunden markiert
+
+Mimi soll sofort sehen, was neu ist. Darum bekommt **alles Neue** eine Markierung, die nach 24 Stunden verschwindet:
+
+| Was | Wie markieren | Wo Mimi „E RE“ sieht |
+|---|---|---|
+| Kapitel | `added:'JJJJ-MM-TTTHH:MM'` | Reise, „Kapitujt“, Kapitelblatt, Weiter-Knopf |
+| Hausaufgaben-Set | `date` und `added` | Karte „Detyrat e shtëpisë“, Hausaufgabenliste |
+| Wortthema (neu) | `added` am Thema | Themenliste |
+| **einzelnes neues Wort** | Datum als letztes Element (`'2026-10-30'`) | am Wort in seiner Liste, Anzahl beim Thema („E RE · 8“), Knopf „🔤 Fjalët“, Block „🆕 Fjalë të reja“ oben im Thema |
+
+Immer **Datum mit Uhrzeit von jetzt** setzen (z. B. `'2026-10-30T16:20'`, Wörter genauso). Ein reines Datum zählt ab Mitternacht, dann ist die Markierung womöglich schon weg, wenn Mimi die App öffnet.
 
 ## Ablauf: Mimi schickt neues Material
 
 1. **Neueste Version holen** (siehe Git unten).
-2. Fotos/PDF genau lesen: Was war gefragt? Was hat Mimi geschrieben, was war falsch? (Lösungsfelder verschmelzen oft mit der Aufgabe.)
+2. Fotos/PDF genau lesen: Welche Seite, welche Lektion? Was war gefragt? Was hat Mimi geschrieben, was war falsch? (Lösungsfelder verschmelzen oft mit der Aufgabe; ihre albanischen Notizen am Rand zeigen, welche Wörter neu für sie waren.) Prüfen, was es schon gibt (z. B. `grep` nach Seite oder Thema), damit nichts doppelt entsteht.
 3. Einordnen:
    - **Hausaufgabe / Test** → neues Set am Ende von `homework.js` (Buch-Stil, `seq:true`, „Kujdes! 👀“ mit ihren Fehlern, „Bravo“ für Richtiges).
    - **Neuer Stoff aus dem Kursbuch** → neue Kapitel in `data.js` bei ihrer Lektion (`lek`, `band`, `added`). Neue Lektion = `unit` am ersten Kapitel.
-   - Bei Bedarf beides: Hausaufgabe genau wie das Blatt, die Reise mit weiteren Übungen dazu.
-4. **Neue Wörter** in `words.js` eintragen (`node tools/validate.js` zeigt fehlende Wörter aus neuen Kapiteln).
+   - Meist beides: die **Hausaufgabe genau wie die Buchseiten** (eine Seite = ein Teil, `book` mit Seite/Übung), und auf der **Reise neue Kapitel**, die den Stoff erklären (Folien mit Übersetzung) und mit weiteren, eigenen Übungen festigen.
+   - Lesetexte des Buches kommen als `read` ins Kapitel, Fragen dazu mit `read:true`.
+   - **Hörübungen ohne Audio weglassen** (die Antworten lassen sich nicht sicher prüfen) und das dem Benutzer sagen.
+   - Was Mimi richtig hatte: Folie „Bravo, Mimoza! 🌟“. Ihre sicheren Fehler: Folie „Kujdes! 👀“ (`fix`).
+4. **Neue Wörter** in `words.js` eintragen, jedes mit heutigem Datum (`node tools/validate.js` zeigt fehlende Wörter aus neuen Kapiteln; am Ende soll die Liste leer sein, bis auf Wörter, die in kein Thema passen).
 5. **Spickzettel** nur ergänzen, wenn neue Grammatik dazukommt, und schlank halten.
 6. Neue Grammatikthemen bei Bedarf in `TOPICS` (`app.js`) ergänzen.
-7. Prüfen (siehe unten), dann dem Benutzer zusammenfassen.
+7. Prüfen (siehe unten): bestehende Inhalte unverändert, alles lösbar, Screenshots der neuen Bildschirme.
+8. Dem Benutzer zusammenfassen: eine Tabelle Seite → Inhalt → Mimis Einträge, was neu ist (Kapitel, Hausaufgabe, Wörter pro Thema, Spickzettel), was bewusst weggelassen wurde.
 
 ## Regeln
 
@@ -102,13 +119,22 @@ Gemeinsam: `psq`/`pde` (Überschrift), `topic` (für „Pikat e dobëta“: z. B
 - **Ids nie umbenennen**: Fortschritt, Fehler und Sterne hängen an den Ids.
 - Unsichere Lesarten (unleserliche Handschrift, fehlende Hördatei) nicht als Mimis Fehler darstellen, sondern als „Kujdes nga kurthet“ (typische Fallen) oder weglassen und es dem Benutzer sagen.
 - Heller Modus ist Standard.
-- **Erst pushen, wenn der Benutzer es sagt.** Lokal ändern ist immer okay.
+- **Erst pushen, wenn der Benutzer es sagt** (oft: „wenn du dir sicher bist, push“ → nach bestandener Prüfung pushen). Lokal ändern ist immer okay.
+- Design-Wünsche erst lokal zeigen (Screenshots), pushen erst nach seinem Okay. Was ihm nicht gefällt, sauber zurücksetzen (`git checkout -- datei`) statt zu flicken.
 
 ## Prüfen
 
 - `node --check <datei>.js` für jede geänderte Datei.
 - `node tools/validate.js`: Antworten in den Optionen, `parts` ergeben `de`, Buchstabensalat, `tr`-Größen, doppelte Ids, fehlende Wörter.
 - Für Bildschirm und Spielbarkeit: headless Chrome (`C:/Program Files/Google/Chrome/Application/chrome.exe --headless=new --allow-file-access-from-files --dump-dom` bzw. `--screenshot`). Eine Test-HTML lädt die fünf Skripte, ruft z. B. `start('chapter', id)` und löst jede Frage über die App-Funktionen (`pick`, `wcheck`, `ocheck`, `ccheck`, `scheck`, `mtap`).
+
+### Stolperfallen
+
+- Die Dateien haben teils **Windows-Zeilenenden (CRLF)**. Skripte, die Text suchen/ersetzen, zuerst auf `
+` normalisieren und beim Schreiben das Original-Format beibehalten. Sonst greifen Anker nicht oder Dateien werden doppelt geschrieben. Zeilenenden sind für die App egal.
+- Headless Chrome hat eine Mindestbreite: Screenshots mit `--window-size=500,…`, sonst wirkt das Layout fälschlich abgeschnitten. Test-Seiten müssen `style.css` laden, sonst gibt es kein Layout zum Messen.
+- In Test-Skripten keine Namen verwenden, die die App global belegt (z. B. `cur`, `G`, `S`).
+- Größe: Stand Ende Oktober ~525 KB (~143 KB komprimiert). Erst ab etwa 2–3 MB lohnt es sich, die Inhalte pro Buch aufzuteilen.
 
 ## Git
 

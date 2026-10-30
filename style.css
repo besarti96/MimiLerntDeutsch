@@ -533,3 +533,10 @@ input.cz::placeholder{color:var(--muted);font-weight:400}
 .nrow.here .nlbl b{font-size:17px}
 .herego{display:inline-block;margin-top:6px;padding:4px 12px;border-radius:99px;background:var(--sun);color:#3B2A00;font-weight:800;font-size:13px;box-shadow:0 2px 0 var(--sun-d)}
 [data-theme="dark"] .nrow.here .nwrap::before{background:radial-gradient(closest-side,rgba(123,97,255,.3),rgba(123,97,255,.1) 60%,transparent)}
+
+/* ---------- New words in the word training (E RE for 3 days) ---------- */
+.wnew-h{margin:16px 0 6px;font-weight:800;font-size:15px}
+.wnew-h span{font-weight:400;font-style:italic;color:var(--muted);margin-left:4px}
+.drow.wnew{border-color:var(--bad);background:#FFF5F5}
+[data-theme="dark"] .drow.wnew{background:#2A1A1D}
+.drow .newtag{color:#fff;font-size:11px}

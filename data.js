@@ -1327,7 +1327,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'jobboerse', band:2, lek:8, emoji:'🔎', color:'#E3A008', added:'2026-10-30T08:00',
+  id:'jobboerse', band:2, lek:8, emoji:'🔎', color:'#E3A008', added:'2026-10-30T21:56',
   sq:'Bursa e punës', de:'Praktikums- und Jobbörse',
   desc:'Mika, Radha dhe Brenda kërkojnë punë. Për sa kohë? Cili njoftim u përshtatet? Dhe „für einen Monat“.',
   tip:'Für wie lange? → für einen Monat / ein Jahr / eine Woche / zwei Wochen.',
@@ -1374,7 +1374,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'telefon', band:2, lek:8, emoji:'📞', color:'#2E86DE', added:'2026-10-30T08:00',
+  id:'telefon', band:2, lek:8, emoji:'📞', color:'#2E86DE', added:'2026-10-30T21:56',
   sq:'Në telefon: A është vendi i lirë?', de:'Am Telefon: Ist die Stelle noch frei?',
   desc:'Si pyet në telefon për një praktikë: kohëzgjatja, orari, pagesa. Dhe montags, vormittags.',
   tip:'Ist die Stelle noch frei? · Wie lange dauert das Praktikum? · Wie ist die Arbeitszeit? · Bekomme ich auch Geld?',
@@ -1422,7 +1422,7 @@ const CHAPTERS = [
 
 /* ======================= LEKTION 9: UNTERWEGS ======================= */
 {
-  id:'folge9', band:2, lek:9, unit:['Mësimi 9: Në rrugë','Lektion 9: Unterwegs'], emoji:'🚌', color:'#0E9F8E', added:'2026-10-30T08:00',
+  id:'folge9', band:2, lek:9, unit:['Mësimi 9: Në rrugë','Lektion 9: Unterwegs'], emoji:'🚌', color:'#0E9F8E', added:'2026-10-30T21:56',
   sq:'Historia: Na los, komm mit!', de:'Foto-Hörgeschichte: Na los, komm mit!',
   desc:'Tim do të marrë një makinë me qira për në Salzburg. Por patenta e tij …',
   tip:'Me patentë të huaj mund të ngasësh vetëm gjashtë muaj në Gjermani. Lara është vetëm 20 vjeç.',
@@ -1456,7 +1456,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'muessen', band:2, lek:9, emoji:'📋', color:'#7650F0', added:'2026-10-30T08:00',
+  id:'muessen', band:2, lek:9, emoji:'📋', color:'#7650F0', added:'2026-10-30T21:56',
   sq:'müssen: duhet', de:'Sie müssen einen Antrag ausfüllen',
   desc:'Folja müssen, „man“ dhe si blen një biletë në automat.',
   tip:'ich muss, du musst, er muss (pa mbaresë!). müssen në vendin 2, folja tjetër në fund. man = kushdo.',
@@ -1511,7 +1511,7 @@ const CHAPTERS = [
   ]
 },
 {
-  id:'imperativ', band:2, lek:9, emoji:'👉', color:'#F2545B', added:'2026-10-30T08:00',
+  id:'imperativ', band:2, lek:9, emoji:'👉', color:'#F2545B', added:'2026-10-30T21:56',
   sq:'Sieh mal! Urdhërorja', de:'Imperativ: Sieh mal! Komm mit!',
   desc:'Si i thua dikujt të bëjë diçka: Komm mit! Warte mal! Seid leise!',
   tip:'Me du: du kommst → Komm! (pa du, pa -st). Me ihr: ihr kommt → Kommt! sein: Sei! / Seid!',

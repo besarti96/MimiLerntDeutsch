@@ -1116,7 +1116,7 @@ const HOMEWORK = [
    Die Seiten aus dem Buch, mit Mimis Einträgen (Hörübungen ohne Audio weggelassen).
    ===================================================================== */
 {
-  id:'l11', date:'2026-10-30', added:'2026-10-30T08:00', emoji:'🚌',
+  id:'l11', date:'2026-10-30', added:'2026-10-30T21:56', emoji:'🚌',
   sq:'Detyrat: Mësimi 8 D–E dhe Mësimi 9', de:'Hausaufgaben · Kursbuch S. 100–109',
   parts:[
 

@@ -41,7 +41,7 @@ const WORDS = [
     ['der','Teppich','qilimi'],['die','Lampe','llamba'],['der','Spiegel','pasqyra'],['das','Fenster','dritarja'],['die','Tür','dera'],
     ['die','Waschmaschine','lavatriçja'],['der','Kühlschrank','frigoriferi'],['der','Herd','shporeti'],['der','Fernseher','televizori'],['die','Wohnung','banesa']],
   words:[['möbliert','e mobiluar'],['groß','i madh'],['klein','i vogël'],['hell','me dritë'],['dunkel','i errët'],['neu','i ri'],['alt','i vjetër'],
-    ['leise','i qetë'],['laut','me zë të lartë'],['ziemlich','mjaft']]
+    ['leise','i qetë','2026-10-30T21:56'],['laut','me zë të lartë','2026-10-30T21:56'],['ziemlich','mjaft','2026-10-30T21:56']]
 },
 {
   id:'w-zeit', emoji:'🕐', color:'#7650F0', sq:'Ora & koha', de:'Uhrzeit & Zeit',
@@ -53,7 +53,7 @@ const WORDS = [
     ['heute','sot'],['morgen','nesër'],['gestern','dje'],['jetzt','tani'],['immer','gjithmonë'],['oft','shpesh'],['nie','asnjëherë'],
     ['morgens','në mëngjes'],['abends','në mbrëmje'],['im Moment','tani për tani'],['zurzeit','aktualisht'],['ungefähr','përafërsisht'],['gerade','sapo'],['zuerst','fillimisht'],['jeden Tag','çdo ditë'],['seit','prej'],
     ['nun','tani'],
-    ['montags','çdo të hënë'],['vormittags','çdo paradite'],['bald','së shpejti'],['danach','pastaj'],['zum Schluss','në fund'],['für einen Monat','për një muaj'],['für ein Jahr','për një vit'],['Für wie lange?','Për sa kohë?']]
+    ['montags','çdo të hënë','2026-10-30T21:56'],['vormittags','çdo paradite','2026-10-30T21:56'],['bald','së shpejti','2026-10-30T21:56'],['danach','pastaj','2026-10-30T21:56'],['zum Schluss','në fund','2026-10-30T21:56'],['für einen Monat','për një muaj','2026-10-30T21:56'],['für ein Jahr','për një vit','2026-10-30T21:56'],['Für wie lange?','Për sa kohë?','2026-10-30T21:56']]
 },
 {
   id:'w-tage', emoji:'📅', color:'#0E9F8E', sq:'Ditët e javës', de:'Die Wochentage',
@@ -104,7 +104,7 @@ const WORDS = [
     ['aufstehen','ngrihem'],['suchen','kërkoj'],['finden','gjej'],['sehen','shoh'],['hören','dëgjoj'],['sagen','them'],['fragen','pyes'],
     ['schreiben','shkruaj'],['rennen','vrapoj shpejt'],['üben','ushtroj'],['schwimmen','notoj'],['kennen','njoh'],['leben','jetoj'],
     ['denken','mendoj'],['lachen','qesh'],['treffen','takoj'],['heißen','quhem'],
-    ['müssen','duhet'],['ausfüllen','plotësoj'],['mitbringen','sjell me vete'],['wählen','zgjedh'],['auswählen','përzgjedh'],['stempeln','vulos'],['funktionieren','funksionon'],['abholen','marr (dikë)'],['erklären','shpjegoj'],['schließen','mbyll'],['öffnen','hap'],['zuhören','dëgjoj'],['warten','pres']]
+    ['müssen','duhet','2026-10-30T21:56'],['ausfüllen','plotësoj','2026-10-30T21:56'],['mitbringen','sjell me vete','2026-10-30T21:56'],['wählen','zgjedh','2026-10-30T21:56'],['auswählen','përzgjedh','2026-10-30T21:56'],['stempeln','vulos','2026-10-30T21:56'],['funktionieren','funksionon','2026-10-30T21:56'],['abholen','marr (dikë)','2026-10-30T21:56'],['erklären','shpjegoj','2026-10-30T21:56'],['schließen','mbyll','2026-10-30T21:56'],['öffnen','hap','2026-10-30T21:56'],['zuhören','dëgjoj','2026-10-30T21:56'],['warten','pres','2026-10-30T21:56']]
 },
 {
   id:'w-trennbar', emoji:'⏰', color:'#7650F0', added:'2026-10-26T08:00', sq:'Foljet e ndashme', de:'Trennbare Verben',
@@ -123,18 +123,18 @@ const WORDS = [
     ['die','Journalistin','gazetarja'],['der','Verkäufer','shitësi'],['die','Verkäuferin','shitësja'],['der','Schüler','nxënësi'],['die','Schülerin','nxënësja'],
     ['die','Architektin','arkitektja'],['der','Physiotherapeut','fizioterapeuti'],['die','Berufserfahrung','përvoja e punës'],['der','Kunde','klienti'],['der','Kollege','kolegu'],
     ['der','Stress','stresi'],['das','Kaufhaus','dyqani i madh'],
-    ['die','Anzeige','njoftimi'],['die','Praktikumsstelle','vendi i praktikës'],['der','Praktikant','praktikanti'],['die','Praktikantin','praktikantja'],['die','Arbeitszeit','orari i punës'],['die','Vergütung','pagesa'],['der','Bereich','fusha'],['die','Gastronomie','gastronomia'],['die','Konzertagentur','agjencia e koncerteve']],
+    ['die','Anzeige','njoftimi','2026-10-30T21:56'],['die','Praktikumsstelle','vendi i praktikës','2026-10-30T21:56'],['der','Praktikant','praktikanti','2026-10-30T21:56'],['die','Praktikantin','praktikantja','2026-10-30T21:56'],['die','Arbeitszeit','orari i punës','2026-10-30T21:56'],['die','Vergütung','pagesa','2026-10-30T21:56'],['der','Bereich','fusha','2026-10-30T21:56'],['die','Gastronomie','gastronomia','2026-10-30T21:56'],['die','Konzertagentur','agjencia e koncerteve','2026-10-30T21:56']],
   words:[['arbeiten als','punoj si'],['selbstständig','i vetëpunësuar'],['angestellt','i punësuar'],['arbeitslos','i papunë'],['studieren','studioj'],['dauern','zgjat'],
     ['vor zehn Jahren','para dhjetë vitesh'],['seit vier Jahren','prej katër vitesh'],['wie lange','sa kohë'],['seit wann','që kur'],
     ['beruflich','në punë'],['Was sind Sie von Beruf?','Çfarë profesioni keni?'],['Mit freundlichen Grüßen','Me respekt'],['Sehr geehrter Herr …','I nderuar zotëri …'],
     ['berufstätig','punon, ka punë'],['war','isha / ishte'],['hatte','kisha / kishte'],['früher','më parë'],['schlecht','keq'],['professionell','profesional'],
     ['einfach','i lehtë'],['ich glaube','mendoj'],['fotogen','fotogjenik'],['eigene','i/e vet'],
-    ['mindestens','të paktën'],['normalerweise','zakonisht'],['schriftlich','me shkrim'],['per E-Mail','me e-mail'],['pro Monat','në muaj'],['Ist die Stelle noch frei?','A është ende i lirë vendi?']]
+    ['mindestens','të paktën','2026-10-30T21:56'],['normalerweise','zakonisht','2026-10-30T21:56'],['schriftlich','me shkrim','2026-10-30T21:56'],['per E-Mail','me e-mail','2026-10-30T21:56'],['pro Monat','në muaj','2026-10-30T21:56'],['Ist die Stelle noch frei?','A është ende i lirë vendi?','2026-10-30T21:56']]
 },
 {
-  id:'w-unterwegs', emoji:'🚌', color:'#0E9F8E', added:'2026-10-30T08:00', sq:'Në rrugë & zyrat', de:'Unterwegs & Ämter',
-  nouns:[['der','Führerschein','patenta'],['das','Amt','zyra shtetërore'],['die','Autovermietung','agjencia e makinave me qira'],['der','Bus','autobusi'],['die','Fahrkarte','bileta'],['der','Fahrkartenautomat','automati i biletave'],['die','Fahrt','udhëtimi'],['der','Antrag','kërkesa (formulari)'],['der','Ausweis','letërnjoftimi'],['der','Personalausweis','letërnjoftimi'],['der','Reisepass','pasaporta'],['die','Kreditkarte','karta e kreditit'],['das','Ziel','destinacioni'],['das','Wechselgeld','kusuri'],['der','Laden','dyqani'],['der','Flughafen','aeroporti']],
-  words:[['mieten','marr me qira'],['gültig','i vlefshëm'],['ausländisch','i huaj'],['international','ndërkombëtar'],['zu jung','shumë i ri'],['Na los!','Hajde!'],['Sieh mal!','Shiko pak!'],['Komm mit!','Eja me mua!']]
+  id:'w-unterwegs', emoji:'🚌', color:'#0E9F8E', added:'2026-10-30T21:56', sq:'Në rrugë & zyrat', de:'Unterwegs & Ämter',
+  nouns:[['der','Führerschein','patenta','2026-10-30T21:56'],['das','Amt','zyra shtetërore','2026-10-30T21:56'],['die','Autovermietung','agjencia e makinave me qira','2026-10-30T21:56'],['der','Bus','autobusi','2026-10-30T21:56'],['die','Fahrkarte','bileta','2026-10-30T21:56'],['der','Fahrkartenautomat','automati i biletave','2026-10-30T21:56'],['die','Fahrt','udhëtimi','2026-10-30T21:56'],['der','Antrag','kërkesa (formulari)','2026-10-30T21:56'],['der','Ausweis','letërnjoftimi','2026-10-30T21:56'],['der','Personalausweis','letërnjoftimi','2026-10-30T21:56'],['der','Reisepass','pasaporta','2026-10-30T21:56'],['die','Kreditkarte','karta e kreditit','2026-10-30T21:56'],['das','Ziel','destinacioni','2026-10-30T21:56'],['das','Wechselgeld','kusuri','2026-10-30T21:56'],['der','Laden','dyqani','2026-10-30T21:56'],['der','Flughafen','aeroporti','2026-10-30T21:56']],
+  words:[['mieten','marr me qira','2026-10-30T21:56'],['gültig','i vlefshëm','2026-10-30T21:56'],['ausländisch','i huaj','2026-10-30T21:56'],['international','ndërkombëtar','2026-10-30T21:56'],['zu jung','shumë i ri','2026-10-30T21:56'],['Na los!','Hajde!','2026-10-30T21:56'],['Sieh mal!','Shiko pak!','2026-10-30T21:56'],['Komm mit!','Eja me mua!','2026-10-30T21:56']]
 },
 {
   id:'w-schule', emoji:'🏫', color:'#0E9F8E', added:'2026-10-26T08:00', sq:'Shkolla, puna & kafshët', de:'Schule, Beruf & Tiere',
@@ -142,7 +142,7 @@ const WORDS = [
     ['der','Lehrer','mësuesi'],['die','Lehrerin','mësuesja'],['die','Bank','banka'],['der','Koch','kuzhinieri'],['die','Köchin','kuzhinierja'],
     ['das','Tier','kafsha'],['der','Hund','qeni'],['die','Katze','macja'],['der','Goldfisch','peshku i kuq'],['das','Eis','akullorja'],['der','See','liqeni'],['der','Park','parku'],
     ['die','Sprachschule','shkolla e gjuhëve'],['das','Schwimmbad','pishina'],['das','Café','kafeneja'],
-    ['das','Studium','studimet'],['die','Universität','universiteti'],['die','Hausaufgabe','detyra e shtëpisë'],['der','Text','teksti'],['das','Handy','celulari']],
+    ['das','Studium','studimet','2026-10-30T21:56'],['die','Universität','universiteti','2026-10-30T21:56'],['die','Hausaufgabe','detyra e shtëpisë','2026-10-30T21:56'],['der','Text','teksti','2026-10-30T21:56'],['das','Handy','celulari','2026-10-30T21:56']],
   words:[['arbeiten','punoj'],['gern','me qejf'],['oft','shpesh'],['manchmal','ndonjëherë'],['lange','gjatë']]
 },
 {
