@@ -139,7 +139,7 @@ const HOMEWORK = [
      o:['Aber Sie können sehr gut Kuchen backen.','Aber Sie kann sehr gut Kuchen backen.','Aber Sie können Kuchen backen sehr gut.','Ich kann sehr gut kochen.'],
      a:'Aber Sie können sehr gut Kuchen backen.', say:'Aber Sie können sehr gut Kuchen backen.', e:'Sie können … backen.'},
     {type:'cloze', topic:'verben', psq:'5a Çfarë bëjnë?', pde:'5a Was machen die Personen?', h:'reiten · singen · malen · surfen',
-     text:'1  Muriel [[reitet]].\n2  Karie und Jeany [[singen]].\n3  Alba [[malt]].\n4  Jason [[surft]].', e:'sie reitet, sie singen, sie malt, er surft.'},
+     text:'1  Muriel [[reitet]]. (reiten)\n2  Karie und Jeany [[singen]]. (singen)\n3  Alba [[malt]]. (malen)\n4  Jason [[surft]]. (surfen)', e:'sie reitet, sie singen, sie malt, er surft.'},
     {type:'order', topic:'satz', psq:'5b Sa mirë?', pde:'5b Wie gut können sie das?', cue:'😊😊 Muriel – reiten', parts:['Muriel','kann','sehr gut','reiten.'], de:'Muriel kann sehr gut reiten.', sq:'Muriel kalëron shumë mirë.'},
     {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'sehr gut – Ricardo und Lea – Tango tanzen', parts:['Ricardo und Lea','können','sehr gut','Tango tanzen.'], de:'Ricardo und Lea können sehr gut Tango tanzen.', sq:'Ricardo dhe Lea kërcejnë tango shumë mirë.'},
     {type:'order', topic:'satz', psq:'6 Fjali me können', pde:'6 Schreiben Sie Sätze', cue:'Ludmilla – reiten – nicht so gut', parts:['Ludmilla','kann','nicht so gut','reiten.'], de:'Ludmilla kann nicht so gut reiten.', sq:'Ludmilla nuk kalëron aq mirë.'},

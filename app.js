@@ -765,6 +765,9 @@ function renderQ(){
     cloze:rCloze, table:rTable, sort:rSort};
   G.chip = null;
   app.innerHTML = `<div class="game">${topbar()}${c && c.hw ? `<p class="hwtag">${hwTag(c)[0]} · ${esc(c.book[0])}</p>` : ''}${(R[q.type] || rChoice)(q)}</div>`;
+  /* reading text (read): right under the task title, for every task type */
+  const rd = readOf(q);
+  if (rd) app.querySelector('.qhead')?.insertAdjacentHTML('afterend', `<div class="readbox">${rd}</div>`);
   if (q.type === 'listen') setTimeout(() => autoSay(q.say), 350);
   window.scrollTo(0, 0);
 }
@@ -779,9 +782,7 @@ function hint(){
 /* reading questions: read:true shows the chapter's text (c.read) above the question */
 const readOf = q => q.read === true ? chById(q.tid)?.read : q.read;
 function rChoice(q){
-  const rd = readOf(q);
   return `${head(q.psq || (q.type === 'gap' ? 'Plotëso zbrazëtirën' : 'Zgjidh përgjigjen'), q.pde || (q.type === 'gap' ? 'Ergänze die Lücke' : 'Wähle die richtige Antwort'))}
-  ${rd ? `<div class="readbox">${rd}</div>` : ''}
   <div class="qcard ${q.speakQ ? 'has-say' : ''}">
     <div class="qtext">${blank(q.s || q.q)}</div>
     ${q.h ? `<div class="qhint">💭 ${esc(q.h)}</div>` : ''}
