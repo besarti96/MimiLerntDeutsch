@@ -536,3 +536,5 @@ input.cz::placeholder{color:var(--muted);font-weight:400}
 
 /* ---------- New words in the word training: only the E RE tag (24 h) ---------- */
 .drow .newtag{color:#fff;font-size:11px}
+.cztyped{margin:0 4px 0 2px;color:var(--bad-d);font-weight:700;font-size:15px;text-decoration-thickness:2px}
+.cztab .cztyped{display:block;margin:0 0 2px}

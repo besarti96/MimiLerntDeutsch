@@ -963,7 +963,10 @@ function ccheck(){
   if (!bad) { G.locked = true; return correct(); }
   G.tries++;
   if (G.tries < maxTries()) tryAgain(`${bad === 1 ? '1 fushë e kuqe' : bad + ' fusha të kuqe'}: provo edhe një herë! Die roten Felder nochmal.`);
-  else { G.locked = true; ins.forEach((inp, k) => { if (!inp.disabled) { inp.value = gaps[k][0].split(';')[0]; inp.classList.add('shown'); inp.disabled = true; } }); wrong(); }
+  else { G.locked = true; ins.forEach((inp, k) => { if (!inp.disabled) {
+    /* keep what she typed visible (struck through) next to the solution */
+    if (inp.value.trim()) inp.insertAdjacentHTML('beforebegin', `<s class="cztyped">${esc(inp.value.trim())}</s>`);
+    inp.value = gaps[k][0].split(';')[0]; inp.classList.add('shown'); inp.disabled = true; } }); wrong(); }
 }
 
 /* --- book-style sorting: tap a word, then its box (q.cats, q.items [word, cat]) --- */
