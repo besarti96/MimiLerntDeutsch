@@ -93,11 +93,18 @@ const SPICK = [
   tip:'<b>als</b> + profesioni, <b>bei</b> + firma. Te profesioni <b>pa nyjë</b>: Ich bin Lehrerin.'
 },
 {
-  id:'sz-vorseit', chip:'⏳ vor · seit', t:'⏳ Kur? Që kur? Sa kohë?', d:'vor, seit, wie lange',
+  id:'sz-vorseit', chip:'⏳ vor · seit · für', t:'⏳ Kur? Që kur? Sa kohë?', d:'vor, seit, wie lange, für',
   th:['Pyetja','Përgjigjja'], say:1,
-  tr:[['Kur?','Para dhjetë vitesh.'],['Që kur?','Prej katër vitesh. (vazhdon)'],['Sa kohë?','Tre vjet.']],
-  table:[['Wann?','<b>Vor</b> zehn Jahren.'],['Seit wann?','<b>Seit</b> vier Jahren.'],['Wie lange?','Drei Jahre.']],
-  tip:'<b>vor</b> = ka mbaruar. <b>seit</b> = vazhdon ende. vor / seit + einem Jahr, einer Woche, zwei Jahre<b>n</b>.'
+  tr:[['Kur?','Para dhjetë vitesh.'],['Që kur?','Prej katër vitesh. (vazhdon)'],['Sa kohë?','Tre vjet.'],['Për sa kohë?','Për një muaj.']],
+  table:[['Wann?','<b>Vor</b> zehn Jahren.'],['Seit wann?','<b>Seit</b> vier Jahren.'],['Wie lange?','Drei Jahre.'],['Für wie lange?','<b>Für</b> einen Monat.']],
+  tip:'<b>vor</b> = ka mbaruar. <b>seit</b> = vazhdon ende. vor / seit + einem Jahr, einer Woche, zwei Jahre<b>n</b>. <b>für</b> + einen Monat, ein Jahr, eine Woche.'
+},
+{
+  id:'sz-muss', chip:'📋 müssen · Imperativ', t:'📋 Duhet & urdhërorja', d:'müssen, man, Imperativ',
+  th:['Deutsch','Shqip'], say:0,
+  table:[['ich muss, du musst, er muss','duhet (pa mbaresë te ich, er)'],['Er muss einen Antrag ausfüllen.','Ai duhet të plotësojë një kërkesë.'],['Zuerst muss man das Ziel wählen.','man = kushdo (jo der Mann!)'],
+    ['Komm mit! Warte mal! Sei leise!','urdhërorja me du: pa du, pa -st'],['Kommt mit! Seid leise! Lest den Text!','urdhërorja me ihr: pa ihr']],
+  tip:'du f<b>ä</b>hrst → <b>Fahr!</b> · du bist → <b>Sei!</b> · Foljet e ndashme: <b>Hol</b> Lili <b>ab</b>!'
 },
 {
   id:'sz-saetze', chip:'💬 Fjali të dobishme', t:'💬 Fjali të dobishme', d:'Nützliche Sätze',

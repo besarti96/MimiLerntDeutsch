@@ -1109,6 +1109,173 @@ const HOMEWORK = [
   ]
 }
   ]
+},
+
+/* =====================================================================
+   📄 Detyrat: Kursbuch Lektion 8 D–E, Grammatik und Lektion 9 (S. 100–109)
+   Die Seiten aus dem Buch, mit Mimis Einträgen (Hörübungen ohne Audio weggelassen).
+   ===================================================================== */
+{
+  id:'l11', date:'2026-10-30', added:'2026-10-30T08:00', emoji:'🚌',
+  sq:'Detyrat: Mësimi 8 D–E dhe Mësimi 9', de:'Hausaufgaben · Kursbuch S. 100–109',
+  parts:[
+
+/* ---------- S. 100: Jobbörse ---------- */
+{
+  id:'hw11-s100', emoji:'🔎', color:'#E3A008', seq:true, book:['faqe 100 · D1','S. 100 · D1'],
+  sq:'Bursa e punës', de:'S. 100: Praktikums- und Jobbörse',
+  desc:'Mika, Radha, Brenda: çfarë bëjnë, për sa kohë kërkojnë punë dhe cili njoftim u përshtatet.',
+  tip:'Für wie lange? → für einen Monat / ein Jahr / zwei Monate.',
+  read:'<b>Mika:</b> Ich heiße Mika Salonen und bin 25 Jahre alt. Ich komme aus Turku und arbeite seit drei Jahren als Koch in einem Restaurant. Mit 20 war ich mal für neun Monate in Österreich, in Bregenz. Dort habe ich ziemlich gut Deutsch gelernt. Jetzt möchte ich aber noch mehr Deutsch lernen und suche für ein Jahr einen Job in der Gastronomie in Österreich, in der Schweiz oder in Deutschland.<br><br><b>Radha:</b> Ich bin Radha Arora, 23, und komme aus Indien. Seit drei Monaten bin ich in Deutschland. Ich studiere Informatik an der Universität in Würzburg. Mein Deutsch ist leider noch nicht sehr gut. Ich suche einen Job für die Semesterferien. Für einen Monat im Sommer. Vielleicht bekomme ich ja einen Job mit vielen Kollegen, dann kann ich arbeiten und Deutsch lernen.<br><br><b>Brenda:</b> Hallo, mein Name ist Brenda Halligan. Ich bin Amerikanerin und studiere Eventmanagement in Boston. Bald gehe ich für drei Monate nach Europa und mache einen Monat lang ein Praktikum bei einer Konzertagentur in Hamburg. Danach suche ich noch für zwei Monate ein Praktikum in Österreich oder in der Schweiz. Im Herbst fängt dann mein Studium wieder an. Im letzten Jahr hatte ich für sechs Wochen einen Job bei einem Catering-Service in Berlin.<br><br><b>A · Originell Catering &amp; Events Zürich</b> – Gastronomie / Tourismus / Eventmanagement. Praktikumsstellen/Jobs von April bis Oktober für zwei Monate oder mehr.<br><b>B · Hotel Kaiserhof Wien</b> – Wir suchen einen Koch/eine Köchin und Auszubildende als Koch/Köchin und Eventmanager (m/w) für mindestens drei Monate.<br><b>C · Phill GmbH, Berlin</b> – Sie studieren Wirtschaft, Mathematik, Informatik und haben sehr gute Englischkenntnisse. Praktikumsstellen für mindestens einen Monat.',
+  lesson:[
+    {t:'Faqe 100 📖', d:'Seite 100', p:'<b>D1a</b> Lexo: çfarë bëjnë personat dhe për sa kohë kërkojnë punë? <b>D1b</b> Cili njoftim i përshtatet secilit?',
+     tip:'Te D1b i ke lidhur <b>të tre saktë</b> në libër: Mika → B, Radha → C, Brenda → A. 🌟'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', read:true, topic:'lesen', psq:'D1a Çfarë bëjnë?', pde:'D1a Was machen die Personen?', q:'Was macht Mika?', o:['Er arbeitet als Koch.','Er studiert Informatik.','Er studiert Eventmanagement.','Er ist Kellner.'], a:'Er arbeitet als Koch.', e:'„… arbeite seit drei Jahren als Koch.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'D1a Për sa kohë?', pde:'D1a Für wie lange?', q:'Für wie lange sucht Mika einen Job?', o:['für ein Jahr','für einen Monat','für zwei Monate','für sechs Wochen'], a:'für ein Jahr', e:'„… suche für ein Jahr einen Job.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'D1a Çfarë bëjnë?', pde:'D1a Was machen die Personen?', q:'Was macht Radha?', o:['Sie studiert Informatik.','Sie arbeitet als Köchin.','Sie studiert Eventmanagement.','Sie macht ein Praktikum in Hamburg.'], a:'Sie studiert Informatik.', e:'„Ich studiere Informatik an der Universität in Würzburg.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'D1a Për sa kohë?', pde:'D1a Für wie lange?', q:'Für wie lange sucht Radha einen Job?', o:['für einen Monat','für ein Jahr','für zwei Monate','für drei Monate'], a:'für einen Monat', e:'„Für einen Monat im Sommer.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'D1a Çfarë bëjnë?', pde:'D1a Was machen die Personen?', q:'Was macht Brenda?', o:['Sie studiert Eventmanagement.','Sie studiert Informatik.','Sie arbeitet als Köchin.','Sie arbeitet bei einer Bank.'], a:'Sie studiert Eventmanagement.', e:'„… studiere Eventmanagement in Boston.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'D1a Për sa kohë?', pde:'D1a Für wie lange?', q:'Für wie lange sucht Brenda noch ein Praktikum?', o:['für zwei Monate','für einen Monat','für sechs Wochen','für ein Jahr'], a:'für zwei Monate', e:'„Danach suche ich noch für zwei Monate ein Praktikum …“'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'D1b Cili njoftim?', pde:'D1b Welche Anzeige passt?', q:'Mika', o:['A','B','C'], a:'B', e:'Koch, ein Jahr, Österreich → B (Hotel Kaiserhof Wien).'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'D1b Cili njoftim?', pde:'D1b Welche Anzeige passt?', q:'Radha', o:['A','B','C'], a:'C', e:'Informatik, einen Monat, Team → C (Phill GmbH).'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'D1b Cili njoftim?', pde:'D1b Welche Anzeige passt?', q:'Brenda', o:['A','B','C'], a:'A', e:'Eventmanagement, zwei Monate, Schweiz → A (Originell Catering Zürich).'}
+  ]
+},
+
+/* ---------- S. 101: Am Telefon ---------- */
+{
+  id:'hw11-s101', emoji:'📞', color:'#2E86DE', seq:true, book:['faqe 101 · E2','S. 101 · E2'],
+  sq:'Në telefon', de:'S. 101: Ist die Stelle noch frei?',
+  desc:'Biseda në telefon për praktikën te Online-Spiel-Studios, si në libër.',
+  tip:'Ist die Stelle noch frei? · Wie lange dauert das Praktikum? · Wie ist die Arbeitszeit? · Bekomme ich auch Geld?',
+  lesson:[
+    {t:'Faqe 101 📖', d:'Seite 101', p:'<b>E2</b> Bisedë në telefon për një praktikë. Në libër e ke bërë me <b>Online-Spiel-Studios</b> ✓.',
+     tip:'jeden Montag = <b>montags</b>, jeden Vormittag = <b>vormittags</b> (me -s, shkronjë e vogël).'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'order', psq:'E2 Praktikantja', pde:'E2 Die Praktikantin', cue:'Guten Tag … · Anzeige gelesen · Stelle noch frei?', parts:['Guten Tag, mein Name ist Mimoza Darsi.','Ich habe Ihre Anzeige gelesen.','Ist die Stelle noch frei?'], de:'Guten Tag, mein Name ist Mimoza Darsi. Ich habe Ihre Anzeige gelesen. Ist die Stelle noch frei?', sq:'Mirëdita, emri im është Mimoza Darsi. E kam lexuar njoftimin tuaj. A është ende i lirë vendi?'},
+    {type:'cloze', psq:'E2 Firma', pde:'E2 Die Firma', h:'Online-Spiel-Studios: 3–4 Monate im Sommer · Mo–Fr 9–18 Uhr · 450 Euro pro Monat',
+     text:'Wie lange dauert das Praktikum?\n– Wir suchen Praktikanten für drei Monate im [[Sommer]].\nAha, und wie ist die Arbeitszeit?\n– Praktikanten arbeiten bei uns normalerweise montags bis freitags von [[9]] bis [[18]] Uhr.\nBekomme ich für das Praktikum auch Geld?\n– Ja, wir zahlen [[450]] Euro pro [[Monat]].',
+     e:'Sommer, 9, 18, 450, Monat.'},
+    {type:'gap', row:true, psq:'E2 Plotëso', pde:'E2 Ergänzen Sie', s:'Ist die Stelle noch ___?', o:['frei','lang','teuer'], a:'frei', e:'Ist die Stelle noch frei?'},
+    {type:'gap', row:true, topic:'verben', psq:'E2 Plotëso', pde:'E2 Ergänzen Sie', s:'Und wie lange ___ das Praktikum?', o:['dauert','dauern','dauerst'], a:'dauert', e:'das Praktikum → dauert.'},
+    {type:'gap', topic:'verben', psq:'E2 Plotëso', pde:'E2 Ergänzen Sie', s:'___ ich für das Praktikum auch Geld?', o:['Bekomme','Bekommt','Bekommst','Bekommen'], a:'Bekomme', e:'ich bekomme.'},
+    {type:'gap', row:true, psq:'E2 Plotëso', pde:'E2 Ergänzen Sie', s:'Ja, schicken Sie Ihre Bewerbung bitte ___ E-Mail.', o:['per','in','am'], a:'per', e:'per E-Mail.'},
+    {type:'gap', row:true, topic:'zeit', psq:'montags, vormittags', pde:'montags, vormittags', s:'jeden Montag = ___', o:['montags','Montags','am Montags'], a:'montags', e:'montags: -s, shkronjë e vogël.'},
+    {type:'gap', row:true, topic:'zeit', psq:'montags, vormittags', pde:'montags, vormittags', s:'jeden Vormittag = ___', o:['vormittags','Vormittags','am Vormittags'], a:'vormittags', e:'vormittags: -s, shkronjë e vogël.'}
+  ]
+},
+
+/* ---------- S. 102: Grammatik ---------- */
+{
+  id:'hw11-s102', emoji:'🧩', color:'#7650F0', seq:true, book:['faqe 102 · gramatika','S. 102 · Grammatik'],
+  sq:'Gramatika e mësimit 8', de:'S. 102: Grammatik und Kommunikation',
+  desc:'als / bei, vor / seit / für, war / hatte: përmbledhja e mësimit 8.',
+  tip:'als + profesioni, bei + firma. vor / seit + einem, einer (Dativ). für + einen, ein, eine (Akkusativ).',
+  lesson:[
+    {t:'Faqe 102 📖', d:'Grammatik', p:'Përmbledhja e gramatikës së mësimit 8. Plotëso tabelat dhe fjalitë.',
+     tip:'Früher <b>war</b> / <b>hatte</b> ich … Heute <b>bin</b> / <b>habe</b> ich … <i class="tr">(Dikur isha / kisha … Sot jam / kam …)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', psq:'2 als apo bei?', pde:'2 als oder bei?', bank:['als','bei'], text:'Ich arbeite [[als]] Hausmeister [[bei]] TerraMax.\nSofia arbeitet [[als]] Physiotherapeutin.', e:'als + profesioni, bei + firma.'},
+    {type:'cloze', topic:'zeit', psq:'3 + 4 vor, seit, für', pde:'3 + 4 vor, seit, für', bank:['vor','seit','für','einem','einen','einer'],
+     text:'Ich habe [[vor]] [[einem]] Jahr die Ausbildung gemacht.\nIch bin [[seit]] [[einer]] Woche selbstständig.\nIch suche [[für]] [[einen]] Monat einen Job.',
+     e:'vor einem Jahr (Dativ), seit einer Woche (Dativ), für einen Monat (Akkusativ).'},
+    {type:'table', topic:'seinhaben', psq:'5 Präteritum: sein', pde:'5 Präteritum: sein', th:['','sein → war'],
+     rows:[['ich','war'],['du','warst'],['er / es / sie','war'],['wir','waren'],['ihr','wart'],['sie / Sie','waren']], e:'ich war, du warst, er war, wir waren, ihr wart, sie waren.'},
+    {type:'table', topic:'seinhaben', psq:'5 Präteritum: haben', pde:'5 Präteritum: haben', th:['','haben → hatte'],
+     rows:[['ich','hatte'],['du','hattest'],['er / es / sie','hatte'],['wir','hatten'],['ihr','hattet'],['sie / Sie','hatten']], e:'ich hatte, du hattest, er hatte, wir hatten, ihr hattet, sie hatten.'},
+    {type:'cloze', topic:'seinhaben', psq:'Dikur dhe sot', pde:'Früher und heute',
+     text:'Früher [[hatte]] Anna viel Arbeit. Heute [[hat]] sie nicht so viel Arbeit.\nFrüher [[war]] ihr Chef nicht nett. Heute [[ist]] ihre Chefin toll.',
+     e:'Früher: hatte / war. Heute: hat / ist.'},
+    {type:'order', topic:'satz', psq:'Pesë dëshira', pde:'Fünf Wünsche', cue:'gern – für ein Jahr – ich möchte – in Italien am Meer sein', parts:['Ich','möchte','gern','für ein Jahr','in Italien am Meer','sein.'], de:'Ich möchte gern für ein Jahr in Italien am Meer sein.', sq:'Do të doja të isha për një vit në Itali, buzë detit.'}
+  ]
+},
+
+/* ---------- S. 106–107: Folge 9 ---------- */
+{
+  id:'hw11-s106', emoji:'🚌', color:'#0E9F8E', seq:true, book:['faqe 106–107 · historia','S. 106–107 · Foto-Hörgeschichte'],
+  sq:'Historia: Na los, komm mit!', de:'S. 106–107: Folge 9',
+  desc:'Ku janë Lara dhe Timi dhe korrigjimi i fjalive (ushtrimi 4).',
+  tip:'Amt → Autovermietung → ZOB. Tim do të shkojë në Salzburg.',
+  read:'Tim möchte ein Auto mieten und nach Salzburg fahren. Lara kommt mit. Zuerst sind sie auf einem Amt, bei der Führerscheinstelle. Sie wollen wissen: Ist Tims Führerschein gültig? Mit einem ausländischen Führerschein kann man nur sechs Monate in Deutschland fahren. Tim hat keinen internationalen Führerschein. Lara kommt aus der EU, sie braucht keinen internationalen Führerschein.<br><br>Dann sind sie bei einer Autovermietung. Lara möchte ein Auto mieten. Aber sie bekommt kein Auto: Sie ist erst 20 Jahre alt.<br><br>Zum Schluss sind sie am Zentralen Omnibusbahnhof (ZOB). Sie kaufen Fahrkarten. Die Fahrt dauert nur zwei Stunden.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Alles richtig!', p:'Në libër i ke korrigjuar <b>të gjitha saktë</b> te ushtrimi 4: Salzburg, sechs Monate, keinen, keinen, mieten, 20, zwei Stunden. Tani edhe një herë këtu! 😊'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', read:true, topic:'lesen', psq:'2 Ku janë?', pde:'2 Wo sind Lara und Tim?', q:'Wo sind Lara und Tim zuerst?', o:['auf einem Amt','bei einer Autovermietung','am Zentralen Omnibusbahnhof'], a:'auf einem Amt', e:'Fotot 1–3: Führerscheinstelle.'},
+    {type:'mc', read:true, topic:'lesen', psq:'2 Ku janë?', pde:'2 Wo sind Lara und Tim?', q:'Wo wollen sie ein Auto mieten?', o:['bei einer Autovermietung','auf einem Amt','am Zentralen Omnibusbahnhof'], a:'bei einer Autovermietung', e:'Fotot 5–6: Autovermietung.'},
+    {type:'mc', read:true, topic:'lesen', psq:'2 Ku janë?', pde:'2 Wo sind Lara und Tim?', q:'Wo kaufen sie zum Schluss ein Busticket?', o:['am Zentralen Omnibusbahnhof','auf einem Amt','bei einer Autovermietung'], a:'am Zentralen Omnibusbahnhof', e:'Fotot 7–8: ZOB München.'},
+    {type:'gap', read:true, row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'a  Tim möchte ein Auto mieten und nach ___ fahren.', o:['Salzburg','Polen'], a:'Salzburg', e:'nach Salzburg.'},
+    {type:'gap', read:true, row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'b  Mit einem ausländischen Führerschein kann man nur ___ Monate in Deutschland fahren.', o:['sechs','acht'], a:'sechs', e:'sechs Monate.'},
+    {type:'gap', read:true, row:true, topic:'ein', psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'c  Tim hat ___ internationalen Führerschein.', o:['keinen','einen'], a:'keinen', e:'keinen internationalen Führerschein.'},
+    {type:'gap', read:true, row:true, topic:'ein', psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'d  Lara kommt aus der EU. Sie braucht ___ internationalen Führerschein.', o:['keinen','einen'], a:'keinen', e:'EU → keinen.'},
+    {type:'gap', read:true, row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'e  Lara möchte ein Auto ___.', o:['mieten','kaufen'], a:'mieten', e:'mieten.'},
+    {type:'gap', read:true, row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'f  Sie ist zu jung, sie ist erst ___ Jahre alt.', o:['20','21'], a:'20', e:'20 Jahre.'},
+    {type:'gap', read:true, row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'g  Die Fahrt dauert nur ___ Stunden.', o:['zwei','neun'], a:'zwei', e:'zwei Stunden.'}
+  ]
+},
+
+/* ---------- S. 108: müssen ---------- */
+{
+  id:'hw11-s108', emoji:'📋', color:'#7650F0', seq:true, book:['faqe 108 · A1–A4','S. 108 · A1–A4'],
+  sq:'müssen: duhet', de:'S. 108: Sie müssen einen Antrag ausfüllen',
+  desc:'Patenta ndërkombëtare, një makinë me qira dhe bileta në automat.',
+  tip:'ich muss, du musst, er muss, wir müssen, ihr müsst, sie müssen. Folja tjetër në fund.',
+  lesson:[
+    {t:'Faqe 108 📖', d:'Seite 108', p:'<b>A1</b> Çfarë duhet të bëjë Timi? <b>A2</b> Një makinë me qira. <b>A3</b> Bileta në automat. <b>A4</b> Çfarë duhet të bësh sot?',
+     tip:'Te A1 dhe A3b i ke bërë mirë në libër ✓. Shkrove edhe vetë: <b>Was muss ich mitbringen?</b> 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'table', topic:'modal', psq:'Folja müssen', pde:'Modalverb müssen', th:['','müssen'],
+     rows:[['ich','muss'],['du','musst'],['er / es / sie','muss'],['wir','müssen'],['ihr','müsst'],['sie / Sie','müssen']], e:'ich muss, du musst, er muss, wir müssen, ihr müsst, sie müssen.'},
+    {type:'cloze', topic:'modal', psq:'A1 Tim', pde:'A1 Tim', h:'müssen + folja në fund',
+     text:'Er [[muss]] einen Antrag ausfüllen.\nEr [[muss]] einen kanadischen Führerschein haben.\nEr [[muss]] den Ausweis, den Führerschein und ein Foto [[mitbringen]].',
+     e:'er muss … ausfüllen / haben / mitbringen.'},
+    {type:'cloze', topic:'modal', psq:'A2 Një makinë me qira', pde:'A2 Ein Auto mieten', h:'Ich möchte ein Auto mieten. Wie geht das?',
+     text:'Also, du [[musst]] einen internationalen oder einen EU-Führerschein haben.\nDu [[musst]] mindestens 21 Jahre alt [[sein]].\nDu [[musst]] einen Personalausweis oder einen Reisepass [[mitbringen]].\nUnd du [[musst]] eine Kreditkarte [[haben]].',
+     e:'du musst … haben / sein / mitbringen.'},
+    {type:'cloze', topic:'modal', psq:'A3 Bileta në automat', pde:'A3 Eine Fahrkarte kaufen', bank:['wählen','auswählen','bezahlen','nehmen','stempeln'],
+     text:'Zuerst muss man das Ziel [[wählen]].\nDann muss man Erwachsener oder Kind [[auswählen]].\nDanach muss man [[bezahlen]].\nDann muss man die Fahrkarte und das Wechselgeld [[nehmen]].\nZum Schluss muss man die Fahrkarte [[stempeln]].',
+     e:'1 wählen, 2 auswählen, 3 bezahlen, 4 nehmen, 5 stempeln.'},
+    {type:'gap', row:true, psq:'man apo Mann?', pde:'man oder Mann?', s:'Zuerst muss ___ das Ziel wählen.', o:['man','Mann'], a:'man', e:'man = kushdo.'},
+    {type:'order', topic:'satz', psq:'A4 Çfarë duhet të bësh sot?', pde:'A4 Was müssen Sie heute noch machen?', cue:'heute noch – ich muss – einkaufen – und – die Wohnung aufräumen', parts:['Ich','muss','heute noch','einkaufen','und','die Wohnung','aufräumen.'], de:'Ich muss heute noch einkaufen und die Wohnung aufräumen.', sq:'Sot duhet të bëj ende pazar dhe të rregulloj banesën.'},
+    {type:'order', topic:'satz', psq:'Pyetja jote', pde:'Deine Frage', parts:['Was','muss','ich','mitbringen?'], de:'Was muss ich mitbringen?', sq:'Çfarë duhet të sjell me vete?'}
+  ]
+},
+
+/* ---------- S. 109: Imperativ ---------- */
+{
+  id:'hw11-s109', emoji:'👉', color:'#F2545B', seq:true, book:['faqe 109 · B1–B2','S. 109 · B1–B2'],
+  sq:'Sieh mal! Urdhërorja', de:'S. 109: Imperativ',
+  desc:'Lara dhe Timi para agjencisë së makinave, çfarë duhet të bëjë Timi dhe në klasë.',
+  tip:'du kommst → Komm! du bist → Sei! ihr seid → Seid! ihr lest → Lest!',
+  lesson:[
+    {t:'Kujdes! 👀', d:'Schau nochmal', p:'Te B1a i ke bërë mirë ✓ Sieh, Geh, warte, Bring. Vetëm një gjë:',
+     fix:[['Na los, kommt mit!','Na los, komm mit!','Me du: komm (pa -t). Kommt është për ihr.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'imperativ', psq:'B1a Plotëso', pde:'B1a Hören Sie und ordnen Sie zu', bank:['Bring','Geh','sieh','komm','warte'],
+     text:'Du, [[sieh]] mal! Da vorne ist eine Autovermietung. Da gehen wir jetzt hin und fragen. Na los, [[komm]] mit!\n– Ja, gleich. [[Geh]] du schon! Ich will noch schnell in den Laden da. Ich habe so einen Hunger!\n– Okay. Tim, [[warte]] mal! [[Bring]] ein Wasser für mich mit!',
+     e:'sieh, komm (jo kommt!), Geh, warte, Bring.'},
+    {type:'order', topic:'imperativ', psq:'B1b Çfarë thotë Lara?', pde:'B1b Was sagt Lara?', cue:'zu Walter fahren und Lili abholen', parts:['Fahr','zu Walter','und','hol','Lili','ab!'], de:'Fahr zu Walter und hol Lili ab!', sq:'Shko te Walteri dhe merre Lilin!'},
+    {type:'cloze', topic:'imperativ', psq:'B1b Çfarë thotë Lara?', pde:'B1b Was sagt Lara?', h:'die Hausaufgaben machen · einen Kaffee mitbringen · leise sein · Lili die Matheübung erklären · eine E-Mail schreiben',
+     text:'[[Mach]] die Hausaufgaben!\n[[Bring]] einen Kaffee [[mit]]!\n[[Sei]] leise!\n[[Erklär;Erkläre]] Lili die Matheübung!\n[[Schreib;Schreibe]] eine E-Mail an die Lehrerin!',
+     e:'Mach! Bring … mit! Sei! Erklär! Schreib!'},
+    {type:'cloze', topic:'imperativ', psq:'B2 Në klasë (ihr)', pde:'B2 In der Klasse', bank:['Seid','Schließt','Hört','Steht','Macht','Öffnet','Lest'],
+     text:'[[Seid]] bitte nicht so laut!\n[[Schließt]] bitte die Bücher!\n[[Hört]] doch bitte zu!\n[[Steht]] bitte nicht auf!\n[[Macht]] doch die Handys aus!\n[[Öffnet]] bitte die Bücher!\n[[Lest]] bitte den Text!',
+     e:'Me ihr: forma e ihr pa ihr: Seid, Schließt, Hört, Steht, Macht, Öffnet, Lest.'}
+  ]
+}
+  ]
 }
 
 ];

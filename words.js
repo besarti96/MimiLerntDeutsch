@@ -40,7 +40,8 @@ const WORDS = [
     ['der','Arbeitstisch','tavolina e punës'],['der','Stuhl','karrigia'],['das','Sofa','divani'],['das','Bett','shtrati'],['das','Regal','rafti'],
     ['der','Teppich','qilimi'],['die','Lampe','llamba'],['der','Spiegel','pasqyra'],['das','Fenster','dritarja'],['die','Tür','dera'],
     ['die','Waschmaschine','lavatriçja'],['der','Kühlschrank','frigoriferi'],['der','Herd','shporeti'],['der','Fernseher','televizori'],['die','Wohnung','banesa']],
-  words:[['möbliert','e mobiluar'],['groß','i madh'],['klein','i vogël'],['hell','me dritë'],['dunkel','i errët'],['neu','i ri'],['alt','i vjetër']]
+  words:[['möbliert','e mobiluar'],['groß','i madh'],['klein','i vogël'],['hell','me dritë'],['dunkel','i errët'],['neu','i ri'],['alt','i vjetër'],
+    ['leise','i qetë'],['laut','me zë të lartë'],['ziemlich','mjaft']]
 },
 {
   id:'w-zeit', emoji:'🕐', color:'#7650F0', sq:'Ora & koha', de:'Uhrzeit & Zeit',
@@ -51,7 +52,8 @@ const WORDS = [
   words:[['halb','gjysmë'],['Viertel','çerek'],['nach','pas (ora)'],['vor','para (ora)'],['früh','herët'],['spät','vonë'],
     ['heute','sot'],['morgen','nesër'],['gestern','dje'],['jetzt','tani'],['immer','gjithmonë'],['oft','shpesh'],['nie','asnjëherë'],
     ['morgens','në mëngjes'],['abends','në mbrëmje'],['im Moment','tani për tani'],['zurzeit','aktualisht'],['ungefähr','përafërsisht'],['gerade','sapo'],['zuerst','fillimisht'],['jeden Tag','çdo ditë'],['seit','prej'],
-    ['nun','tani']]
+    ['nun','tani'],
+    ['montags','çdo të hënë'],['vormittags','çdo paradite'],['bald','së shpejti'],['danach','pastaj'],['zum Schluss','në fund'],['für einen Monat','për një muaj'],['für ein Jahr','për një vit'],['Für wie lange?','Për sa kohë?']]
 },
 {
   id:'w-tage', emoji:'📅', color:'#0E9F8E', sq:'Ditët e javës', de:'Die Wochentage',
@@ -101,7 +103,8 @@ const WORDS = [
     ['helfen','ndihmoj'],['spielen','luaj'],['lieben','dua (dashuroj)'],['mögen','më pëlqen'],['können','di, mund'],['wollen','dua (të bëj)'],
     ['aufstehen','ngrihem'],['suchen','kërkoj'],['finden','gjej'],['sehen','shoh'],['hören','dëgjoj'],['sagen','them'],['fragen','pyes'],
     ['schreiben','shkruaj'],['rennen','vrapoj shpejt'],['üben','ushtroj'],['schwimmen','notoj'],['kennen','njoh'],['leben','jetoj'],
-    ['denken','mendoj'],['lachen','qesh'],['treffen','takoj'],['heißen','quhem']]
+    ['denken','mendoj'],['lachen','qesh'],['treffen','takoj'],['heißen','quhem'],
+    ['müssen','duhet'],['ausfüllen','plotësoj'],['mitbringen','sjell me vete'],['wählen','zgjedh'],['auswählen','përzgjedh'],['stempeln','vulos'],['funktionieren','funksionon'],['abholen','marr (dikë)'],['erklären','shpjegoj'],['schließen','mbyll'],['öffnen','hap'],['zuhören','dëgjoj'],['warten','pres']]
 },
 {
   id:'w-trennbar', emoji:'⏰', color:'#7650F0', added:'2026-10-26T08:00', sq:'Foljet e ndashme', de:'Trennbare Verben',
@@ -119,19 +122,27 @@ const WORDS = [
     ['die','Ingenieurin','inxhinierja'],['der','Polizist','polici'],['der','Hausmann','burri shtëpiak'],['der','Student','studenti'],['das','Interview','intervista'],['die','Zeitung','gazeta'],['das','Diplom','diploma'],['die','Abteilung','departamenti'],['der','Abteilungsleiter','drejtuesi i departamentit'],['die','Bewerbung','aplikimi për punë'],
     ['die','Journalistin','gazetarja'],['der','Verkäufer','shitësi'],['die','Verkäuferin','shitësja'],['der','Schüler','nxënësi'],['die','Schülerin','nxënësja'],
     ['die','Architektin','arkitektja'],['der','Physiotherapeut','fizioterapeuti'],['die','Berufserfahrung','përvoja e punës'],['der','Kunde','klienti'],['der','Kollege','kolegu'],
-    ['der','Stress','stresi'],['das','Kaufhaus','dyqani i madh']],
+    ['der','Stress','stresi'],['das','Kaufhaus','dyqani i madh'],
+    ['die','Anzeige','njoftimi'],['die','Praktikumsstelle','vendi i praktikës'],['der','Praktikant','praktikanti'],['die','Praktikantin','praktikantja'],['die','Arbeitszeit','orari i punës'],['die','Vergütung','pagesa'],['der','Bereich','fusha'],['die','Gastronomie','gastronomia'],['die','Konzertagentur','agjencia e koncerteve']],
   words:[['arbeiten als','punoj si'],['selbstständig','i vetëpunësuar'],['angestellt','i punësuar'],['arbeitslos','i papunë'],['studieren','studioj'],['dauern','zgjat'],
     ['vor zehn Jahren','para dhjetë vitesh'],['seit vier Jahren','prej katër vitesh'],['wie lange','sa kohë'],['seit wann','që kur'],
     ['beruflich','në punë'],['Was sind Sie von Beruf?','Çfarë profesioni keni?'],['Mit freundlichen Grüßen','Me respekt'],['Sehr geehrter Herr …','I nderuar zotëri …'],
     ['berufstätig','punon, ka punë'],['war','isha / ishte'],['hatte','kisha / kishte'],['früher','më parë'],['schlecht','keq'],['professionell','profesional'],
-    ['einfach','i lehtë'],['ich glaube','mendoj'],['fotogen','fotogjenik'],['eigene','i/e vet']]
+    ['einfach','i lehtë'],['ich glaube','mendoj'],['fotogen','fotogjenik'],['eigene','i/e vet'],
+    ['mindestens','të paktën'],['normalerweise','zakonisht'],['schriftlich','me shkrim'],['per E-Mail','me e-mail'],['pro Monat','në muaj'],['Ist die Stelle noch frei?','A është ende i lirë vendi?']]
+},
+{
+  id:'w-unterwegs', emoji:'🚌', color:'#0E9F8E', added:'2026-10-30T08:00', sq:'Në rrugë & zyrat', de:'Unterwegs & Ämter',
+  nouns:[['der','Führerschein','patenta'],['das','Amt','zyra shtetërore'],['die','Autovermietung','agjencia e makinave me qira'],['der','Bus','autobusi'],['die','Fahrkarte','bileta'],['der','Fahrkartenautomat','automati i biletave'],['die','Fahrt','udhëtimi'],['der','Antrag','kërkesa (formulari)'],['der','Ausweis','letërnjoftimi'],['der','Personalausweis','letërnjoftimi'],['der','Reisepass','pasaporta'],['die','Kreditkarte','karta e kreditit'],['das','Ziel','destinacioni'],['das','Wechselgeld','kusuri'],['der','Laden','dyqani'],['der','Flughafen','aeroporti']],
+  words:[['mieten','marr me qira'],['gültig','i vlefshëm'],['ausländisch','i huaj'],['international','ndërkombëtar'],['zu jung','shumë i ri'],['Na los!','Hajde!'],['Sieh mal!','Shiko pak!'],['Komm mit!','Eja me mua!']]
 },
 {
   id:'w-schule', emoji:'🏫', color:'#0E9F8E', added:'2026-10-26T08:00', sq:'Shkolla, puna & kafshët', de:'Schule, Beruf & Tiere',
   nouns:[['die','Schule','shkolla'],['das','Lieblingsfach','lënda e preferuar'],['die','Mathematik','matematika'],['die','Physik','fizika'],['die','Chemie','kimia'],
     ['der','Lehrer','mësuesi'],['die','Lehrerin','mësuesja'],['die','Bank','banka'],['der','Koch','kuzhinieri'],['die','Köchin','kuzhinierja'],
     ['das','Tier','kafsha'],['der','Hund','qeni'],['die','Katze','macja'],['der','Goldfisch','peshku i kuq'],['das','Eis','akullorja'],['der','See','liqeni'],['der','Park','parku'],
-    ['die','Sprachschule','shkolla e gjuhëve'],['das','Schwimmbad','pishina'],['das','Café','kafeneja']],
+    ['die','Sprachschule','shkolla e gjuhëve'],['das','Schwimmbad','pishina'],['das','Café','kafeneja'],
+    ['das','Studium','studimet'],['die','Universität','universiteti'],['die','Hausaufgabe','detyra e shtëpisë'],['der','Text','teksti'],['das','Handy','celulari']],
   words:[['arbeiten','punoj'],['gern','me qejf'],['oft','shpesh'],['manchmal','ndonjëherë'],['lange','gjatë']]
 },
 {

@@ -1230,9 +1230,10 @@ const TOPICS = {
   subjekt:  ['Subjekti dhe mbaresa', 'Subjekt & Verbendung', 'Sabine = sie → -t (schwimmt). Meine Freunde = sie → -en (leben). ihr → -t (wohnt).'],
   trennbar: ['Foljet e ndashme', 'Trennbare Verben', 'Folja në vendin 2, parashtesa në fund: Ich stehe um 7 Uhr auf.'],
   zahlen:   ['Numrat', 'Zahlen', 'Së pari njëshja, pastaj dhjetëshja: 35 = fünfunddreißig. 30 = dreißig.'],
-  lesen:    ['Leximi', 'Leseverstehen', 'Lexo pyetjen, gjej fjalën kyçe dhe kërkoje në tekst.']
+  lesen:    ['Leximi', 'Leseverstehen', 'Lexo pyetjen, gjej fjalën kyçe dhe kërkoje në tekst.'],
+  imperativ:['Urdhërorja', 'Imperativ', 'du kommst → Komm! (pa du, pa -st). ihr kommt → Kommt! sein: Sei! / Seid!']
 };
-const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög)/;
+const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög|muss|müss)/;
 /* finds the grammar topic of a question from what it asks; q.topic in the data wins */
 function topicOf(q){
   if (q.topic) return q.topic;
