@@ -675,9 +675,7 @@ function wordSheet(id){
     <h2 class="cs-t" style="margin-top:12px">${esc(c.sq)}</h2><p class="de" style="margin:0">${esc(c.de)}</p>
     <button class="cta" data-act="wplay" data-id="${c.id}">🎯 Ushtro fjalët / Wörter üben</button>
     <p class="de" style="margin:18px 0 8px">Prek një fjalë për ta dëgjuar. Tippe ein Wort an, um es zu hören.</p>
-    ${(row => { const pool = vocabPool(c), fresh = pool.filter(w => w.nw);   /* new words first, then the whole list */
-      return (fresh.length && fresh.length < pool.length ? `<p class="wnew-h">🆕 Fjalë të reja <span>Neue Wörter</span></p>${fresh.map(row).join('')}<p class="wnew-h">📚 Të gjitha <span>Alle Wörter</span></p>` : '')
-        + pool.map(row).join(''); })(w => `<button class="drow ${w.nw ? 'wnew' : ''}" data-act="say" data-t="${esc(w.de)}"><b>${esc(w.de)}${w.nw ? '<span class="newtag">E RE</span>' : ''}</b><span>${esc(w.sq)}</span></button>`)}
+    ${vocabPool(c).map(w => `<button class="drow" data-act="say" data-t="${esc(w.de)}"><b>${esc(w.de)}${w.nw ? '<span class="newtag">E RE</span>' : ''}</b><span>${esc(w.sq)}</span></button>`).join('')}
   </div>`;
   openSheetEl();
 }

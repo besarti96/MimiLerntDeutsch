@@ -92,7 +92,7 @@ Mimi soll sofort sehen, was neu ist. Darum bekommt **alles Neue** eine Markierun
 | Kapitel | `added:'JJJJ-MM-TTTHH:MM'` | Reise, „Kapitujt“, Kapitelblatt, Weiter-Knopf |
 | Hausaufgaben-Set | `date` und `added` | Karte „Detyrat e shtëpisë“, Hausaufgabenliste |
 | Wortthema (neu) | `added` am Thema | Themenliste |
-| **einzelnes neues Wort** | Datum als letztes Element (`'2026-10-30'`) | am Wort in seiner Liste, Anzahl beim Thema („E RE · 8“), Knopf „🔤 Fjalët“, Block „🆕 Fjalë të reja“ oben im Thema |
+| **einzelnes neues Wort** | Datum als letztes Element (`'2026-10-30'`) | am Wort in seiner normalen Liste (nur das Schild, keine eigene Liste, kein Farbblock), Anzahl beim Thema („E RE · 8“), Knopf „🔤 Fjalët“ |
 
 Immer **Datum mit Uhrzeit von jetzt** setzen (z. B. `'2026-10-30T16:20'`, Wörter genauso). Ein reines Datum zählt ab Mitternacht, dann ist die Markierung womöglich schon weg, wenn Mimi die App öffnet.
 
