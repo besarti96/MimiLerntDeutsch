@@ -118,6 +118,7 @@ Immer **Datum mit Uhrzeit von jetzt** setzen (z. B. `'2026-10-30T16:20'`, Wörte
 
 - **Bestehende Aufgaben nie verändern oder löschen**, außer der Benutzer verlangt es ausdrücklich. Inhalte nur ergänzen. Nach Änderungen gegen den letzten Commit vergleichen.
 - **Ids nie umbenennen**: Fortschritt, Fehler und Sterne hängen an den Ids.
+- **Eindeutig fragen**: Bei Dialog-Fragen („Was antwortet …?“) darf nur eine Antwort logisch passen; wenn die Lösung von der Reihenfolge in der Geschichte abhängt, gehört ein Hinweis `h` dazu (z. B. „Hera e dytë: vajza nervozohet 😤“). Gleiche albanische Übersetzung für zwei Wörter (tani = jetzt / nun) regelt die App selbst: kein solcher Ablenker, beim Schreiben zählen beide.
 - Unsichere Lesarten (unleserliche Handschrift, fehlende Hördatei) nicht als Mimis Fehler darstellen, sondern als „Kujdes nga kurthet“ (typische Fallen) oder weglassen und es dem Benutzer sagen.
 - Heller Modus ist Standard.
 - **Erst pushen, wenn der Benutzer es sagt** (oft: „wenn du dir sicher bist, push“ → nach bestandener Prüfung pushen). Lokal ändern ist immer okay.

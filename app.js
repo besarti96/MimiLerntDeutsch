@@ -295,7 +295,17 @@ const wordIsNew = e => { const d = e[e.length - 1]; return /^\d{4}-\d\d-\d\d/.te
 function vocabPool(c){ return c.nouns.map(n => ({de: n[0] + ' ' + n[1], sq: n[2], nw: wordIsNew(n)})).concat(c.words.map(w => ({de: w[0], sq: w[1], nw: wordIsNew(w)}))); }
 const newWordCount = c => vocabPool(c).filter(w => w.nw).length;
 const newWordTag = n => n ? `<span class="newtag">E RE${n > 1 ? ' · ' + n : ''}</span>` : '';
-const distract = (pool, item, f) => shuffle(pool.filter(p => p[f] !== item[f])).slice(0, 3).map(p => p[f]);
+/* wrong options never mean the same as the answer (Ausweis / Personalausweis are both „letërnjoftimi“) */
+const sameSq = (a, b) => a.sq.trim().toLowerCase() === b.sq.trim().toLowerCase();
+const distract = (pool, item, f) => shuffle(pool.filter(p => p[f] !== item[f] && !sameSq(p, item))).slice(0, 3).map(p => p[f]);
+/* all German words that share one Albanian meaning, over every chapter, homework and word list: any of them counts when writing */
+let SQ_DE = null;
+function sqAlts(sq){
+  if (!SQ_DE) { SQ_DE = {}; [...CHAPTERS, ...HWP, ...WD].forEach(c => {
+    c.nouns.forEach(n => (SQ_DE[n[2].trim().toLowerCase()] ||= new Set()).add(n[1]));
+    c.words.forEach(w => (SQ_DE[w[1].trim().toLowerCase()] ||= new Set()).add(w[0])); }); }
+  return [...(SQ_DE[String(sq).trim().toLowerCase()] || [])];
+}
 function genVocab(c){
   if (c.noGen) return [];
   const pool = vocabPool(c), out = [];
@@ -848,11 +858,14 @@ function wcheck(){
   const norm = s => s.toLowerCase().replace(/^(der|die|das)\s+/, '').replace(/ß/g, 'ss').trim();
   const flat = s => s.replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u');
   const v = norm(raw), target = norm(q.a);
+  /* another word with the same Albanian meaning is right too (tani = jetzt / nun) */
+  const alt = v !== target && sqAlts(q.q).find(w => norm(w) === v);
   row.classList.remove('bad'); void row.offsetWidth;
-  if (v === target) {
+  if (v === target || alt) {
     G.locked = true; inp.disabled = true; row.classList.add('ok'); inp.blur();
     const typed = raw.replace(/^(der|die|das)\s+/i, '');
-    correct(q.art && typed[0] !== q.a[0] ? 'Kujdes: emrat në gjermanisht shkruhen gjithmonë me shkronjë të madhe! Nomen schreibt man groß.' : '');
+    correct(alt ? `Saktë! „${esc(alt)}“ do të thotë edhe kështu. Këtu kërkohej: <b>${esc((q.art ? q.art + ' ' : '') + q.a)}</b>.`
+      : q.art && typed[0] !== q.a[0] ? 'Kujdes: emrat në gjermanisht shkruhen gjithmonë me shkronjë të madhe! Nomen schreibt man groß.' : '');
   } else {
     G.tries++; row.classList.add('bad');
     if (G.tries < maxTries()) tryAgain(flat(v) === flat(target) ? 'Pothuajse! Kujdes me ä, ö, ü 😉' : `Fillon me „${q.a[0]}“ dhe ka ${q.a.length} shkronja.`);
