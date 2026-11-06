@@ -1276,6 +1276,501 @@ const HOMEWORK = [
   ]
 }
   ]
+},
+{
+  id:'l12', date:'2026-11-06', added:'2026-11-06T11:15', emoji:'🏥',
+  sq:'Libri: Mësimi 9 B–E dhe Mësimi 10', de:'Kursbuch S. 109–121',
+  parts:[
+
+/* ---------- S. 109: Imperativ mit Sie ---------- */
+{
+  id:'hw12-s109', emoji:'🙋', color:'#2E86DE', seq:true, book:['faqe 109 · B3–B4','S. 109 · B3–B4'],
+  sq:'Në shkollën e gjuhëve', de:'S. 109: Imperativ mit Sie',
+  desc:'Çfarë duhet të bësh te regjistrimi në kurs dhe rregullat e tua për mësuesen.',
+  tip:'Sie warten → Warten Sie! Sie sind → Seien Sie!',
+  read:'<b>Anmeldung zum Sprachunterricht</b><br>Warten Sie bitte im Wartebereich. Bringen Sie bitte Ihren Pass zur Anmeldung mit. Bezahlen Sie die Kursgebühren an der Kasse im 1. Stock. Seien Sie bitte leise. Die anderen haben Unterricht.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te B3 i ke shkruar saktë <b>Warten Sie!</b>, <b>Bringen Sie … mit!</b> dhe <b>Bezahlen Sie!</b> Te B4: <b>Geben Sie keine Hausaufgaben! Lachen Sie viel!</b> 😄',
+     tip:'E fundit mbeti bosh: Sie sind leise → <b>Seien Sie</b> bitte leise! <i class="tr">(Ju lutem, jini të qetë!)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', read:true, topic:'imperativ', psq:'B3 Plotëso tabelën', pde:'B3 Ergänzen Sie die Tabelle',
+     text:'Sie warten → [[Warten]] Sie!\nSie bringen … mit → [[Bringen]] Sie … [[mit]]!\nSie bezahlen → [[Bezahlen]] Sie!\nSie sind leise → [[Seien]] Sie bitte leise!',
+     e:'Warten Sie! Bringen Sie … mit! Bezahlen Sie! Seien Sie leise!'},
+    {type:'mc', read:true, topic:'lesen', psq:'B3 Çfarë duhet?', pde:'B3 Was muss man machen?', q:'Wo muss man die Kursgebühren bezahlen?', o:['an der Kasse im 1. Stock','im Wartebereich','im Unterricht','an der Anmeldung im 2. Stock'], a:'an der Kasse im 1. Stock', e:'„Bezahlen Sie die Kursgebühren an der Kasse im 1. Stock.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'B3 Çfarë duhet?', pde:'B3 Was muss man machen?', q:'Warum muss man leise sein?', o:['Die anderen haben Unterricht.','Die Lehrerin schläft.','Man muss telefonieren.','Die Kasse ist zu.'], a:'Die anderen haben Unterricht.', e:'„Die anderen haben Unterricht.“'},
+    {type:'gap', topic:'imperativ', psq:'B4 Rregulla për mësuesen', pde:'B4 Regeln für die Kursleiterin', s:'___ Sie bitte langsam!', h:'sprechen', o:['Sprechen','Sprecht','Sprich','Sprichst'], a:'Sprechen', e:'Sie sprechen → Sprechen Sie!'},
+    {type:'order', topic:'imperativ', psq:'B4 Rregullat e tua', pde:'B4 Deine Regeln', de:'Geben Sie bitte keine Hausaufgaben!', sq:'Ju lutem, mos jepni detyra shtëpie!'},
+    {type:'order', topic:'imperativ', psq:'B4 Rregullat e tua', pde:'B4 Deine Regeln', de:'Lachen Sie viel!', sq:'Qeshni shumë!'}
+  ]
+},
+
+/* ---------- S. 110: dürfen ---------- */
+{
+  id:'hw12-s110', emoji:'🚭', color:'#16A34A', seq:true, book:['faqe 110 · C1–C3','S. 110 · C1–C3'],
+  sq:'dürfen: lejohet', de:'S. 110: Sie dürfen in der EU Auto fahren',
+  desc:'Kush lejohet të ngasë makinë, bisedat „Achtung!“ dhe rregullat në autobus.',
+  tip:'ich darf, du darfst, er darf, wir dürfen, ihr dürft, sie dürfen. erlaubt = e lejuar, verboten = e ndaluar.',
+  read:'Tim hat einen ausländischen Führerschein, aber keinen internationalen Führerschein. Mit einem ausländischen Führerschein kann man nur sechs Monate in Deutschland fahren. Lara kommt aus der EU. Sie braucht keinen internationalen Führerschein.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Alles richtig!', p:'Te C1 i ke shënuar <b>të gjitha saktë</b>: Tim, Er, Tim, Lara. 👏',
+     tip:'Shënimet e tua: <b>erlaubt</b> = e lejuar, <b>verboten</b> = e ndaluar, <b>der Fernbus</b> = autobusi ndërqytetës.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'gap', read:true, row:true, psq:'C1 Çfarë është e saktë?', pde:'C1 Was ist richtig?', s:'a  ___ darf im Moment nicht in Deutschland Auto fahren.', o:['Tim','Lara'], a:'Tim', e:'Tim nuk ka patentë ndërkombëtare.'},
+    {type:'gap', read:true, row:true, psq:'C1 Çfarë është e saktë?', pde:'C1 Was ist richtig?', s:'a  ___ hat keinen internationalen Führerschein.', o:['Er','Sie'], a:'Er', e:'Er = Tim.'},
+    {type:'gap', read:true, row:true, psq:'C1 Çfarë është e saktë?', pde:'C1 Was ist richtig?', s:'b  ___ muss einen internationalen Führerschein beantragen.', o:['Tim','Lara'], a:'Tim', e:'Tim duhet të aplikojë.'},
+    {type:'gap', read:true, row:true, psq:'C1 Çfarë është e saktë?', pde:'C1 Was ist richtig?', s:'c  ___ darf in der EU Auto fahren.', o:['Lara','Tim'], a:'Lara', e:'Lara vjen nga BE-ja.'},
+    {type:'table', topic:'modal', psq:'Folja dürfen', pde:'Modalverb dürfen', th:['','dürfen'],
+     rows:[['ich','darf'],['du','darfst'],['er / es / sie / man','darf'],['wir','dürfen',true],['ihr','dürft',true],['sie / Sie','dürfen',true]], e:'ich darf, du darfst, er darf (pa mbaresë).'},
+    {type:'cloze', topic:'modal', psq:'C2 Biseda', pde:'C2 Spielen Sie Gespräche', h:'müssen apo dürfen?',
+     text:'A  Achtung! Du [[musst]] das Handy ausmachen. – Warum denn? – Hier [[darf]] man nicht telefonieren.\nB  Achtung! Ihr [[müsst]] die Zigaretten ausmachen. – Warum denn? – Hier [[darf]] man nicht rauchen.\nC  Achtung! Du [[musst]] langsam fahren. – Warum denn? – Hier [[darf]] man nur 30 fahren.\nD  Achtung! Wir [[müssen]] einen neuen Parkplatz suchen. – Warum denn? – Hier [[darf]] man nicht parken.',
+     e:'du musst, ihr müsst, wir müssen · Hier darf man nicht …'},
+    {type:'sort', psq:'C3 Në autobus: Rregullat tona', pde:'C3 Eine Fernbus-Reise: Unsere Regeln', h:'Si në shembullin e librit: Gepäck abgeben = duhet, Eis ⛔, Fahrrad ✅', cats:['man darf','man darf nicht','man muss'],
+     items:[['Fahrrad mitnehmen','man darf'],['schlafen','man darf'],['Eis essen','man darf nicht'],['rauchen','man darf nicht'],['Gepäck abgeben','man muss'],['Fahrkarte kaufen','man muss']],
+     e:'man darf: Fahrrad, schlafen · man darf nicht: Eis, rauchen · man muss: Gepäck abgeben, Fahrkarte kaufen.'},
+    {type:'gap', row:true, topic:'modal', psq:'C3 Plotëso', pde:'C3 Ergänzen Sie', s:'Man darf im Bus kein Eis essen. Das ist ___.', o:['verboten','erlaubt'], a:'verboten', e:'darf nicht = verboten.'}
+  ]
+},
+
+/* ---------- S. 111: Salzburg ---------- */
+{
+  id:'hw12-s111', emoji:'🏰', color:'#E3A008', seq:true, book:['faqe 111 · D1–D2','S. 111 · D1–D2'],
+  sq:'Salzburgu në 100 minuta', de:'S. 111: Informationsbroschüre',
+  desc:'Lexo broshurën dhe përgjigju pyetjeve si në libër.',
+  tip:'Wie lange …? → Von … bis … · Wann …? → um 14 Uhr · Wie oft …? → dreimal am Tag.',
+  read:'<b>Salzburg in 100 Minuten</b><br>Sie sind nur für wenige Stunden in Salzburg? Besichtigen Sie die „Mozartstadt“ in nur 100 Minuten. Auf dem Stadtrundgang lernen Sie die wichtigsten Sehenswürdigkeiten kennen.<br><br>Beginnen Sie den Rundgang an der Getreidegasse. Sie ist die Einkaufsstraße in Salzburg – hier gibt es einfach alles. In der Getreidegasse 9 ist der berühmte Komponist Wolfgang Amadeus Mozart geboren.<br><i>Mehr Zeit? Besuchen Sie das Museum in Mozarts Geburtshaus. Öffnungszeiten: täglich 9.00–17.30 Uhr. Preis: 10,00 Euro für Erwachsene, 3,50 Euro für Kinder, 50 % Ermäßigung für Gruppen, Studenten und Senioren.</i><br><br>Spazieren Sie weiter zur Hofstallgasse. Dort sehen Sie drei Spielorte für die Salzburger Festspiele: das Haus für Mozart, die Felsenreitschule und das Große Festspielhaus. Das ganze Jahr finden hier Konzerte und Opernaufführungen statt.<br><i>Mehr Zeit? Besichtigen Sie die Festspielhäuser bei einer Führung: täglich um 14.00 Uhr. Dauer: 50 Minuten. Sprachen: Deutsch und Englisch.</i><br><br>Nun kommen Sie zum Dom. Dort findet jedes Jahr die Aufführung „Jedermann“ statt. Vom Dom sind es nur ein paar Schritte zum Residenzplatz. Dort gibt es viele schöne Gebäude, zum Beispiel die Neue Residenz mit dem Glockenspiel.<br><i>Tipp: Täglich um 7.00, 11.00 und 18.00 Uhr spielt das Glockenspiel Melodien von Haydn und Mozart.</i><br><br><b>Mozartstadt Salzburg</b>: ca. 148.000 Einwohner · Festspielstadt · Informationen, Stadtpläne, Hotelauskunft, Tickets und vieles mehr gibt es bei der Tourist-Info Salzburg.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te D2a i ke shkruar saktë: <b>1</b> einkaufen, Mozarts Geburtshaus besuchen · <b>3</b> 10 Euro · <b>5</b> 50 Minuten. 👏'},
+    {t:'Kujdes nga kurthet! 👀', d:'Achtung, Fallen!', p:'Te pyetjet 2 dhe 4 shiko mirë orën në tekst. Pyetjet 6 dhe 7 mbetën bosh: tani i bën! 💪',
+     ex:[['Täglich von 9.00 bis 17.30 Uhr.','Çdo ditë nga 9:00 deri 17:30.'],['Täglich um 14.00 Uhr.','Çdo ditë në orën 14:00.']],
+     tip:'Për orën: <b>um</b> 14 Uhr. <b>am</b> është për ditët: am Montag. <i class="tr">(në orën 14 · të hënën)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', read:true, topic:'lesen', psq:'D1 Për çfarë jep informacion?', pde:'D1 Worüber bekommen Sie Informationen?', q:'Worüber gibt die Broschüre KEINE Information?', o:['Konzertprogramm','Preise','Öffnungszeiten','Führungen'], a:'Konzertprogramm', e:'Ka vende për t’u parë, çmime, orare dhe vizita me guidë, por jo programin e koncerteve.'},
+    {type:'cloze', read:true, psq:'D2a Përgjigju pyetjeve', pde:'D2a Beantworten Sie die Fragen',
+     text:'1  Was kann man in der Getreidegasse machen?\n– Man kann dort [[einkaufen]] und Mozarts [[Geburtshaus]] besuchen.\n2  Wie lange ist das Museum in Mozarts Geburtshaus geöffnet?\n– Täglich von [[9.00;9;9:00;9.00 Uhr]] bis [[17.30;17:30]] Uhr.\n3  Wie viel kostet der Eintritt für Erwachsene?\n– [[10;10,00;10.00;zehn]] Euro.\n4  Wann kann man die Festspielhäuser besichtigen?\n– Täglich [[um]] [[14.00;14;14:00;vierzehn]] Uhr.\n5  Wie lange dauert die Führung?\n– [[50;fünfzig]] Minuten.\n6  Wie oft spielt das Glockenspiel in der Neuen Residenz?\n– [[Dreimal;3-mal;3 mal;drei mal]] am Tag.\n7  Wo gibt es Stadtpläne?\n– Bei der [[Tourist-Info;Touristinfo;Tourist-Info Salzburg;Touristeninformation]].',
+     e:'einkaufen, Geburtshaus · 9.00–17.30 · 10 Euro · um 14.00 · 50 Minuten · dreimal · Tourist-Info.'},
+    {type:'gap', row:true, topic:'modal', psq:'D2b Bisedë', pde:'D2b Sprechen Sie', s:'Entschuldigung. Ich brauche eine Auskunft. ___ ich Sie etwas fragen?', o:['Darf','Muss','Darfst'], a:'Darf', e:'Darf ich Sie etwas fragen? = A mund t’ju pyes diçka?'}
+  ]
+},
+
+/* ---------- S. 112–113: Ein Zimmer buchen ---------- */
+{
+  id:'hw12-s112', emoji:'🏨', color:'#D6409F', seq:true, book:['faqe 112–113 · E1, E3','S. 112–113 · E1, E3'],
+  sq:'Rezervoj një dhomë', de:'S. 112–113: Ein Zimmer buchen',
+  desc:'Tri hotele në Lucernë dhe biseda në recepsion (E1, E3a).',
+  tip:'DZ = Doppelzimmer. Frühstück extra = mëngjesi paguhet veç. Halbpension = mëngjes + darkë.',
+  read:'<b>Backpacker Hostel</b> ★★ · Gut 7,2<br>DZ 89,00 CHF (72,82 EUR)<br>Lage: in 30 Minuten zur Altstadt und zum See; Bushaltestelle 2 Minuten<br>Zimmer: Dusche, WC, TV<br>Frühstück extra, Restaurant, Bar (bis 24 Uhr geöffnet)<br>👍 Supermarkt neben dem Haus, Parkplätze kostenlos<br><br><b>Easy Tourist Hotel</b> ★★★ · Sehr gut 8,5<br>DZ mit Frühstück 109,00 CHF (89,02 EUR)<br>Lage: zentral gelegen in der Altstadt<br>Zimmer: Dusche, WC, Föhn, TV, Klimaanlage, kostenloses WLAN, Balkon mit Berg- oder Seeblick<br>👍 Hunde erlaubt<br><br><b>Hotel Romantica</b> ★★★★ · Exzellent 9,2<br>DZ mit Frühstück 185,00 CHF (151,37 EUR)<br>Lage: zentral, Nähe Kongresszentrum<br>Zimmer: Dusche, WC, Föhn, TV, Klimaanlage, kostenloses WLAN, Zimmersafe, Restaurant mit Terrasse<br>👍 historisches Flair, Schwimmbad, Massage',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Alles richtig!', p:'Te E3a i ke renditur <b>të gjitha fjalitë saktë</b> (1–6) dhe vetë ke shkruar <b>Kann ich Ihnen helfen?</b> 👏',
+     tip:'🛎️ = recepsioni · 🙋 = Moritz Burger. Në Zvicër: <b>Grüezi</b> = Guten Tag, <b>Kafi</b> = Kaffee, <b>Rahm</b> = Sahne.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', read:true, topic:'lesen', psq:'E1 Çfarë përshtatet?', pde:'E1 Was passt?', q:'Welches Hotel liegt NICHT im Zentrum?', o:['Backpacker Hostel','Easy Tourist Hotel','Hotel Romantica'], a:'Backpacker Hostel', e:'„in 30 Minuten zur Altstadt“: jo në qendër.'},
+    {type:'mc', read:true, topic:'lesen', psq:'E1 Çfarë përshtatet?', pde:'E1 Was passt?', q:'Wo ist das Frühstück NICHT inklusive?', o:['Backpacker Hostel','Easy Tourist Hotel','Hotel Romantica'], a:'Backpacker Hostel', e:'„Frühstück extra“.'},
+    {type:'mc', read:true, topic:'lesen', psq:'E1 Çfarë përshtatet?', pde:'E1 Was passt?', q:'Welches Hotel hat einen Balkon?', o:['Easy Tourist Hotel','Backpacker Hostel','Hotel Romantica'], a:'Easy Tourist Hotel', e:'„Balkon mit Berg- oder Seeblick“.'},
+    {type:'mc', read:true, topic:'lesen', psq:'E1 Çfarë përshtatet?', pde:'E1 Was passt?', q:'Welches Hotel hat KEIN Restaurant?', o:['Easy Tourist Hotel','Backpacker Hostel','Hotel Romantica'], a:'Easy Tourist Hotel', e:'Backpacker: Restaurant, Bar · Romantica: Restaurant mit Terrasse.'},
+    {type:'mc', read:true, topic:'lesen', psq:'E1 Çfarë përshtatet?', pde:'E1 Was passt?', q:'Welches Hotel hat ein Schwimmbad?', o:['Hotel Romantica','Easy Tourist Hotel','Backpacker Hostel'], a:'Hotel Romantica', e:'„historisches Flair, Schwimmbad, Massage“.'},
+    {type:'mc', read:true, topic:'lesen', psq:'E1 Çfarë përshtatet?', pde:'E1 Was passt?', q:'Wo gibt es KEINE Klimaanlage und KEIN kostenloses WLAN?', o:['Backpacker Hostel','Easy Tourist Hotel','Hotel Romantica'], a:'Backpacker Hostel', e:'Backpacker: vetëm Dusche, WC, TV.'},
+    {type:'gap', psq:'E3a Rendit: 🛎️ recepsioni', pde:'E3a Ordnen Sie zu', s:'🛎️ Grüezi mitenand. ___', o:['Kann ich Ihnen helfen?','Wir haben ein Doppelzimmer reserviert.','Hier, unsere Ausweise.','Wann müssen wir am Sonntag auschecken?'], a:'Kann ich Ihnen helfen?', e:'Recepsioni pyet: Kann ich Ihnen helfen?'},
+    {type:'gap', psq:'E3a Rendit: 🙋 Moritz', pde:'E3a Ordnen Sie zu', s:'🙋 Guten Tag. Mein Name ist Burger. ___', o:['Wir haben ein Doppelzimmer reserviert.','Möchten Sie Vollpension oder Halbpension?','Da müssen Sie noch kurz warten.','Kann ich Ihnen helfen?'], a:'Wir haben ein Doppelzimmer reserviert.', e:'Mysafiri: Wir haben ein Doppelzimmer reserviert.'},
+    {type:'gap', psq:'E3a Rendit: 🛎️ recepsioni', pde:'E3a Ordnen Sie zu', s:'🛎️ Burger … Ah ja, Burger, Moritz und Anna. Das Zimmer ist leider noch nicht ganz fertig. ___ Möchten Sie so lange ein Kafi Melange trinken?', o:['Da müssen Sie noch kurz warten.','Hier, unsere Ausweise.','Können Sie das bitte wiederholen?','Kann ich Ihnen helfen?'], a:'Da müssen Sie noch kurz warten.', e:'Dhoma s’është gati → duhet të prisni pak.'},
+    {type:'gap', psq:'E3a Rendit: 🙋 Moritz', pde:'E3a Ordnen Sie zu', s:'🙋 Wie bitte? ___ – 🛎️ Ein Kafi Melange. Das ist ein Kaffee mit Rahm, äh, mit Sahne.', o:['Können Sie das bitte wiederholen?','Hier, unsere Ausweise.','Wann müssen wir am Sonntag auschecken?','Wir haben ein Doppelzimmer reserviert.'], a:'Können Sie das bitte wiederholen?', e:'Wie bitte? → Können Sie das bitte wiederholen?'},
+    {type:'gap', psq:'E3a Rendit: 🛎️ recepsioni', pde:'E3a Ordnen Sie zu', s:'🛎️ Ich brauche Ihre Ausweise und Sie müssen bitte das Formular ausfüllen. ___ – 🙋 Nur Frühstück, bitte. Wir sind den ganzen Tag unterwegs.', o:['Möchten Sie Vollpension oder Halbpension?','Da müssen Sie noch kurz warten.','Kann ich Ihnen helfen?','Können Sie das bitte wiederholen?'], a:'Möchten Sie Vollpension oder Halbpension?', e:'„Nur Frühstück“ është përgjigje për Vollpension oder Halbpension.'},
+    {type:'gap', psq:'E3a Rendit: 🙋 Moritz', pde:'E3a Ordnen Sie zu', s:'🙋 ___ – 🛎️ Ah, danke. Hier ist Ihr Schlüssel, Zimmer Nummer 234. Der Lift ist dort.', o:['Hier, unsere Ausweise.','Wann müssen wir am Sonntag auschecken?','Können Sie das bitte wiederholen?','Wir haben ein Doppelzimmer reserviert.'], a:'Hier, unsere Ausweise.', e:'Recepsioni kërkoi letërnjoftimet → Hier, unsere Ausweise.'},
+    {type:'gap', psq:'E3a Rendit: 🙋 Moritz', pde:'E3a Ordnen Sie zu', s:'🙋 Eine Frage noch, bitte: ___ – 🛎️ Um 11 Uhr.', o:['Wann müssen wir am Sonntag auschecken?','Können Sie das bitte wiederholen?','Hier, unsere Ausweise.','Wir haben ein Doppelzimmer reserviert.'], a:'Wann müssen wir am Sonntag auschecken?', e:'Um 11 Uhr → pyetja me Wann.'},
+    {type:'order', psq:'E3b Partneri A', pde:'E3b Partner A', de:'Ich habe ein Einzelzimmer reserviert.', sq:'Kam rezervuar një dhomë teke.'},
+    {type:'order', psq:'E3b Partneri A', pde:'E3b Partner A', de:'Von wann bis wann gibt es Frühstück?', sq:'Nga sa deri sa ka mëngjes?'},
+    {type:'gap', row:true, topic:'zeit', psq:'E3b Partneri B', pde:'E3b Partner B', s:'Frühstück gibt es von 8 ___ 10 Uhr.', o:['bis','um','am'], a:'bis', e:'von … bis … = nga … deri …'}
+  ]
+},
+
+/* ---------- S. 118–119: Folge 10 ---------- */
+{
+  id:'hw12-s118', emoji:'💙', color:'#2E86DE', seq:true, book:['faqe 118–119 · historia','S. 118–119 · Foto-Hörgeschichte'],
+  sq:'Historia: Sytë tanë janë kaq blu', de:'S. 118–119: Folge 10',
+  desc:'Fjalët nga fotot, kush thotë çfarë dhe çfarë ndodh pastaj.',
+  tip:'Klub → Unfall → Krankenhaus (Notaufnahme) → Arzt → Schmerztabletten.',
+  read:'Ioanna und Lara haben im Klub getanzt. Dann hatte Ioanna einen Unfall: Ihr Auge ist blau und sie hat Schmerzen. Ioanna sagt: „Mein Auge tut weh!“ Lara sagt: „Wir gehen zum Arzt.“<br><br>Die Mädchen gehen ins Krankenhaus, in die Notaufnahme. Lara sagt zur Mitarbeiterin: „Meine Freundin hatte einen Unfall.“ Ioanna füllt ein Formular aus. Die Mitarbeiterin sagt: „Der Doktor kommt gleich.“ Dann warten sie im Wartebereich.<br><br>Der Arzt fragt: „Na, wo haben Sie denn Schmerzen?“ Dann sagt er: „Es ist nicht schlimm.“ Er gibt Ioanna Schmerztabletten. Ioanna sagt zu Lara: „Ich soll das Auge kühlen.“<br><br>Zum Schluss hat Lara auch ein blaues Auge. Die beiden Mädchen sind lustig und singen „Unsere Augen sind so blau“.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Alles richtig!', p:'Te ushtrimi 3 i ke renditur <b>të 8 fjalitë saktë</b> dhe te ushtrimi 2 i ke lidhur mirë. Tani edhe një herë këtu! 😊'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', psq:'1 Fjalët nga fotot', pde:'1 Sehen Sie die Fotos an', pairs:[['der Klub','klubi'],['die Notaufnahme','urgjenca'],['der Arzt','mjeku'],['der Wartebereich','dhoma e pritjes'],['die Schmerztablette','tableta kundër dhimbjes']]},
+    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'a  „Mein Auge tut weh!“', o:['Laras Freundin Ioanna','Lara','der Arzt','die Mitarbeiterin'], a:'Laras Freundin Ioanna', e:'Ioanna ka dhimbje në sy.'},
+    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'b  „Meine Freundin hatte einen Unfall.“', o:['Lara','Laras Freundin Ioanna','der Arzt','die Mitarbeiterin'], a:'Lara', e:'Lara flet për Ioannën.'},
+    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'c  „Der Doktor kommt gleich.“', o:['die Mitarbeiterin','der Arzt','Lara','Laras Freundin Ioanna'], a:'die Mitarbeiterin', e:'Punonjësja e urgjencës.'},
+    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'d  „Na, wo haben Sie denn Schmerzen?“', o:['der Arzt','die Mitarbeiterin','Lara','Laras Freundin Ioanna'], a:'der Arzt', e:'Mjeku pyet.'},
+    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'e  „Wir gehen zum Arzt.“', o:['Lara','der Arzt','die Mitarbeiterin','Laras Freundin Ioanna'], a:'Lara', e:'Lara e çon shoqen te mjeku.'},
+    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'f  „Ich soll das Auge kühlen.“', o:['Laras Freundin Ioanna','Lara','der Arzt','die Mitarbeiterin'], a:'Laras Freundin Ioanna', e:'Ioanna i tregon Larës çfarë tha mjeku.'},
+    {type:'gap', psq:'3 Rendit: çfarë ndodh pastaj?', pde:'3 Ordnen Sie die Sätze', s:'1 Ioanna und Lara haben im Klub getanzt. → 2 ___', o:['Ioanna hat einen Unfall. Das Auge ist blau.','Ioanna füllt ein Formular aus.','Der Arzt gibt Ioanna Schmerztabletten.','Die beiden Mädchen singen.'], a:'Ioanna hat einen Unfall. Das Auge ist blau.', e:'Pas klubit: aksidenti.'},
+    {type:'gap', psq:'3 Rendit: çfarë ndodh pastaj?', pde:'3 Ordnen Sie die Sätze', s:'2 Ioanna hat einen Unfall. → 3 ___', o:['Die Mädchen gehen ins Krankenhaus.','Der Arzt sagt: Es ist nicht schlimm.','Lara hat auch ein blaues Auge.','Ioanna und Lara haben im Klub getanzt.'], a:'Die Mädchen gehen ins Krankenhaus.', e:'Pas aksidentit: në spital.'},
+    {type:'gap', psq:'3 Rendit: çfarë ndodh pastaj?', pde:'3 Ordnen Sie die Sätze', s:'3 Die Mädchen gehen ins Krankenhaus. → 4 ___', o:['Ioanna füllt ein Formular aus.','Die beiden Mädchen singen.','Lara hat auch ein blaues Auge.','Der Arzt gibt Ioanna Schmerztabletten.'], a:'Ioanna füllt ein Formular aus.', e:'Në urgjencë së pari plotëson formularin.'},
+    {type:'gap', psq:'3 Rendit: çfarë ndodh pastaj?', pde:'3 Ordnen Sie die Sätze', s:'5 Der Arzt sagt: Es ist nicht schlimm. → 6 ___', o:['Der Arzt gibt Ioanna Schmerztabletten.','Ioanna füllt ein Formular aus.','Die Mädchen gehen ins Krankenhaus.','Ioanna hat einen Unfall.'], a:'Der Arzt gibt Ioanna Schmerztabletten.', e:'Pastaj mjeku jep tableta.'},
+    {type:'gap', psq:'3 Rendit: çfarë ndodh pastaj?', pde:'3 Ordnen Sie die Sätze', s:'7 Lara hat auch ein blaues Auge. → 8 ___', o:['Die beiden Mädchen sind lustig und singen „Unsere Augen sind so blau“.','Ioanna füllt ein Formular aus.','Die Mädchen gehen ins Krankenhaus.','Ioanna und Lara haben im Klub getanzt.'], a:'Die beiden Mädchen sind lustig und singen „Unsere Augen sind so blau“.', e:'Në fund këndojnë të dyja. 🎶'}
+  ]
+},
+
+/* ---------- S. 120: Körper, sein/ihr ---------- */
+{
+  id:'hw12-s120', emoji:'🤕', color:'#F2545B', seq:true, book:['faqe 120 · A1–A4','S. 120 · A1–A4'],
+  sq:'Ihr Auge tut weh', de:'S. 120: Körperteile, sein / ihr',
+  desc:'Pjesët e trupit, tabela sein / ihr dhe çfarë u dhemb personave.',
+  tip:'Bert → sein Kopf, seine Hand, seine Ohren. Hanna → ihr Kopf, ihre Hand, ihre Ohren.',
+  lesson:[
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'Te A1 dhe A3 i ke bërë <b>të gjitha mirë</b> ✓ (sein Hals, ihr Rücken, ihre Ohren, sein Arm, ihr Bein). Vetëm te tabela A2:',
+     fix:[['seinen Ohren','seine Ohren','die Ohren = shumës → seine, pa -n.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', psq:'A1 Rendit', pde:'A1 Ordnen Sie zu', pairs:[['das Bein','këmba'],['das Ohr','veshi'],['der Arm','krahu'],['der Finger','gishti i dorës'],['der Kopf','koka']]},
+    {type:'match', psq:'A1 Rendit', pde:'A1 Ordnen Sie zu', pairs:[['die Nase','hunda'],['der Mund','goja'],['der Hals','qafa'],['der Rücken','shpina'],['der Bauch','barku']]},
+    {type:'table', topic:'possessiv', psq:'A2 Plotëso tabelën: Bert', pde:'A2 Ergänzen Sie die Tabelle', th:['','Bert (er)'],
+     rows:[['Kopf','sein'],['Bein','sein',true],['Hand','seine',true],['Ohren','seine']], e:'sein Kopf, sein Bein, seine Hand, seine Ohren.'},
+    {type:'table', topic:'possessiv', psq:'A2 Plotëso tabelën: Hanna', pde:'A2 Ergänzen Sie die Tabelle', th:['','Hanna (sie)'],
+     rows:[['Kopf','ihr',true],['Bein','ihr'],['Hand','ihre'],['Ohren','ihre',true]], e:'ihr Kopf, ihr Bein, ihre Hand, ihre Ohren.'},
+    {type:'cloze', topic:'possessiv', psq:'A3 Çfarë u dhemb?', pde:'A3 Was tut den Personen weh?', h:'👨 = er, 👩 = sie. Shkruaj fjalën gjermanisht për pjesën e trupit.',
+     text:'A  👨 (qafa) → [[sein]] [[Hals]]\nB  👩 (shpina) → [[ihr]] [[Rücken]]\nC  👩 (veshët) → [[ihre]] [[Ohren]]\nD  👨 (krahu) → [[sein]] [[Arm]]\nE  👩 (këmba) → [[ihr]] [[Bein]]',
+     e:'sein Hals, ihr Rücken, ihre Ohren, sein Arm, ihr Bein.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'A4 Loja e përbindëshit 👾', pde:'A4 Monsterspiel', s:'Mein Monster heißt Irene. ___ Kopf ist sehr schmal.', o:['Ihr','Ihre','Sein'], a:'Ihr', e:'Irene = sie, der Kopf → ihr.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'A4 Loja e përbindëshit 👾', pde:'A4 Monsterspiel', s:'Mein Monster heißt Irene. ___ Haare sind kurz.', o:['Ihre','Ihr','Ihren'], a:'Ihre', e:'die Haare (shumës) → ihre.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'A4 Loja e përbindëshit 👾', pde:'A4 Monsterspiel', s:'Mein Monster heißt Hans. ___ Zähne sind sehr groß.', o:['Seine','Sein','Seinen'], a:'Seine', e:'Hans = er, die Zähne (shumës) → seine.'}
+  ]
+},
+
+/* ---------- S. 121: unser, euer, ihr ---------- */
+{
+  id:'hw12-s121', emoji:'👫', color:'#7650F0', seq:true, book:['faqe 121 · B1–B3','S. 121 · B1–B3'],
+  sq:'Unsere Augen sind so blau', de:'S. 121: unser, euer, ihr',
+  desc:'E-maili i Ioannës dhe tri mesazhe: kush shkruan dhe tabelat e Possessivartikel.',
+  tip:'wir → unser / unsere · ihr → euer / eure · sie → ihr / ihre (shumës pa -n).',
+  read:'<b>E-Mail von Ioanna</b><br>Liebe Lara,<br>das ist jetzt unser Lied: „Unsere Augen sind so blau“! Lara, Du bist toll! Vielen Dank für alles. Unser Abend war super.<br>Du, Carlos hat geschrieben: Frau Weber, unsere Lehrerin, ist krank. Das heißt, unser Unterricht fällt morgen aus.<br>Bis Donnerstag, Deine Ioanna<br><br><b>Nachricht 1</b><br>Oh, nein, nun sind Julia und Jan beide krank. Ihre Ohren tun sehr weh. Wir gehen jetzt zum Kinderarzt. Kannst Du einkaufen gehen, Schatz? Küsse von Marie<br><br><b>Nachricht 2</b><br>Und Eure Mutter? Ist sie wieder gesund? Hoffentlich! Könnt Ihr dann zu uns zum Essen kommen? Alle Freunde und Bekannten kommen! Ihr auch, ja? Anna<br><br><b>Nachricht 3</b><br>Wie war Euer Termin mit Frau Pfeiffer? Ich komme morgen wieder in die Arbeit. Bin wieder gesund. Heike',
+  lesson:[
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'Te B1 dhe B2a i ke bërë <b>të gjitha mirë</b> ✓ (1 E, 2 F, 3 K). Vetëm te tabela B2b:',
+     fix:[['ihren Ohren','ihre Ohren','die Ohren = shumës → ihre, pa -n.']]},
+    {t:'morgen apo Morgen? ☀️', d:'Deine Notiz', p:'Shënimi yt: <b>morgen</b> (e vogël) = nesër · <b>der Morgen</b> (e madhe) = mëngjesi.',
+     ex:[['Unser Unterricht fällt morgen aus.','Mësimi ynë nesër nuk mbahet.'],['Heute Morgen war ich beim Arzt.','Sot në mëngjes isha te mjeku.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'B1a Çfarë është e saktë?', pde:'B1a Was ist richtig?', q:'1  Ioanna will „danke“ sagen.', o:['richtig','falsch'], a:'richtig', e:'„Vielen Dank für alles.“'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'B1a Çfarë është e saktë?', pde:'B1a Was ist richtig?', q:'2  Carlos ist krank.', o:['richtig','falsch'], a:'falsch', e:'Frau Weber është e sëmurë, jo Carlos.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'B1a Çfarë është e saktë?', pde:'B1a Was ist richtig?', q:'3  Ioanna informiert Lara: Sie haben morgen keinen Unterricht.', o:['richtig','falsch'], a:'richtig', e:'„… unser Unterricht fällt morgen aus.“'},
+    {type:'table', read:true, topic:'possessiv', psq:'B1b Plotëso tabelën', pde:'B1b Ergänzen Sie die Tabelle', th:['','wir'],
+     rows:[['Abend','unser'],['Lied','unser'],['Lehrerin','unsere'],['Augen','unsere']], e:'unser Abend, unser Lied, unsere Lehrerin, unsere Augen.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'B2a Kush shkruan?', pde:'B2a Wer schreibt was?', q:'Nachricht 1 (Marie)', o:['eine Kollegin','eine Freundin','die Ehefrau'], a:'die Ehefrau', e:'„Schatz“, „Küsse“ dhe fëmijët → bashkëshortja.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'B2a Kush shkruan?', pde:'B2a Wer schreibt was?', q:'Nachricht 2 (Anna)', o:['eine Kollegin','eine Freundin','die Ehefrau'], a:'eine Freundin', e:'Fton miqtë për darkë → shoqja.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'B2a Kush shkruan?', pde:'B2a Wer schreibt was?', q:'Nachricht 3 (Heike)', o:['eine Kollegin','eine Freundin','die Ehefrau'], a:'eine Kollegin', e:'„Ich komme morgen wieder in die Arbeit.“ → kolegia.'},
+    {type:'table', read:true, topic:'possessiv', psq:'B2b Plotëso tabelën: ihr', pde:'B2b Ergänzen Sie die Tabelle', th:['','ihr (ju)'],
+     rows:[['Termin','euer'],['Lied','euer',true],['Mutter','eure'],['Ohren','eure',true]], e:'euer Termin, euer Lied, eure Mutter, eure Ohren.'},
+    {type:'table', read:true, topic:'possessiv', psq:'B2b Plotëso tabelën: sie', pde:'B2b Ergänzen Sie die Tabelle', th:['','sie (ata)'],
+     rows:[['Termin','ihr',true],['Lied','ihr',true],['Mutter','ihre',true],['Ohren','ihre']], e:'ihr Termin, ihr Lied, ihre Mutter, ihre Ohren (pa -n).'},
+    {type:'gap', row:true, topic:'possessiv', psq:'B3 Mesazhe në kurs', pde:'B3 Im Kurs: Nachrichten', s:'Wann machen wir ___ Hausaufgaben? – Um 15 Uhr.', o:['unsere','unser','euer'], a:'unsere', e:'wir + die Hausaufgaben (shumës) → unsere.'},
+    {type:'gap', row:true, psq:'morgen apo Morgen?', pde:'morgen oder Morgen?', s:'Ich komme ___ wieder in die Arbeit.', o:['morgen','Morgen'], a:'morgen', e:'morgen = nesër, me shkronjë të vogël.'}
+  ]
+}
+  ]
+},
+{
+  id:'l13', date:'2026-11-06', added:'2026-11-06T11:34', emoji:'📝',
+  sq:'Detyrat: Fletorja, mësimi 8–10', de:'Hausaufgaben · Arbeitsbuch Lektion 8–10',
+  parts:[
+
+/* ---------- AB S. 93: vor, seit, für ---------- */
+{
+  id:'hw13-s93', lek:8, pg:93, emoji:'⏳', color:'#2E86DE', seq:true, book:['faqe 93 · ushtrimi 27–30','S. 93 · Üb. 27–30'],
+  sq:'seit, vor apo für?', de:'S. 93: seit, vor, für',
+  desc:'Anna, Enrique dhe një udhëtim në Kinë: seit, vor dhe für.',
+  tip:'seit / vor + einem, einer, Monaten (Dativ). für + einen, ein, eine (Akkusativ).',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Alles richtig!', p:'Te <b>28</b> dhe <b>29</b> i ke bërë <b>të gjitha saktë</b>: für ein Jahr, vor drei Monaten, für sechs Monate, für einen Tag, vor einem Jahr · seit / vor ein<b>em</b>, ein<b>er</b>, Monate<b>n</b> · für ein<b>en</b>, ein, ein<b>e</b>. 👏',
+     tip:'<b>seit</b> = që prej (deri sot) · <b>vor</b> = para · <b>für</b> = për (sa kohë) <i class="tr">(seit einem Jahr · vor einem Jahr · für ein Jahr)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'gap', row:true, topic:'zeit', psq:'27 Çfarë është e saktë?', pde:'27 Was ist richtig?', s:'Nächstes Jahr möchte ich ___ mindestens vier Wochen nach China fahren.', o:['seit','vor','für'], a:'für', e:'Sa kohë (në të ardhmen) → für.'},
+    {type:'gap', row:true, topic:'zeit', psq:'27 Çfarë është e saktë?', pde:'27 Was ist richtig?', s:'Ich war ___ einem Jahr schon einmal in Shanghai.', o:['seit','vor','für'], a:'vor', e:'Në të kaluarën → vor einem Jahr.'},
+    {type:'gap', row:true, topic:'zeit', psq:'27 Çfarë është e saktë?', pde:'27 Was ist richtig?', s:'Jetzt lerne ich ___ drei Monaten Chinesisch.', o:['seit','vor','für'], a:'seit', e:'Filloi para 3 muajsh dhe vazhdon → seit.'},
+    {type:'gap', row:true, topic:'zeit', psq:'27 Çfarë është e saktë?', pde:'27 Was ist richtig?', s:'Kim aus Peking kenne ich ___ zwei Wochen.', o:['seit','vor','für'], a:'seit', e:'E njoh që prej 2 javësh → seit.'},
+    {type:'gap', row:true, topic:'zeit', psq:'27 Çfarë është e saktë?', pde:'27 Was ist richtig?', s:'Jeden Tag sprechen wir ___ zwei Stunden nur Chinesisch.', o:['seit','vor','–'], a:'–', full:'Jeden Tag sprechen wir zwei Stunden nur Chinesisch.', e:'Këtu nuk duhet parafjalë: zwei Stunden.'},
+    {type:'gap', row:true, topic:'zeit', psq:'27 Çfarë është e saktë?', pde:'27 Was ist richtig?', s:'Ich möchte ___ ein Jahr in China arbeiten.', o:['seit','vor','für'], a:'für', e:'für ein Jahr = për një vit.'},
+    {type:'gap', row:true, topic:'zeit', psq:'28a Anna', pde:'28a Anna', s:'Anna ist ___ fertig mit der Schule.', o:['seit einer Woche','für eine Woche'], a:'seit einer Woche', e:'Që prej një jave → seit einer Woche.'},
+    {type:'gap', row:true, topic:'zeit', psq:'28a Anna', pde:'28a Anna', s:'Nun möchte sie ___ in Irland arbeiten.', o:['für ein Jahr','seit einem Jahr'], a:'für ein Jahr', e:'Plani: për një vit → für ein Jahr.'},
+    {type:'gap', row:true, topic:'zeit', psq:'28a Anna', pde:'28a Anna', s:'Sie hat schon ___ eine Bewerbung geschrieben.', o:['vor drei Monaten','für drei Monate'], a:'vor drei Monaten', e:'Para 3 muajsh → vor drei Monaten.'},
+    {type:'gap', row:true, topic:'zeit', psq:'28b Enrique', pde:'28b Enrique', s:'Enrique hat am Wochenende Zeit. Er sucht ___ einen Job.', o:['für sechs Monate','vor einem Monat'], a:'für sechs Monate', e:'Sa kohë → für sechs Monate.'},
+    {type:'gap', row:true, topic:'zeit', psq:'28b Enrique', pde:'28b Enrique', s:'Er möchte eine Arbeit ___ am Wochenende.', o:['für einen Tag','vor einem Tag'], a:'für einen Tag', e:'für einen Tag am Wochenende.'},
+    {type:'gap', row:true, topic:'zeit', psq:'28b Enrique', pde:'28b Enrique', s:'___ hatte er einen Job als Kellner.', h:'Kur? (wann?)', o:['Vor einem Jahr','Für ein Jahr'], a:'Vor einem Jahr', e:'Kur? → Vor einem Jahr (para një viti).'},
+    {type:'cloze', topic:'zeit', psq:'29 Plotëso tabelën', pde:'29 Ergänzen Sie die Tabelle',
+     text:'seit / vor:  ein[[em]] Monat · ein[[em]] Jahr · ein[[er]] Woche · drei Monate[[n]]\nfür:  ein[[en]] Monat · ein Jahr · ein[[e]] Woche · drei Monate',
+     e:'seit / vor: einem, einem, einer, Monaten · für: einen, ein, eine, Monate.'},
+    {type:'cloze', topic:'zeit', psq:'30 für, seit apo vor?', pde:'30 Ergänzen Sie für, seit und vor',
+     text:'Ich lebe seit einem Jahr in Berlin.\nAnna hat [[vor]] drei Monaten einen Job gefunden.\nAnna möchte [[für]] ein Jahr in Irland arbeiten.',
+     e:'hat … gefunden (e kaluar) → vor · möchte … arbeiten → für.'}
+  ]
+},
+
+/* ---------- AB S. 95: Am Telefon ---------- */
+{
+  id:'hw13-s95', lek:8, pg:95, emoji:'📞', color:'#0E9F8E', seq:true, book:['faqe 95 · ushtrimi 33–34','S. 95 · Üb. 33–34'],
+  sq:'Në telefon: A është vendi i lirë?', de:'S. 95: Am Telefon',
+  desc:'Sandra Wolf pyet për një praktikë dhe Christine Meinert për një punë si guidë.',
+  tip:'Ist die Stelle noch frei? · Wie lange dauert …? · Bekomme ich Geld? · Auf Wiederhören!',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Alles richtig!', p:'Te <b>33</b> i ke shkruar <b>të gjitha fjalët saktë</b> (Praktikantin, Bereich, frei, dauert, Arbeitszeit, leider, normalerweise, Bekomme, zahlen, Stunde, schriftlich) dhe te <b>34</b> e ke renditur bisedën <b>1–9 saktë</b>. 👏',
+     tip:'Në telefon: <b>Auf Wiederhören!</b> (jo Auf Wiedersehen) <i class="tr">(mirupafshim, në telefon)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'letters', psq:'33a Plotëso', pde:'33a Ergänzen Sie', s:'Ich habe Ihre Anzeige gelesen. Sie suchen eine ___ im Bereich Mode.', a:'Praktikantin', mix:'ktitinkanPra', h:'ktitinkanPra', e:'eine Praktikantin.'},
+    {type:'letters', psq:'33a Plotëso', pde:'33a Ergänzen Sie', s:'Sie suchen eine Praktikantin im ___ Mode.', a:'Bereich', mix:'reicheB', h:'reicheB', e:'im Bereich Mode = në fushën e modës.'},
+    {type:'letters', psq:'33a Plotëso', pde:'33a Ergänzen Sie', s:'Ist die Stelle noch ___?', a:'frei', mix:'frie', h:'frie', e:'frei = e lirë.'},
+    {type:'letters', psq:'33b Plotëso', pde:'33b Ergänzen Sie', s:'Wie lange ___ das Praktikum? – Sechs Monate.', a:'dauert', mix:'ertaud', h:'ertaud', e:'das Praktikum dauert.'},
+    {type:'letters', psq:'33b Plotëso', pde:'33b Ergänzen Sie', s:'Und wie ist die ___?', a:'Arbeitszeit', mix:'zeitbeitsAr', h:'zeitbeitsAr', e:'die Arbeitszeit = orari i punës.'},
+    {type:'letters', psq:'33b Plotëso', pde:'33b Ergänzen Sie', s:'Das weiß ich ___ nicht genau.', a:'leider', mix:'derlei', h:'derlei', e:'leider = fatkeqësisht.'},
+    {type:'letters', psq:'33b Plotëso', pde:'33b Ergänzen Sie', s:'Aber ___ sind wir montags bis freitags von 9–18 Uhr hier.', a:'normalerweise', mix:'norsemalerwei', h:'norsemalerwei', e:'normalerweise = zakonisht.'},
+    {type:'letters', psq:'33c Plotëso', pde:'33c Ergänzen Sie', s:'___ ich für das Praktikum Geld?', a:'Bekomme', mix:'mekomBe', h:'mekomBe', e:'ich bekomme.'},
+    {type:'letters', psq:'33c Plotëso', pde:'33c Ergänzen Sie', s:'Wir ___ 11,50 € pro Stunde.', a:'zahlen', mix:'hazlen', h:'hazlen', e:'wir zahlen.'},
+    {type:'letters', psq:'33c Plotëso', pde:'33c Ergänzen Sie', s:'Wir zahlen 11,50 € pro ___.', a:'Stunde', mix:'nutSde', h:'nutSde', e:'pro Stunde = në orë.'},
+    {type:'letters', psq:'33c Plotëso', pde:'33c Ergänzen Sie', s:'Das ist gut. Möchten Sie die Bewerbung ___?', a:'schriftlich', mix:'lichtfirsch', h:'lichtfirsch', e:'schriftlich = me shkrim.'},
+    {type:'gap', psq:'34 Rendit bisedën', pde:'34 Ordnen Sie das Gespräch', s:'🏢 Reisebüro „Globalreisen“. Münziger, guten Tag. → 👩 ___', o:['Guten Tag, mein Name ist Christine Meinert. Ich habe Ihre Anzeige gelesen. Sie suchen Reiseführer für Südengland.','Ja, genau. Ist die Stelle noch frei?','Das mache ich. Herzlichen Dank und auf Wiederhören.'], a:'Guten Tag, mein Name ist Christine Meinert. Ich habe Ihre Anzeige gelesen. Sie suchen Reiseführer für Südengland.', e:'Së pari prezantohet.'},
+    {type:'gap', psq:'34 Rendit bisedën', pde:'34 Ordnen Sie das Gespräch', s:'👩 … Sie suchen Reiseführer für Südengland. → 🏢 ___', o:['Ja, das stimmt, Frau Meinert. Haben Sie denn schon Erfahrung als Reiseführerin?','Das freut mich. Und jetzt möchten Sie wieder in England arbeiten?','Auf Wiederhören, Frau Meinert.'], a:'Ja, das stimmt, Frau Meinert. Haben Sie denn schon Erfahrung als Reiseführerin?', e:'„Ja, das stimmt“ = po, ashtu është.'},
+    {type:'gap', psq:'34 Rendit bisedën', pde:'34 Ordnen Sie das Gespräch', s:'🏢 … Haben Sie denn schon Erfahrung als Reiseführerin? → 👩 ___', o:['Ja, ich studiere Tourismus an der Universität Frankfurt und habe schon sechs Monate ein Praktikum als Reiseführerin in London gemacht. Das hat viel Spaß gemacht!','Ja, genau. Ist die Stelle noch frei?','Das mache ich. Herzlichen Dank und auf Wiederhören.'], a:'Ja, ich studiere Tourismus an der Universität Frankfurt und habe schon sechs Monate ein Praktikum als Reiseführerin in London gemacht. Das hat viel Spaß gemacht!', e:'Përvoja: praktika në Londër.'},
+    {type:'gap', psq:'34 Rendit bisedën', pde:'34 Ordnen Sie das Gespräch', s:'👩 … Das hat viel Spaß gemacht! → 🏢 ___', o:['Das freut mich. Und jetzt möchten Sie wieder in England arbeiten?','Ja. Schicken Sie mir doch bitte bald Ihre schriftliche Bewerbung per E-Mail.','Auf Wiederhören, Frau Meinert.'], a:'Das freut mich. Und jetzt möchten Sie wieder in England arbeiten?', e:'Das freut mich = më vjen mirë.'},
+    {type:'gap', psq:'34 Rendit bisedën', pde:'34 Ordnen Sie das Gespräch', s:'🏢 … Und jetzt möchten Sie wieder in England arbeiten? → 👩 ___', o:['Ja, genau. Ist die Stelle noch frei?','Das mache ich. Herzlichen Dank und auf Wiederhören.','Guten Tag, mein Name ist Christine Meinert.'], a:'Ja, genau. Ist die Stelle noch frei?', e:'Ja, genau = po, pikërisht.'},
+    {type:'gap', psq:'34 Rendit bisedën', pde:'34 Ordnen Sie das Gespräch', s:'👩 Ja, genau. Ist die Stelle noch frei? → 🏢 ___', o:['Ja. Schicken Sie mir doch bitte bald Ihre schriftliche Bewerbung per E-Mail.','Auf Wiederhören, Frau Meinert.','Ja, das stimmt, Frau Meinert. Haben Sie denn schon Erfahrung als Reiseführerin?'], a:'Ja. Schicken Sie mir doch bitte bald Ihre schriftliche Bewerbung per E-Mail.', e:'Vendi është i lirë → dërgoni aplikimin.'},
+    {type:'gap', psq:'34 Rendit bisedën', pde:'34 Ordnen Sie das Gespräch', s:'🏢 … Schicken Sie mir doch bitte bald Ihre schriftliche Bewerbung per E-Mail. → 👩 ___', o:['Das mache ich. Herzlichen Dank und auf Wiederhören.','Ja, genau. Ist die Stelle noch frei?','Auf Wiederhören, Frau Meinert.'], a:'Das mache ich. Herzlichen Dank und auf Wiederhören.', e:'Das mache ich = do ta bëj.'},
+    {type:'gap', psq:'34 Rendit bisedën', pde:'34 Ordnen Sie das Gespräch', s:'👩 Das mache ich. Herzlichen Dank und auf Wiederhören. → 🏢 ___', o:['Auf Wiederhören, Frau Meinert.','Das freut mich. Und jetzt möchten Sie wieder in England arbeiten?','Reisebüro „Globalreisen“. Münziger, guten Tag.'], a:'Auf Wiederhören, Frau Meinert.', e:'Në fund: Auf Wiederhören!'}
+  ]
+},
+
+/* ---------- AB S. 98: müssen ---------- */
+{
+  id:'hw13-s98', lek:9, pg:98, emoji:'📋', color:'#7650F0', seq:true, book:['faqe 98 · ushtrimi 1–4','S. 98 · Üb. 1–4'],
+  sq:'müssen: duhet', de:'S. 98: Sie müssen einen Antrag ausfüllen',
+  desc:'Kush duhet? Fjalitë me folje modale në tabelë dhe fjali me müssen.',
+  tip:'Folja modale në vendin 2 (në pyetje pa W- në krye), folja tjetër në fund.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>2</b> e ke plotësuar tabelën <b>saktë</b> (Wo kann ich den Ausweis abholen? … Musst du am Samstag arbeiten?) dhe te <b>4</b> i ke shkruar <b>të katër fjalitë</b> mirë. 👏',
+     tip:'Pyetje pa fjalë pyetëse: folja <b>në krye</b>, me shkronjë të madhe: <b>Musst</b> du am Samstag arbeiten? <i class="tr">(A duhet të punosh të shtunën?)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'gap', row:true, topic:'subjekt', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', s:'a  ___ musst 10 Euro bezahlen.', o:['Ich','Du'], a:'Du', e:'du musst.'},
+    {type:'gap', row:true, topic:'subjekt', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', s:'b  ___ müssen den Antrag ausfüllen.', o:['Wir','Ihr'], a:'Wir', e:'wir müssen (ihr müsst).'},
+    {type:'gap', row:true, topic:'subjekt', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', s:'c  ___ müssen einen internationalen Führerschein haben.', o:['Sie','Er'], a:'Sie', e:'Sie müssen (er muss).'},
+    {type:'gap', row:true, topic:'subjekt', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', s:'d  ___ müsst hier unterschreiben.', o:['Du','Ihr'], a:'Ihr', e:'ihr müsst (du musst).'},
+    {type:'gap', row:true, topic:'subjekt', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', s:'e  ___ muss eine Fahrkarte kaufen.', o:['Wir','Maria'], a:'Maria', e:'Maria = sie → muss.'},
+    {type:'gap', row:true, topic:'subjekt', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', s:'f  ___ muss viele Papiere zum Amt mitbringen.', o:['Ich','Jan und Eva'], a:'Ich', e:'ich muss (Jan und Eva müssen).'},
+    {type:'order', topic:'satz', psq:'2 Shkruaj fjalitë', pde:'2 Schreiben Sie Sätze', cue:'Wo – den Ausweis – kann – abholen – ich – ?', parts:['Wo','kann','ich','den Ausweis','abholen?'], de:'Wo kann ich den Ausweis abholen?', sq:'Ku mund ta marr letërnjoftimin?'},
+    {type:'order', topic:'satz', psq:'2 Shkruaj fjalitë', pde:'2 Schreiben Sie Sätze', cue:'wir – Was – mitbringen – müssen – ?', parts:['Was','müssen','wir','mitbringen?'], de:'Was müssen wir mitbringen?', sq:'Çfarë duhet të sjellim?'},
+    {type:'order', topic:'satz', psq:'2 Shkruaj fjalitë', pde:'2 Schreiben Sie Sätze', cue:'er – muss – hier – machen – Was – ?', parts:['Was','muss','er','hier','machen?'], de:'Was muss er hier machen?', sq:'Çfarë duhet të bëjë ai këtu?'},
+    {type:'order', topic:'satz', psq:'2 Shkruaj fjalitë', pde:'2 Schreiben Sie Sätze', cue:'schnell – will – Ich – Deutsch – lernen – .', parts:['Ich','will','schnell','Deutsch','lernen.'], de:'Ich will schnell Deutsch lernen.', sq:'Dua të mësoj shpejt gjermanisht.'},
+    {type:'order', topic:'satz', psq:'2 Shkruaj fjalitë', pde:'2 Schreiben Sie Sätze', cue:'am Samstag – arbeiten – du – Musst – ?', parts:['Musst','du','am Samstag','arbeiten?'], de:'Musst du am Samstag arbeiten?', sq:'A duhet të punosh të shtunën?'},
+    {type:'cloze', topic:'modal', psq:'4 Fjali me müssen', pde:'4 Schreiben Sie Sätze mit müssen',
+     text:'A  (den Antrag ausfüllen) Sie [[müssen]] den Antrag [[ausfüllen]].\nB  (zuerst das Ziel wählen) Also, wir [[müssen]] zuerst das Ziel [[wählen]].\nC  (aufstehen) Guten Morgen. Es ist 7 Uhr. Du [[musst]] [[aufstehen]].\nD  (jetzt schlafen) Es ist schon spät. Ihr [[müsst]] jetzt [[schlafen]].',
+     e:'Sie müssen, wir müssen, du musst, ihr müsst + folja në fund.'}
+  ]
+},
+
+/* ---------- AB S. 100: Imperativ ---------- */
+{
+  id:'hw13-s100', lek:9, pg:100, emoji:'👉', color:'#F2545B', seq:true, book:['faqe 100 · ushtrimi 9–11','S. 100 · Üb. 9–11'],
+  sq:'Sieh mal! Urdhërorja', de:'S. 100: Imperativ mit du und ihr',
+  desc:'Zgjidh urdhëroren, nga pyetja te urdhërorja dhe propozime: Geh doch ins Museum!',
+  tip:'du liest → Lies! · du isst → Iss! · du schläfst → Schlaf! · ihr lest → Lest!',
+  lesson:[
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'Te <b>9</b> dhe <b>10</b> pjesën tjetër e ke bërë mirë ✓ (Sieh, Komm, Bring, Sei, Nimm · Schreib, Ruf, Arbeite, Hol, Lies, Iss, Schlaf …). Vetëm një gjë:',
+     fix:[['Wählt ihr zuerst das Ziel aus!','Wählt zuerst das Ziel aus!','Urdhërorja me ihr: pa ihr. „Wählt ihr …?“ është pyetje.']]},
+    {t:'Kujdes nga kurthet! 👀', d:'Achtung, Fallen!', p:'Te disa folje zanorja ndryshon te du, por jo te ihr:',
+     ex:[['du liest → Lies! · ihr lest → Lest!','lexo! · lexoni!'],['du isst → Iss! · ihr esst → Esst!','ha! · hani!'],['du schläfst → Schlaf! · ihr schlaft → Schlaft!','fli! · flini!']],
+     tip:'du schl<b>ä</b>fst → <b>Schlaf!</b> pa ä, si te Fahr!'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'gap', row:true, topic:'imperativ', psq:'9 Çfarë është e saktë?', pde:'9 Was ist richtig?', s:'___ mal: Das Auto sieht toll aus!', o:['Sieh','Siehst du'], a:'Sieh', e:'du siehst → Sieh!'},
+    {type:'gap', row:true, topic:'imperativ', psq:'9 Çfarë është e saktë?', pde:'9 Was ist richtig?', s:'Wir gehen schwimmen. ___ doch mit!', o:['Komm','Du kommst'], a:'Komm', e:'Komm doch mit!'},
+    {type:'gap', row:true, topic:'imperativ', psq:'9 Çfarë është e saktë?', pde:'9 Was ist richtig?', s:'___ zuerst das Ziel aus!', o:['Wählt','Wählt ihr'], a:'Wählt', e:'Urdhërorja me ihr: pa ihr → Wählt!'},
+    {type:'gap', row:true, topic:'imperativ', psq:'9 Çfarë është e saktë?', pde:'9 Was ist richtig?', s:'___ bitte deinen Ausweis mit!', o:['Bring','Bringst'], a:'Bring', e:'du bringst → Bring … mit!'},
+    {type:'gap', row:true, topic:'imperativ', psq:'9 Çfarë është e saktë?', pde:'9 Was ist richtig?', s:'___ bitte pünktlich!', o:['Sei','Bist'], a:'Sei', e:'du bist → Sei!'},
+    {type:'gap', row:true, topic:'imperativ', psq:'9 Çfarë është e saktë?', pde:'9 Was ist richtig?', s:'___ doch noch einen Apfel.', o:['Nimm','Nimmst'], a:'Nimm', e:'du nimmst → Nimm!'},
+    {type:'table', topic:'imperativ', psq:'10 Urdhërorja me du', pde:'10 Streichen Sie und ergänzen Sie', th:['','du → !'],
+     rows:[['Schreibst du bald?','Schreib;Schreibe',true],['Rufst du an?','Ruf;Rufe'],['Arbeitest du heute?','Arbeite'],['Holst du Kim ab?','Hol;Hole'],['Liest du den Text?','Lies'],['Isst du gern Eis?','Iss'],['Schläfst du schon?','Schlaf;Schlafe']],
+     e:'Schreib, Ruf, Arbeite, Hol, Lies, Iss, Schlaf.'},
+    {type:'table', topic:'imperativ', psq:'10 Urdhërorja me ihr', pde:'10 Streichen Sie und ergänzen Sie', th:['','ihr → !'],
+     rows:[['Schreibt ihr bald?','Schreibt',true],['Ruft ihr an?','Ruft'],['Arbeitet ihr heute?','Arbeitet'],['Holt ihr Kim ab?','Holt'],['Lest ihr den Text?','Lest'],['Esst ihr gern Eis?','Esst'],['Schlaft ihr schon?','Schlaft']],
+     e:'Me ihr: e njëjta formë, pa ihr.'},
+    {type:'gap', row:true, topic:'imperativ', psq:'11 Propozime', pde:'11 Schreiben Sie', s:'Es regnet am Wochenende. Was kann ich machen? – Lies doch ein Buch oder ___ doch ins Museum!', o:['geh','geht','gehst'], a:'geh', e:'du → geh!'},
+    {type:'gap', row:true, topic:'imperativ', psq:'11 Propozime', pde:'11 Schreiben Sie', s:'Es regnet am Wochenende. – ___ doch fern!', o:['Sieh','Seht','Siehst'], a:'Sieh', e:'du siehst fern → Sieh fern!'},
+    {type:'gap', row:true, topic:'imperativ', psq:'11 Propozime', pde:'11 Schreiben Sie', s:'Was macht ihr heute Abend? – Geht doch ins Kino oder ___ doch Tennis!', o:['spielt','spiel','spielen'], a:'spielt', e:'ihr → spielt!'},
+    {type:'gap', row:true, topic:'imperativ', psq:'11 Propozime', pde:'11 Schreiben Sie', s:'Was macht ihr heute Abend? – ___ doch die Wohnung auf!', o:['Räumt','Räum','Räumen'], a:'Räumt', e:'ihr räumt auf → Räumt … auf!'}
+  ]
+},
+
+/* ---------- AB S. 101: Imperativ, Sie-Form ---------- */
+{
+  id:'hw13-s101', lek:9, pg:101, emoji:'🙋', color:'#2E86DE', seq:true, book:['faqe 101 · ushtrimi 13, 15','S. 101 · Üb. 13, 15'],
+  sq:'Lina, Mark dhe Caro · Sie-Form', de:'S. 101: Imperativ du, ihr, Sie',
+  desc:'Çfarë u thotë Lina Markut dhe Caros, dhe këshilla me Sie.',
+  tip:'du → Iss! · ihr → Seid! · Sie → Machen Sie!',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>13</b> i ke shkruar <b>të gjitha fjalitë mirë</b>: Iss nicht immer meine Sachen! · Bleib nicht so lange im Bad! · Seid nicht so laut! · Mark, erklär Caro bitte die Übungen. Te <b>15</b> b, c, d ✓. 👏'},
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'Te 15e mungonte një pjesë:',
+     fix:[['Bezahlen Sie Die Kursgebühren.','Bezahlen Sie die Kursgebühren an der Kasse.','Mos harro „an der Kasse“. die me shkronjë të vogël.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'imperativ', psq:'13 Çfarë thotë Lina?', pde:'13 Was sagt Lina zu Mark und Caro?',
+     text:'A  (Mark und Caro) Räumt doch bitte den Flur auf!\nB  Mark! [[Iss|essen]] nicht immer meine Sachen!\nC  (du) [[Bleib;Bleibe|bleiben]] nicht so lange im Bad!\nD  (Mark und Caro) [[Seid|sein]] nicht so laut! Ich muss lernen.\nE  Mark, [[erklär;erkläre|erklären]] Caro bitte die Übungen. Caro schreibt morgen einen Test.',
+     e:'Iss! Bleib! Seid! Erklär!'},
+    {type:'order', topic:'imperativ', psq:'15 Me Sie', pde:'15 Schreiben Sie Sätze in der Sie-Form', cue:'Ich spreche kein Deutsch. → einen Sprachkurs machen', parts:['Machen','Sie','einen','Sprachkurs!'], de:'Machen Sie einen Sprachkurs!', sq:'Bëni një kurs gjuhe!'},
+    {type:'order', topic:'imperativ', psq:'15 Me Sie', pde:'15 Schreiben Sie Sätze in der Sie-Form', cue:'Ich suche eine Wohnung. → die Anzeigen in der Zeitung lesen', parts:['Lesen','Sie','die Anzeigen','in der Zeitung!'], de:'Lesen Sie die Anzeigen in der Zeitung!', sq:'Lexoni njoftimet në gazetë!'},
+    {type:'order', topic:'imperativ', psq:'15 Me Sie', pde:'15 Schreiben Sie Sätze in der Sie-Form', cue:'Ich verstehe die Übung nicht. → Ihre Lehrerin fragen', parts:['Fragen','Sie','Ihre','Lehrerin!'], de:'Fragen Sie Ihre Lehrerin!', sq:'Pyesni mësuesen tuaj!'},
+    {type:'order', topic:'imperativ', psq:'15 Me Sie', pde:'15 Schreiben Sie Sätze in der Sie-Form', cue:'Heute fängt mein Deutschkurs an. → die Kursgebühren an der Kasse bezahlen', parts:['Bezahlen','Sie','die Kursgebühren','an der Kasse!'], de:'Bezahlen Sie die Kursgebühren an der Kasse!', sq:'Paguani tarifat e kursit te arka!'}
+  ]
+},
+
+/* ---------- AB S. 102: dürfen ---------- */
+{
+  id:'hw13-s102', lek:9, pg:102, emoji:'🚭', color:'#16A34A', seq:true, book:['faqe 102 · ushtrimi 16–18','S. 102 · Üb. 16–18'],
+  sq:'dürfen: lejohet', de:'S. 102: Sie dürfen in der EU Auto fahren',
+  desc:'dürfen në formën e duhur, bisedat te shenjat dhe darf apo muss?',
+  tip:'darf = lejohet · darf nicht = ndalohet · muss = duhet.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Alles richtig!', p:'Te <b>16</b> (Darf, dürfen, dürft, darfst, Darf) dhe te <b>18</b> (darf, darf, muss, darf, dürfen, muss) <b>të gjitha saktë</b>. Te <b>17</b> C dhe D ✓. 👏'},
+    {t:'Kujdes nga kurthet! 👀', d:'Achtung, Fallen!', p:'Te <b>17</b> A dhe B ka dy fjali shumë të ngjashme:',
+     ex:[['A 📵 Hier darf man nicht telefonieren.','Këtu nuk lejohet telefoni.'],['B 🚆 Hier darf man doch telefonieren. Aber man muss leise sprechen.','Këtu lejohet telefoni. Por duhet të flasësh qetë.']],
+     tip:'<b>doch</b> = por po (kundërshton): Hier darf man <b>doch</b> telefonieren! <i class="tr">(Por këtu lejohet!)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'modal', psq:'16 dürfen në formën e duhur', pde:'16 Ergänzen Sie dürfen in der richtigen Form',
+     text:'a  Frau Kurz, Sie dürfen gern mit Kreditkarte bezahlen.\nb  [[Darf]] ich Sie etwas fragen?\nc  Papa, [[dürfen]] wir jetzt fernsehen?\nd  Ihr [[dürft]] kein Auto mieten. Ihr seid noch nicht 21.\ne  Sofia, du [[darfst]] hier kein Eis essen.\nf  [[Darf]] man hier fotografieren?',
+     e:'ich darf, wir dürfen, ihr dürft, du darfst, man darf.'},
+    {type:'gap', psq:'17 Rendit', pde:'17 Ordnen Sie zu', s:'A 🎭📵 Entschuldigung. Aber Sie müssen das Handy ausmachen. – Warum? – ___', o:['Hier darf man nicht telefonieren.','Hier darf man doch telefonieren.','Hier dürfen wir fahren.'], a:'Hier darf man nicht telefonieren.', e:'Shenja 📵: telefoni ndalohet.'},
+    {type:'gap', psq:'17 Rendit', pde:'17 Ordnen Sie zu', s:'B 🚆 Können Sie bitte leise sein? – Warum? ___', h:'Në tren telefoni lejohet 📱', o:['Hier darf man doch telefonieren.','Hier darf man nicht telefonieren.','Wir müssen warten.'], a:'Hier darf man doch telefonieren.', e:'Ai kundërshton: por këtu lejohet! → doch.'},
+    {type:'gap', psq:'17 Rendit', pde:'17 Ordnen Sie zu', s:'B 🚆 Hier darf man doch telefonieren. – Ja. ___', o:['Aber man muss leise sprechen.','Wir dürfen nicht fahren.','Hier dürfen wir fahren.'], a:'Aber man muss leise sprechen.', e:'Lejohet, por qetë.'},
+    {type:'gap', psq:'17 Rendit', pde:'17 Ordnen Sie zu', s:'C 🚦🔴 Achtung! Es ist rot. Was müssen wir machen? – ___', o:['Wir müssen warten.','Hier dürfen wir fahren.','Aber man muss leise sprechen.'], a:'Wir müssen warten.', e:'Rot → warten.'},
+    {type:'gap', psq:'17 Rendit', pde:'17 Ordnen Sie zu', s:'C 🚦🔴 Wir müssen warten. – Genau! ___', o:['Wir dürfen nicht fahren.','Hier dürfen wir fahren.','Hier darf man doch telefonieren.'], a:'Wir dürfen nicht fahren.', e:'E kuqe: nuk lejohet të ecim.'},
+    {type:'gap', psq:'17 Rendit', pde:'17 Ordnen Sie zu', s:'D 🚲 Guck mal. Ein Radweg! – ___', o:['Hier dürfen wir fahren.','Wir dürfen nicht fahren.','Wir müssen warten.'], a:'Hier dürfen wir fahren.', e:'Radweg = rrugë për biçikleta → lejohet.'},
+    {type:'gap', row:true, topic:'modal', psq:'18 Çfarë është e saktë?', pde:'18 Was ist richtig?', s:'🚬✅ Hier ___ man rauchen.', o:['darf','muss'], a:'darf', e:'Shenja: duhani lejohet.'},
+    {type:'gap', row:true, topic:'modal', psq:'18 Çfarë është e saktë?', pde:'18 Was ist richtig?', s:'🅿️🚫 Hier ___ man nicht parken.', o:['darf','muss'], a:'darf', e:'darf nicht = ndalohet. (muss nicht = s’ka nevojë)'},
+    {type:'gap', row:true, topic:'modal', psq:'18 Çfarë është e saktë?', pde:'18 Was ist richtig?', s:'🚭 Hier ___ man die Zigarette ausmachen.', o:['darf','muss'], a:'muss', e:'Duhet ta shuash cigaren.'},
+    {type:'gap', row:true, topic:'modal', psq:'18 Çfarë është e saktë?', pde:'18 Was ist richtig?', s:'🅿️ Hier ___ man parken.', o:['darf','muss'], a:'darf', e:'Parkimi lejohet.'},
+    {type:'gap', row:true, topic:'modal', psq:'18 Çfarë është e saktë?', pde:'18 Was ist richtig?', s:'🚗🚫 Hier ___ Autos nicht fahren.', o:['dürfen','müssen'], a:'dürfen', e:'Makinat nuk lejohen.'},
+    {type:'gap', row:true, topic:'modal', psq:'18 Çfarë është e saktë?', pde:'18 Was ist richtig?', s:'⚠️ 30 Hier ___ man langsam fahren.', o:['muss','darf'], a:'muss', e:'Shenja 30: duhet të ngasësh ngadalë.'}
+  ]
+},
+
+/* ---------- AB S. 103: Ein Wochenende in Heidelberg ---------- */
+{
+  id:'hw13-s103', lek:9, pg:103, emoji:'🚗', color:'#EE7A0C', seq:true, book:['faqe 103 · ushtrimi 19','S. 103 · Üb. 19'],
+  sq:'Një fundjavë në Heidelberg', de:'S. 103: Ein Wochenende in Heidelberg',
+  desc:'Miriam dhe Eva planifikojnë udhëtimin: müssen, dürfen, wollen apo können?',
+  tip:'wollen = dua · können = mund · müssen = duhet · dürfen = lejohet.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>19</b> i ke shkruar mirë: <b>wollen</b>, <b>Kannst</b>, <b>muss</b>, <b>kann</b>, <b>Dürfen</b>. 👏',
+     tip:'Një vend mbeti bosh: <b>Kannst</b> du bitte ein Picknick mitbringen? <i class="tr">(A mund të sjellësh një piknik?)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'modal', psq:'19 Plotëso', pde:'19 Ergänzen Sie in der richtigen Form', h:'müssen – dürfen – wollen – können',
+     text:'Hallo, Eva. Hier ist Miriam. Hör mal, Hanna und ich [[wollen]] am Wochenende ein Auto mieten und nach Heidelberg fahren. [[Kannst;Willst]] du mitkommen?\n– Gern. Aber am Freitag [[muss]] ich bis 20 Uhr arbeiten.\n– Kein Problem. Wir fahren erst am Samstagvormittag. [[Kannst]] du bitte ein Picknick für die Fahrt mitbringen?\n– Ja, klar. Und darf mein Hund auch mitkommen?\n– Hm, ich weiß nicht … Ich glaube, wir [[müssen;können]] die Autovermietung fragen. Ich [[kann]] dort ja mal anrufen.\n– Okay. Du rufst die Autovermietung an: Sind Hunde erlaubt? Dann kommen wir mit. [[Dürfen]] Hunde nicht mitkommen? Dann bleibe ich auch zu Hause.\n– Gut, Eva. Dann bis später! Tschüs.',
+     e:'wollen, Kannst, muss, Kannst, müssen, kann, Dürfen.'}
+  ]
+},
+
+/* ---------- AB S. 108: Körper, mein / dein / Ihr, sein / ihr ---------- */
+{
+  id:'hw13-s108', lek:10, pg:108, emoji:'🤕', color:'#F2545B', seq:true, book:['faqe 108 · ushtrimi 1–4','S. 108 · Üb. 1–4'],
+  sq:'Ihr Auge tut weh', de:'S. 108: Körperteile, mein / dein / Ihr',
+  desc:'Fjalëkryqi i trupit, der/das/die, mein – dein – Ihr dhe sein apo ihr?',
+  tip:'du → dein / deine · Sie → Ihr / Ihre · Alba (sie) → ihr Bein · Ben (er) → seine Hand.',
+  lesson:[
+    {t:'Faqe 108 📖', d:'A · Ihr Auge tut weh', p:'<b>1</b> Fjalëkryqi i trupit. <b>2</b> der, das apo die? <b>3</b> mein, dein, Ihr. <b>4</b> sein apo ihr?',
+     tip:'Këto ushtrime ishin ende bosh në libër: tani i bën këtu! 💪'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'letters', psq:'1 Fjalëkryqi', pde:'1 Lösen Sie das Rätsel', s:'C 💇‍♀️ die ___', a:'Haare', mix:'reaHa', h:'reaHa', e:'die Haare = flokët.'},
+    {type:'letters', psq:'1 Fjalëkryqi', pde:'1 Lösen Sie das Rätsel', s:'D ☝️ der ___', a:'Finger', mix:'gerFin', h:'gerFin', e:'der Finger = gishti.'},
+    {type:'letters', psq:'1 Fjalëkryqi', pde:'1 Lösen Sie das Rätsel', s:'F 🦵 das ___', a:'Bein', mix:'inBe', h:'inBe', e:'das Bein = këmba.'},
+    {type:'letters', psq:'1 Fjalëkryqi', pde:'1 Lösen Sie das Rätsel', s:'G 👄 der ___', a:'Mund', mix:'ndMu', h:'ndMu', e:'der Mund = goja.'},
+    {type:'letters', psq:'1 Fjalëkryqi', pde:'1 Lösen Sie das Rätsel', s:'H 👂 das ___', a:'Ohr', mix:'rhO', h:'rhO', e:'das Ohr = veshi.'},
+    {type:'letters', psq:'1 Fjalëkryqi', pde:'1 Lösen Sie das Rätsel', s:'J 🦶 der ___', a:'Fuß', mix:'ßuF', h:'ßuF', e:'der Fuß = shputa e këmbës.'},
+    {type:'letters', psq:'1 Fjalëkryqi', pde:'1 Lösen Sie das Rätsel', s:'K 👃 die ___', a:'Nase', mix:'seNa', h:'seNa', e:'die Nase = hunda.'},
+    {type:'gap', row:true, topic:'artikel', psq:'2 der, das apo die?', pde:'2 Ergänzen Sie der, das, die', s:'___ Finger', o:['der','das','die'], a:'der', e:'der Finger.'},
+    {type:'gap', row:true, topic:'artikel', psq:'2 der, das apo die?', pde:'2 Ergänzen Sie der, das, die', s:'___ Ohr', o:['der','das','die'], a:'das', e:'das Ohr.'},
+    {type:'gap', row:true, topic:'artikel', psq:'2 der, das apo die?', pde:'2 Ergänzen Sie der, das, die', s:'___ Nase', o:['der','das','die'], a:'die', e:'die Nase.'},
+    {type:'cloze', topic:'possessiv', psq:'3 mein, dein apo Ihr?', pde:'3 Ergänzen Sie', bank:['mein','meine','dein','deine','Ihr','Ihre'],
+     text:'a  – Tag, Frau Müller. Ist das Ihre Tochter?\n– Nein, das ist [[meine]] kleine Schwester.\nb  – Klara, warte mal, [[dein]] Freund Niko ist am Telefon.\n– Das ist doch nicht [[mein]] Freund!\nc  – Einen Moment bitte, Frau Abt, [[Ihr]] Mann ist am Telefon.\n– Wer? [[Mein]] Mann? Danke, Frau Schneider.\nd  (zwei Freundinnen) – [[Deine]] Augen sind ja ganz grün!\ne  (beim Arzt) – Wie alt sind [[Ihre]] Kinder?\n– Sieben und elf.',
+     e:'meine Schwester, dein Freund, mein Freund, Ihr Mann, Mein Mann, Deine Augen, Ihre Kinder.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'4 sein apo ihr?', pde:'4 Was ist richtig?', s:'Alba hatte einen Unfall. ___ Bein tut weh.', h:'Alba 👩', o:['Ihr','Sein'], a:'Ihr', e:'Alba = sie → ihr Bein.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'4 sein apo ihr?', pde:'4 Was ist richtig?', s:'Tomoko hat Schmerzen. ___ Hals tut weh.', h:'Tomoko 👩', o:['Ihr','Sein'], a:'Ihr', e:'Tomoko = sie → ihr Hals.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'4 sein apo ihr?', pde:'4 Was ist richtig?', s:'Kweku kann nicht Fußball spielen. ___ Arm tut weh.', h:'Kweku 👨', o:['Ihr','Sein'], a:'Sein', e:'Kweku = er → sein Arm.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'4 sein apo ihr?', pde:'4 Was ist richtig?', s:'Ben kann heute nicht Tennis spielen. ___ Hand tut weh.', h:'Ben 👨', o:['Ihre','Seine'], a:'Seine', e:'Ben = er, die Hand → seine.'}
+  ]
+},
+
+/* ---------- AB S. 109: sein / ihr ---------- */
+{
+  id:'hw13-s109', lek:10, pg:109, emoji:'👨‍👩‍👧', color:'#D6409F', seq:true, book:['faqe 109 · ushtrimi 5–7','S. 109 · Üb. 5–7'],
+  sq:'sein, seine, ihr, ihre', de:'S. 109: Possessivartikel sein / ihr',
+  desc:'Réka dhe Hung, familja e Meenes dhe -e apo asgjë?',
+  tip:'Meene (ajo) → ihr Mann, ihre Kinder. Raghav (ai) → sein Vater, seine Eltern.',
+  lesson:[
+    {t:'Faqe 109 📖', d:'A · sein / ihr', p:'Te <b>5</b> i ke shënuar mirë: Réka → <b>Ihr / Ihre</b>, Hung → <b>Sein / Seine</b> ✓. <b>6</b> dhe <b>7</b> ishin ende bosh: tani i bën këtu! 💪',
+     tip:'Gjithmonë pyet: <b>kujt</b> i përket? Ajo → <b>ihr</b>, ai → <b>sein</b>. Me die dhe shumës: <b>+e</b>. <i class="tr">(i saj · i tij)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'table', topic:'possessiv', psq:'5 Réka', pde:'5 Markieren Sie', th:['','Réka (sie)'],
+     rows:[['Vater','Ihr',true],['Hobby','Ihr'],['Mutter','Ihre'],['Eltern','Ihre']], e:'Ihr Vater, Ihr Hobby, Ihre Mutter, Ihre Eltern.'},
+    {type:'table', topic:'possessiv', psq:'5 Hung', pde:'5 Markieren Sie', th:['','Hung (er)'],
+     rows:[['Bruder','Sein',true],['Hobby','Sein'],['Frau','Seine'],['Kinder','Seine']], e:'Sein Bruder, Sein Hobby, Seine Frau, Seine Kinder.'},
+    {type:'cloze', topic:'possessiv', psq:'6 sein, seine, ihr apo ihre?', pde:'6 Ergänzen Sie', bank:['sein','seine','ihr','ihre'], h:'Kujt i përket: Meenes (ajo) apo Raghavit (ai)?',
+     text:'Das ist meine Freundin Meene aus Indien. Ich kenne sie aus dem Tennisklub. Tennis spielen ist ihr Hobby. Sie ist verheiratet und sie hat zwei Kinder: [[Ihre]] Tochter ist zehn Jahre alt und [[ihr]] Sohn ist acht. [[Ihre]] Kinder spielen auch gern Tennis. [[Ihr]] Mann Raghav spielt nicht so gern Tennis. [[Sein]] Hobby ist Gitarrespielen. Früher haben Raghav und [[sein]] Vater oft zusammen Gitarre gespielt. Aber [[seine]] Eltern leben nicht in Deutschland. Sie leben in den USA. Dort lebt auch [[seine]] Schwester. [[Ihr]] Mann ist Amerikaner.',
+     e:'Meene: Ihre Tochter, ihr Sohn, Ihre Kinder, Ihr Mann · Raghav: Sein Hobby, sein Vater, seine Eltern, seine Schwester · motra e tij: Ihr Mann.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'7 -e apo asgjë?', pde:'7 Ergänzen Sie: -e oder /', s:'Hakan arbeitet als Polizist in Berlin. ___ Chef ist sehr freundlich.', o:['Sein','Seine'], a:'Sein', e:'der Chef → sein.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'7 -e apo asgjë?', pde:'7 Ergänzen Sie: -e oder /', s:'Hakan: ___ Kollegen sind auch sehr nett.', o:['Seine','Sein'], a:'Seine', e:'die Kollegen (shumës) → seine.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'7 -e apo asgjë?', pde:'7 Ergänzen Sie: -e oder /', s:'Vor zwei Tagen haben wir Sam besucht. ___ Wohnung ist sehr schön.', o:['Seine','Sein'], a:'Seine', e:'die Wohnung → seine.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'7 -e apo asgjë?', pde:'7 Ergänzen Sie: -e oder /', s:'Ilena kann nicht zum Deutschkurs kommen. ___ Eltern besuchen sie.', o:['Ihre','Ihr'], a:'Ihre', e:'die Eltern (shumës) → ihre.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'7 -e apo asgjë?', pde:'7 Ergänzen Sie: -e oder /', s:'Meine Freundin hat zwei Kinder: ___ Sohn heißt Leo.', o:['ihr','ihre'], a:'ihr', e:'der Sohn → ihr.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'7 -e apo asgjë?', pde:'7 Ergänzen Sie: -e oder /', s:'Meine Freundin hat zwei Kinder: ___ Tochter heißt Lena.', o:['ihre','ihr'], a:'ihre', e:'die Tochter → ihre.'}
+  ]
+},
+
+/* ---------- AB S. 110: unser / euer / ihr ---------- */
+{
+  id:'hw13-s110', lek:10, pg:110, emoji:'👫', color:'#7650F0', seq:true, book:['faqe 110 · ushtrimi 9–11','S. 110 · Üb. 9–11'],
+  sq:'unser, euer, ihr', de:'S. 110: Unsere Augen sind so blau',
+  desc:'Mesazhe të shkurtra, kush flet me kë dhe familja e Antonit dhe Maxit.',
+  tip:'wir → unser / unsere · ihr → euer / eure · sie (ata) → ihr / ihre.',
+  lesson:[
+    {t:'Faqe 110 📖', d:'B · unser, euer, ihr', p:'<b>9</b> Mesazhe: plotëso me fjalët e kutisë. <b>10</b> Kush flet? Zgjidh. <b>11</b> unser, euer apo ihr?',
+     tip:'Këto ushtrime ishin ende bosh: tani i bën këtu! 💪 eu<b>er</b> Ausflug, por <b>eure</b> Töchter. <i class="tr">(ekskursioni juaj · vajzat tuaja)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'possessiv', psq:'9 Rendit', pde:'9 Ordnen Sie zu', bank:['Ihr','Unser','eure','euer','ihre','unsere'],
+     text:'A  Frau Schulte ist krank. Unser Deutschkurs fällt aus. Informierst du bitte Kiril? Danke! Asma\nB  Liebe Maria, ich bin wieder gesund, aber nun sind [[unsere]] Kinder krank. Ich kann also nicht kommen. [[Unser]] Treffen muss leider ausfallen. Nächste Woche bin ich hoffentlich wieder da. Grüße Rosina\nC  Hallo ihr zwei, was machen [[eure]] Töchter? Sind [[ihre;eure]] Freundinnen aus Spanien schon da? Gruß Ina\nD  Hallo Leo und Mona, wie war [[euer]] Ausflug? Seid ihr schon zu Hause? LG Mama\nE  Elke und Rainer können am Wochenende doch nicht kommen. [[Ihr]] Sohn ist seit zwei Tagen krank. Küsse von Peter',
+     e:'unsere Kinder, Unser Treffen, eure Töchter, ihre Freundinnen, euer Ausflug, Ihr Sohn.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'10 Çfarë është e saktë?', pde:'10 Was ist richtig?', s:'A  ___ Lehrerin ist super, oder?', h:'Dy studentë flasin për mësuesen e tyre.', o:['Unsere','Eure'], a:'Unsere', e:'Mësuesja jonë → unsere.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'10 Çfarë është e saktë?', pde:'10 Was ist richtig?', s:'B  Seht mal, da kommt ___ Bus.', h:'Fëmijët presin autobusin e tyre.', o:['unser','euer'], a:'unser', e:'Autobusi ynë → unser.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'10 Çfarë është e saktë?', pde:'10 Was ist richtig?', s:'C  ___ Augen sind nicht mehr so gut …', h:'Një grua e moshuar flet me burrin e saj Theodor për ata të dy.', o:['Unsere','Ihre'], a:'Unsere', e:'Sytë tanë → unsere.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'10 Çfarë është e saktë?', pde:'10 Was ist richtig?', s:'C  … aber ___ Ohren hören alles, oder Theodor?', h:'Një grua e moshuar flet me burrin e saj Theodor për ata të dy.', o:['unsere','eure'], a:'unsere', e:'Veshët tanë → unsere.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'10 Çfarë është e saktë?', pde:'10 Was ist richtig?', s:'D  Sind das ___ Fahrräder?', h:'Një grua flet me dy fëmijë.', o:['eure','ihre'], a:'eure', e:'Ajo u flet fëmijëve (ihr) → eure.'},
+    {type:'cloze', topic:'possessiv', psq:'11 unser, euer apo ihr?', pde:'11 Ergänzen Sie in der richtigen Form', h:'unser – euer – ihr në formën e duhur',
+     text:'– Sieh mal. Das sind meine beiden Brüder Anton und Max. Und das sind unsere Eltern.\n– Ist das [[eure;deine]] Oma?\n– Ja, und das ist [[unser]] Opa.\n– Was war [[euer;dein]] Opa denn von Beruf?\n– Er war Verkäufer. [[Unsere]] Großeltern hatten einen Gemüseladen. Hier, das ist [[ihr]] Gemüseladen.\n– Und gibt es den Laden heute noch?\n– Nein, [[unser]] Vater hat den Laden verkauft. Heute ist dort ein Reisebüro.',
+     e:'eure Oma, unser Opa, euer Opa, Unsere Großeltern, ihr Gemüseladen, unser Vater.'}
+  ]
+}
+  ]
 }
 
 ];

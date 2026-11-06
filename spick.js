@@ -37,8 +37,9 @@ const SPICK = [
   id:'sz-pron', chip:'👤 ich · du · er', t:'👤 Përemrat', d:'Die Pronomen',
   th:['Deutsch','Shqip'], say:0,
   table:[['ich','unë'],['du','ti'],['er','ai'],['sie','ajo'],['es','ai / ajo (për das)'],['wir','ne'],['ihr','ju (shokë)'],['sie','ata / ato'],['Sie','Ju (me respekt)'],
-    ['mein / meine','im / ime'],['dein / deine','yt / jote']],
-  tip:'<b>Sie</b> me shkronjë të madhe = Ju (te mjeku, në punë). <b>sie</b> e vogël = ajo ose ata.'
+    ['mein / meine','im / ime'],['dein / deine','yt / jote'],['sein / seine','i tij / e tij'],['ihr / ihre','i saj · i tyre'],['unser / unsere','ynë / jonë'],['euer / eure','juaj']],
+  tip:'<b>Sie</b> me shkronjë të madhe = Ju (te mjeku, në punë). <b>sie</b> e vogël = ajo ose ata.<br>'
+    + 'Me shumës: <b>seine</b> Ohren, <b>ihre</b> Ohren, pa -n! <i class="tr">(veshët e tij, veshët e saj)</i>'
 },
 {
   id:'sz-verb', chip:'🔁 Foljet', t:'🔁 Foljet më të rëndësishme', d:'Die wichtigsten Verben',
@@ -100,10 +101,11 @@ const SPICK = [
   tip:'<b>vor</b> = ka mbaruar. <b>seit</b> = vazhdon ende. vor / seit + einem Jahr, einer Woche, zwei Jahre<b>n</b>. <b>für</b> + einen Monat, ein Jahr, eine Woche.'
 },
 {
-  id:'sz-muss', chip:'📋 müssen · Imperativ', t:'📋 Duhet & urdhërorja', d:'müssen, man, Imperativ',
+  id:'sz-muss', chip:'📋 müssen · dürfen', t:'📋 Duhet, lejohet & urdhërorja', d:'müssen, dürfen, man, Imperativ',
   th:['Deutsch','Shqip'], say:0,
   table:[['ich muss, du musst, er muss','duhet (pa mbaresë te ich, er)'],['Er muss einen Antrag ausfüllen.','Ai duhet të plotësojë një kërkesë.'],['Zuerst muss man das Ziel wählen.','man = kushdo (jo der Mann!)'],
-    ['Komm mit! Warte mal! Sei leise!','urdhërorja me du: pa du, pa -st'],['Kommt mit! Seid leise! Lest den Text!','urdhërorja me ihr: pa ihr']],
+    ['ich darf, du darfst, er darf','lejohet · nicht dürfen = ndalohet'],['Hier darf man nicht rauchen.','Këtu nuk lejohet duhani.'],
+    ['Komm mit! Warte mal! Sei leise!','urdhërorja me du: pa du, pa -st'],['Kommt mit! Seid leise! Lest den Text!','urdhërorja me ihr: pa ihr'],['Warten Sie! Seien Sie leise!','urdhërorja me Sie: folja + Sie']],
   tip:'du f<b>ä</b>hrst → <b>Fahr!</b> · du bist → <b>Sei!</b> · Foljet e ndashme: <b>Hol</b> Lili <b>ab</b>!'
 },
 {

@@ -974,6 +974,7 @@ function rSort(q){
   if (!q._place) { q._place = {}; q._order = shuffle(q.items.map((x, i) => i)); q._bad = []; }
   return `${head(q.psq || 'Rendit sipas grupeve', q.pde || 'Ordnen Sie zu')}
   <p class="szhint" style="margin:-4px 0 10px">👆 Prek një fjalë, pastaj kutinë. Tippe ein Wort, dann die Box.</p>
+  ${q.h ? `<div class="qhint" style="margin:0 0 10px">💭 ${esc(q.h)}</div>` : ''}
   <div id="sArea">${sortInner(q)}</div>
   <div class="actions"><button class="cta" data-act="scheck" id="scheck" ${Object.keys(q._place).length < q.items.length ? 'disabled' : ''}>Kontrollo / Prüfen</button></div>`;
 }
@@ -1237,10 +1238,10 @@ const TOPICS = {
   satz:     ['Rendi i fjalisë', 'Satzstellung', 'Folja në vendin 2, folja e dytë në fund. Pyetje pa W: folja del e para.'],
   artikel:  ['der, die apo das', 'Artikel', 'Mësoje çdo emër bashkë me nyjën: der Tisch, die Lampe, das Bett.'],
   ein:      ['ein, einen, kein', 'ein / kein · Akkusativ', 'Pas foljes (nehmen, kaufen, haben, möchten) ndryshon vetëm der: den, einen, keinen.'],
-  possessiv:['mein, dein, Ihr', 'Possessivartikel', 'der/das → mein, dein, Ihr. die/shumës → meine, deine, Ihre.'],
+  possessiv:['mein, dein, sein, ihr …', 'Possessivartikel', 'der/das → mein, sein, ihr, unser, euer. die/shumës → meine, seine, ihre, unsere, eure (pa -n).'],
   zeit:     ['am, um, im', 'Zeitangaben', 'am + ditë, um + orë, im + muaj ose stinë.'],
   perfekt:  ['E kaluara', 'Perfekt', 'haben në vendin 2, Partizip në fund: ge…t (gemacht) ose ge…en (gegessen).'],
-  modal:    ['können, wollen, möchten, mögen', 'Modalverben', 'ich dhe er pa mbaresë (ich kann, er will). Folja tjetër shkon në fund.'],
+  modal:    ['können, müssen, dürfen …', 'Modalverben', 'ich dhe er pa mbaresë (ich kann, er will). Folja tjetër shkon në fund.'],
   seinhaben:['sein dhe haben', 'sein & haben', 'ich bin, du bist, er ist · ich habe, du hast, er hat.'],
   praeteritum:['war dhe hatte', 'Präteritum: sein & haben', 'ich war (isha), du warst, er war, wir waren · ich hatte (kisha), du hattest, er hatte, wir hatten.'],
   verben:   ['Zgjedhimi i foljeve', 'Verben konjugieren', 'ich -e, du -st, er -t, wir -en, ihr -t. Rebelët: du fährst, er isst.'],
@@ -1253,9 +1254,9 @@ const TOPICS = {
   trennbar: ['Foljet e ndashme', 'Trennbare Verben', 'Folja në vendin 2, parashtesa në fund: Ich stehe um 7 Uhr auf.'],
   zahlen:   ['Numrat', 'Zahlen', 'Së pari njëshja, pastaj dhjetëshja: 35 = fünfunddreißig. 30 = dreißig.'],
   lesen:    ['Leximi', 'Leseverstehen', 'Lexo pyetjen, gjej fjalën kyçe dhe kërkoje në tekst.'],
-  imperativ:['Urdhërorja', 'Imperativ', 'du kommst → Komm! (pa du, pa -st). ihr kommt → Kommt! sein: Sei! / Seid!']
+  imperativ:['Urdhërorja', 'Imperativ', 'du kommst → Komm! (pa du, pa -st). ihr kommt → Kommt! Sie kommen → Kommen Sie! sein: Sei! / Seid! / Seien Sie!']
 };
-const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög|muss|müss)/;
+const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög|muss|müss|darf|dürf)/;
 /* finds the grammar topic of a question from what it asks; q.topic in the data wins */
 function topicOf(q){
   if (q.topic) return q.topic;
@@ -1265,7 +1266,7 @@ function topicOf(q){
   const lo = q.o.map(o => String(o).toLowerCase()), only = (...w) => lo.every(o => w.includes(o));
   const s = (q.s || q.q || '').replace('___', '');
   if (only('der', 'die', 'das')) return 'artikel';
-  if (only('mein', 'meine', 'meinen', 'dein', 'deine', 'deinen', 'ihr', 'ihre', 'ihren')) return 'possessiv';
+  if (only('mein', 'meine', 'meinen', 'dein', 'deine', 'deinen', 'ihr', 'ihre', 'ihren', 'sein', 'seine', 'seinen', 'unser', 'unsere', 'euer', 'eure')) return 'possessiv';
   if (only('der', 'die', 'das', 'den', 'dem', 'ein', 'eine', 'einen', 'einem', 'einer', 'kein', 'keine', 'keinen', 'keinem', 'nicht')) return 'ein';
   if (only('am', 'um', 'im', 'in', 'an')) return 'zeit';
   if (only('ja', 'nein', 'doch')) return 'jnd';
