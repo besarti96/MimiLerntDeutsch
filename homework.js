@@ -1771,6 +1771,236 @@ const HOMEWORK = [
   ]
 }
   ]
+},
+{
+  id:'l14', date:'2026-11-06', added:'2026-11-07T15:12', emoji:'🩺',
+  sq:'Libri: Mësimi 10 C–E', de:'Kursbuch S. 122–126',
+  parts:[
+
+/* ---------- KB S. 122: sollen ---------- */
+{
+  id:'hw14-s122', emoji:'🩺', color:'#0E9F8E', seq:true, book:['faqe 122 · C1–C4','S. 122 · C1–C4'],
+  sq:'Ich soll Schmerztabletten nehmen', de:'S. 122: sollen',
+  desc:'Çfarë thotë Ioanna, „Der Arzt hat gesagt …“, linja telefonike e shëndetit dhe këshilla.',
+  tip:'ich soll, du sollst, er soll, wir sollen, ihr sollt, sie sollen.',
+  read:'<b>Gesundheits-Hotline</b><br>Anrufer 1 ist immer müde.<br>Anruferin 2: Ihre Tochter hat Husten.<br>Anrufer 3 hat Sonnenbrand.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>C3</b> i ke lidhur problemet me këshillat: Anrufer 1 → viel spazieren gehen, Anruferin 2 → zum Arzt gehen, Mira Saft geben, Anrufer 3 → Salbe verwenden. 👏',
+     tip:'Shënimi yt: <b>sollen</b> = duhet, si këshillë nga dikush tjetër. <i class="tr">(Der Arzt sagt, ich soll …)</i>'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'modal', psq:'C1 Çfarë thotë Ioanna?', pde:'C1 Was sagt Ioanna?', h:'das Auge kühlen · gleich ins Bett gehen · ein paar Schritte gehen · bei Problemen wieder ins Krankenhaus kommen',
+     text:'Ich soll Schmerztabletten nehmen.\nIch [[soll]] das Auge [[kühlen]].\nIch [[soll]] gleich ins Bett [[gehen]].\nIch [[soll]] ein paar Schritte [[gehen]].\nIch [[soll]] bei Problemen wieder ins Krankenhaus [[kommen]].',
+     e:'Ich soll … + folja në fund.'},
+    {type:'table', topic:'modal', psq:'Folja sollen', pde:'Modalverb sollen', th:['','sollen'],
+     rows:[['ich','soll'],['du','sollst',true],['er / es / sie','soll'],['wir','sollen',true],['ihr','sollt',true],['sie / Sie','sollen',true]], e:'ich soll, er soll (pa mbaresë).'},
+    {type:'gap', row:true, topic:'modal', psq:'C2 Der Arzt hat gesagt …', pde:'C2 Der Arzt hat gesagt …', s:'Der Arzt hat gesagt, Sie sollen viel trinken. – Was? Ich ___ viel trinken?', o:['soll','sollen','sollst'], a:'soll', e:'Sie sollen → ich soll.'},
+    {type:'gap', row:true, topic:'modal', psq:'C2 Der Arzt hat gesagt …', pde:'C2 Der Arzt hat gesagt …', s:'Der Arzt hat gesagt, du sollst im Bett bleiben. – Was? Ich ___ im Bett bleiben?', o:['soll','sollst','sollen'], a:'soll', e:'du sollst → ich soll.'},
+    {type:'gap', row:true, topic:'modal', psq:'C2 Der Arzt hat gesagt …', pde:'C2 Der Arzt hat gesagt …', s:'Der Arzt hat gesagt, ihr sollt nicht trainieren. – Was? Wir ___ nicht trainieren?', o:['sollen','sollt','soll'], a:'sollen', e:'ihr sollt → wir sollen.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'C3 Kush duhet të bëjë çfarë?', pde:'C3 Wer soll was machen?', q:'Wer soll eine Salbe verwenden?', o:['Anrufer 1','Anruferin 2','Anrufer 3'], a:'Anrufer 3', e:'Sonnenbrand → Salbe.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'C3 Kush duhet të bëjë çfarë?', pde:'C3 Wer soll was machen?', q:'Wer soll Mira Saft geben?', o:['Anrufer 1','Anruferin 2','Anrufer 3'], a:'Anruferin 2', e:'Tochter hat Husten → Saft (shurup).'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'C3 Kush duhet të bëjë çfarë?', pde:'C3 Wer soll was machen?', q:'Wer soll viel spazieren gehen?', o:['Anrufer 1','Anruferin 2','Anrufer 3'], a:'Anrufer 1', e:'Gjithmonë i lodhur → shumë shëtitje.'},
+    {type:'gap', row:true, topic:'modal', psq:'C4 Këshilla për shëndetin', pde:'C4 Geben Sie Gesundheitstipps', s:'Meine Freundin hat Fieber. Sie ___ viel schlafen.', o:['soll','sollen','sollst'], a:'soll', e:'meine Freundin = sie → soll.'},
+    {type:'gap', row:true, topic:'modal', psq:'C4 Këshilla për shëndetin', pde:'C4 Geben Sie Gesundheitstipps', s:'Mein Bruder kann nicht schlafen. Er ___ abends nicht so viele Computerspiele machen.', o:['soll','sollen','sollt'], a:'soll', e:'mein Bruder = er → soll.'},
+    {type:'gap', row:true, topic:'modal', psq:'C4 Këshilla për shëndetin', pde:'C4 Geben Sie Gesundheitstipps', s:'Meine Kinder haben Husten. Sie ___ viel trinken.', o:['sollen','soll','sollt'], a:'sollen', e:'meine Kinder = sie (ata) → sollen.'}
+  ]
+},
+
+/* ---------- KB S. 123: Anzeigen ---------- */
+{
+  id:'hw14-s123', emoji:'🧘‍♀️', color:'#E3A008', seq:true, book:['faqe 123 · D2','S. 123 · D2'],
+  sq:'Njoftime kundër stresit', de:'S. 123: Welche Anzeige passt?',
+  desc:'Katër njoftime dhe pesë persona: kush i përshtatet cilit njoftim?',
+  tip:'Për një person nuk ka njoftim.',
+  read:'<b>1 Anti-Stress-Seminar</b><br>Ihre Familie, Ihre Kollegen, Ihr Chef – alle wollen etwas? Sagen Sie auch einmal „Nein“! Unsere Sommerkurse sind ideal für Menschen mit Stress. 2-Wochen-Kurse von Juni bis Oktober. Anmeldungen per Telefon oder online bis zum 20. Juni möglich. Haus Buchenhain, Chiemsee. Kursleiter: Martin Hintermeier<br><br><b>2 Zeit für Freunde!</b><br>Vergessen Sie den Alltagsstress. Machen Sie sich ruhige Tage im Grünen. Spielen Sie mit unseren Tierkindern. Oder beobachten Sie Tiere im Wald. Auf unserem Bauernhof ist Platz für Sie und Ihre Freunde. Schreiben Sie uns! Ferienpension Dörrer, Bergholz 152, 8096 Gars am Inn<br><br><b>3 Lindenthaler Lauftreff</b><br>Unsere Gruppe ist für Menschen aus unserem Stadtteil. Besonders für Menschen mit viel Stress im Alltag. Wir treffen uns zweimal in der Woche (Dienstag und Donnerstag um 18 Uhr) und laufen oder machen sportliche Spaziergänge und Nordic Walking. Alles für Null Euro. Treffpunkt: Parkplatz am Stadionbad.<br><br><b>4 Essen gegen Stress</b><br>5 doppelte Espresso am Tag? Dazu Fast Food mit viel Fleisch? Essen und Trinken kann krank machen. Besonders Menschen mit Stress sollen gesunde Sachen essen. Viel Müsli, Obst und wenig Fleisch. Wir zeigen Ihnen: So geht das! Volkshochschule Wangen, Kurs FR3456, mittwochs 17:00 Uhr, Kursbeginn: 3. Juli',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Alles richtig!', p:'Te D2 i ke lidhur <b>të pesë saktë</b>: a 4, b 3, c 1, d –, e 2. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'D2 Cili njoftim?', pde:'D2 Welche Anzeige passt?', q:'a  Herr Meier hat zu viel zu tun. Er isst oft bei der Arbeit am Computer. Sein Bauch ist zu dick.', o:['1','2','3','4','–'], a:'4', e:'Essen gegen Stress.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'D2 Cili njoftim?', pde:'D2 Welche Anzeige passt?', q:'b  Annette Huber ist ledig und arbeitet viel. Sie möchte Leute kennenlernen und Sport machen. Sie möchte nichts bezahlen.', o:['1','2','3','4','–'], a:'3', e:'Lauftreff: Sport, Gruppe, Null Euro.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'D2 Cili njoftim?', pde:'D2 Welche Anzeige passt?', q:'c  Nina Schneider ist alleinerziehend und hat viel Stress. Die Oma kann in den Sommerferien zwei Wochen auf die Kinder aufpassen.', o:['1','2','3','4','–'], a:'1', e:'Anti-Stress-Seminar: 2-Wochen-Kurse im Sommer.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'D2 Cili njoftim?', pde:'D2 Welche Anzeige passt?', q:'d  Peter Hansen will Sport machen und joggen lernen. Er sucht ein Fitness-Studio.', o:['1','2','3','4','–'], a:'–', e:'Asnjë njoftim nuk është palestër.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'D2 Cili njoftim?', pde:'D2 Welche Anzeige passt?', q:'e  Armin Schremser hat keine Zeit für Urlaub. Er möchte für ein Wochenende mit seinen Kollegen in die Natur fahren.', o:['1','2','3','4','–'], a:'2', e:'Bauernhof: ditë të qeta në natyrë me shokët.'}
+  ]
+},
+
+/* ---------- KB S. 124: E-Mail ---------- */
+{
+  id:'hw14-s124', emoji:'✉️', color:'#D6409F', seq:true, book:['faqe 124 · D4–D5','S. 124 · D4–D5'],
+  sq:'E-maili i Arminit', de:'S. 124: Eine Anfrage schreiben',
+  desc:'Pjesët e e-mailit dhe pyetje për një kërkesë.',
+  tip:'Absender = kush shkruan · Empfänger = kush e merr · Betreff = tema.',
+  read:'Von: Armin Schremser [mailto:schremser@kabelmail.de] <b>(1)</b><br>Gesendet: Dienstag, 23. Juni 21:49 <b>(2)</b><br>An: Ferienpension_Doerrer@gmx.de <b>(3)</b><br>Betreff: Anfrage Zimmer 2.–5. Juli <b>(4)</b><br><br>Sehr geehrte Damen und Herren, <b>(5)</b><br>ich habe Ihre Anzeige gelesen und finde Ihr Angebot interessant. Ich möchte gern vom 2. bis 5. Juli mit vier Kollegen zu Ihnen kommen und habe folgende Fragen: Kann man mit dem Zug zu Ihnen kommen? Haben Sie fünf Einzelzimmer frei? Kann man bei Ihnen auch Halbpension oder Vollpension buchen?<br>Vielen Dank für Ihre Auskunft.<br>Mit freundlichen Grüßen <b>(6)</b><br>Armin Schremser<br><br>Armin Schremser, Firma Berger GmbH<br><b>(7)</b> Barbarossaplatz <b>(8)</b> 4<br><b>(9)</b> 50859 <b>(10)</b> Köln',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Alles richtig!', p:'Te D4 i ke gjetur <b>të 10 pjesët saktë</b>: Absender 1, Datum 2, Empfänger 3, Betreff 4, Anrede 5, Gruß 6, Straße 7, Hausnummer 8, Postleitzahl 9, Ort 10. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', read:true, pairs:[['(1)','der Absender'],['(2)','das Datum'],['(3)','der Empfänger'],['(4)','der Betreff'],['(5)','die Anrede']]},
+    {type:'match', read:true, pairs:[['(6)','der Gruß'],['(7)','die Straße'],['(8)','die Hausnummer'],['(9)','die Postleitzahl'],['(10)','der Ort']]},
+    {type:'order', psq:'D5 Kërkesë për njoftimin 3', pde:'D5 Schreiben Sie eine Anfrage', cue:'Wie viele Kilometer?', de:'Wie viele Kilometer laufen Sie?', sq:'Sa kilometra vraponi?'},
+    {type:'order', psq:'D5 Kërkesë për njoftimin 3', pde:'D5 Schreiben Sie eine Anfrage', cue:'Nur einmal pro Woche möglich?', de:'Kann ich auch nur einmal pro Woche kommen?', sq:'A mund të vij vetëm një herë në javë?'},
+    {type:'order', psq:'D5 Kërkesë për njoftimin 1', pde:'D5 Schreiben Sie eine Anfrage', cue:'Kosten?', de:'Wie viel kostet der Kurs?', sq:'Sa kushton kursi?'},
+    {type:'order', psq:'D5 Kërkesë për njoftimin 1', pde:'D5 Schreiben Sie eine Anfrage', cue:'Einzelzimmer möglich?', de:'Kann man auch ein Einzelzimmer bekommen?', sq:'A mund të merret edhe një dhomë teke?'}
+  ]
+},
+
+/* ---------- KB S. 125: Termine ---------- */
+{
+  id:'hw14-s125', emoji:'📅', color:'#7650F0', seq:true, book:['faqe 125 · E3–E4','S. 125 · E3–E4'],
+  sq:'Lë një takim', de:'S. 125: Terminvereinbarung',
+  desc:'Fraza për të lënë, ndryshuar apo anuluar një takim.',
+  tip:'vereinbaren = lë · ändern = ndryshoj · absagen = anuloj.',
+  lesson:[
+    {t:'Faqe 125 📖', d:'E · Terminvereinbarung', p:'<b>E3</b> Rendit fjalitë. <b>E4</b> Te dentisti: e ke dhimbje dhëmbi dhe të duhet urgjent një takim.',
+     tip:'E2 është detyrë shtëpie, e gjen te <b>Detyrat</b>. 📝'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'sort', psq:'E3 Rendit', pde:'E3 Ordnen Sie zu', cats:['einen Termin vereinbaren','einen Termin ändern','einen Termin absagen'],
+     items:[['Braucht man einen Termin oder kann man einfach vorbeikommen?','einen Termin vereinbaren'],['Könnte ich bitte einen Termin haben?','einen Termin vereinbaren'],['Haben Sie am Freitag einen Termin frei?','einen Termin vereinbaren'],
+       ['Kann ich unseren Termin auf Mittwoch verschieben?','einen Termin ändern'],['Kann ich früher kommen? Es ist dringend!','einen Termin ändern'],
+       ['Ich kann jetzt doch nicht kommen.','einen Termin absagen'],['Ich muss für morgen leider absagen.','einen Termin absagen'],['Ich kann heute leider nicht kommen.','einen Termin absagen']],
+     e:'vereinbaren: Termin haben / frei? · ändern: verschieben, früher · absagen: nicht kommen, absagen.'},
+    {type:'order', psq:'E4 Te dentisti', pde:'E4 Rollenspiel', de:'Ich habe Zahnschmerzen und brauche dringend einen Termin.', sq:'Kam dhimbje dhëmbi dhe më duhet urgjent një takim.'},
+    {type:'gap', row:true, psq:'E4 Te dentisti', pde:'E4 Rollenspiel', s:'Der nächste freie Termin ist ___ Nachmittag.', o:['morgen','Morgen'], a:'morgen', e:'morgen = nesër (shkronjë e vogël).'}
+  ]
+},
+
+/* ---------- KB S. 126: Grammatik ---------- */
+{
+  id:'hw14-s126', emoji:'🧩', color:'#2E86DE', seq:true, book:['faqe 126 · gramatika','S. 126 · Grammatik'],
+  sq:'Gramatika e mësimit 10', de:'S. 126: Grammatik und Kommunikation',
+  desc:'Possessivartikel (edhe Akkusativ), sollen dhe si flet për shëndetin.',
+  tip:'Akkusativ me der: meinen, deinen, seinen, ihren, unseren, euren Kopf.',
+  lesson:[
+    {t:'Akkusativ ⚠️', d:'Possessivartikel im Akkusativ', p:'Me <b>der</b> te Akkusativ (Ich halte …, Ich sehe …) shtohet <b>-en</b>:',
+     ex:[['Mein Kopf tut weh.','Më dhemb koka. (Nominativ)'],['Ich halte meinen Kopf warm.','E mbaj kokën ngrohtë. (Akkusativ)'],['Er sieht seinen Kopf im Spiegel.','Ai e sheh kokën e tij në pasqyrë.']],
+     tip:'Kujdes: <b>seine</b> Ohren (shumës) · <b>seinen</b> Kopf (der, Akkusativ). eu<b>re</b>, pa e në mes!'},
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'„Peter ist müde. Er <b>soll</b> …“ e ke saktë ✓. Vetëm:',
+     fix:[['Jana ist auch müde. Sie sollen …','Jana ist auch müde. Sie soll …','Jana = sie (ajo, një person) → soll.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'table', topic:'possessiv', psq:'1 Possessivartikel: Akkusativ', pde:'1 Possessivartikel: Akkusativ', th:['','der Kopf (Akkusativ)'],
+     rows:[['ich','meinen',true],['du','deinen'],['er / es','seinen'],['sie','ihren'],['wir','unseren'],['ihr','euren'],['Sie','Ihren']], e:'meinen, deinen, seinen, ihren, unseren, euren, Ihren.'},
+    {type:'gap', row:true, topic:'modal', psq:'Çfarë duhet të bëjnë?', pde:'Was sollen Peter und Jana tun?', s:'Peter ist müde. Er ___ Kaffee trinken.', o:['soll','sollen','sollst'], a:'soll', e:'Peter = er → soll.'},
+    {type:'gap', row:true, topic:'modal', psq:'Çfarë duhet të bëjnë?', pde:'Was sollen Peter und Jana tun?', s:'Jana ist auch müde. Sie ___ das Fenster öffnen.', o:['soll','sollen','sollt'], a:'soll', e:'Jana = sie (ajo) → soll.'},
+    {type:'gap', row:true, topic:'modal', psq:'Çfarë duhet të bëjnë?', pde:'Was sollen Peter und Jana tun?', s:'Peter und Jana haben Hunger. Sie ___ etwas essen.', o:['sollen','soll','sollt'], a:'sollen', e:'Peter und Jana = sie (ata) → sollen.'},
+    {type:'cloze', psq:'Çfarë thotë burri?', pde:'Was sagt der Mann?', h:'🦵 Burri mban këmbën dhe kërcen në një këmbë.',
+     text:'Mein [[Bein;Fuß;Knie]] tut weh. Ich habe [[Schmerzen]].', e:'Mein Bein tut weh. Ich habe Schmerzen.'}
+  ]
+}
+  ]
+},
+{
+  id:'l15', date:'2026-11-07', added:'2026-11-07T15:12', emoji:'📝',
+  sq:'Detyrat: Fletorja, mësimi 10 C–D', de:'Hausaufgaben · Arbeitsbuch S. 112–114 · Kursbuch S. 125',
+  parts:[
+
+/* ---------- AB S. 112: sollen ---------- */
+{
+  id:'hw15-s112', lek:10, pg:112, emoji:'🩺', color:'#0E9F8E', seq:true, book:['faqe 112 · ushtrimi 14–17','S. 112 · Üb. 14–17'],
+  sq:'sollen: duhet', de:'S. 112: Ich soll Schmerztabletten nehmen',
+  desc:'sollen në formën e duhur, fjalitë në tabelë, urdhërorja ↔ sollen dhe rendit.',
+  tip:'ich soll, du sollst, er soll, wir sollen, ihr sollt, sie sollen. Folja tjetër në fund.',
+  lesson:[
+    {t:'Faqe 112 📖', d:'C · Ich soll …', p:'Detyrë për sot: <b>14</b> sollen në formën e duhur · <b>15</b> fjalitë në tabelë · <b>16</b> urdhërorja ↔ sollen · <b>17</b> rendit.',
+     tip:'Urdhërorja: folja <b>në krye</b> (Steh auf!). Me sollen: sollen në vendin 2, folja <b>në fund</b> (Du sollst aufstehen.).'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'modal', psq:'14 sollen në formën e duhur', pde:'14 Ergänzen Sie sollen in der richtigen Form',
+     text:'a  [[Soll]] ich wirklich zwei Tage zu Hause bleiben?\nb  Du [[sollst]] ein paar Schritte gehen.\nc  Er [[soll]] Sarah die Medizin morgens, mittags und abends geben.\nd  [[Sollen]] wir immer noch leise sein?\ne  Ihr [[sollt]] nicht so viel trainieren.\nf  [[Sollen]] die Kinder wirklich die Tabletten nehmen?\ng  Frau Erl, Sie sollen im Wartebereich warten.',
+     e:'Soll ich, du sollst, er soll, Sollen wir, ihr sollt, Sollen die Kinder.'},
+    {type:'order', topic:'satz', psq:'15 Fjalitë në tabelë', pde:'15 Ergänzen Sie die Sätze aus 14', cue:'Position 1 – sollen – … – Ende', parts:['Du','sollst','ein paar Schritte','gehen.'], de:'Du sollst ein paar Schritte gehen.', sq:'Duhet të ecësh pak.'},
+    {type:'order', topic:'satz', psq:'15 Fjalitë në tabelë', pde:'15 Ergänzen Sie die Sätze aus 14', cue:'Position 1 – sollen – … – Ende', parts:['Er','soll','Sarah','die Medizin','morgens, mittags und abends','geben.'], de:'Er soll Sarah die Medizin morgens, mittags und abends geben.', sq:'Ai duhet t’i japë Sarës ilaçin në mëngjes, në drekë dhe në mbrëmje.'},
+    {type:'order', topic:'satz', psq:'15 Fjalitë në tabelë', pde:'15 Ergänzen Sie die Sätze aus 14', cue:'Pyetje: sollen në krye – … – Ende', parts:['Soll','ich','wirklich','zwei Tage','zu Hause','bleiben?'], de:'Soll ich wirklich zwei Tage zu Hause bleiben?', sq:'A duhet vërtet të rri dy ditë në shtëpi?'},
+    {type:'order', topic:'satz', psq:'15 Fjalitë në tabelë', pde:'15 Ergänzen Sie die Sätze aus 14', cue:'Position 1 – sollen – … – Ende', parts:['Ihr','sollt','nicht','so viel','trainieren.'], de:'Ihr sollt nicht so viel trainieren.', sq:'Nuk duhet të stërviteni kaq shumë.'},
+    {type:'order', topic:'imperativ', psq:'16 Shkruaj përsëri', pde:'16 Schreiben Sie die Sätze neu', cue:'b  Du sollst endlich aufstehen. → Imperativ', parts:['Steh','endlich','auf!'], de:'Steh endlich auf!', sq:'Çohu më në fund!'},
+    {type:'gap', row:true, topic:'imperativ', psq:'16 Shkruaj përsëri', pde:'16 Schreiben Sie die Sätze neu', s:'c  Ihr sollt leise sein. → ___ leise!', o:['Seid','Sei','Seien Sie'], a:'Seid', e:'ihr → Seid!'},
+    {type:'order', topic:'modal', psq:'16 Shkruaj përsëri', pde:'16 Schreiben Sie die Sätze neu', cue:'d  Füllen Sie bitte den Antrag aus! → sollen', parts:['Sie','sollen','den Antrag','ausfüllen.'], de:'Sie sollen den Antrag ausfüllen.', sq:'Duhet ta plotësoni kërkesën.'},
+    {type:'order', topic:'imperativ', psq:'16 Shkruaj përsëri', pde:'16 Schreiben Sie die Sätze neu', cue:'e  Sie sollen „Ja“ oder „Nein“ ankreuzen. → Imperativ', parts:['Kreuzen','Sie','„Ja“ oder „Nein“','an!'], de:'Kreuzen Sie „Ja“ oder „Nein“ an!', sq:'Shënoni „Po“ apo „Jo“!'},
+    {type:'gap', row:true, topic:'imperativ', psq:'16 Shkruaj përsëri', pde:'16 Schreiben Sie die Sätze neu', s:'f  Sie sollen zum Chef kommen. → ___ Sie zum Chef!', o:['Kommen','Kommt','Komm'], a:'Kommen', e:'Sie → Kommen Sie!'},
+    {type:'order', topic:'modal', psq:'16 Shkruaj përsëri', pde:'16 Schreiben Sie die Sätze neu', cue:'g  Wartet bitte hier! → sollen', parts:['Ihr','sollt','hier','warten.'], de:'Ihr sollt hier warten.', sq:'Duhet të prisni këtu.'},
+    {type:'gap', row:true, topic:'imperativ', psq:'16 Shkruaj përsëri', pde:'16 Schreiben Sie die Sätze neu', s:'h  Du sollst nicht so viel Schokolade essen. → ___ nicht so viel Schokolade!', o:['Iss','Isst','Esst'], a:'Iss', e:'du isst → Iss!'},
+    {type:'cloze', topic:'modal', psq:'17 Rendit', pde:'17 Ordnen Sie zu', bank:['darf','soll','soll','Willst','soll','Willst'],
+     text:'a  – Na, was hat die Ärztin gesagt? Sollst du im Bett bleiben?\n– Nein, aber ich [[soll]] meinen Hals warm halten.\nb  – Wie geht es Lukas?\n– Nicht so gut. Er [[soll]] Schmerztabletten nehmen und er [[darf]] leider nicht Fußball spielen.\nc  – Anja und ich gehen morgen in die Berge. [[Willst]] du auch mitkommen?\n– Nein, mein Fuß tut weh. Der Arzt sagt, ich [[soll]] zu Hause bleiben.\nd  Du siehst krank aus. Du hast bestimmt Fieber. [[Willst]] du nicht lieber zum Arzt gehen?',
+     e:'soll, soll, darf, Willst, soll, Willst.'}
+  ]
+},
+
+/* ---------- AB S. 113: Modalverben ---------- */
+{
+  id:'hw15-s113', lek:10, pg:113, emoji:'🧩', color:'#7650F0', seq:true, book:['faqe 113 · ushtrimi 18–19','S. 113 · Üb. 18–19'],
+  sq:'müssen, sollen, können, dürfen, wollen', de:'S. 113: Modalverben',
+  desc:'Lidh fjalitë dhe plotëso bisedat me foljet modale.',
+  tip:'müssen = duhet · sollen = duhet (sipas dikujt) · können = mund · dürfen = lejohet · wollen = dua.',
+  lesson:[
+    {t:'Faqe 113 📖', d:'C · Modalverben', p:'<b>18</b> Lidh fjalitë. <b>19</b> Bisedat me müssen, sollen, können, dürfen, wollen.',
+     tip:'Ushtrimi 20 është me audio, prandaj nuk është këtu.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', pairs:[['Ihre Hand sieht ja schlimm aus. Sie müssen','die Salbe hier verwenden.'],['Wir haben keine Milch mehr. Kannst du','bitte einen Liter kaufen?'],['Das ist verboten. Du darfst','hier nicht rauchen.'],
+      ['Ich bin müde. Ich muss','jetzt meinen Computer ausmachen.'],['Der Arzt hat gesagt, ich soll','meine Ohren warm halten.']]},
+    {type:'cloze', topic:'modal', psq:'19 Plotëso bisedat', pde:'19 Ergänzen Sie die Gespräche', h:'müssen – sollen – können – dürfen – wollen',
+     text:'A  (Kinder im Bett)\n– Der Arzt hat gesagt, ihr [[sollt]] viel trinken.\n– Können wir Cola trinken?\n– Nein. Ihr [[sollt;müsst;dürft]] Tee trinken.\nB  (im Wartezimmer, Schild 📵)\n– Entschuldigung. Sie [[dürfen]] hier nicht telefonieren. Sie [[müssen;sollen]] das Handy ausmachen.\n– Oh, tut mir leid.\nC  (Er sitzt am Schreibtisch und arbeitet.)\n– Sabine und ich gehen jetzt ins Kino. [[Willst;Kannst]] du mitkommen?\n– Tut mir leid, ich [[kann]] leider nicht mitkommen. Ich [[muss]] bis 20.00 Uhr arbeiten.',
+     e:'ihr sollt, ihr sollt/müsst, Sie dürfen nicht, Sie müssen, Willst du, ich kann nicht, ich muss.'}
+  ]
+},
+
+/* ---------- AB S. 114: Anfrage, Brief ---------- */
+{
+  id:'hw15-s114', lek:10, pg:114, emoji:'✉️', color:'#E3A008', seq:true, book:['faqe 114 · ushtrimi 21–23','S. 114 · Üb. 21–23'],
+  sq:'Kurse dhe letra', de:'S. 114: Eine Anfrage schreiben',
+  desc:'Dy njoftime kursesh, pjesët e letrës dhe du apo Sie?',
+  tip:'Absender = kush shkruan · Empfänger = kush e merr · Anrede në fillim · Gruß në fund.',
+  lesson:[
+    {t:'Faqe 114 📖', d:'D · Eine Anfrage schreiben', p:'Te <b>21</b> e ke shkruar <b>wenig</b> saktë ✓, pjesa tjetër është ende bosh. <b>22</b> Pjesët e letrës. <b>23</b> du apo Sie?',
+     tip:'Lieb<b>e</b> Klara · Lieb<b>er</b> Jakob · Sehr geehrt<b>e</b> Damen und Herren'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', psq:'21 Rendit', pde:'21 Ordnen Sie zu', bank:['Menschen','beobachten','Lebensmittel','Wald','Kursleiterin','dick','Müsli','Ruhige'],
+     text:'[[Ruhige]] Stunden im [[Wald]]: Tiere [[beobachten]], interessante [[Menschen]] kennenlernen, den Stress vergessen, … Kommen Sie mit! Immer freitags um 16 Uhr im Stadtwald. Am 16. 4. Extra-Angebot: Ausflug zum Demetra-Bauernhof in Brix! Kurs-Nr. 7765\n\nWelche [[Lebensmittel]] sind gesund, welche machen [[dick]]? Ist wenig Fleisch essen gesund oder nur Mode? Und wie kann ich auch jeden Tag im Büro gesund essen? Antworten auf diese Fragen gibt Ihnen [[Kursleiterin]] Eva Martens im Kurs-Nr. 4532 „Nur [[Müsli]] und Gemüse? Gesund essen – was heißt das?“',
+     e:'Ruhige, Wald, beobachten, Menschen · Lebensmittel, dick, Kursleiterin, Müsli.'},
+    {type:'mc', psq:'22b Pjesët e letrës', pde:'22b Ordnen Sie die Wörter zu', q:'1  Diese Person schreibt den Brief:', o:['der Absender','der Empfänger','der Betreff','die Anrede'], a:'der Absender', e:'Absender = dërguesi.'},
+    {type:'mc', psq:'22b Pjesët e letrës', pde:'22b Ordnen Sie die Wörter zu', q:'2  Diese Person bekommt den Brief:', o:['der Empfänger','der Absender','das Datum','der Ort'], a:'der Empfänger', e:'Empfänger = marrësi.'},
+    {type:'mc', psq:'22b Pjesët e letrës', pde:'22b Ordnen Sie die Wörter zu', q:'3  Ein anderes Wort für „die Stadt“:', o:['der Ort','das Datum','der Betreff','die Anrede'], a:'der Ort', e:'der Ort = vendi, qyteti.'},
+    {type:'mc', psq:'22b Pjesët e letrës', pde:'22b Ordnen Sie die Wörter zu', q:'4  Wann schreiben Sie den Brief?', o:['das Datum','der Ort','der Betreff','der Gruß'], a:'das Datum', e:'das Datum = data.'},
+    {type:'mc', psq:'22b Pjesët e letrës', pde:'22b Ordnen Sie die Wörter zu', q:'5  Warum schreiben Sie den Brief?', o:['der Betreff','das Datum','der Absender','der Gruß'], a:'der Betreff', e:'der Betreff = tema, pse shkruan.'},
+    {type:'mc', psq:'22b Pjesët e letrës', pde:'22b Ordnen Sie die Wörter zu', q:'6  Das schreiben Sie vor dem Brieftext:', o:['die Anrede','der Gruß','der Ort','der Empfänger'], a:'die Anrede', e:'die Anrede: Sehr geehrte …, Liebe …'},
+    {type:'sort', psq:'23 du apo Sie?', pde:'23 Ordnen Sie zu', cats:['Sie sagen „du“','Sie sagen „Sie“'],
+     items:[['Sehr geehrte Frau Winter','Sie sagen „Sie“'],['Sehr geehrte Damen und Herren','Sie sagen „Sie“'],['Mit freundlichen Grüßen','Sie sagen „Sie“'],
+       ['Hallo Susan','Sie sagen „du“'],['Lieber Jakob','Sie sagen „du“'],['Liebe Klara','Sie sagen „du“'],['Viele Grüße','Sie sagen „du“']],
+     e:'du: Hallo, Liebe/Lieber, Viele Grüße · Sie: Sehr geehrte, Mit freundlichen Grüßen.'}
+  ]
+},
+
+/* ---------- KB S. 125: E2 ---------- */
+{
+  id:'hw15-k125', emoji:'🏋️', color:'#16A34A', seq:true, book:['Libri faqe 125 · E2','Kursbuch S. 125 · E2'],
+  sq:'Në telefon me klubin e fitnesit', de:'Kursbuch S. 125: Terminvereinbarung',
+  desc:'Zonja Kess dëshiron të bëjë sport dhe merr një takim.',
+  tip:'🏋️ = Frau Schäflein (Fitness-Club) · 👩 = Frau Kess.',
+  lesson:[
+    {t:'Faqe 125 📖', d:'E2 · Ergänzen Sie das Gespräch', p:'Ke filluar mirë ✓: Sie <b>brauchen</b> einen Termin · <b>kann ich einfach</b> vorbeikommen. Tani plotësoje të gjithë bisedën! 💪',
+     tip:'Fjalët e kutisë: brauchen einen Termin · einen Termin frei · kann ich einfach vorbeikommen · haben Sie denn Zeit · Dann kommen Sie'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'gap', psq:'E2 Plotëso bisedën', pde:'E2 Ergänzen Sie das Gespräch', s:'👩 Aha, sehr gut! Wie ist das: Braucht man da einen Termin oder ___?', o:['kann ich einfach vorbeikommen','haben Sie denn Zeit','einen Termin frei','Dann kommen Sie'], a:'kann ich einfach vorbeikommen', e:'Termin apo thjesht kaloj?'},
+    {type:'gap', psq:'E2 Plotëso bisedën', pde:'E2 Ergänzen Sie das Gespräch', s:'🏋️ Nein, nein, Sie ___.', o:['brauchen einen Termin','einen Termin frei','kann ich einfach vorbeikommen','haben Sie denn Zeit'], a:'brauchen einen Termin', e:'Jo, ju duhet një takim.'},
+    {type:'gap', psq:'E2 Plotëso bisedën', pde:'E2 Ergänzen Sie das Gespräch', s:'🏋️ Wann ___? Am Vormittag oder am Nachmittag?', o:['haben Sie denn Zeit','brauchen einen Termin','Dann kommen Sie','einen Termin frei'], a:'haben Sie denn Zeit', e:'Wann haben Sie denn Zeit?'},
+    {type:'gap', psq:'E2 Plotëso bisedën', pde:'E2 Ergänzen Sie das Gespräch', s:'👩 Vormittag ist gut. Haben Sie am Freitag ___?', o:['einen Termin frei','haben Sie denn Zeit','brauchen einen Termin','kann ich einfach vorbeikommen'], a:'einen Termin frei', e:'Haben Sie am Freitag einen Termin frei?'},
+    {type:'gap', psq:'E2 Plotëso bisedën', pde:'E2 Ergänzen Sie das Gespräch', s:'🏋️ Na prima! ___ am Freitagvormittag um zehn Uhr, ja?', o:['Dann kommen Sie','haben Sie denn Zeit','einen Termin frei','brauchen einen Termin'], a:'Dann kommen Sie', e:'Dann kommen Sie am Freitag um zehn Uhr.'}
+  ]
+}
+  ]
 }
 
 ];

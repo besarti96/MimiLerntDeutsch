@@ -39,7 +39,8 @@ const SPICK = [
   table:[['ich','unë'],['du','ti'],['er','ai'],['sie','ajo'],['es','ai / ajo (për das)'],['wir','ne'],['ihr','ju (shokë)'],['sie','ata / ato'],['Sie','Ju (me respekt)'],
     ['mein / meine','im / ime'],['dein / deine','yt / jote'],['sein / seine','i tij / e tij'],['ihr / ihre','i saj · i tyre'],['unser / unsere','ynë / jonë'],['euer / eure','juaj']],
   tip:'<b>Sie</b> me shkronjë të madhe = Ju (te mjeku, në punë). <b>sie</b> e vogël = ajo ose ata.<br>'
-    + 'Me shumës: <b>seine</b> Ohren, <b>ihre</b> Ohren, pa -n! <i class="tr">(veshët e tij, veshët e saj)</i>'
+    + 'Me shumës: <b>seine</b> Ohren, <b>ihre</b> Ohren, pa -n! <i class="tr">(veshët e tij, veshët e saj)</i><br>'
+    + 'Akkusativ me der: mein<b>en</b>, sein<b>en</b>, ihr<b>en</b>, unser<b>en</b>, eur<b>en</b> Kopf <i class="tr">(Ich halte meinen Kopf warm.)</i>'
 },
 {
   id:'sz-verb', chip:'🔁 Foljet', t:'🔁 Foljet më të rëndësishme', d:'Die wichtigsten Verben',
@@ -101,10 +102,10 @@ const SPICK = [
   tip:'<b>vor</b> = ka mbaruar. <b>seit</b> = vazhdon ende. vor / seit + einem Jahr, einer Woche, zwei Jahre<b>n</b>. <b>für</b> + einen Monat, ein Jahr, eine Woche.'
 },
 {
-  id:'sz-muss', chip:'📋 müssen · dürfen', t:'📋 Duhet, lejohet & urdhërorja', d:'müssen, dürfen, man, Imperativ',
+  id:'sz-muss', chip:'📋 müssen · dürfen', t:'📋 Duhet, lejohet & urdhërorja', d:'müssen, dürfen, sollen, man, Imperativ',
   th:['Deutsch','Shqip'], say:0,
   table:[['ich muss, du musst, er muss','duhet (pa mbaresë te ich, er)'],['Er muss einen Antrag ausfüllen.','Ai duhet të plotësojë një kërkesë.'],['Zuerst muss man das Ziel wählen.','man = kushdo (jo der Mann!)'],
-    ['ich darf, du darfst, er darf','lejohet · nicht dürfen = ndalohet'],['Hier darf man nicht rauchen.','Këtu nuk lejohet duhani.'],
+    ['ich darf, du darfst, er darf','lejohet · nicht dürfen = ndalohet'],['ich soll, du sollst, er soll','duhet, sipas dikujt (mjeku, shefi)'],['Der Arzt sagt, ich soll viel trinken.','Mjeku thotë që duhet të pi shumë.'],['Hier darf man nicht rauchen.','Këtu nuk lejohet duhani.'],
     ['Komm mit! Warte mal! Sei leise!','urdhërorja me du: pa du, pa -st'],['Kommt mit! Seid leise! Lest den Text!','urdhërorja me ihr: pa ihr'],['Warten Sie! Seien Sie leise!','urdhërorja me Sie: folja + Sie']],
   tip:'du f<b>ä</b>hrst → <b>Fahr!</b> · du bist → <b>Sei!</b> · Foljet e ndashme: <b>Hol</b> Lili <b>ab</b>!'
 },
@@ -113,6 +114,7 @@ const SPICK = [
   ex:[['Ich verstehe das nicht.','Nuk e kuptoj.'],['Wie bitte?','Si? (nuk dëgjova)'],['Langsam, bitte.','Më ngadalë, ju lutem.'],
     ['Können Sie das bitte wiederholen?','A mund ta përsërisni, ju lutem?'],['Wie sagt man das auf Deutsch?','Si thuhet kjo gjermanisht?'],
     ['Was bedeutet das?','Çfarë do të thotë kjo?'],['Wie schreibt man das?','Si shkruhet kjo?'],['Entschuldigung!','Më falni!'],
-    ['Ich hätte gern …','Do të doja …'],['Die Rechnung, bitte.','Llogarinë, ju lutem.']]
+    ['Ich hätte gern …','Do të doja …'],['Die Rechnung, bitte.','Llogarinë, ju lutem.'],
+    ['Haben Sie morgen einen Termin frei?','A keni nesër një takim të lirë?'],['Sehr geehrte Damen und Herren, … Mit freundlichen Grüßen','letër zyrtare (Sie): fillimi … fundi']]
 }
 ];

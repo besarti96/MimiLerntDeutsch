@@ -1256,7 +1256,7 @@ const TOPICS = {
   lesen:    ['Leximi', 'Leseverstehen', 'Lexo pyetjen, gjej fjalën kyçe dhe kërkoje në tekst.'],
   imperativ:['Urdhërorja', 'Imperativ', 'du kommst → Komm! (pa du, pa -st). ihr kommt → Kommt! Sie kommen → Kommen Sie! sein: Sei! / Seid! / Seien Sie!']
 };
-const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög|muss|müss|darf|dürf)/;
+const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög|muss|müss|darf|dürf|soll)/;
 /* finds the grammar topic of a question from what it asks; q.topic in the data wins */
 function topicOf(q){
   if (q.topic) return q.topic;
