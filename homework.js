@@ -2001,6 +2001,224 @@ const HOMEWORK = [
   ]
 }
   ]
+},
+
+/* =====================================================================
+   🚗 Libri: Mësimi 11 A–C (Kursbuch S. 130–134, 138) und der Film
+   „Alfons, der Hypochonder“ (S. 129, Lektion 10). Seite für Seite wie im
+   Buch. Hörübungen (A1, A2, B1a) ohne Audio weggelassen; Bild-Aufgaben
+   (C2b) als Grammatik-Aufgaben, damit sie ohne Buch lösbar sind.
+   ===================================================================== */
+{
+  id:'l16', date:'2026-11-10', added:'2026-11-10T16:32', emoji:'🚗',
+  sq:'Libri: Mësimi 11 A–C dhe filmi „Alfons“', de:'Kursbuch S. 129–134 und 138',
+  parts:[
+
+/* ---------- KB S. 129: Film „Alfons, der Hypochonder“ ---------- */
+{
+  id:'hw16-s129', emoji:'🎬', color:'#F2545B', seq:true, book:['faqe 129 · filmi','S. 129 · Film'],
+  sq:'Alfons, hipokondriaku', de:'S. 129: Alfons, der Hypochonder',
+  desc:'Çdo ditë Alfonsi ka një „sëmundje“ të re. Shkruaj pjesët e trupit.',
+  tip:'„Meine … sind“ = shumës (Augen, Beine). „Meine linke … ist“ = die (Hand). „Mein rechtes … ist“ = das (Ohr).',
+  read:'<b>Alfons, der Hypochonder</b> 🎬<br>Das ist Alfons. Er hat ein Problem. Er ist Hypochonder. Jeden Tag hat er eine neue Krankheit.<br><br>Am Samstag geht Alfons in sein Lieblingsgeschäft: die Apotheke. 💊<br>Am Sonntag geht es Alfons richtig gut: einen Tag lang. Aber dann … kommt schon wieder der Montag. Armer Alfons!',
+  lesson:[
+    {t:'Faqe 129 🎬', d:'Film: Alfons, der Hypochonder', p:'Alfonsi është <b>hipokondriak</b>: çdo ditë mendon se ka një sëmundje të re.', say:0, th:['Deutsch','Shqip'],
+     table:[['der Hypochonder','hipokondriaku'],['jeden Tag','çdo ditë'],['die Krankheit','sëmundja'],['das Lieblingsgeschäft','dyqani i preferuar'],['schon wieder','tashmë përsëri'],
+       ['dick','i trashë, i fryrë'],['eiskalt','i akullt'],['kurz','i shkurtër'],['Armer Alfons!','I gjori Alfons!']],
+     tip:'Shiko fjalën para vijës: <b>Mein rechtes</b> … → das · <b>Meine linke</b> … → die · <b>Meine</b> … <b>sind</b> → shumës.'},
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'<b>Ohr</b> dhe <b>Nase</b> i ke shkruar saktë ✓. Te këto shiko foljen dhe nyjën:',
+     fix:[
+      ['Meine Mund sind heute so gelb.','Meine Augen sind heute so gelb.','„Meine … sind“ = shumës. der Mund është një → nuk përshtatet.'],
+      ['Meine linke Arm ist dick.','Meine linke Hand ist dick.','„Meine linke“ = die → die Hand. (der Arm → mein linker Arm)'],
+      ['Meine Bein sind kurz.','Meine Beine sind kurz.','„sind“ = shumës → Beine.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', read:true, psq:'1 Pjesët e trupit', pde:'1 Ergänzen Sie die Körperteile', h:'B 👂 · C 👀 · D ✋ · E 👃 · F 🦵🦵',
+     text:'B  Am Montag sagt er: Mein rechtes [[Ohr]] ist so groß.\nC  Am Dienstag sagt er: Meine [[Augen;Zähne]] sind heute so gelb.\nD  Am Mittwoch sagt er: Meine linke [[Hand]] ist dick.\nE  Am Donnerstag sagt er: Meine [[Nase]] ist eiskalt.\nF  Am Freitag sagt er: Meine [[Beine;Füße]] sind kurz.',
+     e:'Ohr · Augen (shumës) · Hand (die) · Nase · Beine (shumës).'},
+    {type:'gap', row:true, topic:'subjekt', psq:'ist apo sind?', pde:'ist oder sind?', s:'Meine Augen ___ heute so gelb.', o:['ist','sind'], a:'sind', e:'Augen = shumës → sind.'},
+    {type:'gap', row:true, topic:'subjekt', psq:'ist apo sind?', pde:'ist oder sind?', s:'Meine linke Hand ___ dick.', o:['ist','sind'], a:'ist', e:'die Hand = një → ist.'},
+    {type:'gap', row:true, topic:'subjekt', psq:'ist apo sind?', pde:'ist oder sind?', s:'Meine Beine ___ kurz.', o:['ist','sind'], a:'sind', e:'Beine = shumës → sind.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'Mein apo Meine?', pde:'Mein oder Meine?', s:'___ rechtes Ohr ist so groß.', h:'das Ohr', o:['Mein','Meine'], a:'Mein', e:'das Ohr → mein.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'Mein apo Meine?', pde:'Mein oder Meine?', s:'___ Nase ist eiskalt.', h:'die Nase', o:['Mein','Meine'], a:'Meine', e:'die Nase → meine.'},
+    {type:'gap', row:true, topic:'possessiv', psq:'Mein apo Meine?', pde:'Mein oder Meine?', s:'___ Beine sind kurz.', h:'shumës', o:['Mein','Meine'], a:'Meine', e:'Shumës → meine.'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Was ist das Problem von Alfons?', o:['Er ist Hypochonder.','Er hat keine Arbeit.','Er ist Arzt.','Er hat kein Geld.'], a:'Er ist Hypochonder.', e:'„Er hat ein Problem. Er ist Hypochonder.“'},
+    {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wohin geht Alfons am Samstag?', o:['in die Apotheke','ins Krankenhaus','ins Kino','zum Arzt'], a:'in die Apotheke', e:'„… in sein Lieblingsgeschäft: die Apotheke.“'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wann geht es Alfons richtig gut?', o:['am Montag','am Samstag','am Sonntag'], a:'am Sonntag', e:'„Am Sonntag geht es Alfons richtig gut: einen Tag lang.“'}
+  ]
+},
+
+/* ---------- KB S. 130–131: Foto-Hörgeschichte Folge 11 ---------- */
+{
+  id:'hw16-s130', emoji:'🚗', color:'#16A34A', seq:true, book:['faqe 130–131 · historia','S. 130–131 · Foto-Hörgeschichte'],
+  sq:'Historia: Alles im grünen Bereich', de:'S. 130–131: Alles im grünen Bereich',
+  desc:'Fjalët e fotove, majtas / drejt / djathtas dhe pyetjet për historinë.',
+  tip:'Alles im grünen Bereich = gjithçka në rregull. Te ushtrimi 3 jo gjithçka përshtatet!',
+  read:'Walter hat eine Erkältung. Lara und Lili sollen sein Auto zur Werkstatt bringen und in der Apotheke Medikamente kaufen. Die Werkstatt macht um zwölf Uhr zu.<br><br>Lili hat den Autoschlüssel und das Navi. In der Stadt darf man nur 50 fahren. Aber Lara möchte einmal richtig schnell fahren. An der Ampel fährt sie nach links. Vor der Brücke geht es zur Autobahn. Lara und Lili fahren auf die Autobahn.<br><br>Lara und Lili kommen sehr spät zur Werkstatt. Lili telefoniert mit Opa Walter und sagt: „Alles im grünen Bereich!“ Das bedeutet: Alles ist okay. 😄',
+  lesson:[
+    {t:'Faqe 130–131 📖', d:'Folge 11: Alles im grünen Bereich', p:'<b>1</b> Fjalët e fotove. <b>2</b> Majtas, drejt apo djathtas? <b>3</b> Plotëso me fjalët e kutisë. <b>4</b> Kryqëzo.',
+     tip:'Te ushtrimi 3: <b>„Achtung: Nicht alles passt.“</b> <i class="tr">(Kujdes: jo gjithçka përshtatet.)</i>'},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Ushtrimin <b>2</b> e ke krejt saktë: <b>C</b> nach rechts, <b>A</b> geradeaus, <b>B</b> nach links ✓. Te <b>3</b> i ke gjetur: Medikamente kaufen, eine Erkältung, zwölf ✓. Te <b>4</b>: Alles ist okay ✓. 👏',
+     tip:'Kujdes nga kurthi te 3: fjalët <b>zwei</b> dhe <b>kein Problem</b> mbeten në kuti, nuk shkruhen askund.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', psq:'1 Fjalët e fotove', pde:'1 Was sehen Sie auf den Fotos?', pairs:[['die Werkstatt','servisi i makinave'],['der Autoschlüssel','çelësi i makinës'],['die Apotheke','barnatorja'],['das Navi','navigatori'],['die Ampel','semafori']]},
+    {type:'match', psq:'1 Fjalët e fotove', pde:'1 Was sehen Sie auf den Fotos?', pairs:[['die S-Bahn','treni i qytetit'],['die Autobahn','autostrada'],['die Tankstelle','pika e karburantit'],['das Eis','akullorja'],['die Brücke','ura']]},
+    {type:'mc', psq:'2 Çfarë përshtatet?', pde:'2 Was passt? Ordnen Sie zu', q:'A ⬆️', o:['Fahren Sie nach rechts.','Fahren Sie geradeaus.','Fahren Sie nach links.'], a:'Fahren Sie geradeaus.', say:'Fahren Sie geradeaus.', e:'⬆️ = geradeaus (drejt).'},
+    {type:'mc', psq:'2 Çfarë përshtatet?', pde:'2 Was passt? Ordnen Sie zu', q:'B ⬅️', o:['Fahren Sie nach rechts.','Fahren Sie geradeaus.','Fahren Sie nach links.'], a:'Fahren Sie nach links.', say:'Fahren Sie nach links.', e:'⬅️ = nach links (majtas).'},
+    {type:'mc', psq:'2 Çfarë përshtatet?', pde:'2 Was passt? Ordnen Sie zu', q:'C ➡️', o:['Fahren Sie nach rechts.','Fahren Sie geradeaus.','Fahren Sie nach links.'], a:'Fahren Sie nach rechts.', say:'Fahren Sie nach rechts.', e:'➡️ = nach rechts (djathtas).'},
+    {type:'cloze', read:true, topic:'lesen', psq:'3 Rendit', pde:'3 Ordnen Sie zu. Achtung: Nicht alles passt.', bank:['zwei','zwölf','Medikamente kaufen','eine Erkältung','kein Problem'],
+     text:'a  Was sollen Lara und Lili für Walter tun? Sie sollen sein Auto zur Werkstatt bringen ✓ und [[Medikamente kaufen]].\nb  Warum macht Walter das nicht selbst? Er hat [[eine Erkältung]].\nc  Wann macht die Werkstatt zu? Um [[zwölf;zwölf Uhr;12]].',
+     e:'Medikamente kaufen · eine Erkältung · zwölf. „zwei“ dhe „kein Problem“ mbeten.'},
+    {type:'mc', read:true, topic:'lesen', psq:'4a Kryqëzo', pde:'4a Warum kommen Lara und Lili so spät an?', q:'Warum kommen Lara und Lili so spät an?',
+     o:['Sie finden die Werkstatt nicht. Das Navi zeigt den falschen Weg.','Sie fahren auf die Autobahn. Lara möchte einmal richtig schnell fahren.'], a:'Sie fahren auf die Autobahn. Lara möchte einmal richtig schnell fahren.', e:'„Lara möchte einmal richtig schnell fahren.“'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'4b Kryqëzo', pde:'4b Was bedeutet „Alles im grünen Bereich“?', q:'Was bedeutet „Alles im grünen Bereich“?', o:['Alles ist okay.','Nichts funktioniert.'], a:'Alles ist okay.', e:'Alles im grünen Bereich = gjithçka në rregull.'}
+  ]
+},
+
+/* ---------- KB S. 132: A Fahren Sie dann nach links ---------- */
+{
+  id:'hw16-s132', emoji:'🧭', color:'#2E86DE', seq:true, book:['faqe 132 · A3–A4','S. 132 · A3–A4'],
+  sq:'Rruga: Fahren Sie dann nach links', de:'S. 132: Wegbeschreibung',
+  desc:'Pyet për rrugën dhe tregoje: geradeaus, die zweite Straße rechts, an der Ampel links.',
+  tip:'⬆️ geradeaus · ⬅️ links · ➡️ rechts · 1. erste · 2. zweite · 3. dritte Straße · 🚦 an der Ampel.',
+  lesson:[
+    {t:'Faqe 132 📖', d:'A · Fahren Sie dann nach links', p:'<b>A3</b> Pyet dhe përgjigju: ku është …? <b>A4</b> Shpjego një rrugë.', say:1, th:['','Deutsch','Shqip'],
+     table:[['⬆️','geradeaus','drejt'],['⬅️','links','majtas'],['➡️','rechts','djathtas'],['2.','die zweite Straße','rruga e dytë'],['🚦','an der Ampel','te semafori']],
+     tip:'Shigjetat te ushtrimet tregojnë rrugën, si harta në libër.'},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Të gjitha fjalitë e <b>A3</b> i ke përkthyer vetë në libër: „po kërkoj“, „afër“, „drejt“, „djathtas“, „majtas“, „i huaj“. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', psq:'A3 Pyet dhe përgjigju', pde:'A3 Fragen Sie und antworten Sie', pairs:[['Entschuldigung, ich suche den Bahnhof.','Më falni, po kërkoj stacionin e trenit.'],['Ist hier ein Hotel in der Nähe?','A ka këtu afër një hotel?'],
+      ['Gehen Sie immer geradeaus.','Ecni gjithmonë drejt.'],['Ich bin nicht von hier.','Nuk jam prej këtu.']]},
+    {type:'cloze', psq:'A3 Trego rrugën', pde:'A3 Wo ist hier die Post?', bank:['geradeaus','zweite','rechts','Ampel','links','Metern'],
+     text:'Wo ist hier die Post?\n⬆️  Gehen Sie immer [[geradeaus]].\n⬆️ 2. ➡️  Sie gehen zuerst geradeaus und dann die [[zweite]] Straße [[rechts]].\n🚦 ⬅️  Gehen Sie an der [[Ampel]] [[links]].\n⬆️ 300 m ⬅️  Gehen Sie geradeaus und nach 300 [[Metern;Meter]] links.',
+     e:'geradeaus · die zweite Straße rechts · an der Ampel links · nach 300 Metern.'},
+    {type:'gap', row:true, psq:'A3 Cila rrugë?', pde:'A3 Welche Straße?', s:'Gehen Sie die ___ Straße links.', h:'1.', o:['erste','zweite','dritte'], a:'erste', e:'1. = die erste Straße.'},
+    {type:'gap', row:true, psq:'A3 Cila rrugë?', pde:'A3 Welche Straße?', s:'Gehen Sie die ___ Straße rechts.', h:'3.', o:['erste','zweite','dritte'], a:'dritte', e:'3. = die dritte Straße.'},
+    {type:'mc', topic:'dialog', psq:'A3 Çfarë përgjigjesh?', pde:'A3 Was antworten Sie?', q:'Entschuldigung, wo ist hier ein Hotel?', speakQ:true, h:'Ti nuk je prej këtu. 🤷‍♀️',
+     o:['Tut mir leid, ich bin auch fremd hier.','Gehen Sie immer geradeaus.','Die zweite Straße rechts.','Ja, richtig.'], a:'Tut mir leid, ich bin auch fremd hier.', say:'Tut mir leid, ich bin auch fremd hier.', e:'fremd hier = e huaj këtu.'},
+    {type:'order', topic:'satz', psq:'A3 Trego rrugën', pde:'A3 Erklären Sie den Weg', cue:'zuerst ⬆️ – dann 2. ➡️', parts:['Sie gehen','zuerst','geradeaus','und dann','die zweite Straße','rechts.'], de:'Sie gehen zuerst geradeaus und dann die zweite Straße rechts.', sq:'Së pari ecni drejt dhe pastaj rruga e dytë djathtas.'},
+    {type:'order', topic:'satz', psq:'A3 Trego rrugën', pde:'A3 Erklären Sie den Weg', cue:'⬆️ – 300 m – ⬅️', parts:['Gehen Sie','geradeaus','und','nach 300 Metern','links.'], de:'Gehen Sie geradeaus und nach 300 Metern links.', sq:'Ecni drejt dhe pas 300 metrash majtas.'},
+    {type:'cloze', psq:'A4 Shpjego rrugën', pde:'A4 Erklären Sie einen Weg', h:'➡️ · ⬆️ · 2. ⬅️ · 100 m', bank:['geradeaus','links','rechts','zweite','100 Metern'],
+     text:'Du gehst [[rechts]], dann [[geradeaus]], dann die [[zweite]] Straße [[links]]. Dann bist du nach [[100 Metern;100 Meter;100 m]] da.\n– Das ist die Post!\n– Ja, richtig.',
+     e:'rechts, geradeaus, die zweite Straße links, nach 100 Metern.'}
+  ]
+},
+
+/* ---------- KB S. 133: B Wir fahren mit dem Auto ---------- */
+{
+  id:'hw16-s133', emoji:'🚋', color:'#EE7A0C', seq:true, book:['faqe 133 · B1–B3','S. 133 · B1–B3'],
+  sq:'Wir fahren mit dem Auto', de:'S. 133: mit dem · zum · zur',
+  desc:'Me çfarë shkojnë? Ku duan të shkojnë? Dhe biseda te stacioni qendror.',
+  tip:'mit dem (der, das) · mit der (die) · zu Fuß. Wohin? zum (der, das) · zur (die).',
+  lesson:[
+    {t:'Faqe 133 📖', d:'B · Wir fahren mit dem Auto', p:'<b>B1</b> Me çfarë? Për ku? <b>B2</b> Biseda te stacioni. <b>B3</b> Rrugët e tua.', say:2, th:['','','Shembull'],
+     tr:[['','','me autobus'],['','','me metro'],['','','te fusha e futbollit'],['','','te servisi']],
+     table:[['Wie?','mit <b>dem</b>','mit dem Bus'],['Wie?','mit <b>der</b>','mit der U-Bahn'],['Wohin?','<b>zum</b>','zum Fußballplatz'],['Wohin?','<b>zur</b>','zur Werkstatt']],
+     tip:'⚠ <b>zu Fuß</b> <i class="tr">(në këmbë)</i> · zu + dem = <b>zum</b> · zu + der = <b>zur</b>'},
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'Te <b>B1b</b> i ke plotësuar të pesë fjalitë. Kujdes vetëm te shkrimi:',
+     fix:[['Karolen platz','Karolinenplatz','Një fjalë e vetme: Karolinen + platz.'],['zum fussballplatz','zum Fußballplatz','Emrat shkruhen me shkronjë të madhe.'],['Die Frau sucht die schule.','Die Frau sucht die Schule.','Schule është emër → shkronjë e madhe.']]}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'sort', topic:'lokal', psq:'B1a Me çfarë?', pde:'B1a Womit fahren / fliegen die Personen?', cats:['mit dem','mit der'],
+     items:[['das Flugzeug','mit dem'],['der Zug','mit dem'],['das Auto','mit dem'],['das Taxi','mit dem'],['der Bus','mit dem'],['das Fahrrad','mit dem'],['die Straßenbahn','mit der'],['die U-Bahn','mit der'],['die S-Bahn','mit der']],
+     e:'der, das → mit dem. die → mit der.'},
+    {type:'cloze', topic:'lokal', psq:'B1 Wie?', pde:'B1 Wie? (modale Präposition)',
+     text:'der Bus → mit [[dem]] Bus\ndas Auto → mit [[dem]] Auto\ndie U-Bahn → mit [[der]] U-Bahn\n⚠ në këmbë → [[zu]] Fuß',
+     e:'mit dem Bus, mit dem Auto, mit der U-Bahn, zu Fuß.'},
+    {type:'cloze', psq:'B1b Ku duan të shkojnë?', pde:'B1b Wohin möchten die Personen?', h:'2 🏙️ Platz · 3 🎬 · 4 ⚽ · 5 🏫', bank:['Filmmuseum','Fußballplatz','Schule','Karolinenplatz'],
+     text:'1  Lara und Lili sollen zur Werkstatt fahren. ✓\n2  Die Frau möchte zum [[Karolinenplatz]].\n3  Das Paar will zum [[Filmmuseum]], aber zu Fuß ist das zu weit.\n4  Der junge Mann muss zum [[Fußballplatz]].\n5  Die Frau sucht die [[Schule]].',
+     e:'Karolinenplatz · Filmmuseum · Fußballplatz · Schule (emrat me shkronjë të madhe).'},
+    {type:'cloze', topic:'lokal', psq:'B1 Wohin?', pde:'B1 Wohin? (lokale Präposition)',
+     text:'der Fußballplatz → [[zum]] Fußballplatz\ndas Museum → [[zum]] Museum\ndie Werkstatt → [[zur]] Werkstatt\nzu + dem = [[zum]] · zu + der = [[zur]]',
+     e:'der, das → zum. die → zur.'},
+    {type:'cloze', topic:'lokal', psq:'B2 Te stacioni qendror', pde:'B2 Sie sind am Hauptbahnhof', h:'das Schwimmbad · der Bus 31 · die Station', bank:['zum','zu','zur','mit dem','weit'],
+     text:'Entschuldigung. Wie komme ich [[zum]] Schwimmbad? Kann ich [[zu]] Fuß gehen?\n– Zu Fuß? Nein, das ist viel zu [[weit]]. Fahren Sie [[mit dem]] Bus 31 bis [[zur]] Station „Schwimmbad“.',
+     e:'zum Schwimmbad · zu Fuß · zu weit · mit dem Bus · zur Station.'},
+    {type:'gap', row:true, topic:'lokal', psq:'B2 Pyet për rrugën', pde:'B2 Fragen Sie', s:'Wie komme ich ___ Krankenhaus?', h:'das Krankenhaus', o:['zum','zur'], a:'zum', e:'das → zum.'},
+    {type:'gap', row:true, topic:'lokal', psq:'B2 Pyet për rrugën', pde:'B2 Fragen Sie', s:'Wie komme ich ___ Stadtbücherei?', h:'die Stadtbücherei', o:['zum','zur'], a:'zur', e:'die → zur.'},
+    {type:'gap', row:true, topic:'lokal', psq:'B2 Përgjigju', pde:'B2 Antworten Sie', s:'Fahren Sie mit ___ Straßenbahn 1.', h:'die Straßenbahn', o:['dem','der'], a:'der', e:'die → mit der.'},
+    {type:'gap', row:true, topic:'lokal', psq:'B2 Përgjigju', pde:'B2 Antworten Sie', s:'Fahren Sie mit ___ S-Bahn S1.', h:'die S-Bahn', o:['dem','der'], a:'der', e:'die → mit der.'},
+    {type:'order', topic:'satz', psq:'B3 Rrugët e mia', pde:'B3 Meine Wege und Verkehrsmittel', cue:'Auto → Uni', parts:['Ich fahre','mit dem Auto','zur Uni.'], de:'Ich fahre mit dem Auto zur Uni.', sq:'Shkoj me makinë në universitet.'},
+    {type:'order', topic:'satz', psq:'B3 Rrugët e mia', pde:'B3 Meine Wege und Verkehrsmittel', cue:'Fitnessstudio ← Bus', parts:['Zum Fitnessstudio','fahre','ich','mit dem Bus.'], de:'Zum Fitnessstudio fahre ich mit dem Bus.', sq:'Në palestër shkoj me autobus.'}
+  ]
+},
+
+/* ---------- KB S. 134: C Da! Vor der Brücke links ---------- */
+{
+  id:'hw16-s134', emoji:'📍', color:'#7650F0', seq:true, book:['faqe 134 · C1–C3','S. 134 · C1–C3'],
+  sq:'Da! Vor der Brücke links', de:'S. 134: Wo? + Dativ',
+  desc:'Ku? Në qytet, te semafori, para urës. Parafjalët e vendit me dem, der, den.',
+  tip:'Wo? → dem (der, das) · der (die) · den …n (shumës). an + dem = am, in + dem = im.',
+  read:'Lara und Lili fahren mit dem Auto. In der Stadt darf man nur 50 fahren. An der Ampel soll Lara nach links fahren. Vor der Brücke links geht es zur Autobahn. Auf der Autobahn soll Lara bleiben.',
+  lesson:[
+    {t:'Faqe 134 📖', d:'C · Da! Vor der Brücke links', p:'<b>C1</b> Lidhi pyetjet me përgjigjet. <b>C2</b> Në qytet: dem, der apo den? <b>C3</b> Ku është …?', say:0, th:['Deutsch','Shqip'],
+     table:[['an','te, buzë'],['auf','mbi, në'],['hinter','pas, prapa'],['in','në, brenda'],['neben','pranë'],['über','sipër'],['unter','nën, poshtë'],['vor','para'],['zwischen','midis']],
+     tip:'Te <b>C2b</b> në libër vendos figura. Këtu ushtron nyjën: auf <b>dem</b> Parkplatz, an <b>der</b> Bushaltestelle.'},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Tabelën <b>C2c</b> e ke krejt saktë: <b>dem</b> Parkplatz, <b>dem</b> Café, <b>der</b> Bäckerei, <b>den</b> Häusern ✓. Dhe parafjalët i ke përkthyer vetë: hinter = pas, unter = poshtë, vor = para, zwischen = mes. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', read:true, topic:'lesen', psq:'C1 Lidhi', pde:'C1 Hören Sie und verbinden Sie', pairs:[['Wo darf man nur 50 fahren?','In der Stadt.'],['Wo geht es zur Autobahn?','Vor der Brücke links.'],['Wo soll Lara bleiben?','Auf der Autobahn.'],['Wo soll Lara nach links fahren?','An der Ampel.']]},
+    {type:'gap', row:true, topic:'lokal', psq:'C2b Në qytet', pde:'C2b In der Stadt', s:'1  Zwei Lkws stehen auf ___ Parkplatz.', h:'der Parkplatz', o:['dem','der','den'], a:'dem', e:'der → dem.'},
+    {type:'gap', row:true, topic:'lokal', psq:'C2b Në qytet', pde:'C2b In der Stadt', s:'2  Die Kinder warten an ___ Bushaltestelle.', h:'die Bushaltestelle', o:['dem','der','den'], a:'der', e:'die → der.'},
+    {type:'gap', row:true, topic:'lokal', psq:'C2b Në qytet', pde:'C2b In der Stadt', s:'3  Ein Mann kauft ___ Kiosk eine Zeitung.', h:'an + dem Kiosk', o:['am','im','an'], a:'am', e:'an + dem = am.'},
+    {type:'gap', row:true, topic:'lokal', psq:'C2b Në qytet', pde:'C2b In der Stadt', s:'4  Ein Paar sitzt hinter ___ Café.', h:'das Café', o:['dem','der','den'], a:'dem', e:'das → dem.'},
+    {type:'gap', row:true, topic:'lokal', psq:'C2b Në qytet', pde:'C2b In der Stadt', s:'5  Die Bücherei ist über ___ Bäckerei.', h:'die Bäckerei', o:['dem','der','den'], a:'der', e:'die → der.'},
+    {type:'gap', row:true, topic:'lokal', psq:'C2b Në qytet', pde:'C2b In der Stadt', s:'6  Ein Baum steht hinter ___ Häusern.', h:'shumës: die Häuser', o:['dem','der','den'], a:'den', e:'Shumës → den Häusern.'},
+    {type:'cloze', topic:'lokal', psq:'C2c Plotëso tabelën', pde:'C2c Ergänzen Sie die Tabelle',
+     text:'Wo? hinter / vor / neben …\nder Parkplatz → [[dem]] Parkplatz\ndas Café → [[dem]] Café\ndie Bäckerei → [[der]] Bäckerei\ndie Häuser → [[den]] Häusern\nan + dem = [[am]] · in + dem = [[im]]',
+     e:'dem, dem, der, den · am, im.'},
+    {type:'match', psq:'C2 Parafjalët', pde:'C2 Lokale Präpositionen', pairs:[['vor','para'],['hinter','pas, prapa'],['neben','pranë'],['zwischen','midis'],['unter','nën, poshtë']]},
+    {type:'match', psq:'C2 Parafjalët', pde:'C2 Lokale Präpositionen', pairs:[['an','te, buzë'],['auf','mbi, në'],['in','në, brenda'],['über','sipër']]},
+    {type:'gap', row:true, topic:'lokal', psq:'C3 Ku është?', pde:'C3 Fragen Sie und antworten Sie', s:'Wo ist der Parkplatz? – Neben ___ Fußgängerzone.', h:'die Fußgängerzone', o:['dem','der','den'], a:'der', e:'die → neben der Fußgängerzone.'},
+    {type:'gap', row:true, topic:'lokal', psq:'C3 Ku është?', pde:'C3 Fragen Sie und antworten Sie', s:'Wo ist die Bank? – Zwischen ___ Post und dem Café.', h:'die Post', o:['dem','der','den'], a:'der', e:'die → zwischen der Post.'}
+  ]
+},
+
+/* ---------- KB S. 138: Grammatik ---------- */
+{
+  id:'hw16-s138', emoji:'🧩', color:'#0E9F8E', seq:true, book:['faqe 138 · gramatika','S. 138 · Grammatik'],
+  sq:'Gramatika: mit, Wo?, Wohin?', de:'S. 138: Grammatik und Kommunikation',
+  desc:'Përmbledhja e mësimit 11: mit + Dativ, Wo? (ku) dhe Wohin? (për ku).',
+  tip:'Wo? beim Arzt, in der Apotheke, in Wien, zu Hause. Wohin? zum Arzt, zur Apotheke, nach Wien, nach Hause.',
+  lesson:[
+    {t:'Faqe 138 🧩', d:'Grammatik', p:'Tri gjëra të reja të mësimit 11:', say:2, th:['','Pyetja','Shembull'],
+     tr:[['','Si? Me çfarë?','me tren, me metro'],['','Ku?','te mjeku, në barnatore'],['','Për ku?','te mjeku, në barnatore']],
+     table:[['1','Wie? Womit?','mit dem Zug, mit der U-Bahn'],['2','Wo? 📍','beim Arzt, in der Apotheke'],['3','Wohin? ➡️','zum Arzt, zur Apotheke']],
+     tip:'⚠ Wo? <b>zu Hause</b> · Wohin? <b>nach Hause</b>. Shtetet me nyjë: <b>in der</b> Schweiz (Wo?) · <b>in die</b> Schweiz (Wohin?).'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'lokal', psq:'1 mit + Dativ', pde:'1 Modale Präposition: mit + Dativ',
+     text:'der Zug → mit [[dem]] Zug\ndas Auto → mit [[dem]] Auto\ndie U-Bahn → mit [[der]] U-Bahn\ndie Kinder → mit [[den]] Kindern',
+     e:'dem, dem, der, den (shumës + n).'},
+    {type:'cloze', topic:'lokal', psq:'2 Wo? + Dativ', pde:'2 Lokale Präpositionen: Wo?',
+     text:'der Kiosk → neben [[dem]] Kiosk\ndas Hotel → neben [[dem]] Hotel\ndie Post → neben [[der]] Post\ndie Häuser → neben [[den]] Häusern',
+     e:'dem, dem, der, den.'},
+    {type:'cloze', topic:'lokal', psq:'2 Wo ist Sofia? 📍', pde:'2 Wo ist Sofia?', bank:['beim','bei der','bei','im','in der','in','zu'],
+     text:'Person: der Arzt → [[beim]] Arzt · die Freundin → [[bei der]] Freundin · Walter → [[bei]] Walter\nOrt: der Kindergarten → [[im]] Kindergarten · die Apotheke → [[in der]] Apotheke\nLand / Stadt: Wien → [[in]] Wien · die Schweiz → [[in der]] Schweiz\n⚠ [[zu]] Hause',
+     e:'beim, bei der, bei · im, in der · in, in der · zu Hause.'},
+    {type:'cloze', topic:'lokal', psq:'3 Wohin ist Paulo gefahren? ➡️', pde:'3 Wohin ist Paulo gefahren?', bank:['zum','zur','zu','in den','ins','nach','in die'],
+     text:'Person: der Zahnarzt → [[zum]] Zahnarzt · die Freundin → [[zur]] Freundin · Walter → [[zu]] Walter\nGeschäft: der Supermarkt → [[zum]] Supermarkt · die Apotheke → [[zur]] Apotheke\nOrt: der Kindergarten → [[in den]] Kindergarten · das Kino → [[ins]] Kino\nLand / Stadt: Basel → [[nach]] Basel · die Schweiz → [[in die]] Schweiz\n⚠ [[nach]] Hause',
+     e:'zum, zur, zu · zum, zur · in den, ins · nach, in die · nach Hause.'},
+    {type:'sort', topic:'lokal', psq:'Ku apo për ku?', pde:'Wo? oder Wohin?', cats:['Wo? 📍','Wohin? ➡️'],
+     items:[['bei Walter','Wo? 📍'],['im Bett','Wo? 📍'],['in Österreich','Wo? 📍'],['im Kindergarten','Wo? 📍'],['zu Hause','Wo? 📍'],
+       ['zu Walter','Wohin? ➡️'],['zum Supermarkt','Wohin? ➡️'],['nach Österreich','Wohin? ➡️'],['in den Kindergarten','Wohin? ➡️'],['nach Hause','Wohin? ➡️']],
+     e:'Wo? bei, im, in, zu Hause. Wohin? zu, zum, nach, in den, nach Hause.'},
+    {type:'cloze', topic:'lokal', psq:'Shkruaj fjali', pde:'Schreiben Sie Sätze: Meine Verkehrsmittel', h:'der Bus · die Straßenbahn · das Fahrrad',
+     text:'Ich fahre oft mit [[dem]] Bus.\nIch fahre manchmal mit [[der]] Straßenbahn.\nIch fahre nie mit [[dem]] Fahrrad.',
+     e:'mit dem Bus, mit der Straßenbahn, mit dem Fahrrad.'},
+    {type:'order', topic:'satz', psq:'Orientimi', pde:'Orientierung: Wo ist hier die Post?', de:'Entschuldigung, ich suche das Museum.', sq:'Më falni, po kërkoj muzeun.'},
+    {type:'order', topic:'satz', psq:'Orientimi', pde:'Orientierung: Wo ist hier die Post?', cue:'🚦 ⬅️', parts:['Gehen Sie','an der Ampel','links.'], de:'Gehen Sie an der Ampel links.', sq:'Te semafori kthehuni majtas.'}
+  ]
+}
+  ]
 }
 
 ];

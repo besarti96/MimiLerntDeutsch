@@ -1254,7 +1254,8 @@ const TOPICS = {
   trennbar: ['Foljet e ndashme', 'Trennbare Verben', 'Folja në vendin 2, parashtesa në fund: Ich stehe um 7 Uhr auf.'],
   zahlen:   ['Numrat', 'Zahlen', 'Së pari njëshja, pastaj dhjetëshja: 35 = fünfunddreißig. 30 = dreißig.'],
   lesen:    ['Leximi', 'Leseverstehen', 'Lexo pyetjen, gjej fjalën kyçe dhe kërkoje në tekst.'],
-  imperativ:['Urdhërorja', 'Imperativ', 'du kommst → Komm! (pa du, pa -st). ihr kommt → Kommt! Sie kommen → Kommen Sie! sein: Sei! / Seid! / Seien Sie!']
+  imperativ:['Urdhërorja', 'Imperativ', 'du kommst → Komm! (pa du, pa -st). ihr kommt → Kommt! Sie kommen → Kommen Sie! sein: Sei! / Seid! / Seien Sie!'],
+  lokal:    ['Ku? Për ku? Me çfarë?', 'Wo? Wohin? Womit?', 'mit dem Bus, mit der U-Bahn · Wohin? zum Arzt, zur Apotheke · Wo? beim Arzt, auf dem Parkplatz, an der Ampel, hinter den Häusern.']
 };
 const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög|muss|müss|darf|dürf|soll)/;
 /* finds the grammar topic of a question from what it asks; q.topic in the data wins */

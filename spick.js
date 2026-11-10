@@ -110,6 +110,15 @@ const SPICK = [
   tip:'du f<b>ä</b>hrst → <b>Fahr!</b> · du bist → <b>Sei!</b> · Foljet e ndashme: <b>Hol</b> Lili <b>ab</b>!'
 },
 {
+  id:'sz-wo', chip:'📍 Wo? · Wohin?', t:'📍 Ku? Për ku? Me çfarë?', d:'Wo? Wohin? Womit?',
+  th:['Deutsch','Shqip'], say:0,
+  table:[['mit dem Bus · mit der U-Bahn · zu Fuß','Me çfarë? der, das → dem · die → der'],['zum Arzt · zur Apotheke · zu Walter','Për ku? zu + dem = zum · zu + der = zur'],
+    ['nach Wien · in die Schweiz · nach Hause','Për ku? qytet, shtet, shtëpi'],['beim Arzt · in der Apotheke · zu Hause','Ku? bei + dem = beim'],
+    ['auf dem Parkplatz · an der Ampel · hinter den Häusern','Ku? dem / der / den …n'],['an, auf, hinter, in, neben, über, unter, vor, zwischen','te, mbi, pas, në, pranë, sipër, nën, para, midis'],
+    ['Gehen Sie geradeaus und dann die zweite Straße rechts.','Ecni drejt, pastaj rruga e dytë djathtas.']],
+  tip:'<b>links</b> ⬅️ · <b>geradeaus</b> ⬆️ · <b>rechts</b> ➡️ · an + dem = <b>am</b> · in + dem = <b>im</b>'
+},
+{
   id:'sz-saetze', chip:'💬 Fjali të dobishme', t:'💬 Fjali të dobishme', d:'Nützliche Sätze',
   ex:[['Ich verstehe das nicht.','Nuk e kuptoj.'],['Wie bitte?','Si? (nuk dëgjova)'],['Langsam, bitte.','Më ngadalë, ju lutem.'],
     ['Können Sie das bitte wiederholen?','A mund ta përsërisni, ju lutem?'],['Wie sagt man das auf Deutsch?','Si thuhet kjo gjermanisht?'],

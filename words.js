@@ -161,7 +161,17 @@ const WORDS = [
     ['das','Papier','dokumenti (letra)','2026-11-06T11:34'],['der','Radweg','rruga e biçikletave','2026-11-06T11:34']],
   words:[['mieten','marr me qira','2026-10-30T21:56'],['gültig','i vlefshëm','2026-10-30T21:56'],['ausländisch','i huaj','2026-10-30T21:56'],['international','ndërkombëtar','2026-10-30T21:56'],['zu jung','shumë i ri','2026-10-30T21:56'],['Na los!','Hajde!','2026-10-30T21:56'],['Sieh mal!','Shiko pak!','2026-10-30T21:56'],['Komm mit!','Eja me mua!','2026-10-30T21:56'],
     ['erlaubt','e lejuar','2026-11-06T11:15'],['verboten','e ndaluar','2026-11-06T11:15'],['parken','parkoj','2026-11-06T11:15'],['langsam','ngadalë','2026-11-06T11:15'],
-    ['unterschreiben','nënshkruaj','2026-11-06T11:34']]
+    ['unterschreiben','nënshkruaj','2026-11-06T11:34'],
+    ['Seien Sie leise!','Bëni qetësi!','2026-11-10T16:32']]
+},
+{
+  id:'w-verkehr', emoji:'🚦', color:'#16A34A', added:'2026-11-10T16:32', sq:'Trafiku & drejtimet', de:'Verkehr & Wegbeschreibung',
+  nouns:[['die','Werkstatt','servisi i makinave','2026-11-10T16:32'],['das','Auto','makina','2026-11-10T16:32'],['der','Autoschlüssel','çelësi i makinës','2026-11-10T16:32'],['das','Navi','navigatori','2026-11-10T16:32'],['die','Autobahn','autostrada','2026-11-10T16:32'],['die','Tankstelle','pika e karburantit','2026-11-10T16:32'],['die','Brücke','ura','2026-11-10T16:32'],['die','Ampel','semafori','2026-11-10T16:32'],
+    ['die','S-Bahn','treni i qytetit','2026-11-10T16:32'],['die','U-Bahn','metroja','2026-11-10T16:32'],['die','Straßenbahn','tramvaji','2026-11-10T16:32'],['der','Zug','treni','2026-11-10T16:32'],['das','Flugzeug','aeroplani','2026-11-10T16:32'],['das','Taxi','taksia','2026-11-10T16:32'],['der','Lkw','kamioni','2026-11-10T16:32'],['das','Verkehrsmittel','mjeti i transportit','2026-11-10T16:32'],
+    ['die','Station','stacioni','2026-11-10T16:32'],['der','Bahnhof','stacioni i trenit','2026-11-10T16:32'],['der','Hauptbahnhof','stacioni qendror i trenit','2026-11-10T16:32'],['der','Weg','rruga (udha)','2026-11-10T16:32'],['der','Meter','metri','2026-11-10T16:32'],['die','Nähe','afërsia','2026-11-10T16:32']],
+  words:[['links','majtas','2026-11-10T16:32'],['rechts','djathtas','2026-11-10T16:32'],['geradeaus','drejt','2026-11-10T16:32'],['in der Nähe','afër','2026-11-10T16:32'],['zu Fuß','në këmbë','2026-11-10T16:32'],['weit','larg','2026-11-10T16:32'],['fremd','i huaj (nuk e njoh vendin)','2026-11-10T16:32'],['schnell','shpejt','2026-11-10T16:32'],['fliegen','fluturoj','2026-11-10T16:32'],
+    ['mit dem Bus','me autobus','2026-11-10T16:32'],['mit der U-Bahn','me metro','2026-11-10T16:32'],['die erste Straße','rruga e parë','2026-11-10T16:32'],['die zweite Straße','rruga e dytë','2026-11-10T16:32'],['die dritte Straße','rruga e tretë','2026-11-10T16:32'],['Ich bin nicht von hier.','Nuk jam prej këtu.','2026-11-10T16:32'],['Alles im grünen Bereich!','Gjithçka në rregull!','2026-11-10T16:32'],
+    ['an','te, buzë','2026-11-10T16:32'],['auf','mbi, në','2026-11-10T16:32'],['hinter','pas, prapa','2026-11-10T16:32'],['neben','pranë','2026-11-10T16:32'],['über','sipër','2026-11-10T16:32'],['unter','nën, poshtë','2026-11-10T16:32'],['zwischen','midis','2026-11-10T16:32'],['zu Hause','në shtëpi (jam)','2026-11-10T16:32'],['nach Hause','në shtëpi (shkoj)','2026-11-10T16:32']]
 },
 {
   id:'w-schule', emoji:'🏫', color:'#0E9F8E', added:'2026-10-26T08:00', sq:'Shkolla, puna & kafshët', de:'Schule, Beruf & Tiere',
@@ -194,7 +204,8 @@ const WORDS = [
     ['die','Ehefrau','bashkëshortja','2026-11-06T11:15']],
   words:[['verheiratet','i/e martuar'],['allein','vetëm'],
     ['geschieden','i/e divorcuar','2026-11-06T11:34'],
-    ['ledig','beqar','2026-11-07T15:12'],['alleinerziehend','prind i vetëm','2026-11-07T15:12']]
+    ['ledig','beqar','2026-11-07T15:12'],['alleinerziehend','prind i vetëm','2026-11-07T15:12'],
+    ['unser','yni / jona','2026-11-10T16:32'],['euer','juaji / juaja','2026-11-10T16:32']]
 },
 {
   id:'w-koerper', emoji:'🧍‍♀️', color:'#7650F0', sq:'Pjesët e trupit', de:'Körperteile',
@@ -215,9 +226,11 @@ const WORDS = [
 {
   id:'w-gesundheit', emoji:'🏥', color:'#F2545B', added:'2026-11-06T11:15', sq:'Shëndeti & spitali', de:'Gesundheit & Krankheit',
   nouns:[['die','Gesundheit','shëndeti','2026-11-06T11:15'],['die','Krankheit','sëmundja','2026-11-06T11:15'],['die','Notaufnahme','urgjenca','2026-11-06T11:15'],['das','Krankenhaus','spitali','2026-11-06T11:15'],['der','Unfall','aksidenti','2026-11-06T11:15'],['der','Schmerz','dhimbja','2026-11-06T11:15'],['die','Schmerztablette','tableta kundër dhimbjes','2026-11-06T11:15'],['der','Kinderarzt','mjeku i fëmijëve','2026-11-06T11:15'],['der','Wartebereich','dhoma e pritjes','2026-11-06T11:15'],['die','Zigarette','cigarja','2026-11-06T11:15'],
-    ['der','Husten','kolla','2026-11-07T15:12'],['der','Schnupfen','rrufa','2026-11-07T15:12'],['das','Fieber','temperatura','2026-11-07T15:12'],['die','Kopfschmerzen','dhimbja e kokës','2026-11-07T15:12'],['die','Halsschmerzen','dhimbja e fytit','2026-11-07T15:12'],['die','Bauchschmerzen','dhimbja e barkut','2026-11-07T15:12'],['der','Sonnenbrand','djegia nga dielli','2026-11-07T15:12'],['die','Medizin','ilaçi','2026-11-07T15:12'],['die','Salbe','kremi (pomada)','2026-11-07T15:12'],['die','Arztpraxis','ordinanca e mjekut','2026-11-07T15:12'],['die','Zahnschmerzen','dhimbja e dhëmbit','2026-11-07T15:12'],['der','Zahnarzt','dentisti','2026-11-07T15:12'],['der','Tipp','këshilla','2026-11-07T15:12']],
+    ['der','Husten','kolla','2026-11-07T15:12'],['der','Schnupfen','rrufa','2026-11-07T15:12'],['das','Fieber','temperatura','2026-11-07T15:12'],['die','Kopfschmerzen','dhimbja e kokës','2026-11-07T15:12'],['die','Halsschmerzen','dhimbja e fytit','2026-11-07T15:12'],['die','Bauchschmerzen','dhimbja e barkut','2026-11-07T15:12'],['der','Sonnenbrand','djegia nga dielli','2026-11-07T15:12'],['die','Medizin','ilaçi','2026-11-07T15:12'],['die','Salbe','kremi (pomada)','2026-11-07T15:12'],['die','Arztpraxis','ordinanca e mjekut','2026-11-07T15:12'],['die','Zahnschmerzen','dhimbja e dhëmbit','2026-11-07T15:12'],['der','Zahnarzt','dentisti','2026-11-07T15:12'],['der','Tipp','këshilla','2026-11-07T15:12'],
+    ['die','Erkältung','ftohja','2026-11-10T16:32'],['das','Medikament','ilaçi','2026-11-10T16:32'],['der','Hypochonder','hipokondriaku','2026-11-10T16:32']],
   words:[['schlimm','i rëndë','2026-11-06T11:15'],['kühlen','ftoh','2026-11-06T11:15'],['wehtun','dhemb','2026-11-06T11:15'],['gesund','i shëndetshëm','2026-11-06T11:15'],['krank','i sëmurë','2026-11-06T11:15'],['rauchen','pi duhan','2026-11-06T11:15'],
-    ['sollen','duhet (sipas dikujt)','2026-11-07T15:12'],['müde','i lodhur','2026-11-07T15:12'],['trainieren','stërvitem','2026-11-07T15:12'],['verwenden','përdor','2026-11-07T15:12'],['warm halten','mbaj ngrohtë','2026-11-07T15:12'],['dringend','urgjent','2026-11-07T15:12']]
+    ['sollen','duhet (sipas dikujt)','2026-11-07T15:12'],['müde','i lodhur','2026-11-07T15:12'],['trainieren','stërvitem','2026-11-07T15:12'],['verwenden','përdor','2026-11-07T15:12'],['warm halten','mbaj ngrohtë','2026-11-07T15:12'],['dringend','urgjent','2026-11-07T15:12'],
+    ['Was tut weh?','Çfarë të dhemb?','2026-11-10T16:32']]
 },
 {
   id:'w-hotel', emoji:'🏨', color:'#D6409F', added:'2026-11-06T11:15', sq:'Hoteli', de:'Im Hotel',
@@ -227,7 +240,8 @@ const WORDS = [
 {
   id:'w-stadt', emoji:'🏰', color:'#E3A008', added:'2026-11-06T11:15', sq:'Qyteti & turizmi', de:'Stadt & Tourismus',
   nouns:[['die','Sehenswürdigkeit','vendi për t’u parë','2026-11-06T11:15'],['der','Stadtrundgang','shëtitja nëpër qytet','2026-11-06T11:15'],['die','Führung','vizita me guidë','2026-11-06T11:15'],['der','Eintritt','hyrja (bileta)','2026-11-06T11:15'],['die','Ermäßigung','zbritja','2026-11-06T11:15'],['der','Komponist','kompozitori','2026-11-06T11:15'],['das','Geburtshaus','shtëpia e lindjes','2026-11-06T11:15'],['das','Museum','muzeu','2026-11-06T11:15'],['der','Dom','katedralja','2026-11-06T11:15'],['das','Konzert','koncerti','2026-11-06T11:15'],['die','Oper','opera','2026-11-06T11:15'],['die','Auskunft','informacioni','2026-11-06T11:15'],['der','Stadtplan','harta e qytetit','2026-11-06T11:15'],['die','Einkaufsstraße','rruga e pazarit','2026-11-06T11:15'],['der','Einwohner','banori','2026-11-06T11:15'],['die','Broschüre','broshura','2026-11-06T11:15'],['die','Altstadt','qyteti i vjetër','2026-11-06T11:15'],
-    ['der','Stadtteil','lagjja','2026-11-07T15:12']],
+    ['der','Stadtteil','lagjja','2026-11-07T15:12'],
+    ['die','Post','posta','2026-11-10T16:32'],['der','Kiosk','kioska','2026-11-10T16:32'],['die','Buchhandlung','libraria','2026-11-10T16:32'],['die','Bücherei','biblioteka','2026-11-10T16:32'],['die','Bäckerei','furra e bukës','2026-11-10T16:32'],['der','Baum','pema','2026-11-10T16:32'],['der','Kindergarten','kopshti i fëmijëve','2026-11-10T16:32'],['der','Fußballplatz','fusha e futbollit','2026-11-10T16:32'],['die','Apotheke','barnatorja','2026-11-10T16:32'],['die','Fußgängerzone','zona e këmbësorëve','2026-11-10T16:32']],
   words:[['besichtigen','vizitoj','2026-11-06T11:15'],['spazieren','shëtis','2026-11-06T11:15'],['berühmt','i famshëm','2026-11-06T11:15'],['geboren','i lindur','2026-11-06T11:15'],['geöffnet','i hapur','2026-11-06T11:15']]
 },
 {
