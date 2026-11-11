@@ -423,8 +423,7 @@ function listenQ(c, kind, avoid){
     : mk('sde', s.de, s.de, lDistract(s, pool, 'de'), s.sq ? `${s.de} = ${s.sq}` : s.de);
 }
 /* a round gets at least two listening tasks: one "what does it mean" (sinn), one whole sentence, and words if still too few.
-   In mixed rounds they take the place of plain word questions (the round keeps its length);
-   in book-order rounds (tail) they are added at the end. */
+   They come on top, the round gets longer: mixed in at a random place, in book-order rounds (tail) at the end. */
 function withListening(qs, cs, tail){
   /* if the chapter has too little: chapters of the same Lektion, or (homework without lek) the last chapters she has reached */
   const lek = new Set(cs.map(c => c.lek).filter(Boolean)), reached = CHAPTERS.filter((x, i) => !x.final && seen(i));
@@ -447,9 +446,7 @@ function withListening(qs, cs, tail){
   while (qs.filter(isL).length + add.length < 2) { const q = make(KINDS.word()); if (!q) break; add.push(q); }
   add.forEach(q => {
     if (tail) return qs.push(q);
-    let i = qs.findIndex(x => x.type === 'mc' && isWordQ(x) && !x.row);
-    if (i < 0) i = qs.findIndex(x => x.type !== 'listen' && isWordQ(x));
-    if (i >= 0) qs[i] = q; else qs.splice(1 + (Math.random() * qs.length | 0), 0, q);
+    qs.splice(1 + (Math.random() * qs.length | 0), 0, q);   /* on top: nothing is taken out for it */
   });
   return qs;
 }
