@@ -4,6 +4,36 @@ Lern-App (PWA) von Besart für **Mimoza („Mimi“)**. Sie spricht Albanisch un
 
 Kein Build, kein Server: reines HTML/CSS/JS. Der Fortschritt liegt in `localStorage` (`mimi-deutsch-v2`).
 
+## Zuerst lesen: Pflicht und freiwillig
+
+Diese Datei reicht, um die App zu verstehen. Kurzfassung, die Details stehen in den Abschnitten darunter.
+
+**Pflicht (immer):**
+
+- **Nichts Bestehendes ändern oder löschen**, Ids nie umbenennen. Nur ergänzen.
+- **Albanisch zuerst**, Deutsch als zweite Zeile. Erklärfolien mit Übersetzung, Aufgaben ohne.
+- **Jedes neue Kapitel** (`data.js`) hat: `id`, `lek`, `band` (ab Buch 2), `added` mit Uhrzeit, `sq`, `de`, `desc`, `tip`, `lesson` (Folien), `nouns`, `words`, `items`, dazu **3–4 `hear`-Sätze** und **mindestens 3 `order`-Sätze mit `sq`** (für die Höraufgaben).
+- **Höraufgaben in jeder Runde**, auch bei Ton aus. Sie entstehen automatisch, wenn das Kapitel die Felder oben hat.
+- **Jede Hausaufgabe** (`homework.js`): neues Set am Ende, eine Buchseite = ein Teil mit `book`, `seq:true`, „Bravo“ für Richtiges, „Kujdes 👀“ für Mimis sichere Fehler.
+- **Jedes neue Wort** in `words.js` im passenden Thema, mit Datum und Uhrzeit als letztem Element.
+- **Jede Aufgabe ohne Buch lösbar** und eindeutig (genau eine richtige Antwort).
+- **Prüfen vor dem Abgeben:** `node --check` für geänderte Dateien, `node tools/validate.js` ohne Fehler und ohne offene Hinweise, neue Runden einmal durchspielen.
+- **Pushen nur, wenn der Benutzer es sagt.** Commit-Nachricht kurz auf Deutsch, ohne Co-Author-Zeile.
+
+**Freiwillig (nur wenn es passt):**
+
+- `read` (Lesetext), `unit` (nur am ersten Kapitel einer neuen Lektion), `clocks`, `writeWords`, `mix`, `n`, `noGen`.
+- Spickzettel-Zeile: nur bei neuer Grammatik, schlank.
+- Neues Thema in `TOPICS` (`app.js`): nur bei neuem Grammatikthema.
+- Neues Wortthema: nur wenn kein bestehendes passt.
+- Feste `listen`-Aufgabe von Hand: nur für einen bestimmten Hörtext.
+
+**Nicht machen:**
+
+- Hörübungen aus dem Buch ohne Audio erfinden, unsichere Handschrift als Mimis Fehler darstellen.
+- Design ändern, ohne es erst lokal mit Screenshots zu zeigen.
+- Test-Dateien (`_s.html`, `_inj.js`) committen.
+
 ## Dateien
 
 | Datei | Inhalt |
