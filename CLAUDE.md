@@ -92,7 +92,7 @@ Mimi soll Deutsch nicht nur lesen, sondern **verstehen, was sie hört, und darau
   - Die falschen Antworten sind **nah dran**: gleiche Wörter, aber eine andere Zeit (will essen ↔ hat gegessen), Person (ich ↔ er), Richtung (Wo ↔ Wohin), Zahl (halb acht ↔ 8:30), Rolle (den Mann ↔ der Mann) oder ein ähnliches Verb. Genau eine Antwort darf passen.
   - Nur Wörter und Grammatik, die Mimi bis zu diesem Kapitel kennt. Im Satz kein `…`, keine Klammern. Albanisch mit „Personi …“ oder ohne Pronomen, wenn das Geschlecht offen ist.
 - **Automatisch überall** (`withListening` in `app.js`): Jede Kapitel-, Übungs-, Finale- und Hausaufgabenrunde bekommt **mindestens 2 Höraufgaben: eine `sinn`, einen ganzen Satz (`sde`/`ssq`/`ans`) und Wörter, falls es noch zu wenige sind**. In gemischten Runden ersetzen sie einfache Wortfragen (die Runde bleibt gleich lang), bei Buch-Reihenfolge (`seq`) kommen sie ans Ende. Hat ein Kapitel oder Hausaufgaben-Teil zu wenig Material, nimmt die App die Kapitel derselben Lektion, bei Teilen ohne `lek` die letzten Kapitel, die Mimi auf der Reise erreicht hat. Im Wörter-Training sind `listen` (Deutsch) und `lsq` (Albanisch) feste Fragearten.
-- Ton aus (🔇) = keine Höraufgaben. Fehler bei Wort-Höraufgaben zählen beim Wort, bei Satz-Höraufgaben unter dem Thema `hoeren` („Dëgjimi“).
+- **Höraufgaben sind Pflicht, auch bei Ton aus (🔇).** Der Schalter stoppt nur das automatische Vorlesen; in der Hörkarte steht dann „🔇 Shtyp ▶ … · Tippe auf ▶“ und Mimi startet den Ton selbst. Nur ein Browser ganz ohne Sprachausgabe bekommt keine Höraufgaben. Fehler bei Wort-Höraufgaben zählen beim Wort, bei Satz-Höraufgaben unter dem Thema `hoeren` („Dëgjimi“).
 
 **Pflicht für neue Inhalte**, damit Hören und Antworten immer im Aufgabenset ist:
 
@@ -170,13 +170,16 @@ Immer **Datum mit Uhrzeit von jetzt** setzen (z. B. `'2026-10-30T16:20'`, Wörte
 
 - Die Dateien haben teils **Windows-Zeilenenden (CRLF)**. Skripte, die Text suchen/ersetzen, zuerst auf `
 ` normalisieren und beim Schreiben das Original-Format beibehalten. Sonst greifen Anker nicht oder Dateien werden doppelt geschrieben. Zeilenenden sind für die App egal.
+- Ohne Chrome geht auch Edge (`C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe`, gleiche Schalter). Kommt aus der Bash nichts zurück, den Browser über PowerShell starten (`Start-Process … -RedirectStandardOutput datei -Wait`) und mit eigenem `--user-data-dir`. Test-Dateien (`_s.html`, `_inj.js`) danach löschen, nie committen.
+- Nach dem Ändern von `app.js` im Browser mit Strg + F5 neu laden, sonst läuft die alte Version.
 - Headless Chrome hat eine Mindestbreite: Screenshots mit `--window-size=500,…`, sonst wirkt das Layout fälschlich abgeschnitten. Test-Seiten müssen `style.css` laden, sonst gibt es kein Layout zum Messen.
 - In Test-Skripten keine Namen verwenden, die die App global belegt (z. B. `cur`, `G`, `S`).
 - Größe: Stand Ende Oktober ~525 KB (~143 KB komprimiert). Erst ab etwa 2–3 MB lohnt es sich, die Inhalte pro Buch aufzuteilen.
 
 ## Git
 
-- Lokal: `C:\Users\bjashari\Project\MimiLerntDeutsch`, Branch `main`, deployt von GitHub (`besarti96/MimiLerntDeutsch`).
+- Repo: GitHub `besarti96/MimiLerntDeutsch`, Branch `main`, deployt über GitHub Pages (`besarti96.github.io/MimiLerntDeutsch`). Der lokale Ordner ist auf jedem Rechner anders (z. B. `C:\Users\bjashari\Project\MimiLerntDeutsch` oder `C:\Users\b-e-s\projekte\mimi-deutsch`).
+- **Neuer Rechner:** `git clone https://besarti96@github.com/besarti96/MimiLerntDeutsch.git`, dann diese Datei lesen, `node tools/validate.js` laufen lassen und `index.html` im Browser öffnen. Mehr braucht es nicht (kein Build, keine Pakete, nur Node für die Prüfung).
 - Auf diesem Rechner ist Git standardmäßig mit dem Arbeitskonto angemeldet, das **keine Rechte** auf das Repo hat. Deshalb immer mit der Adresse samt Benutzer:
   - holen: `git fetch https://besarti96@github.com/besarti96/MimiLerntDeutsch.git main` und dann `git merge --ff-only FETCH_HEAD`
   - pushen: `git push https://besarti96@github.com/besarti96/MimiLerntDeutsch.git main`

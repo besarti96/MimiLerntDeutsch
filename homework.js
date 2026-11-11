@@ -2219,6 +2219,112 @@ const HOMEWORK = [
   ]
 }
   ]
+},
+{
+  id:'l17', date:'2026-11-11', added:'2026-11-11T21:52', emoji:'👜',
+  sq:'Libri: Mësimi 12 A–B dhe historia „Super Service!“', de:'Kursbuch S. 142–145',
+  parts:[
+
+/* ---------- KB S. 142: Foto-Hörgeschichte Folge 12 ---------- */
+{
+  id:'hw17-s142', emoji:'👜', color:'#D6409F', seq:true, book:['faqe 142 · ushtrimi 1–2','S. 142 · Üb. 1–2'],
+  sq:'Historia: Super Service!', de:'S. 142: Folge 12 · Super Service!',
+  desc:'Fjalët nga fotot dhe: çfarë është e saktë në historinë e Larës?',
+  tip:'kaputt = i prishur. reparieren = riparoj. am Dienstag = të martën.',
+  read:'Lara hat eine Tasche gekauft. Sie ist schon kaputt. Lara geht in den Laden. Der Verkäufer soll die Tasche reparieren. Er sagt, Lara soll die Tasche reparieren. Aber das macht Lara nicht. Lara bekommt die Tasche am Dienstag zurück. Am Ende gibt der Verkäufer Lara eine Plastiktüte. Lara ist sauer.',
+  lesson:[
+    {t:'Faqe 142 👜', d:'Folge 12: Super Service!', p:'Lara ka blerë një çantë. Pas një jave ajo është prishur. Lara shkon në dyqan …', say:0, th:['Deutsch','Shqip'],
+     table:[['die Tasche','çanta'],['die Plastiktüte','qeseja plastike'],['die Rechnung','fatura'],['der Verkäufer','shitësi'],['kaputt','i prishur'],['teuer','i shtrenjtë'],['reparieren','riparoj']],
+     tip:'Këto fjalë i ke shkruar vetë në libër: çanta, qese plastike, fatura, shitës, prishur. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', psq:'1 Fjalët nga fotot', pde:'1 Was sehen Sie?', pairs:[['eine Tasche','çanta'],['eine Plastiktüte','qese plastike'],['eine Rechnung','fatura'],['ein Verkäufer','shitësi'],['kaputt','i prishur']]},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'2 E saktë apo e gabuar?', pde:'2 Was ist richtig?', q:'b  Die Tasche ist neu, aber schon kaputt.', o:['richtig','falsch'], a:'richtig', e:'„Lara hat eine Tasche gekauft. Sie ist schon kaputt.“'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'2 E saktë apo e gabuar?', pde:'2 Was ist richtig?', q:'c  Der Verkäufer repariert die Tasche heute.', o:['richtig','falsch'], a:'falsch', e:'Lara e merr çantën vetëm të martën.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'2 E saktë apo e gabuar?', pde:'2 Was ist richtig?', q:'d  Lara bekommt ihre Tasche am Dienstag.', o:['richtig','falsch'], a:'richtig', e:'„Lara bekommt die Tasche am Dienstag zurück.“'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'2 E saktë apo e gabuar?', pde:'2 Was ist richtig?', q:'e  Lara findet den Service gut.', o:['richtig','falsch'], a:'falsch', e:'Lara ist sauer: der Service ist nicht gut.'}
+  ]
+},
+
+/* ---------- KB S. 143: Folge 12, Üb. 3–4 ---------- */
+{
+  id:'hw17-s143', emoji:'🛍️', color:'#EE7A0C', seq:true, book:['faqe 143 · ushtrimi 3–4','S. 143 · Üb. 3–4'],
+  sq:'Rendit dhe fol: Lara është e nxehur', de:'S. 143: Ordnen Sie zu · Lara ist sauer',
+  desc:'Plotëso historinë me fjalët e kutisë. Pse është Lara e nxehur?',
+  tip:'Dienstag, kaputt, Laden, Plastiktüte, reparieren, soll. Lara ist sauer = Lara është e nxehur.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te ushtrimi <b>3</b> i ke numëruar saktë të gjashtë fjalët: 1 <b>kaputt</b>, 2 <b>Laden</b>, 3 <b>reparieren</b>, 4 <b>soll</b>, 5 <b>Dienstag</b>, 6 <b>Plastiktüte</b> ✓. Te ushtrimi 4: Der Verkäufer ist <b>unfreundlich</b> ✓. 👏',
+     tip:'Kujdes nga kurthi: <b>Lara geht in den Laden.</b> <i class="tr">(Lara shkon në dyqan.)</i> Pas „in den“ vjen vendi, jo folja „reparieren“.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', psq:'3 Rendit fjalët', pde:'3 Ordnen Sie zu', bank:['Dienstag','kaputt','Laden','Plastiktüte','reparieren','soll'],
+     text:'Lara hat eine Tasche gekauft. Sie ist schon [[kaputt]]. Lara geht in den [[Laden]]. Der Verkäufer soll die Tasche [[reparieren]]. Er sagt, Lara [[soll]] die Tasche reparieren. Aber das macht Lara nicht. Lara bekommt die Tasche am [[Dienstag]] zurück. Am Ende gibt der Verkäufer Lara eine [[Plastiktüte]].',
+     e:'kaputt · Laden · reparieren · soll · Dienstag · Plastiktüte.'},
+    {type:'cloze', psq:'4 Lara është e nxehur. Pse?', pde:'4 Lara ist sauer. Verstehen Sie, warum?', bank:['unfreundlich','normal','schlecht','nicht so gut'],
+     text:'Lara ist sauer. Verstehen Sie, warum?\n– Ja, ich verstehe das. Der Verkäufer ist [[unfreundlich]].\n– Und der Service ist [[schlecht;nicht so gut]].',
+     e:'Der Verkäufer ist unfreundlich. Der Service ist schlecht / nicht so gut. („normal“ nuk përshtatet: Lara është e nxehur!)'}
+  ]
+},
+
+/* ---------- KB S. 144: A · vor, nach, bei ---------- */
+{
+  id:'hw17-s144', emoji:'⏱️', color:'#2E86DE', seq:true, book:['faqe 144 · A1, A2, A4','S. 144 · A1, A2, A4'],
+  sq:'vor, nach, bei: Gleich nach dem Kurs', de:'S. 144: Gleich nach dem Kurs gehe ich hin',
+  desc:'Para, pas apo gjatë? vor, nach, bei me dem, der, einer.',
+  tip:'vor dem Kurs = para kursit · nach dem Kurs = pas kursit · bei den Hausaufgaben = gjatë detyrave.',
+  lesson:[
+    {t:'Faqe 144 ⏱️', d:'Temporale Präpositionen + Dativ', say:1, th:['','Wann?'],
+     tr:[['para','para kursit'],['pas','pas stërvitjes'],['gjatë','në punë'],['gjatë','gjatë sportit']],
+     table:[['vor','vor <b>dem</b> Kurs'],['nach','nach <b>dem</b> Training'],['bei','bei <b>der</b> Arbeit'],['beim','<b>beim</b> Sport']],
+     tip:'vor <b>einem</b> Tag · nach <b>einer</b> Woche'},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>A1</b> të treja saktë: <b>vor</b>, <b>nach</b>, <b>bei</b> ✓. Te <b>A2</b>: <b>bei der</b> Arbeit dhe <b>vor einer</b> Woche ✓. Te <b>A4</b>: Vor dem Frühstück dusche ich. Beim Training <b>höre ich Musik</b> ✓. 👏'},
+    {t:'Kujdes! 👀', d:'Aus deinem Buch', p:'Te <b>A4</b> vetëm një gërmë e tepërt:',
+     fix:[['Nach dem Kurse gehe ich einkaufen.','Nach dem Kurs gehe ich einkaufen.','der Kurs → nach dem Kurs, pa -e.']],
+     tip:'Te <b>A3</b> kujdes: shembulli te b e tregon: <b>Vor der Mittagspause</b> macht Frau Müller <b>Reparaturen und näht</b>.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'temporal', psq:'A1 Rendit: bei, nach, vor', pde:'A1 Ordnen Sie zu', bank:['bei','nach','vor'],
+     h:'A 🛋️ Lara është ende në shtëpi, kursi ende s’ka filluar · B 🚶‍♀️ kursi mbaroi, Lara del · C 📝 Lara shkruan detyrat',
+     text:'A  Das ist Lara [[vor]] dem Kurs.\nB  Das ist Lara [[nach]] dem Kurs.\nC  Das ist Lara [[bei]] den Hausaufgaben.',
+     e:'A vor dem Kurs · B nach dem Kurs · C bei den Hausaufgaben.'},
+    {type:'cloze', topic:'temporal', psq:'A2 Plotëso bei, nach dhe vor', pde:'A2 Ergänzen Sie bei, nach und vor', h:'bei der · vor einer · nach einer',
+     text:'– Ich will Sie nicht [[bei der]] Arbeit stören. Aber: Könnten Sie mir bitte helfen?\n– Was kann ich denn für Sie tun?\n– Die Tasche habe ich [[vor einer]] Woche hier bei Ihrem Kollegen gekauft. Sie ist leider schon kaputt. Schon [[nach einer]] Woche.',
+     e:'bei der Arbeit · vor einer Woche · nach einer Woche.'},
+    {type:'cloze', topic:'temporal', psq:'A4 Dita jote', pde:'A4 Ihr Tag', h:'das Frühstück · das Training · der Kurs · die Arbeit',
+     text:'Vor [[dem]] Frühstück dusche ich.\n[[Beim]] Training höre ich Musik.\nNach [[dem]] Kurs gehe ich einkaufen.\nNach [[der]] Arbeit sehe ich fern.',
+     e:'vor dem Frühstück · beim Training · nach dem Kurs · nach der Arbeit.'},
+    {type:'order', psq:'A4 Rendit fjalinë', pde:'A4 Bilden Sie den Satz', de:'Nach dem Kurs gehe ich einkaufen.', sq:'Pas kursit shkoj për pazar.'}
+  ]
+},
+
+/* ---------- KB S. 145: B · ab, bis, in ---------- */
+{
+  id:'hw17-s145', emoji:'🛠️', color:'#16A34A', seq:true, book:['faqe 145 · B1–B3','S. 145 · B1–B3'],
+  sq:'ab, bis, in: Sie bekommen sie in vier Wochen', de:'S. 145: Sie bekommen sie in vier Wochen',
+  desc:'Që kur, deri kur, pas sa kohësh? Dhe telefonata me shërbimin e klientit.',
+  tip:'ab 19 Uhr = nga ora 19 · bis 14 Uhr = deri në orën 14 · in einer Stunde = pas një ore.',
+  lesson:[
+    {t:'Faqe 145 🛠️', d:'ab, bis, in', say:1, th:['','Deutsch','Shqip'],
+     table:[['▶️','<b>ab</b> 3 Uhr · <b>ab</b> Montag','që nga ora 3 · që nga e hëna'],['⏹️','<b>bis</b> 5 Uhr · <b>bis</b> nächste Woche','deri në orën 5 · deri javën tjetër'],['⏩','<b>in</b> einer Woche · <b>in</b> drei Jahren','pas një jave · pas tre vitesh']]},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>B2</b> të katra saktë: <b>bis</b> 14 Uhr, <b>in</b> einer Stunde, <b>bis</b> heute Abend, <b>Ab</b> 19 Uhr ✓. Te <b>B3</b> e ke plotësuar bisedën: Ein C 3.0, 6 Monate Garantie, <b>in einer Woche</b> ✓. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', topic:'dialog', psq:'B1 Lidh', pde:'B1 Verbinden Sie', q:'Ab wann brauchen Sie die Tasche denn wieder?',
+     o:['Ab Montag.','Bis morgen?','Sie bekommen die Tasche in etwa sechs Wochen zurück.'], a:'Ab Montag.', say:'Ab Montag.', e:'Ab wann? → Ab Montag.'},
+    {type:'cloze', topic:'temporal', psq:'B2 Plotëso ab, bis, in', pde:'B2 Ergänzen Sie ab, bis, in', bank:['ab','bis','in'],
+     text:'A\n– Unsere Kamera funktioniert nicht. Können Sie bitte mal nachsehen? Was ist da kaputt?\n– Oh, das muss der Chef machen. Er ist aber [[bis]] 14 Uhr in der Mittagspause. Wollen Sie warten?\n– Nein, dann kommen wir [[in]] einer Stunde wieder.\nB\n– Ich glaube, mein Fernseher ist kaputt. Kann bitte jemand nachsehen?\n– Natürlich. Aber im Moment geht es leider nicht. Können Sie bitte [[bis]] heute Abend warten? [[Ab]] 19 Uhr kommt der Techniker.\n– Kein Problem.',
+     e:'bis 14 Uhr · in einer Stunde · bis heute Abend · Ab 19 Uhr.'},
+    {type:'match', psq:'B3 Biseda në telefon', pde:'B3 Rollenspiel: Was passt?', pairs:[['Was kann ich für Sie tun?','Mein Tablet funktioniert nicht.'],['Was für ein Modell ist es?','Ein C 3.0.'],['Bringen Sie das Gerät bitte vorbei.','Bis wann können Sie das Gerät reparieren?'],['Dann ist das Gerät fertig.','Danke.']]},
+    {type:'cloze', topic:'temporal', psq:'B3 Tableti yt është prishur', pde:'B3 Ihr Tablet ist kaputt', h:'Tablet C 3.0 · funksionon? jo · garanci: 6 muaj',
+     text:'– Techno Markt, guten Tag. Meier. Was kann ich für Sie tun?\n– Guten Tag. Mein Tablet [[funktioniert]] nicht.\n– Aha. Was für ein Modell ist es?\n– Ein C 3.0. Ich habe noch [[6;sechs]] Monate Garantie.\n– Gut, dann bringen Sie das Gerät bitte vorbei.\n– [[Bis]] wann können Sie das Gerät reparieren?\n– Kommen Sie [[in]] einer Woche. Dann ist das Gerät fertig.\n– Danke.',
+     e:'funktioniert nicht · 6 Monate Garantie · Bis wann? · in einer Woche.'}
+  ]
+}
+  ]
 }
 
 ];

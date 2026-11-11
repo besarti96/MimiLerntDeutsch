@@ -325,7 +325,7 @@ function genVocab(c){
       o:[w.sq, ...distract(pool, w, 'sq')], a:w.sq, say:w.de, e:`${w.de} = ${w.sq}`});
     out.push({type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das auf Deutsch?', q:w.sq,
       o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e:`${w.sq} = ${w.de}`});
-    if (canSpeak && S.sound) out.push({type:'listen', psq:'Dëgjo dhe zgjidh', pde:'Hör zu und wähle',
+    if (canSpeak) out.push({type:'listen', psq:'Dëgjo dhe zgjidh', pde:'Hör zu und wähle',
       o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e:`${w.de} = ${w.sq}`},
       {type:'listen', lk:'wsq', psq:'Dëgjo: çfarë do të thotë?', pde:'Hör zu: Was bedeutet das?',
       o:[w.sq, ...distract(pool, w, 'sq')], a:w.sq, say:w.de, e:`${w.de} = ${w.sq}`});
@@ -337,8 +337,8 @@ const WKINDS = ['de2sq', 'listen', 'write', 'sq2de', 'art', 'lsq', 'sq2de'];
 function wordQ(c, w, pool, kind){
   const n = c.nouns.find(x => x[0] + ' ' + x[1] === w.de);
   if (kind === 'art' && !n) kind = 'sq2de';
-  if (kind === 'listen' && !(canSpeak && S.sound)) kind = 'de2sq';
-  if (kind === 'lsq' && !(canSpeak && S.sound)) kind = 'sq2de';
+  if (kind === 'listen' && !canSpeak) kind = 'de2sq';
+  if (kind === 'lsq' && !canSpeak) kind = 'sq2de';
   if (kind === 'write' && /[!?.,]/.test(w.de)) kind = 'sq2de';
   const e = `${w.de} = ${w.sq}`;
   if (kind === 'de2sq') return {type:'mc', psq:'Çfarë do të thotë?', pde:'Was bedeutet das?', q:w.de, speakQ:true, o:[w.sq, ...distract(pool, w, 'sq')], a:w.sq, say:w.de, e};
@@ -368,7 +368,7 @@ function genWords(id){
      sinn       a sentence       -> what it means, said in other words      (from the chapter's hear list, written by hand:
                 hear:[['Anna hat gegessen.', 'Anna ist schon satt.', 'Anna will essen.', 'Anna hat geduscht.', 'Anna kocht gerade.']]
                 = heard sentence, right meaning, wrong ones; meanings in German or Albanian)
-   Without sound (🔇) there are no listening tasks. */
+   Listening tasks are always there, also with 🔇 (then she taps ▶ herself); only without speech in the browser there are none. */
 const L_PSQ = {
   wde:['Dëgjo dhe zgjidh', 'Hör zu und wähle'],
   wsq:['Dëgjo: çfarë do të thotë?', 'Hör zu: Was bedeutet das?'],
@@ -377,7 +377,7 @@ const L_PSQ = {
   ans:['Dëgjo pyetjen dhe përgjigju', 'Hör die Frage und antworte'],
   sinn:['Dëgjo: çfarë kuptove?', 'Hör zu: Was stimmt?']
 };
-const canListen = () => canSpeak && S.sound;
+const canListen = () => canSpeak;   /* also with 🔇: then nothing plays by itself, she taps ▶ */
 const okSent = de => de.length <= 64 && !/[\/…]| – |\d{3,}/.test(de);
 /* sentences of a chapter or homework part: {de, sq} from its order tasks, German-only ones from the example slides */
 function sentPool(c){
@@ -912,6 +912,7 @@ function rListen(q){
       <button class="slow" data-act="say" data-t="${esc(q.say)}">🔁 Edhe një herë / Nochmal</button>
       <button class="slow" data-act="slow" data-t="${esc(q.say)}">🐢 Ngadalë / Langsam</button>
     </div>
+    ${S.sound ? '' : '<p class="lmute">🔇 Shtyp ▶ për ta dëgjuar · Tippe auf ▶</p>'}
     ${q.h ? `<div class="qhint">💭 ${esc(q.h)}</div>` : ''}
   </div>${opts(q)}`;
 }
@@ -1366,7 +1367,8 @@ const TOPICS = {
   lesen:    ['Leximi', 'Leseverstehen', 'Lexo pyetjen, gjej fjalën kyçe dhe kërkoje në tekst.'],
   imperativ:['Urdhërorja', 'Imperativ', 'du kommst → Komm! (pa du, pa -st). ihr kommt → Kommt! Sie kommen → Kommen Sie! sein: Sei! / Seid! / Seien Sie!'],
   lokal:    ['Ku? Për ku? Me çfarë?', 'Wo? Wohin? Womit?', 'mit dem Bus, mit der U-Bahn · Wohin? zum Arzt, zur Apotheke · Wo? beim Arzt, auf dem Parkplatz, an der Ampel, hinter den Häusern.'],
-  hoeren:   ['Dëgjimi', 'Hörverstehen', 'Dëgjoje dy herë, edhe ngadalë 🐢. Kap fjalët kyçe: kush, çfarë, ku, kur.']
+  hoeren:   ['Dëgjimi', 'Hörverstehen', 'Dëgjoje dy herë, edhe ngadalë 🐢. Kap fjalët kyçe: kush, çfarë, ku, kur.'],
+  temporal: ['Kur? vor, nach, bei, ab, bis, in', 'Wann? Temporale Präpositionen', 'vor dem Kurs, nach der Arbeit, beim Training · ab Montag, bis 14 Uhr, in einer Woche (Dativ: dem, der, einem, einer).']
 };
 const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög|muss|müss|darf|dürf|soll)/;
 /* finds the grammar topic of a question from what it asks; q.topic in the data wins */
@@ -1428,13 +1430,13 @@ function sibling(q){
     }
     return null;
   }
-  const t = topicOf(q), cands = t ? (qIndex()[t] || []).filter(x => x.key !== q.key && (S.sound || x.type !== 'listen')) : [];
+  const t = topicOf(q), cands = t ? (qIndex()[t] || []).filter(x => x.key !== q.key && (canSpeak || x.type !== 'listen')) : [];
   return cands.length ? {...rnd(cands)} : null;
 }
 /* weak-spot round: questions without today's point first; about half are asked as a sibling question */
 function weakRound(){
   const t = today();
-  const list = shuffle(Object.values(S.mistakes).filter(q => S.sound || q.type !== 'listen'))
+  const list = shuffle(Object.values(S.mistakes).filter(q => canSpeak || q.type !== 'listen'))
     .sort((a, b) => (runOf(a.key).d === t) - (runOf(b.key).d === t)).slice(0, ROUND);
   return list.map(q => {
     const s = Math.random() < .5 ? sibling(q) : null;

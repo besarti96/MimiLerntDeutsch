@@ -562,3 +562,4 @@ body.speaking .lwave i:nth-child(5){animation-delay:.48s}
 .lcard .slow{font-size:14px;color:#fff;background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}
 .lcard .slow:active{transform:translateY(2px)}
 .lcard .qhint{margin:0;background:rgba(255,255,255,.92);color:#1E1B3A}
+.lmute{margin:0;font-size:13px;font-weight:700;color:#fff;opacity:.9}

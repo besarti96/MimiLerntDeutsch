@@ -95,10 +95,12 @@ const SPICK = [
   tip:'<b>als</b> + profesioni, <b>bei</b> + firma. Te profesioni <b>pa nyjë</b>: Ich bin Lehrerin.'
 },
 {
-  id:'sz-vorseit', chip:'⏳ vor · seit · für', t:'⏳ Kur? Që kur? Sa kohë?', d:'vor, seit, wie lange, für',
+  id:'sz-vorseit', chip:'⏳ vor · seit · bis', t:'⏳ Kur? Që kur? Sa kohë?', d:'vor, seit, für, nach, bei, ab, bis, in',
   th:['Pyetja','Përgjigjja'], say:1,
-  tr:[['Kur?','Para dhjetë vitesh.'],['Që kur?','Prej katër vitesh. (vazhdon)'],['Sa kohë?','Tre vjet.'],['Për sa kohë?','Për një muaj.']],
-  table:[['Wann?','<b>Vor</b> zehn Jahren.'],['Seit wann?','<b>Seit</b> vier Jahren.'],['Wie lange?','Drei Jahre.'],['Für wie lange?','<b>Für</b> einen Monat.']],
+  tr:[['Kur?','Para dhjetë vitesh.'],['Që kur?','Prej katër vitesh. (vazhdon)'],['Sa kohë?','Tre vjet.'],['Për sa kohë?','Për një muaj.'],
+    ['Kur?','Para kursit · pas punës · gjatë stërvitjes.'],['Që kur? Deri kur? Kur?','Që të hënën · deri në 14 · pas një jave.']],
+  table:[['Wann?','<b>Vor</b> zehn Jahren.'],['Seit wann?','<b>Seit</b> vier Jahren.'],['Wie lange?','Drei Jahre.'],['Für wie lange?','<b>Für</b> einen Monat.'],
+    ['Wann?','<b>Vor</b> dem Kurs · <b>nach</b> der Arbeit · <b>beim</b> Training.'],['Ab wann? Bis wann? Wann?','<b>Ab</b> Montag · <b>bis</b> 14 Uhr · <b>in</b> einer Woche.']],
   tip:'<b>vor</b> = ka mbaruar. <b>seit</b> = vazhdon ende. vor / seit + einem Jahr, einer Woche, zwei Jahre<b>n</b>. <b>für</b> + einen Monat, ein Jahr, eine Woche.'
 },
 {
