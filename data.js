@@ -59,6 +59,12 @@ const CHAPTERS = [
     ['die','Stadt','qyteti'],['das','Land','shteti'],['das','Telefon','telefoni'],['die','Sprache','gjuha']],
   words:[['heißen','quhem'],['kommen','vij'],['leben','jetoj'],['sprechen','flas'],['Guten Morgen!','Mirëmëngjes!'],['Guten Abend!','Mirëmbrëma!'],
     ['Auf Wiedersehen!','Mirupafshim!'],['Tut mir leid.','Më vjen keq.'],['Einen Moment, bitte.','Një moment, ju lutem.'],['Entschuldigung!','Më falni!']],
+  hear:[
+    ['Guten Morgen! Ich heiße Dario.', 'Dario sagt Hallo am Morgen.', 'Dario sagt Tschüss am Abend.', 'Dario fragt nach dem Namen.', 'Dario sagt: Auf Wiedersehen!'],
+    ['Ich spreche Deutsch und Englisch.', 'Personi flet dy gjuhë.', 'Personi flet vetëm gjermanisht.', 'Personi flet tri gjuhë.', 'Personi nuk flet gjermanisht.'],
+    ['Entschuldigung, wie ist Ihr Name?', 'Die Frau fragt: Wie heißen Sie?', 'Die Frau fragt: Woher kommen Sie?', 'Die Frau sagt: Tut mir leid.', 'Die Frau fragt: Wo wohnen Sie?'],
+    ['Ich komme aus der Schweiz und lebe in Wien.', 'Vjen nga Zvicra, por jeton në Austri.', 'Vjen nga Austria dhe jeton në Zvicër.', 'Jeton në Zvicër.', 'Vjen nga Vjena.']
+  ],
   items:[
     {type:'match', pairs:[['Guten Morgen!','Mirëmëngjes!'],['Guten Abend!','Mirëmbrëma!'],['Gute Nacht!','Natën e mirë!'],['Auf Wiedersehen!','Mirupafshim!'],['Tut mir leid.','Më vjen keq.']]},
     {type:'match', pairs:[['Alina','der Vorname'],['Egger','der Familienname'],['4057','die Postleitzahl'],['Basel','die Stadt'],['Schweiz','das Land']]},
@@ -115,6 +121,12 @@ const CHAPTERS = [
   ],
   nouns:[],
   words:[['ich','unë'],['du','ti'],['er','ai'],['es','ai / ajo (das)'],['wir','ne'],['ihr','ju (miq)'],['Sie','Ju (me respekt)'],['sein','jam'],['haben','kam'],['wohnen','banoj'],['lernen','mësoj']],
+  hear:[
+    ['Wir wohnen in Berlin.', 'Ich und meine Familie wohnen in Berlin.', 'Du wohnst in Berlin.', 'Ihr wohnt in Berlin.', 'Er wohnt in Berlin.'],
+    ['Ihr habt Zeit.', 'Ju (dy ose më shumë shokë) keni kohë.', 'Ne kemi kohë.', 'Ai ka kohë.', 'Ju (zotëri) keni kohë.'],
+    ['Er ist Lehrer.', 'Der Mann ist Lehrer.', 'Die Frau ist Lehrerin.', 'Ich bin Lehrer.', 'Wir sind Lehrer.'],
+    ['Sie hat ein Kind.', 'Ajo ka një fëmijë.', 'Ata kanë një fëmijë.', 'Ju keni një fëmijë.', 'Ajo është fëmijë.']
+  ],
   items:[
     {type:'match', pairs:[['ich','unë'],['du','ti'],['wir','ne'],['ihr','ju'],['er','ai']]},
     {type:'match', pairs:[['ich','bin'],['du','bist'],['er','ist'],['wir','sind'],['ihr','seid']]},
@@ -177,6 +189,11 @@ const CHAPTERS = [
   ],
   nouns:[['das','Schwimmbad','pishina'],['die','Schule','shkolla'],['der','Lehrer','mësuesi']],
   words:[['schwimmen','notoj'],['schreiben','shkruaj'],['kennen','njoh'],['fragen','pyes'],['sagen','them'],['leben','jetoj'],['hören','dëgjoj'],['kaufen','blej']],
+  hear:[
+    ['Sabine schwimmt gern.', 'Sabinës i pëlqen noti.', 'Sabina nuk noton.', 'Sabina shkruan.', 'Miqtë e Sabinës notojnë.'],
+    ['Meine Freunde leben in Hamburg.', 'Disa shokë jetojnë në Hamburg.', 'Një shok jeton në Hamburg.', 'Unë jetoj në Hamburg.', 'Shokët e mi vijnë nga Hamburgu.'],
+    ['Der Lehrer fragt viel.', 'Mësuesi bën shumë pyetje.', 'Nxënësit bëjnë shumë pyetje.', 'Mësuesi shkruan shumë.', 'Mësuesi nuk pyet.']
+  ],
   items:[
     {type:'match', pairs:[['Sabine','schwimmt'],['meine Freunde','leben'],['ihr','wohnt'],['ich','frage'],['du','kennst']]},
     {type:'gap', topic:'subjekt', psq:'Kush? → mbaresa', pde:'Wer? → Endung', s:'Sabine ___ im Schwimmbad.', h:'schwimmen', o:['schwimmt','schwimmen','schwimmst','schwimme'], a:'schwimmt', e:'Sabine = sie → schwimmt.'},
@@ -220,6 +237,12 @@ const CHAPTERS = [
   ],
   nouns:[],
   words:[['wer','kush'],['was','çfarë'],['wo','ku'],['wann','kur'],['wie','si'],['woher','nga'],['wie viel','sa'],['heißen','quhem']],
+  hear:[
+    ['Woher kommst du?', 'Pyet për vendin nga vjen.', 'Pyet për emrin.', 'Pyet ku banon.', 'Pyet sa vjeç je.'],
+    ['Wo wohnst du?', 'Pyet ku banon.', 'Pyet nga vjen.', 'Pyet si quhesh.', 'Pyet kur vjen.'],
+    ['Wann kommst du?', 'Pyet për kohën.', 'Pyet për vendin.', 'Pyet për emrin.', 'Pyet për gjuhën.'],
+    ['Wie viel kostet das?', 'Pyet për çmimin.', 'Pyet për orën.', 'Pyet për emrin.', 'Pyet për vendin.']
+  ],
   items:[
     {type:'match', pairs:[['Wer?','Kush?'],['Was?','Çfarë?'],['Wo?','Ku?'],['Wann?','Kur?'],['Wie?','Si?']]},
     {type:'match', pairs:[['Wie heißt du?','Mimoza.'],['Wo ist das Salz?','Hier!'],['Wann kommst du?','Um acht Uhr.'],['Woher kommst du?','Aus Albanien.']]},
@@ -279,6 +302,12 @@ const CHAPTERS = [
   nouns:[['der','Vater','babai'],['die','Mutter','nëna'],['die','Eltern','prindërit'],['der','Bruder','vëllai'],['die','Schwester','motra'],['die','Geschwister','vëllezërit e motrat'],
     ['der','Sohn','djali'],['die','Tochter','vajza'],['der','Opa','gjyshi'],['die','Oma','gjyshja'],['die','Großeltern','gjyshërit'],['die','Enkelin','mbesa']],
   words:[['Wie geht es Ihnen?','Si jeni?'],['Freut mich.','Gëzohem.'],['Danke, gut.','Faleminderit, mirë.']],
+  hear:[
+    ['Das ist meine Schwester.', 'Unë dhe ajo kemi të njëjtët prindër.', 'Ajo është nëna ime.', 'Ai është vëllai im.', 'Ajo është vajza ime.'],
+    ['Mein Sohn heißt Leon.', 'Ich bin die Mutter oder der Vater von Leon.', 'Leon ist mein Bruder.', 'Leon ist mein Vater.', 'Leon ist meine Tochter.'],
+    ['Wie geht es Ihnen?', 'Dikush pyet si je (me mirësjellje).', 'Dikush pyet si quhesh.', 'Dikush pyet ku shkon.', 'Dikush thotë mirupafshim.'],
+    ['Das sind meine Eltern.', 'Das sind meine Mutter und mein Vater.', 'Das sind meine Geschwister.', 'Das ist mein Sohn.', 'Das sind meine Kinder.']
+  ],
   items:[
     {type:'match', pairs:[['der Vater','babai'],['die Mutter','nëna'],['der Bruder','vëllai'],['die Schwester','motra'],['die Eltern','prindërit']]},
     {type:'match', pairs:[['der Sohn','djali'],['die Tochter','vajza'],['der Opa','gjyshi'],['die Oma','gjyshja'],['die Großeltern','gjyshërit']]},
@@ -336,6 +365,12 @@ const CHAPTERS = [
   nouns:[['das','Jahr','viti'],['die','Zahl','numri']],
   words:[['dreizehn','13'],['sechzehn','16'],['siebzehn','17'],['zwanzig','20'],['dreißig','30'],['vierzig','40'],['fünfzig','50'],['sechzig','60'],
     ['siebzig','70'],['achtzig','80'],['neunzig','90'],['hundert','100'],['tausend','1000'],['fünfunddreißig','35'],['siebenundsechzig','67']],
+  hear:[
+    ['Ich bin zwanzig Jahre alt.', 'Die Person ist 20.', 'Die Person ist 12.', 'Die Person ist 2.', 'Die Person ist 30.'],
+    ['Mein Vater ist siebzig.', 'Er ist 70.', 'Er ist 17.', 'Er ist 60.', 'Er ist 7.'],
+    ['Sie ist sechzehn.', 'Ajo është 16 vjeç.', 'Ajo është 60 vjeç.', 'Ajo është 6 vjeç.', 'Ajo është 26 vjeç.'],
+    ['Das kostet dreiundvierzig Euro.', '43 €', '34 €', '33 €', '44 €']
+  ],
   items:[
     {type:'match', pairs:[['dreizehn','13'],['dreißig','30'],['sechzig','60'],['siebzig','70'],['hundert','100']]},
     {type:'match', pairs:[['fünfunddreißig','35'],['siebenundvierzig','47'],['siebenundsechzig','67'],['einundzwanzig','21'],['neunundneunzig','99']]},
@@ -374,6 +409,11 @@ const CHAPTERS = [
   ],
   nouns:[['die','Katze','macja'],['der','Hund','qeni'],['das','Café','kafeneja'],['der','Beruf','profesioni']],
   words:[['arbeiten','punoj'],['seit','prej'],['jeden Tag','çdo ditë'],['aber','por'],['oft','shpesh']],
+  hear:[
+    ['Ich arbeite jeden Tag im Café.', 'Ajo punon në kafene.', 'Ajo pi kafe çdo ditë.', 'Ajo punon në kafene vetëm të shtunën.', 'Ajo shkon shpesh në kafene për kafe.'],
+    ['Ich habe eine Katze und einen Hund.', 'Ka dy kafshë.', 'Ka vetëm një mace.', 'Ka dy qen.', 'Nuk ka kafshë.'],
+    ['Ich wohne seit drei Jahren in Berlin.', 'Jeton në Berlin prej tre vitesh dhe ende jeton atje.', 'Ka jetuar në Berlin para tre vitesh.', 'Do të shkojë në Berlin pas tre vitesh.', 'Jeton në Berlin prej tre muajsh.']
+  ],
   items:[
     {type:'match', pairs:[['die Katze','macja'],['der Hund','qeni'],['arbeiten','punoj'],['jeden Tag','çdo ditë'],['seit zwei Jahren','prej dy vitesh']]},
     {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wie alt ist Elif?', o:['24','20','26','42'], a:'24', e:'„Ich heiße Elif und bin 24 Jahre alt.“'},
@@ -412,6 +452,11 @@ const CHAPTERS = [
   ],
   nouns:[],
   words:[['ein','një (der/das)'],['eine','një (die)'],['kein','asnjë (der/das)'],['keine','asnjë (die, shumës)'],['nicht','nuk, jo']],
+  hear:[
+    ['Das ist kein Hund, das ist eine Katze.', 'Është mace.', 'Është qen.', 'Janë dy qen.', 'Nuk ka asnjë kafshë.'],
+    ['Ich habe kein Auto.', 'Nuk ka makinë.', 'Ka një makinë.', 'Ka dy makina.', 'Makina e tij është e vjetër.'],
+    ['Ist das ein Stuhl? Nein, das ist ein Tisch.', 'Es ist ein Tisch.', 'Es ist ein Stuhl.', 'Es ist kein Tisch.', 'Es sind zwei Stühle.']
+  ],
   items:[
     {type:'match', pairs:[['ein Tisch','një tavolinë'],['eine Lampe','një llambë'],['kein Bett','asnjë shtrat'],['keine Zeit','nuk ka kohë'],['nicht kalt','jo i ftohtë']]},
     {type:'gap', s:'Das ist ___ Tisch.', h:'der Tisch', o:['ein','eine'], a:'ein', row:true, e:'der → ein.'},
@@ -455,6 +500,12 @@ const CHAPTERS = [
     ['das','Ei','veza'],['der','Kaffee','kafeja'],['die','Pizza','pica'],['das','Mineralwasser','uji mineral'],['die','Gemüsesuppe','supa e perimeve'],
     ['der','Hamburger','hamburgeri'],['der','Zucker','sheqeri'],['die','Milch','qumështi'],['der','Kuchen','keku'],['die','Rechnung','llogaria']],
   words:[['Hunger haben','kam uri'],['Durst haben','kam etje'],['nehmen','marr'],['möchten','dëshiroj'],['bringen','sjell'],['sofort','menjëherë'],['natürlich','sigurisht'],['Tut mir leid.','Më vjen keq.'],['Ich hätte gern …','Do të doja …']],
+  hear:[
+    ['Ich habe Hunger.', 'Ich möchte etwas essen.', 'Ich möchte etwas trinken.', 'Ich möchte schlafen.', 'Ich habe kein Essen.'],
+    ['Ich habe Durst.', 'Ich möchte einen Orangensaft.', 'Ich möchte ein Brötchen.', 'Ich möchte eine Pizza.', 'Ich möchte ein Ei.'],
+    ['Ich nehme eine Pizza und einen Kaffee.', 'Porosit diçka për të ngrënë dhe diçka për të pirë.', 'Porosit vetëm kafe.', 'Porosit dy pica.', 'Nuk do asgjë.'],
+    ['Tut mir leid, wir haben keine Pizza.', 'Pizza gibt es heute nicht.', 'Die Pizza kommt sofort.', 'Die Pizza ist sehr gut.', 'Wir möchten eine Pizza.']
+  ],
   items:[
     {type:'match', pairs:[['das Frühstück','mëngjesi'],['das Brötchen','simitja'],['der Joghurt','kosi'],['das Salz','kripa'],['das Ei','veza']]},
     {type:'match', pairs:[['der Hunger','uria'],['der Durst','etja'],['die Gemüsesuppe','supa e perimeve'],['der Orangensaft','lëngu i portokallit'],['die Rechnung','llogaria']]},
@@ -514,6 +565,11 @@ const CHAPTERS = [
   nouns:[['die','Packung','paketa'],['das','Kilo','kilogrami'],['die','Dose','kanoçja'],['die','Flasche','shishja'],['der','Supermarkt','supermarketi'],
     ['der','Joghurt','jogurti'],['das','Öl','vaji'],['das','Obst','frutat'],['das','Gemüse','perimet'],['die','Wurst','salsiçja'],['der','Wein','vera'],['das','Mehl','mielli']],
   words:[['brauchen','më duhet'],['kaufen','blej'],['schmecken','ka shije'],['noch','akoma'],['Was brauchen wir?','Çfarë na duhet?']],
+  hear:[
+    ['Wir brauchen noch zwei Flaschen Öl.', 'Duhet të blejnë vaj.', 'Kanë shumë vaj.', 'Duhen dy kanoçe.', 'Nuk blejnë vaj.'],
+    ['Ich kaufe ein Kilo Äpfel.', 'Blen mollë.', 'Blen një kilogram banane.', 'Blen një paketë mollë.', 'Shet mollë.'],
+    ['Der Joghurt schmeckt nicht.', 'Der Joghurt ist nicht gut.', 'Der Joghurt ist sehr gut.', 'Es gibt keinen Joghurt.', 'Ich möchte Joghurt.']
+  ],
   items:[
     {type:'match', pairs:[['die Packung','paketa'],['das Kilo','kilogrami'],['die Dose','kanoçja'],['die Flasche','shishja'],['der Supermarkt','supermarketi']]},
     {type:'match', pairs:[['das Obst','frutat'],['das Gemüse','perimet'],['der Joghurt','jogurti'],['das Öl','vaji'],['die Wurst','salsiçja']]},
@@ -554,6 +610,11 @@ const CHAPTERS = [
      tip:'Doch nuk vjen <b>kurrë</b> pas një pyetjeje pa mohim.'}
   ],
   nouns:[], noGen:true, words:[],
+  hear:[
+    ['Hast du keinen Hunger? Doch!', 'Die Person hat Hunger.', 'Die Person hat keinen Hunger.', 'Die Person hat Durst.', 'Die Person isst nicht.'],
+    ['Kommst du nicht? Doch, ich komme.', 'Personi vjen.', 'Personi nuk vjen.', 'Personi vjen nesër.', 'Personi nuk e di.'],
+    ['Ist das kein Kaffee? Nein.', 'Das ist kein Kaffee.', 'Das ist Kaffee.', 'Das ist ein Kaffee mit Milch.', 'Der Kaffee ist kalt.']
+  ],
   items:[
     {type:'match', pairs:[['Ja','po'],['Nein','jo'],['Doch','po (pas mohimit)'],['nicht','nuk'],['kein','asnjë']]},
     {type:'mc', row:true, psq:'Ja, Nein apo Doch?', pde:'Ja, Nein oder Doch?', q:'Ist der Kuchen nicht gut?', h:'Do të thuash: Po, është i mirë.', o:['Ja','Nein','Doch'], a:'Doch', say:'Doch, er ist sehr gut.', e:'Pyetja ka nicht dhe ti thua PO → Doch.'},
@@ -599,6 +660,11 @@ const CHAPTERS = [
     ['der','Lehrer','mësuesi'],['die','Lehrerin','mësuesja'],['das','Buch','libri'],['die','Tasse','filxhani'],['der','Apfel','molla'],
     ['das','Wasser','uji'],['die','Zeit','koha'],['der','Tag','dita']],
   words:[],
+  hear:[
+    ['Das Mädchen ist meine Freundin.', 'Shoqja ime është një vajzë.', 'Djali është shoku im.', 'Gruaja është shoqja ime.', 'Vajza është motra ime.'],
+    ['Der Mann und die Frau haben ein Kind.', 'Janë prindër.', 'Nuk kanë fëmijë.', 'Kanë dy fëmijë.', 'Gruaja ka një fëmijë, burri jo.'],
+    ['Die Stadt ist klein, aber schön.', 'Qyteti nuk është i madh, por është i bukur.', 'Qyteti është i madh dhe i bukur.', 'Qyteti është i vogël dhe i shëmtuar.', 'Qyteti është i ri.']
+  ],
   items:[
     {type:'match', pairs:[['der Mann','burri'],['die Frau','gruaja'],['das Kind','fëmija'],['das Mädchen','vajza'],['der Freund','shoku']]},
     {type:'match', pairs:[['das Haus','shtëpia'],['die Stadt','qyteti'],['das Auto','makina'],['die Zeitung','gazeta'],['der Apfel','molla']]},
@@ -638,6 +704,11 @@ const CHAPTERS = [
     ['der','Tisch','tavolina'],['der','Stuhl','karrigia'],['das','Sofa','divani'],['das','Bett','shtrati'],['der','Schrank','dollapi'],['die','Lampe','llamba'],
     ['der','Fernseher','televizori'],['die','Waschmaschine','lavatriçja'],['die','Party','festa']],
   words:[['die Möbel','mobiljet'],['endlich','më në fund'],['klein','i vogël'],['alt','i vjetër'],['neu','i ri'],['schön','i bukur']],
+  hear:[
+    ['Die Küche ist sehr klein.', 'Kuzhina nuk ka shumë vend.', 'Kuzhina është e madhe.', 'Banjoja është shumë e vogël.', 'Nuk ka kuzhinë.'],
+    ['Endlich habe ich eine Wohnung!', 'Më në fund ka banesë, e priste prej kohësh.', 'Nuk ka ende banesë.', 'Banesa është e vjetër.', 'Kërkon një banesë.'],
+    ['Das Sofa ist neu, der Tisch ist alt.', 'Nur das Sofa ist neu.', 'Der Tisch ist neu.', 'Alles ist neu.', 'Das Sofa und der Tisch sind alt.']
+  ],
   items:[
     {type:'match', pairs:[['der Tisch','tavolina'],['der Stuhl','karrigia'],['das Sofa','divani'],['das Bett','shtrati'],['der Schrank','dollapi']]},
     {type:'match', pairs:[['die Küche','kuzhina'],['das Bad','banjoja'],['das Wohnzimmer','dhoma e ndenjjes'],['das Schlafzimmer','dhoma e gjumit'],['die Lampe','llamba']]},
@@ -683,6 +754,12 @@ const CHAPTERS = [
   nouns:[['die','Uhr','ora (sahati)'],['die','Stunde','ora (60 minuta)'],['die','Minute','minuta']],
   words:[['eins','një'],['zwei','dy'],['drei','tre'],['vier','katër'],['fünf','pesë'],['sechs','gjashtë'],['sieben','shtatë'],['acht','tetë'],['neun','nëntë'],['zehn','dhjetë'],['elf','njëmbëdhjetë'],['zwölf','dymbëdhjetë'],
     ['halb','gjysmë'],['Viertel','çerek'],['Wie spät ist es?','Sa është ora?'],['beginnen','filloj']],
+  hear:[
+    ['Es ist halb acht.', '7:30', '8:30', '8:00', '7:00'],
+    ['Es ist Viertel nach drei.', '3:15', '2:45', '3:45', '4:15'],
+    ['Es ist Viertel vor zehn.', '9:45', '10:15', '10:45', '9:15'],
+    ['Es ist zehn nach fünf.', '5:10', '4:50', '10:05', '5:50']
+  ],
   items:[
     {type:'match', pairs:[['drei','3'],['sieben','7'],['elf','11'],['zwölf','12'],['sechs','6']]},
     {type:'match', pairs:[['zwei','2'],['fünf','5'],['acht','8'],['neun','9'],['zehn','10']]},
@@ -725,6 +802,11 @@ const CHAPTERS = [
   nouns:[['der','Montag','e hëna'],['der','Dienstag','e marta'],['der','Mittwoch','e mërkura'],['der','Donnerstag','e enjtja'],['der','Freitag','e premtja'],['der','Samstag','e shtuna'],['der','Sonntag','e diela'],
     ['das','Wochenende','fundjava'],['der','Morgen','mëngjesi'],['der','Abend','mbrëmja'],['die','Nacht','nata']],
   words:[['am','në (ditë)'],['um','në (orë)'],['heute','sot'],['morgen','nesër'],['jetzt','tani']],
+  hear:[
+    ['Wir treffen uns am Samstag um neun.', 'Takimi: e shtunë, ora 9.', 'Takimi: e diel, ora 9.', 'Takimi: e shtunë, ora 10.', 'Takimi: e premte, ora 9.'],
+    ['Ich arbeite am Montag nicht.', 'E hëna është ditë pushimi për të.', 'Punon vetëm të hënën.', 'Të martën nuk punon.', 'Punon çdo ditë.'],
+    ['Heute ist Freitag, morgen ist Wochenende.', 'Morgen ist Samstag.', 'Morgen ist Montag.', 'Heute ist Samstag.', 'Morgen ist Donnerstag.']
+  ],
   items:[
     {type:'match', pairs:[['Montag','e hënë'],['Dienstag','e martë'],['Mittwoch','e mërkurë'],['Donnerstag','e enjte']]},
     {type:'match', pairs:[['Freitag','e premte'],['Samstag','e shtunë'],['Sonntag','e diel'],['das Wochenende','fundjava']]},
@@ -776,6 +858,12 @@ const CHAPTERS = [
   ],
   nouns:[['der','Supermarkt','supermarketi'],['das','Zimmer','dhoma']],
   words:[['aufstehen','ngrihem'],['anrufen','telefonoj'],['aufräumen','rregulloj'],['einkaufen','bëj pazar'],['fernsehen','shikoj televizor'],['mitkommen','vij bashkë'],['jeden Tag','çdo ditë']],
+  hear:[
+    ['Ich stehe um sechs Uhr auf.', 'Ngrihet nga shtrati në orën 6.', 'Shkon të flejë në orën 6.', 'Ngrihet në orën 7.', 'Telefonon në orën 6.'],
+    ['Ich rufe dich morgen an.', 'Nesër do të të telefonojë.', 'Sot të telefonon.', 'Nesër vjen te ti.', 'Ti duhet ta telefonosh nesër.'],
+    ['Kommst du mit ins Kino?', 'Pyet nëse shkon bashkë në kinema.', 'Thotë që kinemaja është e mbyllur.', 'Pyet ku është kinemaja.', 'Pyet kur fillon filmi.'],
+    ['Am Samstag räume ich auf und kaufe ein.', 'Të shtunën rregullon shtëpinë dhe bën pazar.', 'Të shtunën shikon televizor.', 'Të shtunën fle gjatë.', 'Të dielën bën pazar.']
+  ],
   items:[
     {type:'match', pairs:[['aufstehen','ngrihem'],['anrufen','telefonoj'],['aufräumen','rregulloj'],['einkaufen','bëj pazar'],['fernsehen','shikoj televizor']]},
     {type:'gap', topic:'trennbar', psq:'Foljet e ndashme', pde:'Trennbare Verben', s:'Ich ___ um sieben Uhr auf.', h:'aufstehen', o:['stehe','aufstehe','stehst','steht'], a:'stehe', e:'ich stehe … auf.'},
@@ -823,6 +911,11 @@ const CHAPTERS = [
   nouns:[['die','Freizeit','koha e lirë'],['der','Ausflug','ekskursioni'],['das','Kino','kinemaja'],['das','Fahrrad','biçikleta'],['das','Hobby','hobi']],
   words:[['gehen','shkoj në këmbë'],['fahren','shkoj me mjet'],['spazieren gehen','shëtis'],['wandern','eci në natyrë'],['schwimmen','notoj'],['tanzen','kërcej'],['joggen','vrapoj'],
     ['grillen','bëj skarë'],['fotografieren','fotografoj'],['gern','me qejf'],['Gute Idee!','Ide e mirë!'],['Kein Problem!','S’ka problem!'],['Na gut.','Mirë, në rregull.'],['Ich weiß nicht.','Nuk e di.']],
+  hear:[
+    ['Ich fahre gern Fahrrad.', 'Fahrrad fahren ist mein Hobby.', 'Ich habe kein Fahrrad.', 'Ich gehe gern spazieren.', 'Ich fahre gern Auto.'],
+    ['Am Wochenende machen wir einen Ausflug.', 'Në fundjavë dalin për një udhëtim të shkurtër.', 'Në fundjavë rrinë në shtëpi.', 'Në fundjavë punojnë.', 'Sot bëjnë një ekskursion.'],
+    ['Ich tanze nicht so gern.', 'Tanzen ist nicht mein Hobby.', 'Ich tanze sehr gern.', 'Ich tanze jeden Tag.', 'Ich möchte tanzen.']
+  ],
   items:[
     {type:'match', pairs:[['schwimmen','notoj'],['wandern','eci në natyrë'],['grillen','bëj skarë'],['joggen','vrapoj'],['tanzen','kërcej']]},
     {type:'match', pairs:[['fotografieren','fotografoj'],['lesen','lexoj'],['Musik hören','dëgjoj muzikë'],['spazieren gehen','shëtis'],['Gitarre spielen','luaj kitarë']]},
@@ -888,6 +981,11 @@ const CHAPTERS = [
   nouns:[['das','Wetter','moti'],['die','Sonne','dielli'],['der','Regen','shiu'],['der','Schnee','bora'],['die','Wolke','reja'],['der','Wind','era'],
     ['der','Norden','veriu'],['der','Süden','jugu'],['der','Westen','perëndimi'],['der','Osten','lindja'],['der','Vormittag','paradita']],
   words:[['scheinen','shkëlqen (dielli)'],['regnen','bie shi'],['schneien','bie borë'],['bewölkt','vranët'],['windig','me erë'],['warm','ngrohtë'],['kalt','ftohtë'],['null','zero'],['liegen','ndodhet']],
+  hear:[
+    ['Es regnet und es ist kalt.', 'Merr çadër dhe xhaketë!', 'Merr syzet e diellit!', 'Bën shumë vapë.', 'Bie borë.'],
+    ['Im Norden scheint die Sonne.', 'Im Norden ist das Wetter schön.', 'Im Süden scheint die Sonne.', 'Im Norden regnet es.', 'Im Norden schneit es.'],
+    ['Es ist null Grad und es schneit.', 'Es ist sehr kalt.', 'Es ist warm.', 'Es regnet.', 'Die Sonne scheint.']
+  ],
   items:[
     {type:'match', pairs:[['Es regnet.','Bie shi.'],['Es schneit.','Bie borë.'],['Die Sonne scheint.','Ka diell.'],['Es ist bewölkt.','Është vranët.'],['Es ist windig.','Fryn erë.']]},
     {type:'match', pairs:[['im Norden','në veri'],['im Süden','në jug'],['im Westen','në perëndim'],['im Osten','në lindje']]},
@@ -944,6 +1042,11 @@ const CHAPTERS = [
   ],
   nouns:[],
   words:[['brauchen','më duhet'],['kaufen','blej'],['verkaufen','shes'],['mein','i imi'],['dein','i yti']],
+  hear:[
+    ['Den Mann kenne ich nicht.', 'Unë nuk e njoh burrin.', 'Burri nuk më njeh mua.', 'Unë e njoh burrin.', 'Burri nuk njeh askënd.'],
+    ['Ich brauche einen Tisch.', 'Nuk ka tavolinë dhe do një.', 'Shet një tavolinë.', 'Ka dy tavolina.', 'Tavolina është e re.'],
+    ['Der Hund sieht den Mann.', 'Qeni e sheh burrin.', 'Burri e sheh qenin.', 'Burri ka një qen.', 'Qeni nuk e sheh burrin.']
+  ],
   items:[
     {type:'match', pairs:[['der Tisch','einen Tisch'],['das Sofa','ein Sofa'],['die Lampe','eine Lampe'],['der Schrank','meinen Schrank'],['der Fernseher','keinen Fernseher']]},
     {type:'gap', s:'Ich verkaufe ___ Tisch.', h:'der Tisch, i imi', o:['mein','meinen','meine','deinen'], a:'meinen', e:'I imi → mein-. Tisch është der → +en.'},
@@ -985,6 +1088,11 @@ const CHAPTERS = [
   ],
   nouns:[],
   words:[['nehmen','marr'],['lesen','lexoj'],['fahren','vozis'],['treffen','takoj'],['schlafen','fle'],['essen','ha']],
+  hear:[
+    ['Er liest jeden Tag.', 'Ai lexon çdo ditë.', 'Ai lexon vetëm të dielën.', 'Ai shkruan çdo ditë.', 'Unë lexoj çdo ditë.'],
+    ['Sie schläft noch.', 'Sie ist noch im Bett.', 'Sie steht jetzt auf.', 'Sie isst noch.', 'Sie fährt jetzt.'],
+    ['Isst du gern Pizza?', 'Pyet nëse të pëlqen pica.', 'Pyet nëse ke pica.', 'Thotë që ha pica.', 'Pyet ku është pica.']
+  ],
   items:[
     {type:'match', pairs:[['ich','nehme'],['du','nimmst'],['er','nimmt'],['ihr','nehmt']]},
     {type:'match', pairs:[['ich','fahre'],['du','fährst'],['sie (ajo)','fährt'],['wir','fahren']]},
@@ -1028,6 +1136,11 @@ const CHAPTERS = [
   ],
   nouns:[['der','Reifen','rrethi (hula hoop)'],['der','Park','parku']],
   words:[['können','di, mund'],['üben','ushtroj'],['jonglieren','bëj xhonglerizëm'],['klettern','ngjitem'],['helfen','ndihmoj'],['kaufen','blej'],['Das sieht toll aus.','Duket shumë bukur.'],['Ja, gern.','Po, me qejf.']],
+  hear:[
+    ['Ich kann nicht schwimmen.', 'Nuk di të notojë.', 'Sot nuk do të notojë.', 'Noton shumë mirë.', 'Pishina është e mbyllur.'],
+    ['Kannst du mir helfen?', 'Kërkon ndihmë.', 'Ofron ndihmë.', 'Thotë faleminderit.', 'Pyet ku je.'],
+    ['Hans kann schon gut jonglieren.', 'Hansi e ka mësuar mirë zhonglimin.', 'Hansi nuk di të bëjë zhonglim.', 'Hansi do ta mësojë nesër.', 'Hansi ngjitet në mur.']
+  ],
   items:[
     {type:'match', pairs:[['können','di, mund'],['klettern','ngjitem'],['helfen','ndihmoj'],['jonglieren','bëj xhonglerizëm'],['üben','ushtroj']]},
     {type:'match', pairs:[['ich','kann'],['du','kannst'],['wir','können'],['ihr','könnt']]},
@@ -1088,6 +1201,11 @@ const CHAPTERS = [
   ],
   nouns:[['die','Sprachschule','shkolla e gjuhëve'],['die','Hauptstadt','kryeqyteti'],['die','Tochter','vajza (bija)'],['die','Enkelin','mbesa'],['die','Praxis','klinika']],
   words:[['im Moment','tani për tani'],['zurzeit','aktualisht'],['verheiratet','i martuar'],['allein','vetëm'],['morgens','në mëngjes'],['abends','në mbrëmje'],['ungefähr','përafërsisht'],['lachen','qesh']],
+  hear:[
+    ['Maria ist verheiratet und hat eine Tochter.', 'Maria hat einen Mann und ein Kind.', 'Maria lebt allein.', 'Maria hat einen Sohn.', 'Maria hat keine Kinder.'],
+    ['Ich wohne zurzeit allein.', 'Tani për tani jeton vetëm.', 'Jeton me familjen.', 'Ka jetuar vetëm më parë.', 'Kërkon një shok dhome.'],
+    ['Morgens arbeite ich, abends lerne ich Deutsch.', 'Deutsch lernt sie am Abend.', 'Sie lernt am Morgen Deutsch.', 'Sie arbeitet am Abend.', 'Sie lernt kein Deutsch.']
+  ],
   items:[
     {type:'match', pairs:[['Lara','aus Polen'],['Tim','aus Kanada'],['Sofia','Physiotherapeutin'],['Lili','neun Jahre alt'],['Walter','Sofias Vater']]},
     {type:'mc', read:true, row:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wie alt ist Lara?', o:['20','9','27','12'], a:'20', e:'„Ich bin zwanzig Jahre alt …“'},
@@ -1127,6 +1245,11 @@ const CHAPTERS = [
   nouns:[['der','Beruf','profesioni'],['die','Arbeit','puna'],['die','Praxis','klinika'],['die','Ausbildung','trajnimi profesional'],['der','Patient','pacienti'],
     ['der','Hausmeister','kujdestari i ndërtesës'],['der','Chef','shefi'],['der','Journalist','gazetari'],['die','Zeitung','gazeta'],['das','Interview','intervista']],
   words:[['denken','mendoj'],['fotogen','fotogjenik'],['eigene','i/e vet'],['zuerst','fillimisht'],['nun','tani']],
+  hear:[
+    ['Zuerst machen wir ein Foto, dann das Interview.', 'Das Foto kommt vor dem Interview.', 'Das Interview kommt zuerst.', 'Es gibt kein Foto.', 'Es gibt kein Interview.'],
+    ['Herr Koch ist hier Hausmeister, nicht der Chef.', 'Zoti Koch nuk e drejton klinikën.', 'Zoti Koch është shefi.', 'Zoti Koch është pacient.', 'Zoti Koch është gazetar.'],
+    ['Ich mache gerade eine Ausbildung.', 'Ich lerne noch einen Beruf.', 'Ich bin schon fertig.', 'Ich bin der Chef.', 'Ich habe keine Arbeit.']
+  ],
   items:[
     {type:'match', pairs:[['der Beruf','profesioni'],['die Praxis','klinika'],['der Patient','pacienti'],['der Chef','shefi'],['die Zeitung','gazeta']]},
     {type:'mc', read:true, row:true, topic:'lesen', psq:'1 Çfarë është e saktë?', pde:'1 Was ist richtig?', q:'Wo spielt die Geschichte?', o:['in Sofias Praxis','im Krankenhaus'], a:'in Sofias Praxis', e:'„Sie sind in Sofias Praxis.“'},
@@ -1174,6 +1297,11 @@ const CHAPTERS = [
     ['die','Hausfrau','amvisja'],['der','Hausmann','burri shtëpiak'],['der','Krankenpfleger','infermieri'],['die','Krankenschwester','infermierja'],['die','Physiotherapeutin','fizioterapistja'],
     ['die','Arzthelferin','asistentja e mjekut'],['der','Student','studenti'],['die','Studentin','studentja']],
   words:[['arbeiten als','punoj si'],['selbstständig','i vetëpunësuar'],['angestellt','i punësuar'],['arbeitslos','i papunë'],['studieren','studioj'],['beruflich','në punë'],['Was sind Sie von Beruf?','Çfarë profesioni keni?']],
+  hear:[
+    ['Ich bin Ärztin und arbeite im Krankenhaus.', 'Sie ist Ärztin.', 'Er ist Arzt.', 'Sie ist Polizistin.', 'Sie ist Patientin.'],
+    ['Ich bin zurzeit arbeitslos.', 'Im Moment habe ich keine Arbeit.', 'Ich arbeite sehr viel.', 'Ich bin selbstständig.', 'Ich bin angestellt.'],
+    ['Mein Mann ist Hausmann.', 'Burri i saj kujdeset për shtëpinë.', 'Burri i saj punon në zyrë.', 'Burri i saj është mjek.', 'Ajo është shtëpiake.']
+  ],
   items:[
     {type:'match', pairs:[['der Arzt','die Ärztin'],['der Polizist','die Polizistin'],['der Hausmann','die Hausfrau'],['der Krankenpfleger','die Krankenschwester'],['der Ingenieur','die Ingenieurin']]},
     {type:'match', pairs:[['die Ärztin','mjekja'],['die Polizistin','policja'],['der Hausmeister','kujdestari i ndërtesës'],['der Krankenpfleger','infermieri'],['der Ingenieur','inxhinieri']]},
@@ -1228,6 +1356,11 @@ const CHAPTERS = [
     ['der','Abteilungsleiter','drejtuesi i departamentit'],['die','Bewerbung','aplikimi për punë'],['der','Monat','muaji'],['die','Woche','java']],
   words:[['vor zehn Jahren','para dhjetë vitesh'],['seit vier Jahren','prej katër vitesh'],['wie lange','sa kohë'],['seit wann','që kur'],['dauern','zgjat'],['gerade','sapo'],
     ['Mit freundlichen Grüßen','Me respekt'],['Sehr geehrter Herr …','I nderuar zotëri …']],
+  hear:[
+    ['Ich habe vor zehn Jahren die Ausbildung gemacht.', 'Die Ausbildung ist seit zehn Jahren fertig.', 'Die Ausbildung dauert zehn Jahre.', 'Ich mache jetzt die Ausbildung.', 'Die Ausbildung beginnt in zehn Jahren.'],
+    ['Ich arbeite seit vier Jahren bei Siemens.', 'Punon atje prej 4 vitesh dhe ende punon.', 'Ka punuar atje para 4 vitesh.', 'Do të fillojë atje pas 4 vitesh.', 'Ka punuar atje vetëm 4 muaj.'],
+    ['Wie lange dauert das Praktikum?', 'Pyet për kohëzgjatjen e praktikës.', 'Pyet kur fillon praktika.', 'Pyet ku është praktika.', 'Pyet sa paguhet.']
+  ],
   items:[
     {type:'match', pairs:[['Wann hast du die Ausbildung gemacht?','Vor zehn Jahren.'],['Wie lange hat die Ausbildung gedauert?','Drei Jahre.'],['Seit wann bist du selbstständig?','Seit vier Jahren.']]},
     {type:'sort', topic:'zeit', psq:'Rendit sipas pyetjes', pde:'Ordnen Sie zu', cats:['Wann?','Wie lange?','Seit wann?'],
@@ -1290,6 +1423,11 @@ const CHAPTERS = [
   nouns:[['die','Berufserfahrung','përvoja e punës'],['der','Kunde','klienti'],['die','Kellnerin','kamarierja'],['das','Café','kafeneja'],['das','Restaurant','restoranti'],
     ['der','Stress','stresi'],['die','Chefin','shefja'],['der','Kollege','kolegu']],
   words:[['war','isha / ishte'],['hatte','kisha / kishte'],['früher','më parë'],['schlecht','keq'],['professionell','profesional'],['einfach','i lehtë'],['ich glaube','mendoj']],
+  hear:[
+    ['Früher hatte ich viel Stress.', 'Më parë kishte shumë stres.', 'Tani ka shumë stres.', 'Nuk ka pasur kurrë stres.', 'Do të ketë shumë stres.'],
+    ['Ich war Kellnerin in einem Café.', 'Ich habe im Café gearbeitet.', 'Ich arbeite jetzt im Café.', 'Ich trinke Kaffee im Café.', 'Ich möchte im Café arbeiten.'],
+    ['Ich hatte ja noch keine Berufserfahrung.', 'Atëherë ishte ende fillestare në punë.', 'Kishte shumë përvojë.', 'Nuk kishte punë.', 'Ishte shefe.']
+  ],
   items:[
     {type:'cloze', topic:'praeteritum', psq:'C1 Rendit', pde:'C1 Hören Sie und ordnen Sie zu', bank:['war','hatte','Hattest','war'],
      text:'1  [[Hattest]] du dann gleich deine eigene Praxis?\n– Nein, nein! Ich [[hatte]] ja noch fast keine Berufserfahrung.\n2  Wie [[war]] dein Chef?\n– Er [[war]] sehr, sehr professionell.',
@@ -1352,6 +1490,11 @@ const CHAPTERS = [
   ],
   nouns:[['die','Anzeige','njoftimi'],['die','Praktikumsstelle','vendi i praktikës'],['die','Gastronomie','gastronomia'],['das','Studium','studimet'],['die','Universität','universiteti'],['die','Konzertagentur','agjencia e koncerteve']],
   words:[['für einen Monat','për një muaj'],['für ein Jahr','për një vit'],['mindestens','të paktën'],['bald','së shpejti'],['danach','pastaj'],['ziemlich','mjaft'],['Für wie lange?','Për sa kohë?']],
+  hear:[
+    ['Ich suche ein Praktikum für einen Monat.', 'Ich möchte vier Wochen ein Praktikum machen.', 'Das Praktikum dauert ein Jahr.', 'Ich mache seit einem Monat ein Praktikum.', 'Ich suche eine feste Stelle.'],
+    ['Ich studiere noch, danach suche ich eine Stelle.', 'Zuerst das Studium, dann die Arbeit.', 'Zuerst die Arbeit, dann das Studium.', 'Ich arbeite schon.', 'Ich studiere nicht.'],
+    ['Für wie lange suchen Sie eine Stelle?', 'Pyet sa kohë do të punojë.', 'Pyet ku do të punojë.', 'Pyet që kur punon.', 'Pyet sa paguhet.']
+  ],
   items:[
     {type:'match', pairs:[['Mika','Hotel Kaiserhof Wien'],['Radha','Phill GmbH Berlin'],['Brenda','Originell Catering Zürich']]},
     {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Was ist Mika von Beruf?', o:['Koch','Student','Kellner','Lehrer'], a:'Koch', e:'„… arbeite seit drei Jahren als Koch in einem Restaurant.“'},
@@ -1399,6 +1542,11 @@ const CHAPTERS = [
   ],
   nouns:[['der','Praktikant','praktikanti'],['die','Praktikantin','praktikantja'],['die','Arbeitszeit','orari i punës'],['die','Vergütung','pagesa'],['die','Stelle','vendi i punës'],['der','Bereich','fusha'],['der','Flughafen','aeroporti']],
   words:[['montags','çdo të hënë'],['vormittags','çdo paradite'],['schriftlich','me shkrim'],['per E-Mail','me e-mail'],['pro Monat','në muaj'],['normalerweise','zakonisht'],['Ist die Stelle noch frei?','A është ende i lirë vendi?']],
+  hear:[
+    ['Ist die Stelle noch frei?', 'Pyet nëse vendi i punës është ende i lirë.', 'Pyet për pagën.', 'Pyet për orarin.', 'Thotë që e do vendin.'],
+    ['Die Arbeitszeit ist montags bis freitags vormittags.', 'Puna është çdo ditë pune në mëngjes.', 'Puna është në fundjavë.', 'Puna është pasdite.', 'Puna është vetëm të hënën.'],
+    ['Schicken Sie uns bitte eine E-Mail.', 'Duhet të dërgojë një e-mail.', 'Duhet të telefonojë.', 'Duhet të vijë vetë.', 'Nuk duhet të bëjë asgjë.']
+  ],
   items:[
     {type:'match', pairs:[['Wie lange dauert das Praktikum?','Drei Monate im Sommer.'],['Wie ist die Arbeitszeit?','Mo–Fr von 9 bis 18 Uhr.'],['Bekomme ich auch Geld?','Ja, 450 Euro pro Monat.'],['Ist die Stelle noch frei?','Ja, sie ist noch frei.']]},
     {type:'mc', read:true, topic:'lesen', psq:'Lexo njoftimet', pde:'Lies die Anzeigen', q:'Wie lange dauert das Praktikum am Flughafen Frankfurt?', o:['2–4 Monate im Herbst/Winter','3–4 Monate im Sommer','zwei Wochen','ein Jahr'], a:'2–4 Monate im Herbst/Winter', e:'Praktikumsdauer: 2–4 Monate im Herbst/Winter.'},
@@ -1437,6 +1585,11 @@ const CHAPTERS = [
   ],
   nouns:[['der','Führerschein','patenta'],['das','Amt','zyra shtetërore'],['die','Autovermietung','agjencia e makinave me qira'],['der','Bus','autobusi'],['die','Fahrkarte','bileta'],['die','Fahrt','udhëtimi'],['der','Laden','dyqani']],
   words:[['mieten','marr me qira'],['gültig','i vlefshëm'],['ausländisch','i huaj'],['international','ndërkombëtar'],['zu jung','shumë i ri'],['Na los!','Hajde!']],
+  hear:[
+    ['Dein Führerschein ist hier nicht gültig.', 'Mit diesem Führerschein darfst du hier nicht fahren.', 'Dein Führerschein ist weg.', 'Du hast keinen Führerschein.', 'Du darfst hier fahren.'],
+    ['Ich möchte ein Auto mieten.', 'Do të marrë makinë me qira.', 'Do të blejë makinë.', 'Do të shesë makinën.', 'Do të marrë autobusin.'],
+    ['Für ein Auto bist du noch zu jung.', 'Je ende shumë i ri për makinë.', 'Je shumë i vjetër për makinë.', 'Makina është shumë e shtrenjtë.', 'Nuk ke para për makinë.']
+  ],
   items:[
     {type:'match', pairs:[['der Führerschein','patenta'],['die Fahrkarte','bileta'],['mieten','marr me qira'],['gültig','i vlefshëm'],['die Fahrt','udhëtimi']]},
     {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wo sind Lara und Tim zuerst?', o:['auf einem Amt','bei einer Autovermietung','am ZOB','in einem Laden'], a:'auf einem Amt', e:'„Zuerst sind sie auf einem Amt …“'},
@@ -1484,6 +1637,11 @@ const CHAPTERS = [
     ['der','Fahrkartenautomat','automati i biletave'],['das','Ziel','destinacioni'],['das','Wechselgeld','kusuri']],
   words:[['müssen','duhet'],['ausfüllen','plotësoj'],['mitbringen','sjell me vete'],['wählen','zgjedh'],['auswählen','përzgjedh'],['bezahlen','paguaj'],['stempeln','vulos'],
     ['funktionieren','funksionon'],['zuerst','së pari'],['zum Schluss','në fund']],
+  hear:[
+    ['Sie müssen zuerst einen Antrag ausfüllen.', 'Hapi i parë: të plotësojë një formular.', 'Nuk ka nevojë për formular.', 'Duhet të paguajë fillimisht.', 'Duhet të sjellë foto.'],
+    ['Man muss die Fahrkarte stempeln.', 'Ohne Stempel ist die Fahrkarte nicht gültig.', 'Die Fahrkarte ist kostenlos.', 'Man muss keine Fahrkarte kaufen.', 'Man kann die Fahrkarte im Bus kaufen.'],
+    ['Der Automat funktioniert nicht.', 'Automati është i prishur.', 'Automati është i ri.', 'Automati nuk jep kusur.', 'Nuk ka automat.']
+  ],
   items:[
     {type:'match', pairs:[['ich','muss'],['du','musst'],['wir','müssen'],['ihr','müsst']]},
     {type:'match', pairs:[['der Antrag','kërkesa'],['der Ausweis','letërnjoftimi'],['der Reisepass','pasaporta'],['das Wechselgeld','kusuri'],['die Fahrkarte','bileta']]},
@@ -1535,6 +1693,12 @@ const CHAPTERS = [
   ],
   nouns:[['das','Handy','celulari'],['die','Hausaufgabe','detyra e shtëpisë'],['die','Lehrerin','mësuesja'],['der','Text','teksti']],
   words:[['abholen','marr (dikë)'],['erklären','shpjegoj'],['leise','i qetë'],['laut','me zë të lartë'],['schließen','mbyll'],['öffnen','hap'],['zuhören','dëgjoj'],['warten','pres'],['Sieh mal!','Shiko pak!']],
+  hear:[
+    ['Sei bitte leise!', 'Personi duhet të mos bëjë zhurmë.', 'Personi duhet të flasë më fort.', 'Personi duhet të vijë.', 'Personi duhet të presë.'],
+    ['Schließ bitte das Fenster!', 'Dritarja duhet të mbyllet.', 'Dritarja duhet të hapet.', 'Dera duhet të mbyllet.', 'Dritarja është e prishur.'],
+    ['Komm mit, wir gehen ins Kino!', 'Të fton në kinema.', 'Të pyet ku është kinemaja.', 'Shkon vetëm në kinema.', 'Nuk do të shkojë në kinema.'],
+    ['Warte mal!', 'Ndalo pak, prit!', 'Shko shpejt!', 'Hajde me mua!', 'Shiko!']
+  ],
   items:[
     {type:'match', pairs:[['du kommst mit','Komm mit!'],['du wartest','Warte!'],['du bist leise','Sei leise!'],['du fährst','Fahr!'],['du siehst','Sieh mal!']]},
     {type:'cloze', topic:'imperativ', psq:'B1a Plotëso', pde:'B1a Ergänzen Sie', bank:['Bring','Geh','Sieh','komm','warte'],
@@ -1580,6 +1744,11 @@ const CHAPTERS = [
   ],
   nouns:[['der','Wartebereich','dhoma e pritjes'],['die','Anmeldung','regjistrimi'],['der','Pass','pasaporta'],['die','Kursgebühr','tarifa e kursit'],['die','Kasse','arka'],['der','Stock','kati'],['der','Unterricht','mësimi'],['die','Sprachschule','shkolla e gjuhëve'],['die','Regel','rregulli']],
   words:[['lachen','qesh'],['geben','jap'],['Seien Sie leise!','Jini të qetë!']],
+  hear:[
+    ['Warten Sie bitte im Wartebereich.', 'Duhet të presë në dhomën e pritjes.', 'Duhet të hyjë menjëherë.', 'Duhet të paguajë në arkë.', 'Duhet të vijë nesër.'],
+    ['Gehen Sie bitte in den zweiten Stock.', 'Duhet të ngjitet në katin e dytë.', 'Duhet të zbresë në katin përdhes.', 'Duhet të shkojë në katin e tretë.', 'Duhet të presë këtu.'],
+    ['Die Kursgebühr bezahlen Sie bitte an der Kasse.', 'Tarifa e kursit paguhet në arkë.', 'Kursi është falas.', 'Tarifa paguhet në klasë.', 'Tarifa paguhet me e-mail.']
+  ],
   items:[
     {type:'match', pairs:[['Sie warten','Warten Sie!'],['Sie bezahlen','Bezahlen Sie!'],['Sie sind leise','Seien Sie leise!'],['Sie kommen','Kommen Sie!'],['Sie lachen','Lachen Sie!']]},
     {type:'gap', topic:'imperativ', psq:'Urdhërorja me Sie', pde:'Imperativ mit Sie', s:'___ Sie bitte im Wartebereich!', h:'warten', o:['Warten','Wartet','Warte','Wartest'], a:'Warten', e:'Sie warten → Warten Sie!'},
@@ -1624,6 +1793,11 @@ const CHAPTERS = [
   nouns:[['das','Gepäck','bagazhi'],['das','Fahrrad','biçikleta'],['die','Zigarette','cigarja'],['der','Parkplatz','parkingu'],['der','Fernbus','autobusi ndërqytetës'],['der','Laptop','laptopi'],['das','Eis','akullorja']],
   words:[['dürfen','lejohet'],['erlaubt','e lejuar'],['verboten','e ndaluar'],['ausmachen','fik'],['telefonieren','flas në telefon'],['rauchen','pi duhan'],['parken','parkoj'],
     ['langsam','ngadalë'],['abgeben','dorëzoj'],['mitnehmen','marr me vete'],['benutzen','përdor'],['beantragen','aplikoj për'],['schlafen','fle'],['im Moment','tani për tani']],
+  hear:[
+    ['Hier darf man nicht rauchen.', 'Rauchen ist hier verboten.', 'Rauchen ist hier erlaubt.', 'Hier darf man nicht parken.', 'Hier darf man nicht telefonieren.'],
+    ['Im Fernbus dürfen Sie ein Fahrrad mitnehmen.', 'Me autobus mund ta marrësh biçikletën me vete.', 'Biçikleta është e ndaluar në autobus.', 'Duhet ta marrësh biçikletën patjetër.', 'Autobusi ka biçikleta me qira.'],
+    ['Mach bitte das Handy aus!', 'Celulari duhet të fiket.', 'Celulari duhet të ndizet.', 'Mund të telefonosh.', 'Celulari duhet të karikohet.']
+  ],
   items:[
     {type:'match', pairs:[['ich','darf'],['du','darfst'],['wir','dürfen'],['ihr','dürft']]},
     {type:'match', pairs:[['erlaubt','e lejuar'],['verboten','e ndaluar'],['rauchen','pi duhan'],['das Gepäck','bagazhi'],['langsam','ngadalë']]},
@@ -1672,6 +1846,11 @@ const CHAPTERS = [
     ['der','Komponist','kompozitori'],['das','Geburtshaus','shtëpia e lindjes'],['das','Museum','muzeu'],['der','Dom','katedralja'],['das','Konzert','koncerti'],['die','Oper','opera'],['die','Auskunft','informacioni'],
     ['der','Stadtplan','harta e qytetit'],['die','Einkaufsstraße','rruga e pazarit'],['der','Einwohner','banori'],['die','Broschüre','broshura']],
   words:[['besichtigen','vizitoj'],['spazieren','shëtis'],['berühmt','i famshëm'],['geboren','i lindur'],['täglich','çdo ditë'],['geöffnet','i hapur'],['stattfinden','zhvillohet'],['kennenlernen','njoh'],['wie oft','sa shpesh'],['dreimal','tri herë']],
+  hear:[
+    ['Das Museum ist täglich geöffnet.', 'Man kann jeden Tag ins Museum gehen.', 'Das Museum ist am Montag zu.', 'Das Museum ist heute geschlossen.', 'Das Museum ist nur am Wochenende offen.'],
+    ['Die Führung findet dreimal pro Woche statt.', 'Vizita me guidë bëhet 3 herë në javë.', 'Vizita bëhet çdo ditë.', 'Vizita bëhet 3 herë në ditë.', 'Vizita bëhet një herë në muaj.'],
+    ['Kinder bekommen eine Ermäßigung.', 'Für Kinder ist der Eintritt billiger.', 'Kinder zahlen mehr.', 'Kinder dürfen nicht rein.', 'Kinder zahlen gleich viel.']
+  ],
   items:[
     {type:'match', pairs:[['die Führung','vizita me guidë'],['der Eintritt','hyrja (bileta)'],['täglich','çdo ditë'],['berühmt','i famshëm'],['die Ermäßigung','zbritja']]},
     {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Was kann man in der Getreidegasse machen?', o:['einkaufen und Mozarts Geburtshaus besuchen','Konzerte hören','das Glockenspiel hören','eine Führung machen'], a:'einkaufen und Mozarts Geburtshaus besuchen', e:'„Sie ist die Einkaufsstraße … In der Getreidegasse 9 ist Mozart geboren.“'},
@@ -1714,6 +1893,11 @@ const CHAPTERS = [
     ['die','Bushaltestelle','stacioni i autobusit'],['das','Haustier','kafsha shtëpiake'],['die','Halbpension','mëngjes + darkë'],['die','Vollpension','pension i plotë'],['der','Schlüssel','çelësi'],['die','Rezeption','recepsioni'],
     ['der','Lift','ashensori'],['das','Formular','formulari'],['die','Altstadt','qyteti i vjetër'],['der','See','liqeni']],
   words:[['kostenlos','falas'],['inklusive','i përfshirë'],['zentral','në qendër'],['günstig','i lirë'],['reservieren','rezervoj'],['buchen','prenotoj'],['auschecken','lëshoj dhomën'],['wiederholen','përsëris'],['fertig','gati'],['leider','fatkeqësisht']],
+  hear:[
+    ['Wir haben ein Doppelzimmer reserviert.', 'Das Zimmer ist für zwei Personen.', 'Das Zimmer ist für eine Person.', 'Sie möchten jetzt ein Zimmer buchen.', 'Sie haben kein Zimmer.'],
+    ['Das Frühstück ist inklusive.', 'Mëngjesi nuk paguhet veç.', 'Mëngjesi kushton ekstra.', 'Nuk ka mëngjes.', 'Mëngjesi është vetëm të dielën.'],
+    ['Das Hotel liegt zentral, aber es ist nicht günstig.', 'Hoteli është në qendër, por i shtrenjtë.', 'Hoteli është larg dhe i lirë.', 'Hoteli është në qendër dhe i lirë.', 'Hoteli është larg dhe i shtrenjtë.']
+  ],
   items:[
     {type:'match', pairs:[['das Doppelzimmer','dhoma dyshe'],['das Einzelzimmer','dhoma teke'],['das Schwimmbad','pishina'],['der Schlüssel','çelësi'],['kostenlos','falas']]},
     {type:'mc', read:true, topic:'lesen', psq:'Cili hotel?', pde:'Welches Hotel passt?', q:'„Ich habe einen Hund.“', o:['Easy Tourist Hotel','Backpacker Hostel','Hotel Romantica'], a:'Easy Tourist Hotel', e:'Easy Tourist Hotel: „Hunde erlaubt“.'},
@@ -1755,6 +1939,11 @@ const CHAPTERS = [
   nouns:[['die','Gesundheit','shëndeti'],['die','Krankheit','sëmundja'],['der','Klub','klubi'],['die','Notaufnahme','urgjenca'],['das','Krankenhaus','spitali'],['der','Arzt','mjeku'],['die','Ärztin','mjekja'],
     ['der','Unfall','aksidenti'],['der','Schmerz','dhimbja'],['die','Schmerztablette','tableta kundër dhimbjes'],['die','Mitarbeiterin','punonjësja']],
   words:[['schlimm','i rëndë'],['kühlen','ftoh'],['tanzen','kërcej'],['wehtun','dhemb'],['lustig','i gëzuar'],['Gute Besserung!','Shërim të shpejtë!']],
+  hear:[
+    ['Mein Fuß tut so weh!', 'Sie hat Schmerzen im Fuß.', 'Sie hat Kopfschmerzen.', 'Ihr Fuß ist wieder gut.', 'Sie tanzt gern.'],
+    ['Wir müssen in die Notaufnahme.', 'Duhet të shkojnë urgjent në spital.', 'Shkojnë në klub.', 'Shkojnë në shtëpi.', 'Shkojnë te farmacia.'],
+    ['Gute Besserung!', 'Personi uron shërim të shpejtë.', 'Personi uron për ditëlindje.', 'Personi thotë mirupafshim.', 'Personi kërkon falje.']
+  ],
   items:[
     {type:'match', pairs:[['die Notaufnahme','urgjenca'],['der Unfall','aksidenti'],['die Schmerztablette','tableta kundër dhimbjes'],['das Krankenhaus','spitali'],['kühlen','ftoh']]},
     {type:'mc', read:true, topic:'lesen', psq:'Kush thotë çfarë?', pde:'Wer sagt was?', q:'„Mein Auge tut weh!“', o:['Ioanna','Lara','der Arzt','die Mitarbeiterin'], a:'Ioanna', e:'Ioanna ka syrin blu.'},
@@ -1792,6 +1981,11 @@ const CHAPTERS = [
   nouns:[['der','Kopf','koka'],['das','Auge','syri'],['das','Ohr','veshi'],['die','Nase','hunda'],['der','Mund','goja'],['der','Hals','qafa'],['die','Brust','gjoksi'],['der','Bauch','barku'],
     ['der','Rücken','shpina'],['der','Arm','krahu'],['die','Hand','dora'],['der','Finger','gishti i dorës'],['das','Bein','këmba'],['der','Fuß','shputa e këmbës']],
   words:[['wehtun','dhemb'],['Was tut weh?','Çfarë të dhemb?']],
+  hear:[
+    ['Mein Kopf tut weh.', 'Ich habe Kopfschmerzen.', 'Ich habe Bauchschmerzen.', 'Ich habe Halsschmerzen.', 'Mir geht es gut.'],
+    ['Meine Augen tun weh.', 'Ka dhimbje në sy.', 'Ka dhimbje në vesh.', 'Ka dhimbje në hundë.', 'Ka dhimbje dhëmbi.'],
+    ['Was tut Ihnen weh?', 'Mjeku pyet ku ke dhimbje.', 'Mjeku pyet si quhesh.', 'Mjeku thotë që je i shëndetshëm.', 'Mjeku pyet sa vjeç je.']
+  ],
   items:[
     {type:'match', pairs:[['der Kopf','koka'],['der Hals','qafa'],['der Bauch','barku'],['der Rücken','shpina'],['das Bein','këmba']]},
     {type:'match', pairs:[['das Auge','syri'],['das Ohr','veshi'],['die Nase','hunda'],['der Mund','goja'],['die Hand','dora']]},
@@ -1836,6 +2030,11 @@ const CHAPTERS = [
   ],
   nouns:[['der','Termin','takimi'],['das','Lied','kënga'],['der','Kinderarzt','mjeku i fëmijëve'],['die','Ehefrau','bashkëshortja'],['die','Kollegin','kolegia'],['der','Abend','mbrëmja'],['die','Nachricht','mesazhi']],
   words:[['unser','ynë'],['euer','juaj'],['gesund','i shëndetshëm'],['krank','i sëmurë'],['ausfallen','nuk mbahet'],['hoffentlich','shpresoj'],['toll','super'],['morgen','nesër']],
+  hear:[
+    ['Das ist sein Auto.', 'Makina është e tij.', 'Makina është e saj.', 'Makina është e jona.', 'Makina është e imja.'],
+    ['Unser Termin fällt morgen aus.', 'Takimi ynë nesër nuk bëhet.', 'Takimi ynë është nesër.', 'Takimi juaj anulohet.', 'Takimi ynë zgjat shumë.'],
+    ['Ist das euer Kinderarzt?', 'Pyet: A është ky mjeku i fëmijëve tuaj?', 'Thotë: Ky është mjeku ynë.', 'Pyet: Ku është mjeku?', 'Pyet: A je ti mjek?']
+  ],
   items:[
     {type:'gap', row:true, topic:'possessiv', psq:'sein apo ihr?', pde:'sein oder ihr?', s:'Bert: ___ Kopf tut weh.', o:['Sein','Ihr','Seine'], a:'Sein', e:'Bert = er → sein Kopf.'},
     {type:'gap', row:true, topic:'possessiv', psq:'sein apo ihr?', pde:'sein oder ihr?', s:'Hanna: ___ Hand tut weh.', o:['Ihre','Ihr','Seine'], a:'Ihre', e:'Hanna = sie, die Hand → ihre.'},
@@ -1890,6 +2089,11 @@ const CHAPTERS = [
   nouns:[['der','Husten','kolla'],['der','Schnupfen','rrufa'],['das','Fieber','temperatura'],['die','Kopfschmerzen','dhimbja e kokës'],['die','Halsschmerzen','dhimbja e fytit'],['die','Bauchschmerzen','dhimbja e barkut'],
     ['der','Sonnenbrand','djegia nga dielli'],['die','Medizin','ilaçi'],['die','Salbe','kremi (pomada)'],['der','Saft','shurupi'],['der','Tipp','këshilla']],
   words:[['sollen','duhet (sipas dikujt)'],['müde','i lodhur'],['trainieren','stërvitem'],['verwenden','përdor'],['warm halten','mbaj ngrohtë'],['helfen','ndihmoj']],
+  hear:[
+    ['Der Arzt sagt, ich soll viel trinken.', 'Mjeku i ka dhënë këshillë: të pijë shumë.', 'Mjeku thotë të mos pijë.', 'Ai vetë do të pijë shumë.', 'Mjeku pi shumë.'],
+    ['Sie sollen im Bett bleiben.', 'Pacienti duhet të pushojë në shtrat.', 'Pacienti mund të shkojë në punë.', 'Pacienti duhet të bëjë sport.', 'Pacienti duhet të ngrihet.'],
+    ['Ich habe Fieber und Husten.', 'Ich bin krank.', 'Ich bin gesund.', 'Ich habe nur Schnupfen.', 'Ich habe Sonnenbrand.']
+  ],
   items:[
     {type:'match', pairs:[['ich','soll'],['du','sollst'],['ihr','sollt'],['wir','sollen']]},
     {type:'match', pairs:[['der Husten','kolla'],['der Schnupfen','rrufa'],['das Fieber','temperatura'],['der Sonnenbrand','djegia nga dielli'],['die Salbe','kremi (pomada)']]},
@@ -1938,6 +2142,11 @@ const CHAPTERS = [
     ['der','Absender','dërguesi'],['der','Empfänger','marrësi'],['der','Betreff','tema (subjekti)'],['die','Anrede','përshëndetja në fillim'],['der','Gruß','përshëndetja në fund'],['das','Datum','data'],
     ['die','Postleitzahl','kodi postar'],['die','Hausnummer','numri i shtëpisë'],['der','Ort','vendi (qyteti)']],
   words:[['ledig','beqar'],['alleinerziehend','prind i vetëm'],['aufpassen','kujdesem'],['beobachten','vëzhgoj'],['ruhig','i qetë'],['dick','i trashë'],['wenig','pak'],['joggen','vrapoj'],['zweimal','dy herë']],
+  hear:[
+    ['Ich bin alleinerziehend und habe wenig Zeit.', 'Kujdeset vetëm për fëmijën dhe ka pak kohë.', 'Është e martuar dhe ka shumë kohë.', 'Nuk ka fëmijë.', 'Ka shumë kohë të lirë.'],
+    ['Der Kurs ist zweimal pro Woche.', 'Kursi bëhet 2 herë në javë.', 'Kursi bëhet 2 herë në muaj.', 'Kursi zgjat 2 javë.', 'Kursi bëhet çdo ditë.'],
+    ['Wo ist der Treffpunkt?', 'Pyet ku takohen.', 'Pyet kur takohen.', 'Pyet sa kushton.', 'Pyet kush është trajneri.']
+  ],
   items:[
     {type:'match', pairs:[['der Absender','dërguesi'],['der Empfänger','marrësi'],['der Betreff','tema (subjekti)'],['die Postleitzahl','kodi postar'],['der Gruß','përshëndetja në fund']]},
     {type:'mc', read:true, topic:'lesen', psq:'Lexo dhe përgjigju', pde:'Lies und antworte', q:'Wann trifft sich der Lauftreff?', o:['Dienstag und Donnerstag um 18 Uhr','mittwochs um 17 Uhr','immer freitags um 16 Uhr','von Juni bis Oktober'], a:'Dienstag und Donnerstag um 18 Uhr', e:'„zweimal in der Woche (Dienstag und Donnerstag um 18 Uhr)“'},
@@ -1981,6 +2190,12 @@ const CHAPTERS = [
   ],
   nouns:[['der','Termin','takimi'],['die','Arztpraxis','ordinanca e mjekut'],['das','Fitness-Studio','palestra'],['die','Zahnschmerzen','dhimbja e dhëmbit'],['der','Zahnarzt','dentisti']],
   words:[['vereinbaren','lë (takim)'],['ändern','ndryshoj'],['verschieben','shtyj'],['absagen','anuloj'],['vorbeikommen','kaloj (pa takim)'],['dringend','urgjent'],['früher','më herët']],
+  hear:[
+    ['Ich muss meinen Termin leider absagen.', 'Nuk vjen dot dhe e anulon takimin.', 'Do të vijë më herët.', 'Do ta shtyjë takimin për më vonë.', 'Do një takim të dytë.'],
+    ['Können wir den Termin auf Freitag verschieben?', 'Do ta zhvendosë takimin për të premten.', 'Do ta anulojë takimin.', 'Takimi është sot.', 'Do të vijë pa takim.'],
+    ['Es ist dringend, ich habe Zahnschmerzen.', 'Personi ka nevojë urgjente për dentist.', 'Personi do një takim pas një muaji.', 'Personi ka dhimbje koke.', 'Personi do ta anulojë takimin.'],
+    ['Kommen Sie morgen um zehn vorbei.', 'Mund të vijë nesër në orën 10.', 'Mund të vijë sot në orën 10.', 'Mund të vijë nesër në orën 2.', 'Nesër nuk mund të vijë.']
+  ],
   items:[
     {type:'match', pairs:[['vereinbaren','lë (takim)'],['absagen','anuloj'],['verschieben','shtyj'],['dringend','urgjent'],['vorbeikommen','kaloj (pa takim)']]},
     {type:'sort', psq:'Çfarë dëshiron?', pde:'Was möchte die Person?', cats:['📅 vereinbaren','🔁 ändern','❌ absagen'],
@@ -2021,6 +2236,11 @@ const CHAPTERS = [
   nouns:[['die','Werkstatt','servisi i makinave'],['der','Autoschlüssel','çelësi i makinës'],['das','Navi','navigatori'],['die','Autobahn','autostrada'],['die','Tankstelle','pika e karburantit'],
     ['die','Brücke','ura'],['die','Ampel','semafori'],['die','Erkältung','ftohja'],['das','Medikament','ilaçi'],['das','Eis','akullorja'],['die','S-Bahn','treni i qytetit']],
   words:[['links','majtas'],['rechts','djathtas'],['geradeaus','drejt'],['schnell','shpejt'],['Alles im grünen Bereich!','Gjithçka në rregull!']],
+  hear:[
+    ['Walter ist erkältet und bleibt zu Hause.', 'Walteri është i ftohur dhe rri në shtëpi.', 'Walteri shkon në servis.', 'Walteri është mirë.', 'Walteri shkon te mjeku.'],
+    ['Das Auto muss in die Werkstatt.', 'Makina duhet të rregullohet.', 'Makina duhet të lahet.', 'Makina duhet të shitet.', 'Makina është e re.'],
+    ['Alles im grünen Bereich!', 'Gjithçka është në rregull.', 'Semafori është jeshil.', 'Kemi një problem.', 'Duhet të ndalojmë.']
+  ],
   items:[
     {type:'match', pairs:[['die Werkstatt','servisi i makinave'],['der Autoschlüssel','çelësi i makinës'],['die Tankstelle','pika e karburantit'],['die Brücke','ura'],['die Ampel','semafori']]},
     {type:'match', pairs:[['die Apotheke','barnatorja'],['das Navi','navigatori'],['die Autobahn','autostrada'],['das Eis','akullorja'],['die Erkältung','ftohja']]},
@@ -2062,6 +2282,12 @@ const CHAPTERS = [
   ],
   nouns:[['der','Bahnhof','stacioni i trenit'],['die','Post','posta'],['der','Weg','rruga (udha)'],['der','Meter','metri'],['die','Nähe','afërsia']],
   words:[['in der Nähe','afër'],['fremd','i huaj (nuk e njoh vendin)'],['suchen','kërkoj'],['die erste Straße','rruga e parë'],['die zweite Straße','rruga e dytë'],['die dritte Straße','rruga e tretë'],['Ich bin nicht von hier.','Nuk jam prej këtu.']],
+  hear:[
+    ['Gehen Sie geradeaus und dann die zweite Straße rechts.', 'Drejt, pastaj rruga e 2-të djathtas.', 'Drejt, pastaj rruga e 2-të majtas.', 'Drejt, pastaj rruga e 1-rë djathtas.', 'Mbrapsht, pastaj djathtas.'],
+    ['Tut mir leid, ich bin auch fremd hier.', 'Die Person kennt den Weg nicht.', 'Die Person zeigt den Weg.', 'Die Person wohnt hier.', 'Die Person sucht die Post.'],
+    ['Die Post ist ganz in der Nähe.', 'Posta nuk është larg.', 'Posta është shumë larg.', 'Nuk ka postë.', 'Posta është e mbyllur.'],
+    ['An der Ampel links.', 'Te semafori kthehu majtas.', 'Te semafori kthehu djathtas.', 'Te semafori vazhdo drejt.', 'Te ura kthehu majtas.']
+  ],
   items:[
     {type:'match', pairs:[['⬅️','links'],['➡️','rechts'],['⬆️','geradeaus']]},
     {type:'match', pairs:[['die erste Straße','1.'],['die zweite Straße','2.'],['die dritte Straße','3.']]},
@@ -2120,6 +2346,11 @@ const CHAPTERS = [
   nouns:[['der','Zug','treni'],['das','Flugzeug','aeroplani'],['das','Taxi','taksia'],['die','Straßenbahn','tramvaji'],['die','U-Bahn','metroja'],['das','Auto','makina'],
     ['der','Fußballplatz','fusha e futbollit'],['das','Schwimmbad','pishina'],['die','Station','stacioni'],['der','Hauptbahnhof','stacioni qendror i trenit'],['das','Verkehrsmittel','mjeti i transportit']],
   words:[['zu Fuß','në këmbë'],['weit','larg'],['fliegen','fluturoj'],['mit dem Bus','me autobus'],['mit der U-Bahn','me metro']],
+  hear:[
+    ['Ich fahre mit dem Zug zur Arbeit.', 'Shkon me tren në punë.', 'Shkon me tren në shkollë.', 'Shkon me autobus në punë.', 'Shkon në këmbë në punë.'],
+    ['Wir gehen zu Fuß, es ist nicht weit.', 'Nuk marrin makinë, sepse është afër.', 'Marrin taksi, sepse është larg.', 'Shkojnë me biçikletë.', 'Rrinë në shtëpi.'],
+    ['Ich fliege nach Albanien.', 'Ich nehme das Flugzeug.', 'Ich fahre mit dem Auto.', 'Ich fahre mit dem Zug.', 'Ich komme aus Albanien.']
+  ],
   items:[
     {type:'match', pairs:[['der Zug','treni'],['das Flugzeug','aeroplani'],['die Straßenbahn','tramvaji'],['die U-Bahn','metroja'],['das Taxi','taksia']]},
     {type:'gap', row:true, topic:'lokal', psq:'mit dem apo mit der?', pde:'mit dem oder mit der?', s:'Ich fahre mit ___ Bus.', h:'der Bus', o:['dem','der','den'], a:'dem', e:'der → mit dem.'},
@@ -2179,6 +2410,12 @@ const CHAPTERS = [
   nouns:[['der','Lkw','kamioni'],['der','Kiosk','kioska'],['die','Buchhandlung','libraria'],['die','Bücherei','biblioteka'],['die','Bäckerei','furra e bukës'],['die','Bank','banka'],
     ['der','Baum','pema'],['die','Fußgängerzone','zona e këmbësorëve'],['der','Kindergarten','kopshti i fëmijëve'],['der','Zahnarzt','dentisti']],
   words:[['an','te, buzë'],['auf','mbi, në'],['hinter','pas, prapa'],['neben','pranë'],['über','sipër'],['unter','nën, poshtë'],['zwischen','midis'],['zu Hause','në shtëpi (jam)'],['nach Hause','në shtëpi (shkoj)']],
+  hear:[
+    ['Das Auto steht hinter dem Haus.', 'Makina është prapa shtëpisë.', 'Makina është para shtëpisë.', 'Makina është në garazh.', 'Makina është pranë shtëpisë.'],
+    ['Ich gehe nach Hause.', 'Personi tani shkon në shtëpi.', 'Personi është në shtëpi.', 'Personi del nga shtëpia.', 'Personi kërkon shtëpi.'],
+    ['Ich bin zu Hause.', 'Personi është në shtëpi.', 'Personi shkon në shtëpi.', 'Personi del nga shtëpia.', 'Personi nuk ka shtëpi.'],
+    ['Der Kiosk ist zwischen der Bank und der Bäckerei.', 'Kioska është në mes të bankës dhe furrës.', 'Kioska është prapa bankës.', 'Banka është në mes.', 'Kioska është brenda furrës.']
+  ],
   items:[
     {type:'match', pairs:[['vor','para'],['hinter','pas, prapa'],['neben','pranë'],['zwischen','midis'],['unter','nën, poshtë']]},
     {type:'match', pairs:[['an','te, buzë'],['auf','mbi, në'],['in','në, brenda'],['über','sipër']]},

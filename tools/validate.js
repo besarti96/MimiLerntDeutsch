@@ -2,7 +2,8 @@
    Datenprüfung für alle Inhalte (wird von der App nicht geladen).
    Aufruf im Projektordner:  node tools/validate.js
    Prüft data.js, homework.js, words.js, spick.js auf typische Fehler
-   und listet Kapitel-Wörter, die im Wörter-Training (words.js) fehlen.
+   und listet Kapitel-Wörter, die im Wörter-Training (words.js) fehlen,
+   sowie neue Kapitel mit zu wenig Hör-Sätzen (🎧).
    ===================================================================== */
 const fs = require('fs'), vm = require('vm'), path = require('path');
 const root = path.join(__dirname, '..'), ctx = {};
@@ -36,6 +37,12 @@ all.forEach(c => {
     if (q.read === true && !c.read) err(at, 'read:true, aber das Kapitel hat kein read');
   });
 });
+/* 🎧 hear: [gehörter Satz, richtige Bedeutung, falsch, falsch, …] — alle Antworten verschieden */
+all.forEach(c => (c.hear || []).forEach((h, i) => {
+  const at = `${c.id} hear ${i + 1}`;
+  if (!Array.isArray(h) || h.length < 4 || h.some(x => typeof x !== 'string' || !x.trim())) err(at, 'hear braucht [Satz, richtig, falsch, falsch, …]');
+  else if (new Set(h.slice(1)).size !== h.length - 1) err(at, `Antworten doppelt: ${h[0]}`);
+}));
 ctx.S.forEach(s => slideCheck('spick ' + s.id, s));
 ctx.W.forEach(w => {
   /* optional last element: the date the word was added (shows E RE), e.g. ['der','Bus','autobusi','2026-10-30'] */
@@ -49,7 +56,13 @@ const have = new Set(ctx.W.flatMap(w => [...w.nouns.map(n => n[1].toLowerCase())
 const recent = all.filter(c => c.added && Date.now() - Date.parse(c.added) < 14 * 864e5);
 const miss = recent.flatMap(c => [...c.nouns.map(n => n[1]), ...c.words.map(w => w[0])].filter(x => !have.has(x.toLowerCase())).map(x => `${c.id}: ${x}`));
 
+/* Info: 🎧 neue Kapitel brauchen Hör-Sätze: order-Aufgaben mit sq, kurz (wie okSent in app.js) */
+const okSent = de => de.replace(/<[^>]+>/g, '').trim().length <= 64 && !/[\/…]| – |\d{3,}/.test(de);
+const fresh = ctx.C.filter(c => !c.final && c.added && Date.now() - Date.parse(c.added) < 14 * 864e5);   /* homework parts take theirs from the Lektion */
+const deaf = fresh.map(c => [c.id, (c.items || []).filter(q => q.type === 'order' && q.de && q.sq && okSent(q.de)).length, (c.hear || []).length]).filter(x => x[1] < 2 || x[2] < 3);
+
 console.log(`Kapitel ${ctx.C.length} · Hausaufgaben-Sets ${ctx.H.length} (${parts.length} Teile) · Wortthemen ${ctx.W.length} · Spickzettel ${ctx.S.length}`);
 if (miss.length) console.log(`ℹ Wörter aus neuen Kapiteln (14 Tage), die in words.js fehlen:\n  ${miss.join('\n  ')}`);
+if (deaf.length) console.log(`ℹ 🎧 Neue Kapitel (14 Tage) mit zu wenig Hören (mind. 2 order-Sätze mit sq, höchstens 64 Zeichen, und mind. 3 hear):\n  ${deaf.map(x => `${x[0]}: ${x[1]} Sätze, ${x[2]} hear`).join('\n  ')}`);
 console.log(bad.length ? bad.join('\n') : '✓ alle Daten in Ordnung');
 process.exit(bad.length ? 1 : 0);

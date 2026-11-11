@@ -156,6 +156,9 @@ function say(t, slow){
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(strip(t).replace(/…/g, '').replace(/\(.*?\)/g, '').replace(/___/g, ''));
     u.lang = 'de-DE'; if (deVoice) u.voice = deVoice; u.rate = slow ? .55 : .9;
+    /* body.speaking drives the sound waves of the listening card */
+    u.onstart = () => document.body.classList.add('speaking');
+    u.onend = u.onerror = () => document.body.classList.remove('speaking');
     speechSynthesis.speak(u);
   } catch (e) {}
 }
@@ -297,7 +300,7 @@ const newWordCount = c => vocabPool(c).filter(w => w.nw).length;
 const newWordTag = n => n ? `<span class="newtag">E RE${n > 1 ? ' · ' + n : ''}</span>` : '';
 /* wrong options never mean the same as the answer (Ausweis / Personalausweis are both „letërnjoftimi“) */
 const sameSq = (a, b) => a.sq.trim().toLowerCase() === b.sq.trim().toLowerCase();
-const distract = (pool, item, f) => shuffle(pool.filter(p => p[f] !== item[f] && !sameSq(p, item))).slice(0, 3).map(p => p[f]);
+const distract = (pool, item, f) => [...new Set(shuffle(pool.filter(p => p[f] !== item[f] && !sameSq(p, item))).map(p => p[f]))].slice(0, 3);
 /* all German words that share one Albanian meaning, over every chapter, homework and word list: any of them counts when writing */
 let SQ_DE = null;
 function sqAlts(sq){
@@ -323,21 +326,25 @@ function genVocab(c){
     out.push({type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das auf Deutsch?', q:w.sq,
       o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e:`${w.sq} = ${w.de}`});
     if (canSpeak && S.sound) out.push({type:'listen', psq:'Dëgjo dhe zgjidh', pde:'Hör zu und wähle',
-      o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e:`${w.de} = ${w.sq}`});
+      o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e:`${w.de} = ${w.sq}`},
+      {type:'listen', lk:'wsq', psq:'Dëgjo: çfarë do të thotë?', pde:'Hör zu: Was bedeutet das?',
+      o:[w.sq, ...distract(pool, w, 'sq')], a:w.sq, say:w.de, e:`${w.de} = ${w.sq}`});
   });
   return out;
 }
 /* word training: single words only, every word once per round, directions and question kinds mixed */
-const WKINDS = ['de2sq', 'sq2de', 'write', 'listen', 'art', 'sq2de', 'de2sq'];
+const WKINDS = ['de2sq', 'listen', 'write', 'sq2de', 'art', 'lsq', 'sq2de'];
 function wordQ(c, w, pool, kind){
   const n = c.nouns.find(x => x[0] + ' ' + x[1] === w.de);
   if (kind === 'art' && !n) kind = 'sq2de';
   if (kind === 'listen' && !(canSpeak && S.sound)) kind = 'de2sq';
+  if (kind === 'lsq' && !(canSpeak && S.sound)) kind = 'sq2de';
   if (kind === 'write' && /[!?.,]/.test(w.de)) kind = 'sq2de';
   const e = `${w.de} = ${w.sq}`;
   if (kind === 'de2sq') return {type:'mc', psq:'Çfarë do të thotë?', pde:'Was bedeutet das?', q:w.de, speakQ:true, o:[w.sq, ...distract(pool, w, 'sq')], a:w.sq, say:w.de, e};
   if (kind === 'sq2de') return {type:'mc', psq:'Si thuhet gjermanisht?', pde:'Wie sagt man das auf Deutsch?', q:w.sq, o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e};
   if (kind === 'listen') return {type:'listen', psq:'Dëgjo dhe zgjidh', pde:'Hör zu und wähle', o:[w.de, ...distract(pool, w, 'de')], a:w.de, say:w.de, e};
+  if (kind === 'lsq') return {type:'listen', lk:'wsq', psq:'Dëgjo: çfarë do të thotë?', pde:'Hör zu: Was bedeutet das?', o:[w.sq, ...distract(pool, w, 'sq')], a:w.sq, say:w.de, e};
   if (kind === 'art') return {type:'mc', row:true, psq:'der, die apo das?', pde:'Welcher Artikel passt?', q:'___ ' + n[1], h:n[2], o:['der','die','das'], a:n[0], say:w.de, e};
   return {type:'write', psq:'Shkruaje gjermanisht', pde:'Schreib das Wort auf Deutsch', q:w.sq, art:n ? n[0] : '', a:n ? n[1] : w.de, say:w.de, e};
 }
@@ -350,6 +357,100 @@ function genWords(id){
   const rest = items.filter(x => !pick.includes(x)), sqs = new Set();
   const src = (rest.length >= 4 ? shuffle(rest) : shuffle(pick)).filter(x => !sqs.has(x.w.sq) && sqs.add(x.w.sq)).slice(0, 5);
   if (src.length >= 4) qs.splice(1 + (Math.random() * (qs.length - 1) | 0), 0, {type:'match', pairs:src.map(x => [x.w.de, x.w.sq]), tid:src[0].c.id});
+  return qs;
+}
+/* ================= Listening (🎧 Dëgjim) =================
+   Every round has listening tasks: Mimi only hears German and taps what was said (German) or what it means (Albanian).
+   They are built from what a chapter or homework part already has, so new content needs nothing extra:
+     wde / wsq  one word        -> the German word / its Albanian meaning   (from nouns + words)
+     sde / ssq  a whole sentence -> the German sentence / its Albanian meaning (from order tasks; sde also from example slides)
+     ans        a question       -> the fitting answer                        (from mc tasks with speakQ + topic 'dialog')
+     sinn       a sentence       -> what it means, said in other words      (from the chapter's hear list, written by hand:
+                hear:[['Anna hat gegessen.', 'Anna ist schon satt.', 'Anna will essen.', 'Anna hat geduscht.', 'Anna kocht gerade.']]
+                = heard sentence, right meaning, wrong ones; meanings in German or Albanian)
+   Without sound (🔇) there are no listening tasks. */
+const L_PSQ = {
+  wde:['Dëgjo dhe zgjidh', 'Hör zu und wähle'],
+  wsq:['Dëgjo: çfarë do të thotë?', 'Hör zu: Was bedeutet das?'],
+  sde:['Dëgjo: cila fjali u tha?', 'Hör zu: Welchen Satz hörst du?'],
+  ssq:['Dëgjo: çfarë do të thotë fjalia?', 'Hör zu: Was bedeutet der Satz?'],
+  ans:['Dëgjo pyetjen dhe përgjigju', 'Hör die Frage und antworte'],
+  sinn:['Dëgjo: çfarë kuptove?', 'Hör zu: Was stimmt?']
+};
+const canListen = () => canSpeak && S.sound;
+const okSent = de => de.length <= 64 && !/[\/…]| – |\d{3,}/.test(de);
+/* sentences of a chapter or homework part: {de, sq} from its order tasks, German-only ones from the example slides */
+function sentPool(c){
+  const out = [], seenDe = new Set();
+  const push = (de, sq) => { de = strip(de).trim(); if (okSent(de) && !seenDe.has(de)) { seenDe.add(de); out.push({de, sq}); } };
+  (c.items || []).forEach(q => { if (q.type === 'order' && q.de) push(q.de, q.sq); });
+  (c.lesson || []).forEach(s => (s.ex || []).forEach(x => push(x[0], null)));
+  return out;
+}
+let ALLSENT = null;
+const allSent = () => ALLSENT || (ALLSENT = [...CHAPTERS, ...HWP].flatMap(c => sentPool(c).filter(s => s.sq)));
+/* three wrong options: first from the same chapter, then from anywhere */
+function lDistract(item, pool, f){
+  const used = new Set([item[f]]), out = [];
+  for (const p of [...shuffle(pool), ...shuffle(allSent())]) {
+    if (out.length >= 3) break;
+    if (p[f] && p.de !== item.de && !used.has(p[f])) { used.add(p[f]); out.push(p[f]); }
+  }
+  return out;
+}
+/* one listening task of a kind ('word', 'ssq', 'sde', 'ans') from chapter c, or null if c has nothing for it */
+function listenQ(c, kind, avoid){
+  const mk = (lk, say, a, wrong, e, h) => wrong.length < 2 ? null
+    : {type:'listen', lk, ...(lk[0] === 'w' ? {} : {topic:'hoeren'}), psq:L_PSQ[lk][0], pde:L_PSQ[lk][1], say, a, o:shuffle([a, ...wrong]), e, ...(h ? {h} : {}), tid:c.id};
+  if (kind === 'word') {
+    if (c.noGen || !c.nouns) return null;
+    const pool = vocabPool(c), w = rnd(pool.filter(x => !avoid.has(x.de)));
+    if (!w || pool.length < 4) return null;
+    const lk = Math.random() < .5 ? 'wde' : 'wsq', f = lk === 'wde' ? 'de' : 'sq';
+    return mk(lk, w.de, w[f], distract(pool, w, f), `${w.de} = ${w.sq}`);
+  }
+  if (kind === 'sinn') {
+    const h = rnd((c.hear || []).filter(x => !avoid.has(x[0])));
+    return h ? mk('sinn', h[0], h[1], h.slice(2), `${h[0]} → ${h[1]}`) : null;
+  }
+  if (kind === 'ans') {
+    const q = rnd((c.items || []).filter(x => x.type === 'mc' && x.speakQ && x.topic === 'dialog' && !avoid.has(x.q)));
+    return q ? mk('ans', q.q, q.a, q.o.filter(o => o !== q.a), `${q.q} → ${q.a}`, q.h) : null;
+  }
+  const pool = sentPool(c), s = rnd(pool.filter(x => !avoid.has(x.de) && (kind === 'sde' || x.sq)));
+  if (!s) return null;
+  return kind === 'ssq' ? mk('ssq', s.de, s.sq, lDistract(s, pool, 'sq'), `${s.de} = ${s.sq}`)
+    : mk('sde', s.de, s.de, lDistract(s, pool, 'de'), s.sq ? `${s.de} = ${s.sq}` : s.de);
+}
+/* a round gets at least two listening tasks: one "what does it mean" (sinn), one whole sentence, and words if still too few.
+   In mixed rounds they take the place of plain word questions (the round keeps its length);
+   in book-order rounds (tail) they are added at the end. */
+function withListening(qs, cs, tail){
+  /* if the chapter has too little: chapters of the same Lektion, or (homework without lek) the last chapters she has reached */
+  const lek = new Set(cs.map(c => c.lek).filter(Boolean)), reached = CHAPTERS.filter((x, i) => !x.final && seen(i));
+  const more = (lek.size ? CHAPTERS.filter(x => !x.final && lek.has(x.lek)) : (reached.length ? reached : CHAPTERS).slice(-6)).filter(x => !cs.includes(x));
+  if (!canListen() || !cs.length) return qs;
+  const isL = q => q.type === 'listen', sentL = q => isL(q) && q.lk && q.lk[0] !== 'w' && q.lk !== 'sinn';
+  const avoid = new Set(qs.flatMap(q => [q.say, q.q, q.de, q.a].filter(Boolean))), heard = new Set(qs.filter(isL).map(q => q.say));
+  const want = [];
+  if (!qs.some(q => q.lk === 'sinn')) want.push('sinn');
+  if (!qs.some(sentL)) want.push('sent');
+  const SENT = () => shuffle(['ssq', 'ssq', 'sde', 'ans']);
+  /* first nothing that is already in the round; if the chapter has nothing else, a sentence of its own tasks, heard this time */
+  const make = kinds => {
+    for (const av of [avoid, heard]) for (const k of kinds) for (const c of [...(tail ? cs : shuffle(cs)), ...shuffle(more)]) {
+      const q = listenQ(c, k, av); if (q) { avoid.add(q.say); heard.add(q.say); return q; } }
+    return null;
+  };
+  const KINDS = {sinn: () => ['sinn'], sent: () => [...SENT(), 'word'], word: () => ['word', ...SENT()]};
+  const add = want.map(w => make(KINDS[w]())).filter(Boolean);
+  while (qs.filter(isL).length + add.length < 2) { const q = make(KINDS.word()); if (!q) break; add.push(q); }
+  add.forEach(q => {
+    if (tail) return qs.push(q);
+    let i = qs.findIndex(x => x.type === 'mc' && isWordQ(x) && !x.row);
+    if (i < 0) i = qs.findIndex(x => x.type !== 'listen' && isWordQ(x));
+    if (i >= 0) qs[i] = q; else qs.splice(1 + (Math.random() * qs.length | 0), 0, q);
+  });
   return qs;
 }
 function pickVaried(list, n){
@@ -383,7 +484,7 @@ function compose(gen, its, n, {vocab = 3, write = 0, order = 2} = {}){
   return qs;
 }
 const keyOf = q => [q.type, q.tid, q.s || q.q || q.de || q.text || (q.rows && (q.th || []).join(',') + ':' + q.rows.map(r => r[0]).join(',')) || (q.cats && q.items.map(i => i[0]).join(','))
-  || (q.hm && q.hm.join(':')) || (q.pairs && q.pairs[0].join('=')) || '', q.a || ''].join('|');
+  || (q.hm && q.hm.join(':')) || (q.pairs && q.pairs[0].join('=')) || (q.lk ? q.lk + ':' + q.say : ''), q.a || ''].join('|');
 /* per-question UI state lives in keys starting with _ and is never stored */
 const clean = q => { Object.keys(q).forEach(k => k[0] === '_' && delete q[k]); return q; };
 
@@ -391,7 +492,8 @@ function buildRound(mode, id){
   let qs = [];
   if (mode === 'mistakes') qs = weakRound();
   else if (mode === 'words') qs = genWords(id);
-  else if (mode === 'chapter' && chById(id).seq) qs = tagged(chById(id), chById(id).items);
+  else if (mode === 'chapter' && chById(id).seq) { const c = chById(id);   /* book order, listening at the end */
+    qs = withListening(tagged(c, c.items), [c, ...(c.hw ? hwById(c.hw).parts.filter(p => p !== c) : [])], true); }
   else if (mode === 'chapter' && chById(id).final) {
     const book = CHAPTERS.filter(c => !c.final && bandOf(c) === bandOf(chById(id)));   /* a finale only tests its own book */
     book.forEach(c => {
@@ -399,12 +501,12 @@ function buildRound(mode, id){
       if (cand.length) qs.push(rnd(cand));
     });
     const gen = shuffle(book.flatMap(c => tagged(c, genVocab(c))));
-    qs = shuffle([...qs, ...pickVaried(gen, FINAL_ROUND - qs.length)]).slice(0, FINAL_ROUND);
+    qs = withListening(shuffle([...qs, ...pickVaried(gen, FINAL_ROUND - qs.length)]).slice(0, FINAL_ROUND), book);
   } else {
     const c = mode === 'chapter' ? chById(id) : null, n = (c && c.n) || ROUND;
     const list = c ? [...(c.from ? [chById(c.from)] : []), c] : CHAPTERS.filter((c, i) => !c.final && seen(i));
     const pools = list.map(poolOf);
-    qs = compose(pools.flatMap(p => p.gen), pools.flatMap(p => p.its), n, c ? c.mix : undefined).slice(0, n);
+    qs = withListening(compose(pools.flatMap(p => p.gen), pools.flatMap(p => p.its), n, c ? c.mix : undefined).slice(0, n), list);
   }
   return qs.map(q => {
     q.key = q.key || keyOf(q);
@@ -801,9 +903,16 @@ function rChoice(q){
 }
 function rListen(q){
   return `${head(q.psq, q.pde)}
-  <div class="listen">
-    <button class="bigplay" data-act="say" data-t="${esc(q.say)}" aria-label="Dëgjo">🔊</button>
-    <button class="slow" data-act="slow" data-t="${esc(q.say)}">🐢 Ngadalë / Langsam</button>
+  <div class="lcard">
+    <span class="ltag">🎧 Dëgjim · Höraufgabe</span>
+    <button class="bigplay" data-act="say" data-t="${esc(q.say)}" aria-label="Dëgjo">
+      <span class="lwave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="lplay">▶</span>
+      <span class="lwave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
+    <div class="lbtns">
+      <button class="slow" data-act="say" data-t="${esc(q.say)}">🔁 Edhe një herë / Nochmal</button>
+      <button class="slow" data-act="slow" data-t="${esc(q.say)}">🐢 Ngadalë / Langsam</button>
+    </div>
+    ${q.h ? `<div class="qhint">💭 ${esc(q.h)}</div>` : ''}
   </div>${opts(q)}`;
 }
 function rClock(q){
@@ -837,7 +946,8 @@ function pick(k){
   }
 }
 function hintFor(q){
-  if (q.h && q.type !== 'listen') return 'Shiko edhe një herë ndihmën: ' + q.h;
+  if (q.type === 'listen') return 'Dëgjoje edhe një herë, ngadalë 🐢. Hör nochmal langsam zu.';
+  if (q.h) return 'Shiko edhe një herë ndihmën: ' + q.h;
   if (q.type === 'clock' || q.type === 'clockpick') return 'Shiko akrepin e shkurtër (ora) dhe të gjatin (minutat).';
   return 'Versuch es nochmal!';
 }
@@ -1078,7 +1188,7 @@ function correct(note, title){
   else { SND.ok(); buzz(25); }
   const p = rnd(PRAISE);
   const t = love || title || (milestone ? `${G.combo} me radhë! 🔥 ${G.combo} in Folge!` : first ? `${p[0]} ${p[1]}` : 'Saktë në provën e dytë! Richtig!');
-  const body = [note || (first ? '' : esc(q.e)), weak && `<span class="weaknote">${weak}</span>`].filter(Boolean).join('<br>');
+  const body = [note || (first && q.type !== 'listen' ? '' : esc(q.e)), weak && `<span class="weaknote">${weak}</span>`].filter(Boolean).join('<br>');
   const sayT = sayOf(q);
   openSheet(true, t, body, sayT, !!love);
 }
@@ -1232,7 +1342,7 @@ function finish(){
 /* a wrong question stays a weak spot until it is answered right on the first try WEAK_OK times in a row */
 const WEAK_OK = 3;
 const dots = r => '●'.repeat(r) + '○'.repeat(WEAK_OK - r);
-const WORD_PSQ = new Set(['Çfarë do të thotë?', 'Si thuhet gjermanisht?', 'Dëgjo dhe zgjidh', 'der, die apo das?', 'Shkruaje gjermanisht']);
+const WORD_PSQ = new Set(['Çfarë do të thotë?', 'Si thuhet gjermanisht?', 'Dëgjo dhe zgjidh', 'Dëgjo: çfarë do të thotë?', 'der, die apo das?', 'Shkruaje gjermanisht']);
 /* grammar topics: [Albanian name, German name, the rule in one line] */
 const TOPICS = {
   satz:     ['Rendi i fjalisë', 'Satzstellung', 'Folja në vendin 2, folja e dytë në fund. Pyetje pa W: folja del e para.'],
@@ -1255,7 +1365,8 @@ const TOPICS = {
   zahlen:   ['Numrat', 'Zahlen', 'Së pari njëshja, pastaj dhjetëshja: 35 = fünfunddreißig. 30 = dreißig.'],
   lesen:    ['Leximi', 'Leseverstehen', 'Lexo pyetjen, gjej fjalën kyçe dhe kërkoje në tekst.'],
   imperativ:['Urdhërorja', 'Imperativ', 'du kommst → Komm! (pa du, pa -st). ihr kommt → Kommt! Sie kommen → Kommen Sie! sein: Sei! / Seid! / Seien Sie!'],
-  lokal:    ['Ku? Për ku? Me çfarë?', 'Wo? Wohin? Womit?', 'mit dem Bus, mit der U-Bahn · Wohin? zum Arzt, zur Apotheke · Wo? beim Arzt, auf dem Parkplatz, an der Ampel, hinter den Häusern.']
+  lokal:    ['Ku? Për ku? Me çfarë?', 'Wo? Wohin? Womit?', 'mit dem Bus, mit der U-Bahn · Wohin? zum Arzt, zur Apotheke · Wo? beim Arzt, auf dem Parkplatz, an der Ampel, hinter den Häusern.'],
+  hoeren:   ['Dëgjimi', 'Hörverstehen', 'Dëgjoje dy herë, edhe ngadalë 🐢. Kap fjalët kyçe: kush, çfarë, ku, kur.']
 };
 const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög|muss|müss|darf|dürf|soll)/;
 /* finds the grammar topic of a question from what it asks; q.topic in the data wins */
@@ -1307,7 +1418,7 @@ function qIndex(){
     }));
   return QIDX;
 }
-const KIND_PSQ = {de2sq:'Çfarë do të thotë?', sq2de:'Si thuhet gjermanisht?', listen:'Dëgjo dhe zgjidh', art:'der, die apo das?', write:'Shkruaje gjermanisht'};
+const KIND_PSQ = {de2sq:'Çfarë do të thotë?', sq2de:'Si thuhet gjermanisht?', listen:'Dëgjo dhe zgjidh', lsq:'Dëgjo: çfarë do të thotë?', art:'der, die apo das?', write:'Shkruaje gjermanisht'};
 function sibling(q){
   if (isWordQ(q)) {
     for (const c of [...WD, ...CHAPTERS, ...HWP]) {

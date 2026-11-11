@@ -40,6 +40,7 @@ Kein Build, kein Server: reines HTML/CSS/JS. Der Fortschritt liegt in `localStor
 ```
 id (nie ändern!), band?, lek, unit?, emoji, color, added?, sq, de, desc, tip,
 lesson:[Folien], nouns:[[Artikel, Wort, Albanisch]], words:[[Deutsch, Albanisch]], items:[Aufgaben]
+hear:[[Satz, richtige Bedeutung, falsch, …]] (🎧 Pflicht, siehe „Hören“)
 optional: read (Lesetext), clocks:true, writeWords:true, mix:{vocab, write, order}, n (Fragen pro Runde), noGen, final
 ```
 
@@ -67,7 +68,42 @@ Aus `nouns`/`words` erzeugt die App automatisch Wortfragen (der/die/das, Schreib
 | `letters` | `s:'… ___', a, mix` (Buchstabensalat, `mix` = gleiche Buchstaben) |
 | `sort` | `cats:[], items:[[Wort, Kategorie]]` |
 
-Gemeinsam: `psq`/`pde` (Überschrift), `topic` (für „Pikat e dobëta“: z. B. `satz`, `artikel`, `ein`, `modal`, `perfekt`, `zeit`, `wfragen`, `subjekt`, `trennbar`, `zahlen`, `lesen`, siehe `TOPICS` in `app.js`), `read:true` (zeigt den `read`-Text des Kapitels über der Frage), `row:true` (Optionen nebeneinander, nicht gemischt).
+Gemeinsam: `psq`/`pde` (Überschrift), `topic` (für „Pikat e dobëta“: z. B. `satz`, `artikel`, `ein`, `modal`, `perfekt`, `zeit`, `wfragen`, `subjekt`, `trennbar`, `zahlen`, `lesen`, `hoeren`, siehe `TOPICS` in `app.js`), `read:true` (zeigt den `read`-Text des Kapitels über der Frage), `row:true` (Optionen nebeneinander, nicht gemischt).
+
+## 🎧 Hören: Höraufgaben gehören immer dazu
+
+Mimi soll Deutsch nicht nur lesen, sondern **verstehen, was sie hört, und darauf antworten**. Darum hat **jede Runde Höraufgaben**: Sie hört nur Deutsch (der Text ist nicht sichtbar) und tippt an, was gesagt wurde, **mal auf Deutsch, mal auf Albanisch**.
+
+- **So sieht es aus:** farbige Karte „🎧 Dëgjim · Höraufgabe“ mit großem ▶-Knopf, Schallwellen, solange gesprochen wird, und den Knöpfen „🔁 Nochmal“ und „🐢 Langsam“. Die Aufgabe spielt beim Öffnen automatisch ab. Nach der Antwort zeigt die App immer, was gesagt wurde und was es heißt. 💡 rät: noch einmal langsam hören.
+- **Die Arten** (`lk` an der `listen`-Aufgabe):
+
+| `lk` | Mimi hört | sie tippt an | entsteht automatisch aus |
+|---|---|---|---|
+| `wde` | ein Wort | das deutsche Wort | `nouns`/`words` |
+| `wsq` | ein Wort | die albanische Bedeutung | `nouns`/`words` |
+| `sde` | einen Satz | den deutschen Satz | `order`-Aufgaben (`de`) und Beispielen `ex` der Folien |
+| `ssq` | einen Satz | die albanische Bedeutung | `order`-Aufgaben mit `sq` |
+| `ans` | eine Frage | die passende Antwort | `mc` mit `speakQ:true, topic:'dialog'` |
+| `sinn` | einen Satz | **was er bedeutet**, in anderen Worten (Deutsch oder Albanisch) | `hear` am Kapitel (von Hand geschrieben) |
+
+- **`sinn` ist die wichtigste Art**: Mimi muss verstehen, nicht nur wiedererkennen. Beispiel: 🎧 „Anna hat gegessen.“ → ● „Anna ist schon satt.“ ○ „Anna will essen.“ ○ „Anna hat geduscht.“ ○ „Anna kocht gerade.“
+  Format am Kapitel: `hear:[['Gehörter Satz.', 'richtige Bedeutung', 'falsch', 'falsch', 'falsch'], …]`
+  - Die richtige Antwort ist **eine Umschreibung oder Erklärung**, keine Wort-für-Wort-Übersetzung (dafür gibt es `ssq`). Etwa die Hälfte auf Deutsch, die andere Hälfte auf Albanisch.
+  - Die falschen Antworten sind **nah dran**: gleiche Wörter, aber eine andere Zeit (will essen ↔ hat gegessen), Person (ich ↔ er), Richtung (Wo ↔ Wohin), Zahl (halb acht ↔ 8:30), Rolle (den Mann ↔ der Mann) oder ein ähnliches Verb. Genau eine Antwort darf passen.
+  - Nur Wörter und Grammatik, die Mimi bis zu diesem Kapitel kennt. Im Satz kein `…`, keine Klammern. Albanisch mit „Personi …“ oder ohne Pronomen, wenn das Geschlecht offen ist.
+- **Automatisch überall** (`withListening` in `app.js`): Jede Kapitel-, Übungs-, Finale- und Hausaufgabenrunde bekommt **mindestens 2 Höraufgaben: eine `sinn`, einen ganzen Satz (`sde`/`ssq`/`ans`) und Wörter, falls es noch zu wenige sind**. In gemischten Runden ersetzen sie einfache Wortfragen (die Runde bleibt gleich lang), bei Buch-Reihenfolge (`seq`) kommen sie ans Ende. Hat ein Kapitel oder Hausaufgaben-Teil zu wenig Material, nimmt die App die Kapitel derselben Lektion, bei Teilen ohne `lek` die letzten Kapitel, die Mimi auf der Reise erreicht hat. Im Wörter-Training sind `listen` (Deutsch) und `lsq` (Albanisch) feste Fragearten.
+- Ton aus (🔇) = keine Höraufgaben. Fehler bei Wort-Höraufgaben zählen beim Wort, bei Satz-Höraufgaben unter dem Thema `hoeren` („Dëgjimi“).
+
+**Pflicht für neue Inhalte**, damit Hören und Antworten immer im Aufgabenset ist:
+
+- Jedes **neue Kapitel** bekommt **3–4 `hear`-Sätze** zum Stoff des Kapitels (siehe `sinn` oben).
+- Jedes **neue Kapitel** hat `nouns`/`words` und **mindestens 3 `order`-Sätze mit `sq`**, kurz und alltagsnah (höchstens 64 Zeichen, ohne `/`, `…`, ` – ` und lange Zahlen; sonst nimmt die App sie nicht zum Hören). Daraus entstehen die Satz-Höraufgaben. `node tools/validate.js` meldet neue Kapitel mit weniger als 2 solchen Sätzen oder weniger als 3 `hear`.
+- **Dialoge** aus dem Buch („Was antwortest du?“) als `mc` mit `speakQ:true, topic:'dialog'` anlegen, dann werden sie auch zu „Hör die Frage und antworte“. Nur eine Antwort darf passen, sonst ein `h` (es erscheint in der Hörkarte).
+- **Beispielsätze** in Folien (`ex`) liefern zusätzliche deutsche Hörsätze.
+- **Hausaufgaben-Teile** bleiben wie im Buch; ihre Höraufgaben kommen automatisch am Ende dazu (aus dem Set oder der Lektion).
+- **Neue Wörter** brauchen nichts extra: Wort-Höraufgaben entstehen aus ihnen von selbst.
+- Eine **feste** Höraufgabe nur, wenn etwas Bestimmtes gehört werden soll (z. B. ein Hörtext, der im Buch abgedruckt ist): `{type:'listen', lk:'ssq', psq, pde, say:'deutscher Satz', o:[…], a, e}`. `say` wird nur vorgelesen, nie angezeigt; `o`/`a` auf Deutsch (`wde`/`sde`/`ans`) oder Albanisch (`wsq`/`ssq`).
+- Prüfen: In der Testrunde muss jede neue Runde mindestens 2 Höraufgaben haben, davon eine `sinn` und mindestens 1 Satz; alle mit Antwort in den Optionen und ohne doppelte Optionen.
 
 ## Hausaufgaben (`homework.js`)
 
@@ -105,7 +141,7 @@ Immer **Datum mit Uhrzeit von jetzt** setzen (z. B. `'2026-10-30T16:20'`, Wörte
    - **Neuer Stoff aus dem Kursbuch** → neue Kapitel in `data.js` bei ihrer Lektion (`lek`, `band`, `added`). Neue Lektion = `unit` am ersten Kapitel.
    - Meist beides: die **Hausaufgabe genau wie die Buchseiten** (eine Seite = ein Teil, `book` mit Seite/Übung), und auf der **Reise neue Kapitel**, die den Stoff erklären (Folien mit Übersetzung) und mit weiteren, eigenen Übungen festigen.
    - Lesetexte des Buches kommen als `read` ins Kapitel, Fragen dazu mit `read:true`.
-   - **Hörübungen ohne Audio weglassen** (die Antworten lassen sich nicht sicher prüfen) und das dem Benutzer sagen.
+   - **Hörübungen aus dem Buch ohne Audio weglassen** (die Antworten lassen sich nicht sicher prüfen) und das dem Benutzer sagen. Eigene Höraufgaben entstehen trotzdem immer (siehe „🎧 Hören“): jedes neue Kapitel bekommt dafür genug kurze `order`-Sätze mit `sq`.
    - **Jede Aufgabe muss ohne Buch lösbar sein.** Was im Buch aus einem Bild, einer Karte, einem Text oder einer Hördatei kommt, braucht Kontext in der App: `read` (Text über der Aufgabe, funktioniert bei allen Aufgabentypen), `h` (z. B. die Karte als „Hamburg ☀️ 0° · …“), `bank` (Wortkasten) oder das Verb in Klammern. Ein Wortkasten (`bank`) nur, wenn ihn auch das Buch hat; sonst reicht der Text als Kontext, und freie Eingaben bekommen großzügige Varianten (`[[sehr gut;gut]]`), damit sinngemäß Richtiges zählt.
    - Was Mimi richtig hatte: Folie „Bravo, Mimoza! 🌟“. Ihre sicheren Fehler: Folie „Kujdes! 👀“ (`fix`).
 4. **Neue Wörter** in `words.js` eintragen, jedes mit heutigem Datum (`node tools/validate.js` zeigt fehlende Wörter aus neuen Kapiteln; am Ende soll die Liste leer sein, bis auf Wörter, die in kein Thema passen).
@@ -127,7 +163,7 @@ Immer **Datum mit Uhrzeit von jetzt** setzen (z. B. `'2026-10-30T16:20'`, Wörte
 ## Prüfen
 
 - `node --check <datei>.js` für jede geänderte Datei.
-- `node tools/validate.js`: Antworten in den Optionen, `parts` ergeben `de`, Buchstabensalat, `tr`-Größen, doppelte Ids, fehlende Wörter.
+- `node tools/validate.js`: Antworten in den Optionen, `parts` ergeben `de`, Buchstabensalat, `tr`-Größen, doppelte Ids, fehlende Wörter, neue Kapitel mit zu wenig Hör-Sätzen (🎧).
 - Für Bildschirm und Spielbarkeit: headless Chrome (`C:/Program Files/Google/Chrome/Application/chrome.exe --headless=new --allow-file-access-from-files --dump-dom` bzw. `--screenshot`). Eine Test-HTML lädt die fünf Skripte, ruft z. B. `start('chapter', id)` und löst jede Frage über die App-Funktionen (`pick`, `wcheck`, `ocheck`, `ccheck`, `scheck`, `mtap`).
 
 ### Stolperfallen

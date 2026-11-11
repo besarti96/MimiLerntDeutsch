@@ -538,3 +538,27 @@ input.cz::placeholder{color:var(--muted);font-weight:400}
 .drow .newtag{color:#fff;font-size:11px}
 .cztyped{margin:0 4px 0 2px;color:var(--bad-d);font-weight:700;font-size:15px;text-decoration-thickness:2px}
 .cztab .cztyped{display:block;margin:0 0 2px}
+
+/* ---------- Listening card (🎧 Dëgjim) ---------- */
+.lcard{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;margin:0 0 18px;padding:18px 16px 16px;border-radius:24px;
+  background:linear-gradient(160deg,var(--tc),color-mix(in srgb,var(--tc) 62%,#1E1B3A));box-shadow:0 6px 0 color-mix(in srgb,var(--tc) 55%,#1E1B3A)}
+.ltag{align-self:flex-start;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.2);padding:4px 11px;border-radius:99px}
+.lcard .bigplay{display:flex;align-items:center;justify-content:center;gap:12px;width:auto;height:auto;padding:0;background:none;box-shadow:none;border-radius:0}
+.lcard .bigplay:active{transform:none;box-shadow:none}
+.lplay{display:grid;place-items:center;width:104px;height:104px;border-radius:50%;background:#fff;color:var(--tc);font-size:44px;padding-left:8px;
+  box-shadow:0 6px 0 rgba(0,0,0,.22);transition:transform .08s,box-shadow .08s}
+.lcard .bigplay:active .lplay{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.22)}
+.lwave{display:flex;align-items:center;gap:4px;height:56px}
+.lwave i{display:block;width:5px;height:14px;border-radius:99px;background:rgba(255,255,255,.55)}
+.lwave i:nth-child(2),.lwave i:nth-child(4){height:26px}
+.lwave i:nth-child(3){height:40px}
+body.speaking .lwave i{background:#fff;animation:lwave .7s ease-in-out infinite}
+body.speaking .lwave i:nth-child(2){animation-delay:.12s}
+body.speaking .lwave i:nth-child(3){animation-delay:.24s}
+body.speaking .lwave i:nth-child(4){animation-delay:.36s}
+body.speaking .lwave i:nth-child(5){animation-delay:.48s}
+@keyframes lwave{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1.25)}}
+.lbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.lcard .slow{font-size:14px;color:#fff;background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}
+.lcard .slow:active{transform:translateY(2px)}
+.lcard .qhint{margin:0;background:rgba(255,255,255,.92);color:#1E1B3A}
