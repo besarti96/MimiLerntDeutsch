@@ -2325,6 +2325,132 @@ const HOMEWORK = [
   ]
 }
   ]
+},
+{
+  id:'l18', date:'2026-11-19', added:'2026-11-19T21:55', emoji:'🧥',
+  sq:'Libri: Mësimi 13 A–B dhe historia „Ist das kalt heute!“', de:'Kursbuch S. 154–158',
+  parts:[
+
+/* ---------- KB S. 154: Foto-Hörgeschichte Folge 13 ---------- */
+{
+  id:'hw18-s154', emoji:'🥶', color:'#2E86DE', seq:true, book:['faqe 154 · ushtrimi 1','S. 154 · Üb. 1'],
+  sq:'Historia: Ist das kalt heute!', de:'S. 154: Folge 13 · Ist das kalt heute!',
+  desc:'Shiko fotot: kujt i bën ftohtë? Ku janë dhe çfarë blejnë?',
+  tip:'Wem ist kalt? = Kujt i bën ftohtë? das Kaufhaus = dyqani i madh.',
+  read:'<b>Çfarë shihet në foto</b> 📷<br>Foto 1: Lara 🥶 · Tim 🙂<br>Foto 2: Lara 🙂 · Tim 🥶 · Ioanna 🙂<br>Foto 3–6: Lara, Tim und Ioanna sind in einem großen Geschäft mit vielen Kleidern, Jacken und Mänteln. Sie suchen eine Jacke 🧥 für Lara.',
+  lesson:[
+    {t:'Faqe 154 🥶', d:'Folge 13: Ist das kalt heute!', say:0, th:['Deutsch','Shqip'],
+     table:[['Ist das kalt heute Morgen!','Sa ftohtë që është sot në mëngjes!'],['Nimm doch so eine Regenjacke.','Merr një xhaketë shiu të tillë.'],['Ist die nicht zu dünn?','A nuk është shumë e hollë?'],
+       ['Was meinst du, Ioanna?','Çfarë mendon, Ioanna?'],['Wo bleibt Lara eigentlich?','Ku mbeti Lara në fakt?']],
+     tip:'Këto fjalë i ke shkruar vetë në libër: xhaketë shiu, i hollë, mendon, mbetet. 👏'},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te ushtrimi <b>1</b> të gjitha saktë: Foto 1 <b>Lara</b>, Foto 2 <b>Tim</b>, në një <b>Kaufhaus</b>, xhaketa <b>për Larën</b> ✓. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'1a Kujt i bën ftohtë?', pde:'1a Wem ist kalt?', q:'Foto 1', o:['Lara','Tim'], a:'Lara', e:'Foto 1: Lara 🥶.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'1a Kujt i bën ftohtë?', pde:'1a Wem ist kalt?', q:'Foto 2', o:['Lara','Tim','Ioanna'], a:'Tim', e:'Foto 2: Tim 🥶.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'1b Ku janë?', pde:'1b Wo sind sie?', q:'Sie sind in einem …', o:['Kaufhaus','Supermarkt'], a:'Kaufhaus', e:'Rroba, xhaketa, pallto → Kaufhaus.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'1b Çfarë bëjnë?', pde:'1b Was machen sie?', q:'Sie kaufen eine Jacke für …', o:['Lara','Tim'], a:'Lara', e:'„Sie suchen eine Jacke für Lara.“'}
+  ]
+},
+
+/* ---------- KB S. 155: Folge 13, Üb. 3–4 ---------- */
+{
+  id:'hw18-s155', emoji:'🧥', color:'#EE7A0C', seq:true, book:['faqe 155 · ushtrimi 3–4','S. 155 · Üb. 3–4'],
+  sq:'Lexo dhe plotëso: Lara blen një pallto', de:'S. 155: Lesen Sie und ergänzen Sie',
+  desc:'Plotëso historinë e Larës. Dhe: rroba jote e preferuar.',
+  tip:'zu weit = shumë e gjerë. der Mantel = palltoja. die Lieblingsjacke = xhaketa e preferuar.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te ushtrimi <b>3</b> të pesta saktë: <b>Samstag</b>, <b>Jacke</b>, <b>kaufen</b>, <b>weit</b>, <b>Mantel</b> ✓. Dhe te ushtrimi 4 i ke shkruar vetë: Lieblingsjacke = xhaketa ime e preferuar, Farbe = ngjyra. 👏',
+     tip:'zu <b>weit</b> ≈ zu <b>groß</b>: të dyja janë të sakta këtu.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', psq:'3 Lexo dhe plotëso', pde:'3 Lesen Sie und ergänzen Sie', h:'📅 e shtunë · 🧥 · blej · shumë e gjerë · palltoja',
+     text:'Lara, Tim und Ioanna fahren am [[Samstag]] in die Stadt. Sie wollen eine [[Jacke]] für Lara [[kaufen]]. Ioanna findet eine Jacke für Lara. Lara sagt: Die Jacke ist zu [[weit;groß]]! Auch Tim findet eine Jacke für Lara. Aber Lara findet die Jacke nicht schön. Zum Schluss kauft Lara allein einen blauen [[Mantel]].',
+     e:'Samstag · Jacke · kaufen · weit · Mantel.'},
+    {type:'cloze', psq:'4 Rroba jote e preferuar', pde:'4 Ihr Lieblingskleidungsstück', h:'xhaketa e preferuar · ngjyra',
+     text:'– Das ist meine [[Lieblingsjacke]].\n– Sie sieht toll aus. Die [[Farbe]] ist schön!',
+     e:'die Lieblingsjacke · die Farbe.'}
+  ]
+},
+
+/* ---------- KB S. 156: A · Demonstrativpronomen ---------- */
+{
+  id:'hw18-s156', emoji:'👗', color:'#F2545B', seq:true, book:['faqe 156 · A1–A2','S. 156 · A1–A2'],
+  sq:'Rrobat: Die Jacke da! Die ist super!', de:'S. 156: Sieh mal, Lara, die Jacke da!',
+  desc:'Rrobat me nyjë dhe Lara në dyqan: der, das, die, den.',
+  tip:'der Gürtel → Der ist toll! · den Schirm → Den finde ich schön.',
+  lesson:[
+    {t:'Faqe 156 👗', d:'Demonstrativpronomen', say:1, th:['','Nominativ','Akkusativ'],
+     table:[['der','<b>Der</b> ist schön.','<b>Den</b> finde ich super.'],['das','<b>Das</b> ist schön.','<b>Das</b> finde ich super.'],['die','<b>Die</b> ist schön.','<b>Die</b> finde ich super.'],['shumës','<b>Die</b> sind schön.','<b>Die</b> finde ich super.']]},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>A2</b> të 12 vendet saktë: Die, die, das, der, die, Der, die, die · Den, das, die, Die ✓. Dhe te <b>A1</b> i ke përkthyer vetë rrobat. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'match', psq:'A1 Rrobat e Larës', pde:'A1 Laras Kleidung', pairs:[['die Bluse','bluza'],['die Hose','pantallonat'],['der Mantel','palltoja'],['die Stiefel','çizmet'],['der Pullover','pulovra']]},
+    {type:'match', psq:'A1 Rrobat e Larës', pde:'A1 Laras Kleidung', pairs:[['die Jacke','xhaketa'],['die Schuhe','këpucët'],['der Rock','fundi'],['das Kleid','fustani'],['der Gürtel','rripi']]},
+    {type:'match', psq:'A1 Rrobat e Larës', pde:'A1 Laras Kleidung', pairs:[['das T-Shirt','bluza me mëngë të shkurtra'],['die Jeans','xhinset'],['das Tuch','shalli'],['die Socke','çorapja'],['der Strumpf','çorapja e gjatë']]},
+    {type:'cloze', topic:'demonstr', psq:'A2 Lara në dyqan (1)', pde:'A2 Lara beim Einkaufen (1)', h:'der · das · die (si nyja)',
+     text:'– Sieh mal, die Jacke da! [[Die]] ist super!\n– Ja, [[die]] ist wirklich schön! Und das Hemd hier, [[das]] ist auch super! Und der Anzug hier! [[Der]] gefällt Tim sicher! Und die Sonnenbrille auch!\n– Ja, [[die]] ist nicht schlecht! Und sieh mal, der Gürtel! [[Der]] ist ja toll!\n– Aber die Schuhe da, [[die]] sind nicht so schön, oder?\n– Ja, [[die]] sind langweilig und auch zu teuer!',
+     e:'Die · die · das · Der · die · Der · die · die.'},
+    {type:'cloze', topic:'demonstr', psq:'A2 Lara në dyqan (2)', pde:'A2 Lara beim Einkaufen (2)', h:'den · das · die (Akkusativ)',
+     text:'– Wie findest du den Schirm?\n– [[Den]] finde ich sehr schön.\n– Und das Kleid?\n– Hm …, [[das]] finde ich hässlich. Aber die Tasche! [[Die]] finde ich super und auch günstig.\n– Ja, stimmt! Und die Stiefel?\n– [[Die]] finde ich auch toll!',
+     e:'Den · das · Die · Die.'}
+  ]
+},
+
+/* ---------- KB S. 157: B · Verben mit Dativ ---------- */
+{
+  id:'hw18-s157', emoji:'💬', color:'#7650F0', seq:true, book:['faqe 157 · B2–B3','S. 157 · B2–B3'],
+  sq:'Si të duket? mir, dir, ihm, ihr', de:'S. 157: Die Jacke passt dir perfekt',
+  desc:'Kujt i pëlqen, kujt i shkon? Plotëso mir, dir, ihm, ihr dhe bëj komplimente.',
+  tip:'mir = mua · dir = ty · ihm = atij · ihr = asaj. gefallen, passen, stehen + Dativ.',
+  read:'<b>B2</b><br>1<br>– Hast du Susannes Haare gesehen? Also, mir gefallen die nicht so gut, und dir?<br>– Mir gefallen die auch nicht. Aber die Brille sieht toll aus. Die steht ihr richtig gut!<br>– Ich weiß nicht. Die ist doch viel zu groß!<br><br>2<br>– Wie gefällt dir denn Jans Mantel?<br>– Super! Der steht ihm richtig gut! Und wie findest du die Hose?<br>– Hm, die passt ihm nicht richtig, finde ich.',
+  lesson:[
+    {t:'Faqe 157 💬', d:'Verben mit Dativ', say:1, th:['','Dativ'],
+     tr:[['unë','mua'],['ti','ty'],['ai','atij'],['ajo','asaj'],['ne','neve'],['ju','juve'],['ata · Ju','atyre · Juve']],
+     table:[['ich','mir'],['du','dir'],['er','ihm'],['sie','ihr'],['wir','uns'],['ihr','euch'],['sie · Sie','ihnen · Ihnen']],
+     tip:'Die Jacke <b>gefällt</b> / <b>passt</b> mir · Die Jacken <b>gefallen</b> / <b>passen</b> mir'},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>B2a</b>: Haare, Brille · Mantel, Hose ✓. Te <b>B2b</b> të gjashta saktë: <b>dir</b>, <b>Mir</b>, <b>ihr</b>, <b>dir</b>, <b>ihm</b>, <b>ihm</b> ✓. Dhe i ke shkruar vetë: mir = mua, dir = ty, ihm = atij. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'B2a Për çfarë flasin?', pde:'B2a Worüber sprechen sie?', q:'1 Susannes …', o:['Haare und Brille','T-Shirt und Stiefel'], a:'Haare und Brille', e:'„Susannes Haare … die Brille …“'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'B2a Për çfarë flasin?', pde:'B2a Worüber sprechen sie?', q:'2 Jans …', o:['Mantel und Hose','Hemd und Schuhe'], a:'Mantel und Hose', e:'„Jans Mantel … die Hose …“'},
+    {type:'cloze', topic:'dativ', psq:'B2b Plotëso', pde:'B2b Ergänzen Sie', bank:['ihr','dir','Mir','ihm','dir','ihm'],
+     text:'1\n– Hast du Susannes Haare gesehen? Also, mir gefallen die nicht so gut, und [[dir]]?\n– [[Mir]] gefallen die auch nicht. Aber die Brille sieht toll aus. Die steht [[ihr]] richtig gut!\n– Ich weiß nicht. Die ist doch viel zu groß!\n2\n– Wie gefällt [[dir]] denn Jans Mantel?\n– Super! Der steht [[ihm]] richtig gut! Und wie findest du die Hose?\n– Hm, die passt [[ihm]] nicht richtig, finde ich.',
+     e:'dir · Mir · ihr (Susanne) · dir · ihm (Jan) · ihm.'},
+    {type:'cloze', topic:'dativ', psq:'B3 Bëj komplimente', pde:'B3 Machen Sie Komplimente', h:'gefallen · stehen · Ihnen',
+     text:'– Mir [[gefällt]] Ihr Pullover. Der [[steht]] [[Ihnen]] sehr gut!\n– Oh, danke!\n– Deine Schuhe [[gefallen]] mir sehr gut. Die Farbe ist auch sehr schön!',
+     e:'gefällt (Pullover = një) · steht Ihnen · gefallen (Schuhe = shumës).'}
+  ]
+},
+
+/* ---------- KB S. 158: B4 · Deutschland ---------- */
+{
+  id:'hw18-s158', emoji:'🇩🇪', color:'#16A34A', seq:true, book:['faqe 158 · B4','S. 158 · B4'],
+  sq:'Gjermania: Mir auch! Mir schon!', de:'S. 158: Was gefällt Ihnen (nicht)?',
+  desc:'Harta e mendjes për Gjermaninë dhe përgjigje të shkurtra: Mir auch, Mir schon.',
+  tip:'Mir auch = edhe mua · Mir auch nicht = as mua · Mir schon = mua po.',
+  lesson:[
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>B4a</b> i ke përkthyer vetë: Landschaft = peizazh, Berg = mal, Meer = det, Wald = pyll, Dorf = fshat, Strand = plazh ✓. 👏',
+     tip:'<b>Mir schon</b> = mua po (kur tjetri thotë jo). <b>Mir auch nicht</b> = as mua.'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'sort', psq:'B4a Harta e mendjes', pde:'B4a Mindmap: Deutschland', cats:['Landschaft','Essen / Trinken','Städte'],
+     items:[['der Berg','Landschaft'],['das Meer','Landschaft'],['der Strand','Landschaft'],['der Wald','Landschaft'],['das Dorf','Landschaft'],['die Nordsee','Landschaft'],['das Brot','Essen / Trinken'],['die Bratwurst','Essen / Trinken'],['Hamburg','Städte']],
+     e:'Landschaft: Berg, Meer, Strand, Wald, Dorf, Nordsee · Essen: Brot, Bratwurst · Städte: Hamburg.'},
+    {type:'cloze', topic:'dativ', psq:'B4b Bisedë 1', pde:'B4b Gespräch 1', h:'👎 as unë · 👍 unë po · kurrë',
+     text:'– Hamburg gefällt mir nicht. Und dir?\n– Mir [[auch nicht]]. Da ist es so kalt.\n– Mir [[schon]]. Mir gefallen das Meer und der Hafen.\n– Ich war noch [[nie]] in Hamburg.',
+     e:'Mir auch nicht · Mir schon · noch nie.'},
+    {type:'cloze', topic:'dativ', psq:'B4b Bisedë 2', pde:'B4b Gespräch 2', h:'ka shije · 👍 unë po · kurrë',
+     text:'– Also, Bratwurst [[schmeckt]] mir nicht.\n– Mir [[schon]]. Die ist doch lecker.\n– Ich habe noch [[nie]] Bratwurst gegessen.',
+     e:'schmeckt · Mir schon · noch nie.'}
+  ]
+}
+  ]
 }
 
 ];

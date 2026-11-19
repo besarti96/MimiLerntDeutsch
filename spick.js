@@ -29,7 +29,8 @@ const SPICK = [
   id:'sz-art', chip:'📌 der · ein · kein', t:'📌 Nyjat', d:'Artikel: der, ein, kein',
   th:['','der ♂','die ♀','das'], say:-1,
   table:[['e shquar','der','die','das'],['një','ein','eine','ein'],['një (Ich nehme …)','<b>einen</b>','eine','ein'],
-    ['asnjë','kein','keine','kein'],['asnjë (Ich habe …)','<b>keinen</b>','keine','kein'],['përemri','er','sie','es']],
+    ['asnjë','kein','keine','kein'],['asnjë (Ich habe …)','<b>keinen</b>','keine','kein'],['përemri','er','sie','es'],
+    ['ky, kjo (… ist toll!)','der · <b>den</b>','die','das']],
   ex:[['Ich nehme einen Kaffee.','Marr një kafe. (der Kaffee)'],['Ich nehme eine Orange.','Marr një portokall. (die Orange)'],['Ich nehme ein Brot.','Marr një bukë. (das Brot)']],
   tip:'Vetëm <b>der</b> ndryshon pas foljes (nehmen, haben, möchten): ein → <b>einen</b>, kein → <b>keinen</b>.'
 },
@@ -37,7 +38,8 @@ const SPICK = [
   id:'sz-pron', chip:'👤 ich · du · er', t:'👤 Përemrat', d:'Die Pronomen',
   th:['Deutsch','Shqip'], say:0,
   table:[['ich','unë'],['du','ti'],['er','ai'],['sie','ajo'],['es','ai / ajo (për das)'],['wir','ne'],['ihr','ju (shokë)'],['sie','ata / ato'],['Sie','Ju (me respekt)'],
-    ['mein / meine','im / ime'],['dein / deine','yt / jote'],['sein / seine','i tij / e tij'],['ihr / ihre','i saj · i tyre'],['unser / unsere','ynë / jonë'],['euer / eure','juaj']],
+    ['mein / meine','im / ime'],['dein / deine','yt / jote'],['sein / seine','i tij / e tij'],['ihr / ihre','i saj · i tyre'],['unser / unsere','ynë / jonë'],['euer / eure','juaj'],
+    ['mir · dir · ihm · ihr · uns · euch · ihnen / Ihnen','më · të · i (atij) · i (asaj) · na · ju · u / Ju (Dativ: Die Jacke gefällt mir.)']],
   tip:'<b>Sie</b> me shkronjë të madhe = Ju (te mjeku, në punë). <b>sie</b> e vogël = ajo ose ata.<br>'
     + 'Me shumës: <b>seine</b> Ohren, <b>ihre</b> Ohren, pa -n! <i class="tr">(veshët e tij, veshët e saj)</i><br>'
     + 'Akkusativ me der: mein<b>en</b>, sein<b>en</b>, ihr<b>en</b>, unser<b>en</b>, eur<b>en</b> Kopf <i class="tr">(Ich halte meinen Kopf warm.)</i>'

@@ -1365,7 +1365,9 @@ const TOPICS = {
   imperativ:['Urdhërorja', 'Imperativ', 'du kommst → Komm! (pa du, pa -st). ihr kommt → Kommt! Sie kommen → Kommen Sie! sein: Sei! / Seid! / Seien Sie!'],
   lokal:    ['Ku? Për ku? Me çfarë?', 'Wo? Wohin? Womit?', 'mit dem Bus, mit der U-Bahn · Wohin? zum Arzt, zur Apotheke · Wo? beim Arzt, auf dem Parkplatz, an der Ampel, hinter den Häusern.'],
   hoeren:   ['Dëgjimi', 'Hörverstehen', 'Dëgjoje dy herë, edhe ngadalë 🐢. Kap fjalët kyçe: kush, çfarë, ku, kur.'],
-  temporal: ['Kur? vor, nach, bei, ab, bis, in', 'Wann? Temporale Präpositionen', 'vor dem Kurs, nach der Arbeit, beim Training · ab Montag, bis 14 Uhr, in einer Woche (Dativ: dem, der, einem, einer).']
+  temporal: ['Kur? vor, nach, bei, ab, bis, in', 'Wann? Temporale Präpositionen', 'vor dem Kurs, nach der Arbeit, beim Training · ab Montag, bis 14 Uhr, in einer Woche (Dativ: dem, der, einem, einer).'],
+  demonstr: ['Der ist toll! Den finde ich …', 'Demonstrativpronomen', 'Si nyja: der Gürtel → Der ist toll · das Hemd → Das · die Jacke → Die · den Schirm → Den finde ich schön.'],
+  dativ:    ['Më pëlqen: mir, dir, ihm, ihr', 'gefallen, passen, stehen + Dativ', 'ich → mir, du → dir, er → ihm, sie → ihr, wir → uns, ihr → euch, Sie → Ihnen · Die Jacke gefällt mir, die Schuhe gefallen mir.']
 };
 const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög|muss|müss|darf|dürf|soll)/;
 /* finds the grammar topic of a question from what it asks; q.topic in the data wins */

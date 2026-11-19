@@ -26,7 +26,8 @@ const WORDS = [
     ['das','Wasser','uji'],['der','Kaffee','kafeja'],['der','Tee','çaji'],['der','Saft','lëngu'],['das','Fleisch','mishi'],
     ['der','Fisch','peshku'],['der','Reis','orizi'],['der','Salat','sallata'],['der','Kuchen','ëmbëlsira'],['die','Pizza','pica'],
     ['die','Schokolade','çokollata'],['der','Zucker','sheqeri'],['das','Salz','kripa'],
-    ['die','Lebensmittel','ushqimet','2026-11-07T15:12']],
+    ['die','Lebensmittel','ushqimet','2026-11-07T15:12'],
+    ['die','Bratwurst','salsiçja e pjekur','2026-11-19T21:55']],
   words:[['dick','i trashë','2026-11-07T15:12'],['wenig','pak','2026-11-07T15:12']]
 },
 {
@@ -128,7 +129,8 @@ const WORDS = [
     ['müssen','duhet','2026-10-30T21:56'],['ausfüllen','plotësoj','2026-10-30T21:56'],['mitbringen','sjell me vete','2026-10-30T21:56'],['wählen','zgjedh','2026-10-30T21:56'],['auswählen','përzgjedh','2026-10-30T21:56'],['stempeln','vulos','2026-10-30T21:56'],['funktionieren','funksionon','2026-10-30T21:56'],['abholen','marr (dikë)','2026-10-30T21:56'],['erklären','shpjegoj','2026-10-30T21:56'],['schließen','mbyll','2026-10-30T21:56'],['öffnen','hap','2026-10-30T21:56'],['zuhören','dëgjoj','2026-10-30T21:56'],['warten','pres','2026-10-30T21:56'],
     ['dürfen','lejohet','2026-11-06T11:15'],['geben','jap','2026-11-06T11:15'],['telefonieren','flas në telefon','2026-11-06T11:15'],['benutzen','përdor','2026-11-06T11:15'],['beantragen','aplikoj për','2026-11-06T11:15'],['wiederholen','përsëris','2026-11-06T11:15'],
     ['beobachten','vëzhgoj','2026-11-07T15:12'],['vereinbaren','lë (takim)','2026-11-07T15:12'],['ändern','ndryshoj','2026-11-07T15:12'],['verschieben','shtyj','2026-11-07T15:12'],
-    ['duschen','bëj dush','2026-11-11T21:52'],['stören','shqetësoj','2026-11-11T21:52'],['nähen','qep','2026-11-11T21:52'],['sortieren','rendit, sistemoj','2026-11-11T21:52']]
+    ['duschen','bëj dush','2026-11-11T21:52'],['stören','shqetësoj','2026-11-11T21:52'],['nähen','qep','2026-11-11T21:52'],['sortieren','rendit, sistemoj','2026-11-11T21:52'],
+    ['frieren','kam ftohtë','2026-11-19T21:55']]
 },
 {
   id:'w-trennbar', emoji:'⏰', color:'#7650F0', added:'2026-10-26T08:00', sq:'Foljet e ndashme', de:'Trennbare Verben',
@@ -247,7 +249,9 @@ const WORDS = [
   id:'w-stadt', emoji:'🏰', color:'#E3A008', added:'2026-11-06T11:15', sq:'Qyteti & turizmi', de:'Stadt & Tourismus',
   nouns:[['die','Sehenswürdigkeit','vendi për t’u parë','2026-11-06T11:15'],['der','Stadtrundgang','shëtitja nëpër qytet','2026-11-06T11:15'],['die','Führung','vizita me guidë','2026-11-06T11:15'],['der','Eintritt','hyrja (bileta)','2026-11-06T11:15'],['die','Ermäßigung','zbritja','2026-11-06T11:15'],['der','Komponist','kompozitori','2026-11-06T11:15'],['das','Geburtshaus','shtëpia e lindjes','2026-11-06T11:15'],['das','Museum','muzeu','2026-11-06T11:15'],['der','Dom','katedralja','2026-11-06T11:15'],['das','Konzert','koncerti','2026-11-06T11:15'],['die','Oper','opera','2026-11-06T11:15'],['die','Auskunft','informacioni','2026-11-06T11:15'],['der','Stadtplan','harta e qytetit','2026-11-06T11:15'],['die','Einkaufsstraße','rruga e pazarit','2026-11-06T11:15'],['der','Einwohner','banori','2026-11-06T11:15'],['die','Broschüre','broshura','2026-11-06T11:15'],['die','Altstadt','qyteti i vjetër','2026-11-06T11:15'],
     ['der','Stadtteil','lagjja','2026-11-07T15:12'],
-    ['die','Post','posta','2026-11-10T16:32'],['der','Kiosk','kioska','2026-11-10T16:32'],['die','Buchhandlung','libraria','2026-11-10T16:32'],['die','Bücherei','biblioteka','2026-11-10T16:32'],['die','Bäckerei','furra e bukës','2026-11-10T16:32'],['der','Baum','pema','2026-11-10T16:32'],['der','Kindergarten','kopshti i fëmijëve','2026-11-10T16:32'],['der','Fußballplatz','fusha e futbollit','2026-11-10T16:32'],['die','Apotheke','barnatorja','2026-11-10T16:32'],['die','Fußgängerzone','zona e këmbësorëve','2026-11-10T16:32']],
+    ['die','Post','posta','2026-11-10T16:32'],['der','Kiosk','kioska','2026-11-10T16:32'],['die','Buchhandlung','libraria','2026-11-10T16:32'],['die','Bücherei','biblioteka','2026-11-10T16:32'],['die','Bäckerei','furra e bukës','2026-11-10T16:32'],['der','Baum','pema','2026-11-10T16:32'],['der','Kindergarten','kopshti i fëmijëve','2026-11-10T16:32'],['der','Fußballplatz','fusha e futbollit','2026-11-10T16:32'],['die','Apotheke','barnatorja','2026-11-10T16:32'],['die','Fußgängerzone','zona e këmbësorëve','2026-11-10T16:32'],
+    ['die','Landschaft','peizazhi','2026-11-19T21:55'],['der','Berg','mali','2026-11-19T21:55'],['das','Meer','deti','2026-11-19T21:55'],['der','Strand','plazhi','2026-11-19T21:55'],
+    ['das','Dorf','fshati','2026-11-19T21:55'],['der','Hafen','porti','2026-11-19T21:55'],['die','Nordsee','Deti i Veriut','2026-11-19T21:55']],
   words:[['besichtigen','vizitoj','2026-11-06T11:15'],['spazieren','shëtis','2026-11-06T11:15'],['berühmt','i famshëm','2026-11-06T11:15'],['geboren','i lindur','2026-11-06T11:15'],['geöffnet','i hapur','2026-11-06T11:15']]
 },
 {
@@ -262,6 +266,24 @@ const WORDS = [
     ['das','Tablet','tableti','2026-11-11T21:52'],['das','Modell','modeli','2026-11-11T21:52'],['das','Gerät','pajisja, aparati','2026-11-11T21:52'],['die','Garantie','garancia','2026-11-11T21:52']],
   words:[['kaputt','i prishur','2026-11-11T21:52'],['reparieren','riparoj, rregulloj','2026-11-11T21:52'],['zurückbekommen','e marr prapa','2026-11-11T21:52'],['teuer','i shtrenjtë','2026-11-11T21:52'],['sauer','i nxehur, i inatosur','2026-11-11T21:52'],
     ['unfreundlich','i pasjellshëm','2026-11-11T21:52'],['freundlich','i sjellshëm','2026-11-11T21:52'],['nachsehen','kontrolloj, shikoj','2026-11-11T21:52'],['jemand','dikush','2026-11-11T21:52'],['vorbeibringen','e sjell (deri këtu)','2026-11-11T21:52']]
+},
+{
+  id:'w-kleidung', emoji:'👗', color:'#F2545B', added:'2026-11-19T21:55', sq:'Rrobat', de:'Kleidung',
+  nouns:[['die','Jacke','xhaketa','2026-11-19T21:55'],['die','Regenjacke','xhaketa e shiut','2026-11-19T21:55'],['der','Mantel','palltoja','2026-11-19T21:55'],['die','Bluse','bluza','2026-11-19T21:55'],
+    ['das','T-Shirt','bluza me mëngë të shkurtra','2026-11-19T21:55'],['die','Hose','pantallonat','2026-11-19T21:55'],['der','Pullover','pulovra','2026-11-19T21:55'],['die','Jeans','xhinset','2026-11-19T21:55'],
+    ['der','Rock','fundi','2026-11-19T21:55'],['das','Hemd','këmisha','2026-11-19T21:55'],['der','Anzug','kostumi','2026-11-19T21:55'],['der','Schuh','këpuca','2026-11-19T21:55'],['der','Stiefel','çizmja','2026-11-19T21:55'],
+    ['die','Socke','çorapja','2026-11-19T21:55'],['der','Strumpf','çorapja e gjatë','2026-11-19T21:55'],['der','Gürtel','rripi','2026-11-19T21:55'],['das','Tuch','shalli','2026-11-19T21:55'],['der','Schirm','çadra','2026-11-19T21:55'],
+    ['die','Sonnenbrille','syzet e diellit','2026-11-19T21:55'],['die','Brille','syzet','2026-11-19T21:55'],['die','Farbe','ngjyra','2026-11-19T21:55'],['die','Lieblingsjacke','xhaketa e preferuar','2026-11-19T21:55']],
+  words:[['dünn','i hollë','2026-11-19T21:55']]
+},
+{
+  id:'w-gefallen', emoji:'💬', color:'#7650F0', added:'2026-11-19T21:55', sq:'Më pëlqen! Përemrat mir, dir', de:'Gefallen & Pronomen im Dativ',
+  nouns:[['das','Kompliment','komplimenti','2026-11-19T21:55']],
+  words:[['gefallen','pëlqej','2026-11-19T21:55'],['passen','rri mirë (masa)','2026-11-19T21:55'],['stehen','shkon (pamja)','2026-11-19T21:55'],['aussehen','dukem','2026-11-19T21:55'],['perfekt','i përsosur','2026-11-19T21:55'],
+    ['schön','i bukur','2026-11-19T21:55'],['hässlich','i shëmtuar','2026-11-19T21:55'],['langweilig','i mërzitshëm','2026-11-19T21:55'],['Wie findest du …?','Si të duket …?','2026-11-19T21:55'],
+    ['mir','mua (më)','2026-11-19T21:55'],['dir','ty (të)','2026-11-19T21:55'],['ihm','atij (i)','2026-11-19T21:55'],['ihr','asaj (i)','2026-11-19T21:55'],['uns','neve (na)','2026-11-19T21:55'],['euch','juve (ju)','2026-11-19T21:55'],['ihnen','atyre (u)','2026-11-19T21:55'],
+    ['Mir auch.','Edhe mua.','2026-11-19T21:55'],['Mir auch nicht.','As mua.','2026-11-19T21:55'],['Mir schon.','Mua po.','2026-11-19T21:55'],['Mir nicht.','Mua jo.','2026-11-19T21:55'],
+    ['noch nie','kurrë (deri tani)','2026-11-19T21:55'],['eigentlich','në fakt','2026-11-19T21:55'],['Ist das kalt heute!','Sa ftohtë që është sot!','2026-11-19T21:55']]
 }
 
 ];
