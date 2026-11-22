@@ -12,7 +12,8 @@ const PRAISE = [
   ['Saktë!','Richtig!'], ['Bravo, Mimoza!','Super gemacht!'], ['Shumë mirë!','Sehr gut!'],
   ['E shkëlqyer!','Toll!'], ['Je yll!','Du bist ein Star!'], ['Perfekt!','Perfekt!'], ['Wow!','Klasse!']
 ];
-const LOVE = ['Ich liebe dich Mimi - besarti', 'Te dua shume shume', 'Zemra jem'];
+const LOVE = ['Ich liebe dich Mimi - besarti', 'Te dua shume shume', 'Zemra jem', 'Te due zemrush', 'Loqka jem', 'B-Madhja Jem <3', 'Ich liebe dich zemer'];
+const CHEER = 'Hajde loqk, mundesh ma mir!';   /* after a few wrong answers in a row */
 const LOVE_RARE = ['bmj - pyetem n chat', 'Love uu'];
 const OFF = [0, -62, -92, -62, 0, 62, 92, 62];
 
@@ -225,12 +226,22 @@ function confetti(){
     if (++f < 200) requestAnimationFrame(loop); else x.clearRect(0, 0, W, H);
   })();
 }
-/* love notes: max one per day (except the A1 egg and the finale), rare ones even rarer */
+/* love notes: 1–2 per session (a session ends after 30 minutes without answers), the first after 3–8 answers,
+   a second one much later; the A1 egg and the finale always. Rare ones even rarer. */
 const loveMsg = () => Math.random() < .15 ? rnd(LOVE_RARE) : rnd(LOVE);
-const loveOk = () => S.loveDay !== today();
-function loveUsed(){ S.loveDay = today(); save(); }
-function loveNote(msg){
-  const el = document.createElement('div'); el.className = 'lovenote'; el.textContent = '💗 ' + msg;
+const LV = {t:0, max:0, shown:0, n:0, next:0};
+function loveTick(){
+  const now = Date.now();
+  if (now - LV.t > 30 * 60e3) { LV.max = Math.random() < .5 ? 1 : 2; LV.shown = 0; LV.n = 0; LV.next = 3 + (Math.random() * 6 | 0); }
+  LV.t = now; LV.n++;
+}
+const loveOk = () => LV.shown < LV.max;
+const loveDue = () => loveOk() && LV.n >= LV.next;
+function loveUsed(){ LV.shown++; LV.next = LV.n + 12 + (Math.random() * 14 | 0); }
+/* wrong answers in a row (over rounds): after 2, then every 3 more, a cheer; never two cheers within 10 answers */
+let MISSRUN = 0, CHEERAT = -99;
+function loveNote(msg, icon = '💗'){
+  const el = document.createElement('div'); el.className = 'lovenote'; el.textContent = icon + ' ' + msg;
   document.body.appendChild(el); setTimeout(() => el.remove(), 3600);
   hearts(4); SND.love();
 }
@@ -1157,7 +1168,7 @@ function tryAgain(msg){
 }
 function correct(note, title){
   const q = cur(), first = G.tries === 0;
-  G.ok++;
+  G.ok++; loveTick(); MISSRUN = 0;
   if (first) { G.first++; G.combo++; G.maxCombo = Math.max(G.maxCombo, G.combo); } else G.combo = 0;
   const gain = !first ? 5 : G.hint ? 6 : 10 + Math.min(G.combo - 1, 5) * 2;
   G.xp += gain; S.xp += gain; rollDay(); S.dayXp += gain;
@@ -1175,9 +1186,9 @@ function correct(note, title){
   save(); xpPop(gain);
   const milestone = first && [3, 5, 7, 10, 15].includes(G.combo);
   let love = null, note2 = null;
-  if (!G.love && first && loveOk()) {
+  if (first && loveOk()) {
     if (milestone && G.combo >= 7 && Math.random() < .5) love = loveMsg();   // big streak -> in the sheet
-    else if (Math.random() < .01) note2 = loveMsg();                      // random -> small note
+    else if (loveDue()) note2 = loveMsg();                                   // its turn this session -> small note
     if (love || note2) { G.love = true; loveUsed(); }
   }
   if (love) { SND.love(); hearts(10); buzz([30, 40, 30, 40, 80]); }
@@ -1213,8 +1224,10 @@ function wrong(note){
   if (q.wk) S.okRun[q.wk] = {n:0, d:null};
   histAdd(q); save();
   SND.bad(); buzz([80, 50, 80]);
+  loveTick(); MISSRUN++;
   const body = `${note ? esc(note) + '<br>' : ''}${esc(q.e || '')}<br><b>E saktë / Richtig:</b> ${esc(ansOf(q))}`;
   openSheet(false, 'Jo krejt. Nicht ganz.', body, sayOf(q));
+  if ((MISSRUN === 2 || (MISSRUN > 2 && MISSRUN % 3 === 2)) && LV.n - CHEERAT >= 10) { CHEERAT = LV.n; setTimeout(() => loveNote(CHEER, '💪'), 500); }
 }
 function openSheet(ok, title, body, sayT, love){
   const last = G.i >= G.qs.length - 1;

@@ -10,6 +10,7 @@ Diese Datei reicht, um die App zu verstehen. Kurzfassung, die Details stehen in 
 
 **Pflicht (immer):**
 
+- **Immer nach dem bestehenden Plan arbeiten.** Neues Material wird genau so gebaut wie die bisherigen Kapitel und Hausaufgaben (siehe „Vorlage“ unten): gleiche Folien, gleiche Aufgabenarten und Mischung, gleiche Sprache und Erklärweise. Nichts eigenmächtig „verbessern“, umformulieren oder neu erfinden, auch nicht im eigenen Entwurf (z. B. bleibt „ich → mag (pa -e!)“ so). **Etwas Neues nur, wenn der Benutzer es ausdrücklich verlangt.** Vorher immer die letzten Kapitel und das letzte Hausaufgaben-Set in `data.js` / `homework.js` als Vorlage anschauen.
 - **Nichts Bestehendes ändern oder löschen**, Ids nie umbenennen. Nur ergänzen.
 - **Albanisch zuerst**, Deutsch als zweite Zeile. Erklärfolien mit Übersetzung, Aufgaben ohne.
 - **Jedes neue Kapitel** (`data.js`) hat: `id`, `lek`, `band` (ab Buch 2), `added` mit Uhrzeit, `sq`, `de`, `desc`, `tip`, `lesson` (Folien), `nouns`, `words`, `items`, dazu **3–4 `hear`-Sätze** und **mindestens 3 `order`-Sätze mit `sq`** (für die Höraufgaben).
@@ -19,6 +20,29 @@ Diese Datei reicht, um die App zu verstehen. Kurzfassung, die Details stehen in 
 - **Jede Aufgabe ohne Buch lösbar** und eindeutig (genau eine richtige Antwort).
 - **Prüfen vor dem Abgeben:** `node --check` für geänderte Dateien, `node tools/validate.js` ohne Fehler und ohne offene Hinweise, neue Runden einmal durchspielen.
 - **Pushen nur, wenn der Benutzer es sagt.** Commit-Nachricht kurz auf Deutsch, ohne Co-Author-Zeile.
+
+**Vorlage: so sieht ein neues Kapitel aus** (Beispiele: `kleidung`, `gefallen`, `kaufhaus` in `data.js`)
+
+- `lesson` (Folien), in dieser Reihenfolge:
+  1. Wort- oder Grammatiktabelle mit Emoji-Spalte bzw. `tr`-Übersetzung und kurzem `tip`.
+  2. Grammatiktabelle(n) (z. B. Nominativ, dann Akkusativ) mit `tr` und `tip`.
+  3. Eine oder zwei `ex`-Folien mit den Sätzen aus dem Buch (Deutsch + Albanisch), Titel mit Übungsnummer („A2 Lara në dyqan 🛍️“).
+  4. „Kujdes! 👀“ (`fix`) nur bei Mimis sicheren Fehlern, sonst nur „Bravo, Mimoza! 🌟“ mit dem, was sie richtig hatte (Übungsnummern fett, ✓, 👏).
+- `items`, ungefähr diese Mischung:
+  - 2 × `match` (Wörter ↔ Albanisch, je 4–5 Paare)
+  - 6–10 × `gap` mit `row:true`, `topic` und `psq`/`pde` als Frage („Der, Das apo Die?“ / „Der, Das oder Die?“), `h` mit Artikel oder Person, `e` kurz mit `→`
+  - bei Lesetext 4–5 × `mc` mit `read:true, topic:'lesen'`, Überschrift „Lexo dhe përgjigju“ / „Lies und antworte“
+  - 1 × `mc` „Si thuhet gjermanisht?“ (albanischer Satz → der richtige deutsche Satz, die falschen mit typischen Fehlern)
+  - 2–3 × `mc` als Dialog (`topic:'dialog', speakQ:true, h`), Überschrift „Çfarë përgjigjesh?“ / „Was antwortest du?“
+  - wo es passt: `sort`, `table` oder `cloze`
+  - 4 × `order` mit `sq`
+- dazu 4 `hear`-Sätze, `nouns`/`words` und `added` mit Uhrzeit.
+
+**Vorlage: so sieht ein Hausaufgaben-Teil aus** (Beispiel: Set `l18` / `l19` in `homework.js`)
+
+- Pro Buchseite ein Teil: `id:'hwNN-sSEITE'`, `seq:true`, `book:['faqe 156 · A1–A2','S. 156 · A1–A2']`, `nouns:[], words:[]`.
+- `lesson`: eine Folie „Faqe 156 …“ mit dem Wichtigsten der Seite, dann „Bravo“ bzw. „Kujdes! 👀“.
+- `items` in Buch-Reihenfolge, Überschrift mit Übungsnummer („A2 Lara në dyqan (1)“ / „A2 Lara beim Einkaufen (1)“). Buchtexte als `read`, Lücken als `cloze` (mit `bank` nur, wenn das Buch einen Wortkasten hat).
 
 **Freiwillig (nur wenn es passt):**
 
