@@ -2917,7 +2917,7 @@ const CHAPTERS = [
     {type:'gap', row:true, topic:'demonstr', psq:'dieser, dieses, diese, diesen?', pde:'dieser, dieses, diese, diesen?', s:'Welches Fahrrad gehört Malte? – ___ hier.', o:['Dieses','Dieser','Diese','Diesen'], a:'Dieses', e:'das Fahrrad → Dieses.'},
     {type:'gap', row:true, topic:'demonstr', psq:'dieser, dieses, diese, diesen?', pde:'dieser, dieses, diese, diesen?', s:'Welche Tasche gehört Anika? – ___ hier.', o:['Diese','Dieser','Dieses','Diesen'], a:'Diese', e:'die Tasche → Diese.'},
     {type:'gap', row:true, topic:'verben', psq:'mögen', pde:'mögen', s:'Welche Musik ___ du gern?', o:['magst','mag','mögt','mögen'], a:'magst', e:'du → magst.'},
-    {type:'gap', row:true, topic:'verben', psq:'mögen', pde:'mögen', s:'Ich ___ Pizza sehr.', o:['mag','magst','mögen','mögt'], a:'mag', e:'ich → mag (pa mbaresë!).'},
+    {type:'gap', row:true, topic:'verben', psq:'mögen', pde:'mögen', s:'Ich ___ Pizza sehr.', o:['mag','magst','mögen','mögt'], a:'mag', e:'ich → mag (pa -e!).'},
     {type:'gap', row:true, topic:'verben', psq:'mögen', pde:'mögen', s:'Ihr ___ Hamburg, oder?', o:['mögt','mögen','magst','mag'], a:'mögt', e:'ihr → mögt.'},
     {type:'gap', row:true, topic:'dativ', psq:'gehören + Dativ', pde:'gehören + Dativ', s:'Der Koffer gehört ___.', h:'ich → ?', o:['mir','mich','ich'], a:'mir', e:'gehören + Dativ: ich → mir.'},
     {type:'mc', topic:'dialog', psq:'Çfarë përgjigjesh?', pde:'Was antwortest du?', q:'Welcher Koffer gehört Mario?', speakQ:true, h:'Ti mendon: ai atje. 👉',
