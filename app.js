@@ -1367,7 +1367,8 @@ const TOPICS = {
   hoeren:   ['Dëgjimi', 'Hörverstehen', 'Dëgjoje dy herë, edhe ngadalë 🐢. Kap fjalët kyçe: kush, çfarë, ku, kur.'],
   temporal: ['Kur? vor, nach, bei, ab, bis, in', 'Wann? Temporale Präpositionen', 'vor dem Kurs, nach der Arbeit, beim Training · ab Montag, bis 14 Uhr, in einer Woche (Dativ: dem, der, einem, einer).'],
   demonstr: ['Der ist toll! Den finde ich …', 'Demonstrativpronomen', 'Si nyja: der Gürtel → Der ist toll · das Hemd → Das · die Jacke → Die · den Schirm → Den finde ich schön.'],
-  dativ:    ['Më pëlqen: mir, dir, ihm, ihr', 'gefallen, passen, stehen + Dativ', 'ich → mir, du → dir, er → ihm, sie → ihr, wir → uns, ihr → euch, Sie → Ihnen · Die Jacke gefällt mir, die Schuhe gefallen mir.']
+  dativ:    ['Më pëlqen: mir, dir, ihm, ihr', 'gefallen, passen, stehen + Dativ', 'ich → mir, du → dir, er → ihm, sie → ihr, wir → uns, ihr → euch, Sie → Ihnen · Die Jacke gefällt mir, die Schuhe gefallen mir.'],
+  komparativ: ['Mirë, më mirë, më së miri', 'gut, besser, am besten', 'gut → besser → am besten · gern → lieber → am liebsten · viel → mehr → am meisten.']
 };
 const HABEN = /^(habe|hast|hat|haben|habt)$/, MODAL = /^(kann|könn|will|woll|möcht|mag|mög|muss|müss|darf|dürf|soll)/;
 /* finds the grammar topic of a question from what it asks; q.topic in the data wins */

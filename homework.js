@@ -2451,6 +2451,121 @@ const HOMEWORK = [
   ]
 }
   ]
+},
+{
+  id:'l19', date:'2026-11-22', added:'2026-11-22T20:56', emoji:'🏬',
+  sq:'Libri: Mësimi 13 C–E dhe gramatika', de:'Kursbuch S. 159–162',
+  parts:[
+
+/* ---------- KB S. 159: C · Komparation ---------- */
+{
+  id:'hw19-s159', emoji:'🏆', color:'#E3A008', seq:true, book:['faqe 159 · C1–C2','S. 159 · C1–C2'],
+  sq:'Die ist noch besser: gut, besser, am besten', de:'S. 159: Und hier: Die ist noch besser.',
+  desc:'Plotëso gut, besser, am besten dhe lexo për rrobat e Carolës dhe José-s.',
+  tip:'gut → besser → am besten · gern → lieber → am liebsten · viel → mehr → am meisten.',
+  read:'<b>Carola Peters</b> ✈️<br>Ich heiße Carola Peters und bin Stewardess von Beruf. Zu meiner Uniform gehören zwei Röcke und eine Hose und es gibt auch noch ein Kleid. Das Kleid ziehe ich nicht so gern an. Ich mag die Röcke lieber. Am liebsten trage ich aber die Hose. In meiner Freizeit ist mir Mode sehr wichtig. Meine Kleidung kaufe ich gern im Ausland. In New York sind die Kleidergeschäfte am besten.<br><br><b>José Faria Duarte</b> 📸<br>Mein Name ist José Faria Duarte. Ich bin Model von Beruf. Bei der Arbeit trage ich immer Designerkleidung. Die ist wirklich wunderschön und ich trage sie gern. Aber in meiner Freizeit trage ich lieber Jeans. Zu Hause trage ich am liebsten meine Jogginghose. Ich bin in meiner Freizeit gern zu Hause. Dann lese ich viel und telefoniere noch mehr. Am meisten sehe ich aber fern: Ich liebe Filmabende, am liebsten zusammen mit Freunden.',
+  lesson:[
+    {t:'Faqe 159 🏆', d:'Komparation', say:'join', th:['😊','😊😊','😊😊😊'],
+     tr:[['mirë','më mirë','më së miri'],['me qejf','më me qejf','më së shumti me qejf'],['shumë','më shumë','më së shumti']],
+     table:[['gut','besser','am besten'],['gern','lieber','am liebsten'],['viel','mehr','am meisten']]},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>C1</b>: <b>gut</b>, <b>besser</b>, <b>am besten</b> ✓. Te <b>C2b</b>: Carola: das Kleid, die Röcke, die Hose ✓ · José: Designerkleidung, Jeans, die Jogginghose ✓ · lesen, telefonieren ✓. 👏',
+     tip:'Am meisten José <b>sieht fern</b>: „Filmabende“ e ke kuptuar mirë! Te C3 e ke shkruar vetë: Salat, Pizza, Obst. 🍕'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'cloze', topic:'komparativ', psq:'C1 Plotëso', pde:'C1 Ergänzen Sie', bank:['am besten','gut','besser'],
+     text:'– Wir haben super Jacken gefunden.\n– Ja, genau!\n– Hier, die ist doch richtig [[gut]], oder?\n– Und hier, die ist noch [[besser]].\n– Ja, das kann schon sein. Aber mein Mantel, der steht mir [[am besten]]!',
+     e:'gut · besser · am besten.'},
+    {type:'cloze', read:true, topic:'lesen', psq:'C2b Lexo dhe plotëso: Carola', pde:'C2b Lesen Sie und ergänzen Sie: Carola', h:'nicht so gern · lieber · am liebsten',
+     text:'1  Was trägt Carola nicht so gern? [[das Kleid;Kleid;ein Kleid]]\n   lieber? [[die Röcke;Röcke]]\n   am liebsten? [[die Hose;Hose]]',
+     e:'das Kleid · die Röcke · die Hose.'},
+    {type:'cloze', read:true, topic:'lesen', psq:'C2b Lexo dhe plotëso: José', pde:'C2b Lesen Sie und ergänzen Sie: José', h:'gern · lieber · am liebsten · viel · mehr · am meisten',
+     text:'2  Was trägt José gern? [[Designerkleidung;die Designerkleidung]]\n   lieber? [[Jeans;die Jeans]]\n   am liebsten? [[die Jogginghose;Jogginghose;seine Jogginghose]]\n3  Was macht José viel? [[lesen;er liest;Er liest]]\n   mehr? [[telefonieren;er telefoniert;Er telefoniert]]\n   am meisten? [[fernsehen;er sieht fern;Er sieht fern;Filmabende]]',
+     e:'Designerkleidung · Jeans · Jogginghose · lesen · telefonieren · fernsehen.'}
+  ]
+},
+
+/* ---------- KB S. 160: D · welcher, dieser ---------- */
+{
+  id:'hw19-s160', emoji:'👆', color:'#2E86DE', seq:true, book:['faqe 160 · D1–D3','S. 160 · D1–D3'],
+  sq:'Welche meinst du? – Na, diese.', de:'S. 160: Welche meinst du? – Na, diese.',
+  desc:'Rendit bisedën dhe plotëso welcher, dieser dhe mögen.',
+  tip:'Welcher Koffer? – Dieser. · Welchen Koffer? – Diesen. · ich mag, du magst, er mag.',
+  lesson:[
+    {t:'Faqe 160 👆', d:'Frageartikel und Demonstrativpronomen', say:1, th:['','Nominativ','Akkusativ'],
+     table:[['der','<b>Welcher</b> …? – <b>Dieser</b>.','<b>Welchen</b> …? – <b>Diesen</b>.'],['das','<b>Welches</b> …? – <b>Dieses</b>.','<b>Welches</b> …? – <b>Dieses</b>.'],['die','<b>Welche</b> …? – <b>Diese</b>.','<b>Welche</b> …? – <b>Diese</b>.'],['shumës','<b>Welche</b> …? – <b>Diese</b>.','<b>Welche</b> …? – <b>Diese</b>.']]},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>D1</b> e ke renditur bisedën krejt saktë: 1, 2, 3, 4 ✓. Te <b>D2</b> i ke shkruar vetë: der Koffer, die Sportschuhe, das Fahrrad, die Tasche. Dhe te D3: mögen = pëlqej. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'order', psq:'D1 Rendit bisedën', pde:'D1 Ordnen Sie das Gespräch', sq:'Ioanna dhe Timi', cue:'1 – 2 – 3 – 4',
+     parts:['Da, sieh mal! Die Jacke gefällt ihr sicher.','Welche denn? Welche meinst du?','Na, diese.','Soll das ein Witz sein? Die ist ja total langweilig.'],
+     de:'Da, sieh mal! Die Jacke gefällt ihr sicher. Welche denn? Welche meinst du? Na, diese. Soll das ein Witz sein? Die ist ja total langweilig.'},
+    {type:'cloze', topic:'demonstr', psq:'D2a Kujt i përket?', pde:'D2a Was gehört wem?', h:'der Koffer: welcher / dieser',
+     text:'– Was meinst du: [[Welcher]] Koffer gehört Mario?\n– Ich glaube, [[dieser]] da. Und wem gehört [[dieser]] Koffer?\n– Ich denke, [[dieser]] hier gehört Anika.\n– Nein, das glaube ich nicht. [[Dieser]] hier gehört ihr.',
+     e:'Welcher · dieser · dieser · dieser · Dieser (Nominativ).'},
+    {type:'cloze', topic:'demonstr', psq:'D2b Çfarë të pëlqen?', pde:'D2b Welche Sachen finden Sie schön?', h:'der Koffer · findest du → Akkusativ',
+     text:'– [[Welchen]] Koffer findest du schön?\n– [[Diesen]] hier. Und du?\n– Ich finde [[diesen]] hier toll.',
+     e:'Welchen · Diesen · diesen (Akkusativ).'},
+    {type:'cloze', topic:'verben', psq:'D3 Pyetje me mögen', pde:'D3 Fragen mit mögen', h:'du → ?',
+     text:'Welchen Wochentag [[magst]] du am liebsten?\nWelches Buch [[magst]] du am liebsten?\nWelche Musik [[magst]] du gern?\nWelcher Film [[gefällt]] dir?',
+     e:'du magst · der Film gefällt dir.'}
+  ]
+},
+
+/* ---------- KB S. 161: E · Im Kaufhaus ---------- */
+{
+  id:'hw19-s161', emoji:'🏬', color:'#D6409F', seq:true, book:['faqe 161 · E1, E3','S. 161 · E1, E3'],
+  sq:'Në dyqanin e madh: Wo gibt es …?', de:'S. 161: Im Kaufhaus',
+  desc:'Ku gjen çfarë në Wesergalerie? Dhe çfarë thua në kabinë?',
+  tip:'Obergeschoss ⬆️ · Erdgeschoss 0 · Untergeschoss ⬇️. Da müssen Sie ins Obergeschoss gehen.',
+  read:'<b>Wesergalerie</b> 🏬<br><b>Obergeschoss</b> ⬆️: Herrenmode · Kindermode · Damen-, Herren- und Kinderschuhe · Spielwaren · Bad &amp; Wellness · Eingang Weser-Restaurant<br><b>Erdgeschoss</b> 0: Drogerie / Kosmetik · Uhren und Schmuck · Bücher / Zeitschriften / Schreibwaren · Taschen · Damenmode · Young Fashion Damen<br><b>Untergeschoss</b> ⬇️ (Ausgang zur S-Bahn): Sport · Fahrräder · Elektrogeräte · Lampen · Glas und Geschirr · Bettwaren',
+  lesson:[
+    {t:'Faqe 161 🏬', d:'Im Kaufhaus', say:1, th:['','Deutsch','Shqip'],
+     table:[['⬆️','das Obergeschoss','kati i sipërm'],['0','das Erdgeschoss','kati përdhes'],['⬇️','das Untergeschoss','kati nëntokësor'],['💬','Da müssen Sie ins Obergeschoss gehen.','Duhet të shkoni në katin e sipërm.'],['💬','Das finden Sie im Erdgeschoss.','Këtë e gjeni në katin përdhes.']]},
+    {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>E1a</b> e ke shkruar vetë: <b>Da müssen Sie ins Obergeschoss gehen.</b> ✓ Dhe repartet i ke përkthyer pothuajse të gjitha. 👏'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'E1a Çfarë thotë gruaja?', pde:'E1a Was antwortet die Frau?', q:'1  Entschuldigen Sie bitte, ich suche Stiefel. Wo gibt es die?', o:['im Untergeschoss','im Erdgeschoss','im Obergeschoss'], a:'im Obergeschoss', e:'Schuhe → Obergeschoss.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'E1a Çfarë thotë gruaja?', pde:'E1a Was antwortet die Frau?', q:'2  Ich brauche Papier für meinen Drucker.', o:['im Untergeschoss','im Erdgeschoss','im Obergeschoss'], a:'im Erdgeschoss', e:'Papier → Schreibwaren → Erdgeschoss.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'E1a Çfarë thotë gruaja?', pde:'E1a Was antwortet die Frau?', q:'3  Ich möchte ein Spiel für meine Tochter kaufen.', o:['im Untergeschoss','im Erdgeschoss','im Obergeschoss'], a:'im Obergeschoss', e:'Spiel → Spielwaren → Obergeschoss.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'E1a Çfarë thotë gruaja?', pde:'E1a Was antwortet die Frau?', q:'4  Wo gibt es Fußbälle?', o:['im Untergeschoss','im Erdgeschoss','im Obergeschoss'], a:'im Untergeschoss', e:'Fußball → Sport → Untergeschoss.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'E1a Çfarë thotë gruaja?', pde:'E1a Was antwortet die Frau?', q:'5  Ich finde die Kinderkleidung nicht.', o:['im Untergeschoss','im Erdgeschoss','im Obergeschoss'], a:'im Obergeschoss', e:'Kinderkleidung → Kindermode → Obergeschoss.'},
+    {type:'mc', read:true, row:true, topic:'lesen', psq:'E1b Ku i gjen?', pde:'E1b Wo finden Sie das?', q:'Seife, eine Zahnbürste und Zahnpasta', o:['im Untergeschoss','im Erdgeschoss','im Obergeschoss'], a:'im Erdgeschoss', e:'→ Drogerie → Erdgeschoss.'},
+    {type:'mc', topic:'dialog', psq:'E3 Çfarë thua?', pde:'E3 Was sagen Sie?', q:'Ke provuar një xhaketë. Është blu, por ty të pëlqen më shumë jeshilja.',
+     o:['Haben Sie die Jacke auch in Grün?','Haben Sie die Jacke auch in Größe 40?','Was kostet denn diese Jacke?','Wo ist denn die Kasse, bitte?'], a:'Haben Sie die Jacke auch in Grün?', say:'Haben Sie die Jacke auch in Grün?', e:'ngjyrë tjetër → Haben Sie … auch in Grün?'},
+    {type:'mc', topic:'dialog', psq:'E3 Çfarë thua?', pde:'E3 Was sagen Sie?', q:'Ke provuar një pallto në masën M. Është shumë e vogël.',
+     o:['Haben Sie den Mantel auch in Größe L?','Haben Sie den Mantel auch in Rot?','Der Mantel ist zu groß.','Wo gibt es Mäntel?'], a:'Haben Sie den Mantel auch in Größe L?', say:'Haben Sie den Mantel auch in Größe L?', e:'masë tjetër → Haben Sie … auch in Größe L?'},
+    {type:'mc', topic:'dialog', psq:'E3 Çfarë thua?', pde:'E3 Was sagen Sie?', q:'Ke provuar dy palë xhinse, por do të blesh vetëm njërën. Nuk e di cilën.',
+     o:['Welche Jeans soll ich nehmen?','Haben Sie die Jeans auch in Blau?','Wo ist die Kasse?','Die Jeans ist zu klein.'], a:'Welche Jeans soll ich nehmen?', say:'Welche Jeans soll ich nehmen?', e:'nuk di cilën → Welche …?'}
+  ]
+},
+
+/* ---------- KB S. 162: Grammatik und Kommunikation ---------- */
+{
+  id:'hw19-s162', emoji:'📒', color:'#7650F0', seq:true, book:['faqe 162 · gramatika','S. 162 · Grammatik'],
+  sq:'Gramatika e mësimit 13', de:'S. 162: Grammatik und Kommunikation',
+  desc:'mögen, foljet me Dativ dhe krahasimi: Ja, die gehört uns. Am meisten esse ich!',
+  tip:'5 folje me Dativ: gefallen – gehören – passen – stehen – schmecken.',
+  lesson:[
+    {t:'Faqe 162 📒', d:'Grammatik', say:1, th:['','mögen'],
+     tr:[['unë','pëlqej'],['ti','pëlqen'],['ai, ajo','pëlqen'],['ne','pëlqejmë'],['ju','pëlqeni'],['ata, Ju','pëlqejnë']],
+     table:[['ich','mag'],['du','magst'],['er/es/sie','mag'],['wir','mögen'],['ihr','mögt'],['sie/Sie','mögen']],
+     tip:'Mësoji përmendësh 5 foljet me Dativ: <b>gefallen – gehören – passen – stehen – schmecken</b>. 💪'}
+  ],
+  nouns:[], words:[],
+  items:[
+    {type:'table', topic:'verben', psq:'mögen', pde:'Konjugation: mögen', th:['Person','mögen'], rows:[['ich','mag'],['du','magst'],['er/es/sie','mag'],['wir','mögen'],['ihr','mögt'],['sie/Sie','mögen']]},
+    {type:'cloze', topic:'dativ', psq:'Përgjigju si në shembull', pde:'Schreiben Sie Antworten wie im Beispiel', h:'der → der, das → das, die → die · euch → uns, dir → mir, mir → dir',
+     text:'a  Gehört euch die Tasche? – Ja, die gehört uns.\nb  Gefällt euch das Fahrrad? – Ja, [[das]] gefällt [[uns]].\nc  Schmeckt dir der Käse? – Ja, [[der]] schmeckt [[mir]].\nd  Steht mir das Kleid? – Ja, [[das]] steht [[dir]].\ne  Gefällt Eva der Schirm? – Ja, [[der]] gefällt [[ihr]].\nf  Schmeckt Jakob die Bratwurst? – Ja, [[die]] schmeckt [[ihm]].',
+     e:'das/uns · der/mir · das/dir · der/ihr (Eva) · die/ihm (Jakob).'},
+    {type:'cloze', topic:'komparativ', psq:'Kush ha më shumë?', pde:'Wer isst viel, wer mehr, wer am meisten?', h:'viel → mehr → am meisten',
+     text:'Meine Mutter isst nicht [[viel]], aber mein Vater! Noch [[mehr]] isst mein Bruder. Und am [[meisten]] esse ich! 😊',
+     e:'viel · mehr · am meisten.'}
+  ]
+}
+  ]
 }
 
 ];

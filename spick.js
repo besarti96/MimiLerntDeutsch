@@ -59,7 +59,7 @@ const SPICK = [
   tr:[['unë','dua','do të doja','më pëlqen'],['ti','do','do të doje','të pëlqen'],['ai / ajo','do','do të donte','i pëlqen'],['ne','duam','do të donim','na pëlqen'],['ju','doni','do të donit','ju pëlqen'],['ata / Ju','duan / doni','do të donin / do të donit','u pëlqen / ju pëlqen']],
      table:[['ich','will','möchte','mag'],['du','willst','möchtest','magst'],['er / sie / es','will','möchte','mag'],
     ['wir','wollen','möchten','mögen'],['ihr','wollt','möchtet','mögt'],['sie / Sie','wollen','möchten','mögen']],
-  tip:'<b>möchte</b> = e sjellshme 🙂 (në restorant). <b>will</b> = e fortë 😤.'
+  tip:'<b>möchte</b> = e sjellshme 🙂 (në restorant). <b>will</b> = e fortë 😤.<br>Krahasimi: gut → <b>besser</b> → <b>am besten</b> · gern → <b>lieber</b> → <b>am liebsten</b> · viel → <b>mehr</b> → <b>am meisten</b>'
 },
 {
   id:'sz-satz', chip:'🧩 Satzbau', t:'🧩 Rendi i fjalisë', d:'So baut man Sätze',
