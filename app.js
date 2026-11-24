@@ -887,7 +887,15 @@ function renderQ(){
   app.innerHTML = `<div class="game">${topbar()}${c && c.hw ? `<p class="hwtag">${hwTag(c)[0]} · ${esc(c.book[0])}</p>` : ''}${(R[q.type] || rChoice)(q)}</div>`;
   /* reading text (read): right under the task title, for every task type */
   const rd = readOf(q);
-  if (rd) app.querySelector('.qhead')?.insertAdjacentHTML('afterend', `<div class="readbox">${rd}</div>`);
+  if (rd) {
+    app.querySelector('.qhead')?.insertAdjacentHTML('afterend', `<div class="readbox">${rd}</div>`);
+    /* the box scrolls: if the text is longer than the box, say so until she has scrolled to the end */
+    const rb = app.querySelector('.readbox');
+    if (rb && rb.scrollHeight > rb.clientHeight + 4) {
+      rb.insertAdjacentHTML('afterend', '<p class="readmore">⬇ Teksti vazhdon poshtë · Der Text geht weiter</p>');
+      rb.addEventListener('scroll', () => { if (rb.scrollTop + rb.clientHeight >= rb.scrollHeight - 4) app.querySelector('.readmore')?.remove(); }, {passive:true});
+    }
+  }
   if (q.type === 'listen') setTimeout(() => autoSay(q.say), 350);
   window.scrollTo(0, 0);
 }
@@ -899,8 +907,11 @@ function hint(){
 }
 
 /* --- choice types --- */
-/* reading questions: read:true shows the chapter's text (c.read) above the question */
-const readOf = q => q.read === true ? chById(q.tid)?.read : q.read;
+/* reading questions: read:true shows the chapter's text (c.read) above the question; read:[1, 3] only these paragraphs
+   of it (paragraphs are split at an empty line, <br><br>), so a question about one person shows only that person's text */
+const readParts = c => (c && c.read || '').split(/<br\s*\/?>\s*<br\s*\/?>/);
+const readOf = q => q.read === true ? chById(q.tid)?.read
+  : Array.isArray(q.read) ? q.read.map(i => readParts(chById(q.tid))[i]).filter(Boolean).join('<br><br>') : q.read;
 function rChoice(q){
   return `${head(q.psq || (q.type === 'gap' ? 'Plotëso zbrazëtirën' : 'Zgjidh përgjigjen'), q.pde || (q.type === 'gap' ? 'Ergänze die Lücke' : 'Wähle die richtige Antwort'))}
   <div class="qcard ${q.speakQ ? 'has-say' : ''}">

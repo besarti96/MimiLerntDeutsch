@@ -953,15 +953,15 @@ const HOMEWORK = [
   ],
   nouns:[], words:[],
   items:[
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'10 Pyetja 1', pde:'10 Frage 1', q:'Wie alt ist Annas Schwester?', o:['12','14','15','13'], a:'13', e:'„Meine Schwester heißt Klara und ist 13 Jahre alt.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'10 Pyetja 2', pde:'10 Frage 2', q:'Wo arbeitet Annas Vater?', o:['in Österreich','im Kino','in der Schule','in der Bank'], a:'in der Bank', e:'„… mein Vater arbeitet in einer Bank.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'10 Pyetja 3', pde:'10 Frage 3', q:'Was macht Anna gern in der Schule?', o:['Kochen','Mathematik','Chemie','Physik'], a:'Mathematik', e:'„… mein Lieblingsfach ist Mathematik.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'10 Pyetja 4', pde:'10 Frage 4', q:'Was macht Anna nach der Schule?', h:'nach = pas',
+    {type:'mc', read:[0], row:true, topic:'lesen', psq:'10 Pyetja 1', pde:'10 Frage 1', q:'Wie alt ist Annas Schwester?', o:['12','14','15','13'], a:'13', e:'„Meine Schwester heißt Klara und ist 13 Jahre alt.“'},
+    {type:'mc', read:[0], topic:'lesen', psq:'10 Pyetja 2', pde:'10 Frage 2', q:'Wo arbeitet Annas Vater?', o:['in Österreich','im Kino','in der Schule','in der Bank'], a:'in der Bank', e:'„… mein Vater arbeitet in einer Bank.“'},
+    {type:'mc', read:[1], topic:'lesen', psq:'10 Pyetja 3', pde:'10 Frage 3', q:'Was macht Anna gern in der Schule?', o:['Kochen','Mathematik','Chemie','Physik'], a:'Mathematik', e:'„… mein Lieblingsfach ist Mathematik.“'},
+    {type:'mc', read:[2], topic:'lesen', psq:'10 Pyetja 4', pde:'10 Frage 4', q:'Was macht Anna nach der Schule?', h:'nach = pas',
      o:['Sie kocht das Mittagessen.','Sie geht mit ihren Freundinnen spazieren.','Sie geht ins Kino.','Sie schläft lange.'], a:'Sie geht mit ihren Freundinnen spazieren.', e:'„Nach der Schule gehe ich oft mit meinen Freundinnen im Park spazieren.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'10 Pyetja 5', pde:'10 Frage 5', q:'Wo geht die Familie am Sonntag mit dem Hund spazieren?', h:'der Hund = qeni', o:['am See','im Haus','im Park','im Garten'], a:'am See', e:'„Nach dem Essen gehen wir mit dem Hund am See spazieren.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'Pyetje shtesë', pde:'Zusatzfrage', q:'Wie heißt Annas Bruder?', o:['Michael','Klara','Anna','Max'], a:'Michael', e:'„… mein Bruder Michael ist 18 Jahre alt.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'Pyetje shtesë', pde:'Zusatzfrage', q:'Welche Tiere hat Annas Familie?', o:['einen Hund, zwei Katzen und Goldfische','zwei Hunde und eine Katze','nur Goldfische','keine Tiere'], a:'einen Hund, zwei Katzen und Goldfische', e:'„Wir haben einen Hund, zwei Katzen und Goldfische.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'Pyetje shtesë', pde:'Zusatzfrage', q:'Was macht Anna am Samstag?', o:['Sie geht ins Kino.','Sie schläft lange.','Sie kocht mit ihrer Mutter.','Sie geht in die Schule.'], a:'Sie geht ins Kino.', e:'„Am Samstag gehen wir oft ins Kino.“'}
+    {type:'mc', read:[2], topic:'lesen', psq:'10 Pyetja 5', pde:'10 Frage 5', q:'Wo geht die Familie am Sonntag mit dem Hund spazieren?', h:'der Hund = qeni', o:['am See','im Haus','im Park','im Garten'], a:'am See', e:'„Nach dem Essen gehen wir mit dem Hund am See spazieren.“'},
+    {type:'mc', read:[0], topic:'lesen', psq:'Pyetje shtesë', pde:'Zusatzfrage', q:'Wie heißt Annas Bruder?', o:['Michael','Klara','Anna','Max'], a:'Michael', e:'„… mein Bruder Michael ist 18 Jahre alt.“'},
+    {type:'mc', read:[1], topic:'lesen', psq:'Pyetje shtesë', pde:'Zusatzfrage', q:'Welche Tiere hat Annas Familie?', o:['einen Hund, zwei Katzen und Goldfische','zwei Hunde und eine Katze','nur Goldfische','keine Tiere'], a:'einen Hund, zwei Katzen und Goldfische', e:'„Wir haben einen Hund, zwei Katzen und Goldfische.“'},
+    {type:'mc', read:[2], topic:'lesen', psq:'Pyetje shtesë', pde:'Zusatzfrage', q:'Was macht Anna am Samstag?', o:['Sie geht ins Kino.','Sie schläft lange.','Sie kocht mit ihrer Mutter.','Sie geht in die Schule.'], a:'Sie geht ins Kino.', e:'„Am Samstag gehen wir oft ins Kino.“'}
   ]
 }
   ]
@@ -1133,15 +1133,15 @@ const HOMEWORK = [
   ],
   nouns:[], words:[],
   items:[
-    {type:'mc', read:true, topic:'lesen', psq:'D1a Çfarë bëjnë?', pde:'D1a Was machen die Personen?', q:'Was macht Mika?', o:['Er arbeitet als Koch.','Er studiert Informatik.','Er studiert Eventmanagement.','Er ist Kellner.'], a:'Er arbeitet als Koch.', e:'„… arbeite seit drei Jahren als Koch.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'D1a Për sa kohë?', pde:'D1a Für wie lange?', q:'Für wie lange sucht Mika einen Job?', o:['für ein Jahr','für einen Monat','für zwei Monate','für sechs Wochen'], a:'für ein Jahr', e:'„… suche für ein Jahr einen Job.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'D1a Çfarë bëjnë?', pde:'D1a Was machen die Personen?', q:'Was macht Radha?', o:['Sie studiert Informatik.','Sie arbeitet als Köchin.','Sie studiert Eventmanagement.','Sie macht ein Praktikum in Hamburg.'], a:'Sie studiert Informatik.', e:'„Ich studiere Informatik an der Universität in Würzburg.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'D1a Për sa kohë?', pde:'D1a Für wie lange?', q:'Für wie lange sucht Radha einen Job?', o:['für einen Monat','für ein Jahr','für zwei Monate','für drei Monate'], a:'für einen Monat', e:'„Für einen Monat im Sommer.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'D1a Çfarë bëjnë?', pde:'D1a Was machen die Personen?', q:'Was macht Brenda?', o:['Sie studiert Eventmanagement.','Sie studiert Informatik.','Sie arbeitet als Köchin.','Sie arbeitet bei einer Bank.'], a:'Sie studiert Eventmanagement.', e:'„… studiere Eventmanagement in Boston.“'},
-    {type:'mc', read:true, topic:'lesen', psq:'D1a Për sa kohë?', pde:'D1a Für wie lange?', q:'Für wie lange sucht Brenda noch ein Praktikum?', o:['für zwei Monate','für einen Monat','für sechs Wochen','für ein Jahr'], a:'für zwei Monate', e:'„Danach suche ich noch für zwei Monate ein Praktikum …“'},
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'D1b Cili njoftim?', pde:'D1b Welche Anzeige passt?', q:'Mika', o:['A','B','C'], a:'B', e:'Koch, ein Jahr, Österreich → B (Hotel Kaiserhof Wien).'},
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'D1b Cili njoftim?', pde:'D1b Welche Anzeige passt?', q:'Radha', o:['A','B','C'], a:'C', e:'Informatik, einen Monat, Team → C (Phill GmbH).'},
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'D1b Cili njoftim?', pde:'D1b Welche Anzeige passt?', q:'Brenda', o:['A','B','C'], a:'A', e:'Eventmanagement, zwei Monate, Schweiz → A (Originell Catering Zürich).'}
+    {type:'mc', read:[0], topic:'lesen', psq:'D1a Çfarë bëjnë?', pde:'D1a Was machen die Personen?', q:'Was macht Mika?', o:['Er arbeitet als Koch.','Er studiert Informatik.','Er studiert Eventmanagement.','Er ist Kellner.'], a:'Er arbeitet als Koch.', e:'„… arbeite seit drei Jahren als Koch.“'},
+    {type:'mc', read:[0], topic:'lesen', psq:'D1a Për sa kohë?', pde:'D1a Für wie lange?', q:'Für wie lange sucht Mika einen Job?', o:['für ein Jahr','für einen Monat','für zwei Monate','für sechs Wochen'], a:'für ein Jahr', e:'„… suche für ein Jahr einen Job.“'},
+    {type:'mc', read:[1], topic:'lesen', psq:'D1a Çfarë bëjnë?', pde:'D1a Was machen die Personen?', q:'Was macht Radha?', o:['Sie studiert Informatik.','Sie arbeitet als Köchin.','Sie studiert Eventmanagement.','Sie macht ein Praktikum in Hamburg.'], a:'Sie studiert Informatik.', e:'„Ich studiere Informatik an der Universität in Würzburg.“'},
+    {type:'mc', read:[1], topic:'lesen', psq:'D1a Për sa kohë?', pde:'D1a Für wie lange?', q:'Für wie lange sucht Radha einen Job?', o:['für einen Monat','für ein Jahr','für zwei Monate','für drei Monate'], a:'für einen Monat', e:'„Für einen Monat im Sommer.“'},
+    {type:'mc', read:[2], topic:'lesen', psq:'D1a Çfarë bëjnë?', pde:'D1a Was machen die Personen?', q:'Was macht Brenda?', o:['Sie studiert Eventmanagement.','Sie studiert Informatik.','Sie arbeitet als Köchin.','Sie arbeitet bei einer Bank.'], a:'Sie studiert Eventmanagement.', e:'„… studiere Eventmanagement in Boston.“'},
+    {type:'mc', read:[2], topic:'lesen', psq:'D1a Për sa kohë?', pde:'D1a Für wie lange?', q:'Für wie lange sucht Brenda noch ein Praktikum?', o:['für zwei Monate','für einen Monat','für sechs Wochen','für ein Jahr'], a:'für zwei Monate', e:'„Danach suche ich noch für zwei Monate ein Praktikum …“'},
+    {type:'mc', read:[0,3], row:true, topic:'lesen', psq:'D1b Cili njoftim?', pde:'D1b Welche Anzeige passt?', q:'Mika', o:['A','B','C'], a:'B', e:'Koch, ein Jahr, Österreich → B (Hotel Kaiserhof Wien).'},
+    {type:'mc', read:[1,3], row:true, topic:'lesen', psq:'D1b Cili njoftim?', pde:'D1b Welche Anzeige passt?', q:'Radha', o:['A','B','C'], a:'C', e:'Informatik, einen Monat, Team → C (Phill GmbH).'},
+    {type:'mc', read:[2,3], row:true, topic:'lesen', psq:'D1b Cili njoftim?', pde:'D1b Welche Anzeige passt?', q:'Brenda', o:['A','B','C'], a:'A', e:'Eventmanagement, zwei Monate, Schweiz → A (Originell Catering Zürich).'}
   ]
 },
 
@@ -1209,16 +1209,16 @@ const HOMEWORK = [
   ],
   nouns:[], words:[],
   items:[
-    {type:'mc', read:true, topic:'lesen', psq:'2 Ku janë?', pde:'2 Wo sind Lara und Tim?', q:'Wo sind Lara und Tim zuerst?', o:['auf einem Amt','bei einer Autovermietung','am Zentralen Omnibusbahnhof'], a:'auf einem Amt', e:'Fotot 1–3: Führerscheinstelle.'},
-    {type:'mc', read:true, topic:'lesen', psq:'2 Ku janë?', pde:'2 Wo sind Lara und Tim?', q:'Wo wollen sie ein Auto mieten?', o:['bei einer Autovermietung','auf einem Amt','am Zentralen Omnibusbahnhof'], a:'bei einer Autovermietung', e:'Fotot 5–6: Autovermietung.'},
-    {type:'mc', read:true, topic:'lesen', psq:'2 Ku janë?', pde:'2 Wo sind Lara und Tim?', q:'Wo kaufen sie zum Schluss ein Busticket?', o:['am Zentralen Omnibusbahnhof','auf einem Amt','bei einer Autovermietung'], a:'am Zentralen Omnibusbahnhof', e:'Fotot 7–8: ZOB München.'},
-    {type:'gap', read:true, row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'a  Tim möchte ein Auto mieten und nach ___ fahren.', o:['Salzburg','Polen'], a:'Salzburg', e:'nach Salzburg.'},
-    {type:'gap', read:true, row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'b  Mit einem ausländischen Führerschein kann man nur ___ Monate in Deutschland fahren.', o:['sechs','acht'], a:'sechs', e:'sechs Monate.'},
-    {type:'gap', read:true, row:true, topic:'ein', psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'c  Tim hat ___ internationalen Führerschein.', o:['keinen','einen'], a:'keinen', e:'keinen internationalen Führerschein.'},
-    {type:'gap', read:true, row:true, topic:'ein', psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'d  Lara kommt aus der EU. Sie braucht ___ internationalen Führerschein.', o:['keinen','einen'], a:'keinen', e:'EU → keinen.'},
-    {type:'gap', read:true, row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'e  Lara möchte ein Auto ___.', o:['mieten','kaufen'], a:'mieten', e:'mieten.'},
-    {type:'gap', read:true, row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'f  Sie ist zu jung, sie ist erst ___ Jahre alt.', o:['20','21'], a:'20', e:'20 Jahre.'},
-    {type:'gap', read:true, row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'g  Die Fahrt dauert nur ___ Stunden.', o:['zwei','neun'], a:'zwei', e:'zwei Stunden.'}
+    {type:'mc', read:[0], topic:'lesen', psq:'2 Ku janë?', pde:'2 Wo sind Lara und Tim?', q:'Wo sind Lara und Tim zuerst?', o:['auf einem Amt','bei einer Autovermietung','am Zentralen Omnibusbahnhof'], a:'auf einem Amt', e:'Fotot 1–3: Führerscheinstelle.'},
+    {type:'mc', read:[1], topic:'lesen', psq:'2 Ku janë?', pde:'2 Wo sind Lara und Tim?', q:'Wo wollen sie ein Auto mieten?', o:['bei einer Autovermietung','auf einem Amt','am Zentralen Omnibusbahnhof'], a:'bei einer Autovermietung', e:'Fotot 5–6: Autovermietung.'},
+    {type:'mc', read:[2], topic:'lesen', psq:'2 Ku janë?', pde:'2 Wo sind Lara und Tim?', q:'Wo kaufen sie zum Schluss ein Busticket?', o:['am Zentralen Omnibusbahnhof','auf einem Amt','bei einer Autovermietung'], a:'am Zentralen Omnibusbahnhof', e:'Fotot 7–8: ZOB München.'},
+    {type:'gap', read:[0], row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'a  Tim möchte ein Auto mieten und nach ___ fahren.', o:['Salzburg','Polen'], a:'Salzburg', e:'nach Salzburg.'},
+    {type:'gap', read:[0], row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'b  Mit einem ausländischen Führerschein kann man nur ___ Monate in Deutschland fahren.', o:['sechs','acht'], a:'sechs', e:'sechs Monate.'},
+    {type:'gap', read:[0], row:true, topic:'ein', psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'c  Tim hat ___ internationalen Führerschein.', o:['keinen','einen'], a:'keinen', e:'keinen internationalen Führerschein.'},
+    {type:'gap', read:[0], row:true, topic:'ein', psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'d  Lara kommt aus der EU. Sie braucht ___ internationalen Führerschein.', o:['keinen','einen'], a:'keinen', e:'EU → keinen.'},
+    {type:'gap', read:[1], row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'e  Lara möchte ein Auto ___.', o:['mieten','kaufen'], a:'mieten', e:'mieten.'},
+    {type:'gap', read:[1], row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'f  Sie ist zu jung, sie ist erst ___ Jahre alt.', o:['20','21'], a:'20', e:'20 Jahre.'},
+    {type:'gap', read:[2], row:true, psq:'4 Korrigjo', pde:'4 Korrigieren Sie', s:'g  Die Fahrt dauert nur ___ Stunden.', o:['zwei','neun'], a:'zwei', e:'zwei Stunden.'}
   ]
 },
 
@@ -1403,12 +1403,12 @@ const HOMEWORK = [
   nouns:[], words:[],
   items:[
     {type:'match', psq:'1 Fjalët nga fotot', pde:'1 Sehen Sie die Fotos an', pairs:[['der Klub','klubi'],['die Notaufnahme','urgjenca'],['der Arzt','mjeku'],['der Wartebereich','dhoma e pritjes'],['die Schmerztablette','tableta kundër dhimbjes']]},
-    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'a  „Mein Auge tut weh!“', o:['Laras Freundin Ioanna','Lara','der Arzt','die Mitarbeiterin'], a:'Laras Freundin Ioanna', e:'Ioanna ka dhimbje në sy.'},
-    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'b  „Meine Freundin hatte einen Unfall.“', o:['Lara','Laras Freundin Ioanna','der Arzt','die Mitarbeiterin'], a:'Lara', e:'Lara flet për Ioannën.'},
-    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'c  „Der Doktor kommt gleich.“', o:['die Mitarbeiterin','der Arzt','Lara','Laras Freundin Ioanna'], a:'die Mitarbeiterin', e:'Punonjësja e urgjencës.'},
-    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'d  „Na, wo haben Sie denn Schmerzen?“', o:['der Arzt','die Mitarbeiterin','Lara','Laras Freundin Ioanna'], a:'der Arzt', e:'Mjeku pyet.'},
-    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'e  „Wir gehen zum Arzt.“', o:['Lara','der Arzt','die Mitarbeiterin','Laras Freundin Ioanna'], a:'Lara', e:'Lara e çon shoqen te mjeku.'},
-    {type:'mc', read:true, topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'f  „Ich soll das Auge kühlen.“', o:['Laras Freundin Ioanna','Lara','der Arzt','die Mitarbeiterin'], a:'Laras Freundin Ioanna', e:'Ioanna i tregon Larës çfarë tha mjeku.'},
+    {type:'mc', read:[0], topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'a  „Mein Auge tut weh!“', o:['Laras Freundin Ioanna','Lara','der Arzt','die Mitarbeiterin'], a:'Laras Freundin Ioanna', e:'Ioanna ka dhimbje në sy.'},
+    {type:'mc', read:[1], topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'b  „Meine Freundin hatte einen Unfall.“', o:['Lara','Laras Freundin Ioanna','der Arzt','die Mitarbeiterin'], a:'Lara', e:'Lara flet për Ioannën.'},
+    {type:'mc', read:[1], topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'c  „Der Doktor kommt gleich.“', o:['die Mitarbeiterin','der Arzt','Lara','Laras Freundin Ioanna'], a:'die Mitarbeiterin', e:'Punonjësja e urgjencës.'},
+    {type:'mc', read:[2], topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'d  „Na, wo haben Sie denn Schmerzen?“', o:['der Arzt','die Mitarbeiterin','Lara','Laras Freundin Ioanna'], a:'der Arzt', e:'Mjeku pyet.'},
+    {type:'mc', read:[0], topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'e  „Wir gehen zum Arzt.“', o:['Lara','der Arzt','die Mitarbeiterin','Laras Freundin Ioanna'], a:'Lara', e:'Lara e çon shoqen te mjeku.'},
+    {type:'mc', read:[2], topic:'lesen', psq:'2 Kush thotë çfarë?', pde:'2 Wer sagt was?', q:'f  „Ich soll das Auge kühlen.“', o:['Laras Freundin Ioanna','Lara','der Arzt','die Mitarbeiterin'], a:'Laras Freundin Ioanna', e:'Ioanna i tregon Larës çfarë tha mjeku.'},
     {type:'gap', psq:'3 Rendit: çfarë ndodh pastaj?', pde:'3 Ordnen Sie die Sätze', s:'1 Ioanna und Lara haben im Klub getanzt. → 2 ___', o:['Ioanna hat einen Unfall. Das Auge ist blau.','Ioanna füllt ein Formular aus.','Der Arzt gibt Ioanna Schmerztabletten.','Die beiden Mädchen singen.'], a:'Ioanna hat einen Unfall. Das Auge ist blau.', e:'Pas klubit: aksidenti.'},
     {type:'gap', psq:'3 Rendit: çfarë ndodh pastaj?', pde:'3 Ordnen Sie die Sätze', s:'2 Ioanna hat einen Unfall. → 3 ___', o:['Die Mädchen gehen ins Krankenhaus.','Der Arzt sagt: Es ist nicht schlimm.','Lara hat auch ein blaues Auge.','Ioanna und Lara haben im Klub getanzt.'], a:'Die Mädchen gehen ins Krankenhaus.', e:'Pas aksidentit: në spital.'},
     {type:'gap', psq:'3 Rendit: çfarë ndodh pastaj?', pde:'3 Ordnen Sie die Sätze', s:'3 Die Mädchen gehen ins Krankenhaus. → 4 ___', o:['Ioanna füllt ein Formular aus.','Die beiden Mädchen singen.','Lara hat auch ein blaues Auge.','Der Arzt gibt Ioanna Schmerztabletten.'], a:'Ioanna füllt ein Formular aus.', e:'Në urgjencë së pari plotëson formularin.'},
@@ -1459,17 +1459,17 @@ const HOMEWORK = [
   ],
   nouns:[], words:[],
   items:[
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'B1a Çfarë është e saktë?', pde:'B1a Was ist richtig?', q:'1  Ioanna will „danke“ sagen.', o:['richtig','falsch'], a:'richtig', e:'„Vielen Dank für alles.“'},
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'B1a Çfarë është e saktë?', pde:'B1a Was ist richtig?', q:'2  Carlos ist krank.', o:['richtig','falsch'], a:'falsch', e:'Frau Weber është e sëmurë, jo Carlos.'},
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'B1a Çfarë është e saktë?', pde:'B1a Was ist richtig?', q:'3  Ioanna informiert Lara: Sie haben morgen keinen Unterricht.', o:['richtig','falsch'], a:'richtig', e:'„… unser Unterricht fällt morgen aus.“'},
-    {type:'table', read:true, topic:'possessiv', psq:'B1b Plotëso tabelën', pde:'B1b Ergänzen Sie die Tabelle', th:['','wir'],
+    {type:'mc', read:[0], row:true, topic:'lesen', psq:'B1a Çfarë është e saktë?', pde:'B1a Was ist richtig?', q:'1  Ioanna will „danke“ sagen.', o:['richtig','falsch'], a:'richtig', e:'„Vielen Dank für alles.“'},
+    {type:'mc', read:[0], row:true, topic:'lesen', psq:'B1a Çfarë është e saktë?', pde:'B1a Was ist richtig?', q:'2  Carlos ist krank.', o:['richtig','falsch'], a:'falsch', e:'Frau Weber është e sëmurë, jo Carlos.'},
+    {type:'mc', read:[0], row:true, topic:'lesen', psq:'B1a Çfarë është e saktë?', pde:'B1a Was ist richtig?', q:'3  Ioanna informiert Lara: Sie haben morgen keinen Unterricht.', o:['richtig','falsch'], a:'richtig', e:'„… unser Unterricht fällt morgen aus.“'},
+    {type:'table', read:[0], topic:'possessiv', psq:'B1b Plotëso tabelën', pde:'B1b Ergänzen Sie die Tabelle', th:['','wir'],
      rows:[['Abend','unser'],['Lied','unser'],['Lehrerin','unsere'],['Augen','unsere']], e:'unser Abend, unser Lied, unsere Lehrerin, unsere Augen.'},
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'B2a Kush shkruan?', pde:'B2a Wer schreibt was?', q:'Nachricht 1 (Marie)', o:['eine Kollegin','eine Freundin','die Ehefrau'], a:'die Ehefrau', e:'„Schatz“, „Küsse“ dhe fëmijët → bashkëshortja.'},
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'B2a Kush shkruan?', pde:'B2a Wer schreibt was?', q:'Nachricht 2 (Anna)', o:['eine Kollegin','eine Freundin','die Ehefrau'], a:'eine Freundin', e:'Fton miqtë për darkë → shoqja.'},
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'B2a Kush shkruan?', pde:'B2a Wer schreibt was?', q:'Nachricht 3 (Heike)', o:['eine Kollegin','eine Freundin','die Ehefrau'], a:'eine Kollegin', e:'„Ich komme morgen wieder in die Arbeit.“ → kolegia.'},
-    {type:'table', read:true, topic:'possessiv', psq:'B2b Plotëso tabelën: ihr', pde:'B2b Ergänzen Sie die Tabelle', th:['','ihr (ju)'],
+    {type:'mc', read:[1], row:true, topic:'lesen', psq:'B2a Kush shkruan?', pde:'B2a Wer schreibt was?', q:'Nachricht 1 (Marie)', o:['eine Kollegin','eine Freundin','die Ehefrau'], a:'die Ehefrau', e:'„Schatz“, „Küsse“ dhe fëmijët → bashkëshortja.'},
+    {type:'mc', read:[2], row:true, topic:'lesen', psq:'B2a Kush shkruan?', pde:'B2a Wer schreibt was?', q:'Nachricht 2 (Anna)', o:['eine Kollegin','eine Freundin','die Ehefrau'], a:'eine Freundin', e:'Fton miqtë për darkë → shoqja.'},
+    {type:'mc', read:[3], row:true, topic:'lesen', psq:'B2a Kush shkruan?', pde:'B2a Wer schreibt was?', q:'Nachricht 3 (Heike)', o:['eine Kollegin','eine Freundin','die Ehefrau'], a:'eine Kollegin', e:'„Ich komme morgen wieder in die Arbeit.“ → kolegia.'},
+    {type:'table', read:[2,3], topic:'possessiv', psq:'B2b Plotëso tabelën: ihr', pde:'B2b Ergänzen Sie die Tabelle', th:['','ihr (ju)'],
      rows:[['Termin','euer'],['Lied','euer',true],['Mutter','eure'],['Ohren','eure',true]], e:'euer Termin, euer Lied, eure Mutter, eure Ohren.'},
-    {type:'table', read:true, topic:'possessiv', psq:'B2b Plotëso tabelën: sie', pde:'B2b Ergänzen Sie die Tabelle', th:['','sie (ata)'],
+    {type:'table', read:[1], topic:'possessiv', psq:'B2b Plotëso tabelën: sie', pde:'B2b Ergänzen Sie die Tabelle', th:['','sie (ata)'],
      rows:[['Termin','ihr',true],['Lied','ihr',true],['Mutter','ihre',true],['Ohren','ihre']], e:'ihr Termin, ihr Lied, ihre Mutter, ihre Ohren (pa -n).'},
     {type:'gap', row:true, topic:'possessiv', psq:'B3 Mesazhe në kurs', pde:'B3 Im Kurs: Nachrichten', s:'Wann machen wir ___ Hausaufgaben? – Um 15 Uhr.', o:['unsere','unser','euer'], a:'unsere', e:'wir + die Hausaufgaben (shumës) → unsere.'},
     {type:'gap', row:true, psq:'morgen apo Morgen?', pde:'morgen oder Morgen?', s:'Ich komme ___ wieder in die Arbeit.', o:['morgen','Morgen'], a:'morgen', e:'morgen = nesër, me shkronjë të vogël.'}
@@ -1783,7 +1783,7 @@ const HOMEWORK = [
   sq:'Ich soll Schmerztabletten nehmen', de:'S. 122: sollen',
   desc:'Çfarë thotë Ioanna, „Der Arzt hat gesagt …“, linja telefonike e shëndetit dhe këshilla.',
   tip:'ich soll, du sollst, er soll, wir sollen, ihr sollt, sie sollen.',
-  read:'<b>Gesundheits-Hotline</b><br>Anrufer 1 ist immer müde.<br>Anruferin 2: Ihre Tochter hat Husten.<br>Anrufer 3 hat Sonnenbrand.',
+  read:'<b>Gesundheits-Hotline</b><br>Anrufer 1 ist immer müde.<br>Anruferin 2: Ihre Tochter Mira hat Husten.<br>Anrufer 3 hat Sonnenbrand.',
   lesson:[
     {t:'Bravo, Mimoza! 🌟', d:'Gut gemacht!', p:'Te <b>C3</b> i ke lidhur problemet me këshillat: Anrufer 1 → viel spazieren gehen, Anruferin 2 → zum Arzt gehen, Mira Saft geben, Anrufer 3 → Salbe verwenden. 👏',
      tip:'Shënimi yt: <b>sollen</b> = duhet, si këshillë nga dikush tjetër. <i class="tr">(Der Arzt sagt, ich soll …)</i>'}
@@ -2072,9 +2072,9 @@ const HOMEWORK = [
     {type:'cloze', read:true, topic:'lesen', psq:'3 Rendit', pde:'3 Ordnen Sie zu. Achtung: Nicht alles passt.', bank:['zwei','zwölf','Medikamente kaufen','eine Erkältung','kein Problem'],
      text:'a  Was sollen Lara und Lili für Walter tun? Sie sollen sein Auto zur Werkstatt bringen ✓ und [[Medikamente kaufen]].\nb  Warum macht Walter das nicht selbst? Er hat [[eine Erkältung]].\nc  Wann macht die Werkstatt zu? Um [[zwölf;zwölf Uhr;12]].',
      e:'Medikamente kaufen · eine Erkältung · zwölf. „zwei“ dhe „kein Problem“ mbeten.'},
-    {type:'mc', read:true, topic:'lesen', psq:'4a Kryqëzo', pde:'4a Warum kommen Lara und Lili so spät an?', q:'Warum kommen Lara und Lili so spät an?',
+    {type:'mc', read:[1,2], topic:'lesen', psq:'4a Kryqëzo', pde:'4a Warum kommen Lara und Lili so spät an?', q:'Warum kommen Lara und Lili so spät an?',
      o:['Sie finden die Werkstatt nicht. Das Navi zeigt den falschen Weg.','Sie fahren auf die Autobahn. Lara möchte einmal richtig schnell fahren.'], a:'Sie fahren auf die Autobahn. Lara möchte einmal richtig schnell fahren.', e:'„Lara möchte einmal richtig schnell fahren.“'},
-    {type:'mc', read:true, row:true, topic:'lesen', psq:'4b Kryqëzo', pde:'4b Was bedeutet „Alles im grünen Bereich“?', q:'Was bedeutet „Alles im grünen Bereich“?', o:['Alles ist okay.','Nichts funktioniert.'], a:'Alles ist okay.', e:'Alles im grünen Bereich = gjithçka në rregull.'}
+    {type:'mc', read:[2], row:true, topic:'lesen', psq:'4b Kryqëzo', pde:'4b Was bedeutet „Alles im grünen Bereich“?', q:'Was bedeutet „Alles im grünen Bereich“?', o:['Alles ist okay.','Nichts funktioniert.'], a:'Alles ist okay.', e:'Alles im grünen Bereich = gjithçka në rregull.'}
   ]
 },
 
@@ -2476,10 +2476,10 @@ const HOMEWORK = [
     {type:'cloze', topic:'komparativ', psq:'C1 Plotëso', pde:'C1 Ergänzen Sie', bank:['am besten','gut','besser'],
      text:'– Wir haben super Jacken gefunden.\n– Ja, genau!\n– Hier, die ist doch richtig [[gut]], oder?\n– Und hier, die ist noch [[besser]].\n– Ja, das kann schon sein. Aber mein Mantel, der steht mir [[am besten]]!',
      e:'gut · besser · am besten.'},
-    {type:'cloze', read:true, topic:'lesen', psq:'C2b Lexo dhe plotëso: Carola', pde:'C2b Lesen Sie und ergänzen Sie: Carola', h:'nicht so gern · lieber · am liebsten',
+    {type:'cloze', read:[0], topic:'lesen', psq:'C2b Lexo dhe plotëso: Carola', pde:'C2b Lesen Sie und ergänzen Sie: Carola', h:'nicht so gern · lieber · am liebsten',
      text:'1  Was trägt Carola nicht so gern? [[das Kleid;Kleid;ein Kleid]]\n   lieber? [[die Röcke;Röcke]]\n   am liebsten? [[die Hose;Hose]]',
      e:'das Kleid · die Röcke · die Hose.'},
-    {type:'cloze', read:true, topic:'lesen', psq:'C2b Lexo dhe plotëso: José', pde:'C2b Lesen Sie und ergänzen Sie: José', h:'gern · lieber · am liebsten · viel · mehr · am meisten',
+    {type:'cloze', read:[1], topic:'lesen', psq:'C2b Lexo dhe plotëso: José', pde:'C2b Lesen Sie und ergänzen Sie: José', h:'gern · lieber · am liebsten · viel · mehr · am meisten',
      text:'2  Was trägt José gern? [[Designerkleidung;die Designerkleidung]]\n   lieber? [[Jeans;die Jeans]]\n   am liebsten? [[die Jogginghose;Jogginghose;seine Jogginghose]]\n3  Was macht José viel? [[lesen;er liest;Er liest]]\n   mehr? [[telefonieren;er telefoniert;Er telefoniert]]\n   am meisten? [[fernsehen;er sieht fern;Er sieht fern;Filmabende]]',
      e:'Designerkleidung · Jeans · Jogginghose · lesen · telefonieren · fernsehen.'}
   ]

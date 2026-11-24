@@ -31,7 +31,7 @@ Diese Datei reicht, um die App zu verstehen. Kurzfassung, die Details stehen in 
 - `items`, ungefähr diese Mischung:
   - 2 × `match` (Wörter ↔ Albanisch, je 4–5 Paare)
   - 6–10 × `gap` mit `row:true`, `topic` und `psq`/`pde` als Frage („Der, Das apo Die?“ / „Der, Das oder Die?“), `h` mit Artikel oder Person, `e` kurz mit `→`
-  - bei Lesetext 4–5 × `mc` mit `read:true, topic:'lesen'`, Überschrift „Lexo dhe përgjigju“ / „Lies und antworte“
+  - bei Lesetext 4–5 × `mc` mit `read:[n]` (nur der Abschnitt, um den es geht) bzw. `read:true` (Frage braucht den ganzen Text), `topic:'lesen'`, Überschrift „Lexo dhe përgjigju“ / „Lies und antworte“
   - 1 × `mc` „Si thuhet gjermanisht?“ (albanischer Satz → der richtige deutsche Satz, die falschen mit typischen Fehlern)
   - 2–3 × `mc` als Dialog (`topic:'dialog', speakQ:true, h`), Überschrift „Çfarë përgjigjesh?“ / „Was antwortest du?“
   - wo es passt: `sort`, `table` oder `cloze`
@@ -122,7 +122,7 @@ Aus `nouns`/`words` erzeugt die App automatisch Wortfragen (der/die/das, Schreib
 | `letters` | `s:'… ___', a, mix` (Buchstabensalat, `mix` = gleiche Buchstaben) |
 | `sort` | `cats:[], items:[[Wort, Kategorie]]` |
 
-Gemeinsam: `psq`/`pde` (Überschrift), `topic` (für „Pikat e dobëta“: z. B. `satz`, `artikel`, `ein`, `modal`, `perfekt`, `zeit`, `wfragen`, `subjekt`, `trennbar`, `zahlen`, `lesen`, `hoeren`, siehe `TOPICS` in `app.js`), `read:true` (zeigt den `read`-Text des Kapitels über der Frage), `row:true` (Optionen nebeneinander, nicht gemischt).
+Gemeinsam: `psq`/`pde` (Überschrift), `topic` (für „Pikat e dobëta“: z. B. `satz`, `artikel`, `ein`, `modal`, `perfekt`, `zeit`, `wfragen`, `subjekt`, `trennbar`, `zahlen`, `lesen`, `hoeren`, siehe `TOPICS` in `app.js`), `read:true` (zeigt den `read`-Text des Kapitels über der Frage), `read:[1]` bzw. `read:[2,3]` (zeigt nur diese Abschnitte des `read`-Texts; Abschnitte sind durch eine Leerzeile `<br><br>` getrennt, gezählt ab 0), `row:true` (Optionen nebeneinander, nicht gemischt).
 
 ## 🎧 Hören: Höraufgaben gehören immer dazu
 
@@ -194,7 +194,9 @@ Immer **Datum mit Uhrzeit von jetzt** setzen (z. B. `'2026-10-30T16:20'`, Wörte
    - **Hausaufgabe / Test** → neues Set am Ende von `homework.js` (Buch-Stil, `seq:true`, „Kujdes! 👀“ mit ihren Fehlern, „Bravo“ für Richtiges).
    - **Neuer Stoff aus dem Kursbuch** → neue Kapitel in `data.js` bei ihrer Lektion (`lek`, `band`, `added`). Neue Lektion = `unit` am ersten Kapitel.
    - Meist beides: die **Hausaufgabe genau wie die Buchseiten** (eine Seite = ein Teil, `book` mit Seite/Übung), und auf der **Reise neue Kapitel**, die den Stoff erklären (Folien mit Übersetzung) und mit weiteren, eigenen Übungen festigen.
-   - Lesetexte des Buches kommen als `read` ins Kapitel, Fragen dazu mit `read:true`.
+   - Lesetexte des Buches kommen als `read` ins Kapitel, Fragen dazu mit `read:[n]` oder `read:true`.
+   - **Lange Lesetexte:** Der Lesekasten zeigt auf dem Handy nur etwa 400 Zeichen, der Rest muss gescrollt werden. Darum lange Texte (mehrere Personen, Anzeigen, Nachrichten, Abschnitte einer Geschichte) mit einer Leerzeile (`<br><br>`) in Abschnitte teilen. **Jede Frage zeigt mit `read:[n]` nur den Abschnitt, um den es geht** (Frage zu José → nur Josés Text; „Welche Anzeige passt zu Brenda?“ → `read:[2,3]`, Brenda und die Anzeigen). `read:true` nur, wenn die Frage wirklich den ganzen Text braucht (z. B. „Welches Hotel hat KEIN Restaurant?“). `node tools/validate.js` meldet neue lange Texte mit `read:true`.
+   - **Jede Antwort muss im gezeigten Text stehen**, und jeder Name aus der Frage muss dort vorkommen (Frage „Was macht Anna?“ → im Text steht „Anna“). Keine Antwort, die man nur aus dem Buch oder der Hördatei kennt.
    - **Hörübungen aus dem Buch ohne Audio weglassen** (die Antworten lassen sich nicht sicher prüfen) und das dem Benutzer sagen. Eigene Höraufgaben entstehen trotzdem immer (siehe „🎧 Hören“): jedes neue Kapitel bekommt dafür genug kurze `order`-Sätze mit `sq`.
    - **Jede Aufgabe muss ohne Buch lösbar sein.** Was im Buch aus einem Bild, einer Karte, einem Text oder einer Hördatei kommt, braucht Kontext in der App: `read` (Text über der Aufgabe, funktioniert bei allen Aufgabentypen), `h` (z. B. die Karte als „Hamburg ☀️ 0° · …“), `bank` (Wortkasten) oder das Verb in Klammern. Ein Wortkasten (`bank`) nur, wenn ihn auch das Buch hat; sonst reicht der Text als Kontext, und freie Eingaben bekommen großzügige Varianten (`[[sehr gut;gut]]`), damit sinngemäß Richtiges zählt.
    - Was Mimi richtig hatte: Folie „Bravo, Mimoza! 🌟“. Ihre sicheren Fehler: Folie „Kujdes! 👀“ (`fix`).

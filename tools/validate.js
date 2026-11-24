@@ -35,6 +35,9 @@ all.forEach(c => {
     if (q.type === 'sort' && q.items.some(i => !q.cats.includes(i[1]))) err(at, 'sort: Kategorie fehlt in cats');
     if (q.type === 'cloze' && !/\[\[/.test(q.text)) err(at, 'cloze ohne [[Lücke]]');
     if (q.read === true && !c.read) err(at, 'read:true, aber das Kapitel hat kein read');
+    /* read:[1,3] = only these paragraphs of the chapter text (split at <br><br>) */
+    const nPar = (c.read || '').split(/<br\s*\/?>\s*<br\s*\/?>/).length;
+    if (Array.isArray(q.read) && (!c.read || !q.read.length || q.read.some(i => !Number.isInteger(i) || i < 0 || i >= nPar))) err(at, `read:[${q.read}] passt nicht, der Text hat ${c.read ? nPar : 0} Abschnitte (0–${nPar - 1})`);
   });
 });
 /* 🎧 hear: [gehörter Satz, richtige Bedeutung, falsch, falsch, …] — alle Antworten verschieden */
@@ -61,8 +64,14 @@ const okSent = de => de.replace(/<[^>]+>/g, '').trim().length <= 64 && !/[\/…]
 const fresh = ctx.C.filter(c => !c.final && c.added && Date.now() - Date.parse(c.added) < 14 * 864e5);   /* homework parts take theirs from the Lektion */
 const deaf = fresh.map(c => [c.id, (c.items || []).filter(q => q.type === 'order' && q.de && q.sq && okSent(q.de)).length, (c.hear || []).length]).filter(x => x[1] < 2 || x[2] < 3);
 
+/* Info: 📖 neue lange Lesetexte (über 400 Zeichen): passen nicht ganz in den Lesekasten. Fragen zu einem Abschnitt → read:[n] */
+const plain = s => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&');
+const freshAll = all.filter(c => Date.now() - Date.parse(c.added || (ctx.H.find(h => h.id === c.hw) || {}).added || 0) < 14 * 864e5);
+const longRead = freshAll.filter(c => c.read && plain(c.read).length > 400 && (c.items || []).some(q => q.read === true)).map(c => `${c.id}: ${(c.items || []).filter(q => q.read === true).length} Fragen mit read:true`);
+
 console.log(`Kapitel ${ctx.C.length} · Hausaufgaben-Sets ${ctx.H.length} (${parts.length} Teile) · Wortthemen ${ctx.W.length} · Spickzettel ${ctx.S.length}`);
 if (miss.length) console.log(`ℹ Wörter aus neuen Kapiteln (14 Tage), die in words.js fehlen:\n  ${miss.join('\n  ')}`);
 if (deaf.length) console.log(`ℹ 🎧 Neue Kapitel (14 Tage) mit zu wenig Hören (mind. 2 order-Sätze mit sq, höchstens 64 Zeichen, und mind. 3 hear):\n  ${deaf.map(x => `${x[0]}: ${x[1]} Sätze, ${x[2]} hear`).join('\n  ')}`);
+if (longRead.length) console.log(`ℹ 📖 Neue lange Lesetexte (über 400 Zeichen): Fragen zu einem Abschnitt mit read:[n] statt read:true (nur Vergleichsfragen über den ganzen Text bleiben read:true):\n  ${longRead.join('\n  ')}`);
 console.log(bad.length ? bad.join('\n') : '✓ alle Daten in Ordnung');
 process.exit(bad.length ? 1 : 0);
